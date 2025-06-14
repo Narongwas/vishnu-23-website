@@ -1,5 +1,8 @@
 import { addUserAdmin } from "@/services/users";
 
+/*
+We might consider seperate logic out of this route like a controller or something
+*/
 export async function POST(request: Request) {
   try {
     const body = await request.json();
