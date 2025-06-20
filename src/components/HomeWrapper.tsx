@@ -20,6 +20,7 @@ const ScreenContainer = styled.div`
 const NoiseOverlay = styled.div`
   position: absolute;
   inset: 0;
+  height: 100dvh;
   background-image: url("/decorating/texture/noise.png");
   background-repeat: repeat;
   background-attachment: fixed;
@@ -48,12 +49,13 @@ export default function HomeWrapper({
   children: React.ReactNode;
 }) {
   return (
+    // Reuse component for home page and login page
     <ScreenContainer className="top-edge">
       <NoiseOverlay />
-      <div className="relative h-full flex flex-col items-center max-w-[450px] text-center mx-auto overflow-hidden ">
+      <div className="relative h-full flex flex-col items-center max-w-[800px] text-center mx-auto  ">
         <Cloud1Overlay className="w-[73.5px] h-[40px] top-[381px] left-[-19px] opacity-40" />
-        <Cloud2Overlay className="w-[106px] h-[51px] top-[189px] left-[332px] opacity-40" />
-        <Cloud2Overlay className="w-[158px] h-[76px] top-[443px] left-[306px] transform scale-x-[-1]" />
+        <Cloud2Overlay className="w-[106px] h-[51px] top-[189px] right-[-36px] opacity-40" />
+        <Cloud2Overlay className="w-[158px] h-[76px] top-[443px] right-[-62px] transform scale-x-[-1]" />
         <div className="w-full h-[72px] bg-red-400">Header</div>
         <div className="fixed bottom-0 z-50 w-full h-[116px] bg-red-400">
           NavBar

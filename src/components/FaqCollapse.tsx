@@ -32,7 +32,7 @@ export default function FaqCollapse({ question, answer }: FaqCollapseProps) {
       type="single"
       collapsible
       onValueChange={(val) => setOpen(val === "item-1")}
-      className="w-[359px] mx-auto"
+      className="w-full px-[16px] mx-auto"
     >
       <AccordionItem value="item-1" className="relative overflow-hidden ">
         {/* Trigger background with dynamic height */}
@@ -40,16 +40,11 @@ export default function FaqCollapse({ question, answer }: FaqCollapseProps) {
           className="absolute top-0 left-0 w-full z-0"
           style={{ height: `${triggerHeight}px` }}
         >
-          <Fray
-            className="w-full h-full"
-            color="#FFFFFF"
-            style={{ zIndex: 0 }}
-          />
+          <Fray className="w-full h-full z-0" color="#FFFFFF" />
           {open && (
             <Fray
-              className="w-full h-full absolute top-0 left-0"
+              className="w-full h-full absolute top-0 left-0 opacity-20 z-10"
               color={ciColors.yellow}
-              style={{ opacity: 0.2, zIndex: 10 }}
             />
           )}
         </div>
@@ -57,7 +52,7 @@ export default function FaqCollapse({ question, answer }: FaqCollapseProps) {
         {/* Trigger text layer with ref */}
         <div ref={triggerRef} className="relative z-10">
           <AccordionTrigger className="font-bold px-[15px] py-[11px] title-medium ">
-            <div className="w-[285px]">{question}</div>
+            <div className="w-full h-full">{question}</div>
           </AccordionTrigger>
         </div>
 
@@ -70,19 +65,13 @@ export default function FaqCollapse({ question, answer }: FaqCollapseProps) {
         >
           {/* Content background */}
           <div
-            className="absolute left-0 w-full"
+            className="absolute left-0 w-full z-0 pointer-events-none"
             style={{
               top: `-${triggerHeight - 1}px`, // slightly overlap into trigger
               height: `calc(100% + ${triggerHeight + 1}px)`, // ensure full coverage
-              zIndex: 0,
-              pointerEvents: "none",
             }}
           >
-            <Fray
-              className="w-full h-full"
-              color="#FFFFFF"
-              style={{ opacity: 1 }}
-            />
+            <Fray className="w-full h-full opacity-100" color="#FFFFFF" />
           </div>
 
           {/* Content text */}

@@ -76,6 +76,12 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --ci-color-black: #222222;
+  --ci-color-blue: #41415f;
+  --ci-color-red: #a7271d;
+  --ci-color-orange: #c57564;
+  --ci-color-yellow-white: #efebd2;
+  --ci-color-yellow: #f4d590;
 }
 
 .dark {
