@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { deleteFeatureFlag, toggleFeatureFlag } from "../services";
-import { firebaseAuthMiddleware } from "@/middleware/firebaseAuthMiddleware";
+// import { firebaseAuthMiddleware } from "@/middleware/firebaseAuthMiddleware";
 
 // Put : "api/v1/feature-flags/:id" protected
 // toggle feature flag
@@ -9,21 +9,22 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   // Authentication logic
-  const authResult = await firebaseAuthMiddleware(request);
-  if (authResult.error || !authResult.decodedToken) {
-    return new Response(
-      JSON.stringify({ error: authResult.error || "Unauthorized" }),
-      {
-        status: 401,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  }
-  if (!authResult.decodedToken.admin) {
-    return new Response(JSON.stringify({ error: "Forbidden not admin" }), {
-      status: 403,
-    });
-  }
+  // const authResult = await firebaseAuthMiddleware(request);
+  // if (authResult.error || !authResult.decodedToken) {
+  //   return new Response(
+  //     JSON.stringify({ error: authResult.error || "Unauthorized" }),
+  //     {
+  //       status: 401,
+  //       headers: { "Content-Type": "application/json" },
+  //     }
+  //   );
+  // }
+  // if (!authResult.decodedToken.admin) {
+  //   return new Response(JSON.stringify({ error: "Forbidden not admin" }), {
+  //     status: 403,
+  //   });
+  // }
+
   // toggling logic
   try {
     const id = (await params).id;
@@ -32,7 +33,7 @@ export async function PUT(
       JSON.stringify({
         msg: `Successfully toggled feature flag of id : ${id} to ${status}`,
       }),
-      { status: 500 }
+      { status: 200 }
     );
   } catch (err) {
     return new Response(
@@ -49,21 +50,21 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   // Authentication logic
-  const authResult = await firebaseAuthMiddleware(request);
-  if (authResult.error || !authResult.decodedToken) {
-    return new Response(
-      JSON.stringify({ error: authResult.error || "Unauthorized" }),
-      {
-        status: 401,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  }
-  if (!authResult.decodedToken.admin) {
-    return new Response(JSON.stringify({ error: "Forbidden not admin" }), {
-      status: 403,
-    });
-  }
+  // const authResult = await firebaseAuthMiddleware(request);
+  // if (authResult.error || !authResult.decodedToken) {
+  //   return new Response(
+  //     JSON.stringify({ error: authResult.error || "Unauthorized" }),
+  //     {
+  //       status: 401,
+  //       headers: { "Content-Type": "application/json" },
+  //     }
+  //   );
+  // }
+  // if (!authResult.decodedToken.admin) {
+  //   return new Response(JSON.stringify({ error: "Forbidden not admin" }), {
+  //     status: 403,
+  //   });
+  // }
 
   // delete logic
   try {
@@ -73,7 +74,7 @@ export async function DELETE(
       JSON.stringify({
         msg: `Successfully deleted the feature flag of id : ${id}`,
       }),
-      { status: 500 }
+      { status: 200 }
     );
   } catch (err) {
     return new Response(

@@ -1,11 +1,15 @@
 import { db } from "@/utils/firebase.admin";
 
-export async function getAllFeatureFlags() {
+export async function getAllFeatureFlags(): Promise<FeatureFlag[]> {
   const featureFlagCollection = await db.collection("featureFlags").get();
-  const featureFlags = featureFlagCollection.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+  const featureFlags = featureFlagCollection.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      featureName: data.featureName,
+      enabled: data.enabled,
+    } as FeatureFlag;
+  });
   return featureFlags;
 }
 export async function addNewFeatureFlag(featureName: string, enabled: boolean) {
