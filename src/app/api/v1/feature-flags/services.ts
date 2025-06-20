@@ -36,14 +36,16 @@ export async function toggleFeatureFlag(id: string): Promise<boolean> {
 export async function deleteFeatureFlag(id: string) {
   await db.collection("featureFlags").doc(id).delete();
 }
-export async function getFeatureFlagByName(featureName: string) {
+export async function checkFeatureFlagByName(
+  featureName: string
+): Promise<boolean> {
   const featureFlagCollection = await db
     .collection("featureFlags")
     .where("featureName", "==", featureName)
     .get();
   if (featureFlagCollection.empty) {
-    return null;
+    return false;
   }
   const doc = featureFlagCollection.docs[0];
-  return { id: doc.id, ...doc.data() };
+  return doc.data().enabled;
 }
