@@ -36,3 +36,14 @@ export async function toggleFeatureFlag(id: string): Promise<boolean> {
 export async function deleteFeatureFlag(id: string) {
   await db.collection("featureFlags").doc(id).delete();
 }
+export async function getFeatureFlagByName(featureName: string) {
+  const featureFlagCollection = await db
+    .collection("featureFlags")
+    .where("featureName", "==", featureName)
+    .get();
+  if (featureFlagCollection.empty) {
+    return null;
+  }
+  const doc = featureFlagCollection.docs[0];
+  return { id: doc.id, ...doc.data() };
+}
