@@ -1,4 +1,5 @@
 import { db } from "@/utils/firebase.admin";
+import emailToId from "@/utils/emailToId";
 
 export async function GET(request: Request) {
   try {
@@ -9,7 +10,7 @@ export async function GET(request: Request) {
       return Response.json({ error: "Email is required" }, { status: 400 });
     }
 
-    const studentId = parseInt(email.split("@")[0]);
+    const studentId = emailToId(email);
     const doc = await db
       .collection("users")
       .where("studentId", "==", studentId)
@@ -48,7 +49,7 @@ export async function PATCH(request: Request) {
       );
     }
 
-    const studentId = parseInt(email.split("@")[0]);
+    const studentId = emailToId(email);
     const doc = await db
       .collection("users")
       .where("studentId", "==", studentId)
