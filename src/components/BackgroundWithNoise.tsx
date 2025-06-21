@@ -5,10 +5,9 @@ import styled from "styled-components";
 const NoiseOverlay = styled.div`
   position: absolute;
   inset: 0;
-  height: 100dvh;
+  height: 100%;
   background-image: url("/decorating/texture/noise.png");
   background-repeat: repeat;
-  background-attachment: fixed;
   pointer-events: none;
   z-index: 5;
 `;

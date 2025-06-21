@@ -1,7 +1,10 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @theme inline {
+  --font-bai: "Bai Jamjuree", sans-serif;
+  --font-icon: "icon";
+  --font-kart: "Kart3Kingdom", sans-serif;
+
   --color-black: #222222;
   --color-blue: #41415f;
   --color-red: #a7271d;
@@ -9,25 +12,26 @@
   --color-yellow-white: #efebd2;
   --color-yellow: #f4d590;
 
-  --type-display-large: 3.5625rem / 4rem var(--font-bai);
-  --type-display-medium: 2.8125rem / 3.25rem var(--font-bai);
-  --type-display-small: 2.25rem / 2.75rem var(--font-bai);
-  --type-headline-large: 2rem / 2.5rem var(--font-bai);
-  --type-headline-medium: 1.75rem / 2.25rem var(--font-bai);
-  --type-headline-small: 1.5rem / 2rem var(--font-bai);
-  --type-title-large: 1.375rem / 1.75rem var(--font-bai);
-  --type-title-medium: 1rem / 1.5rem var(--font-bai);
-  --type-title-small: 0.875rem / 1.25rem var(--font-bai);
-  --type-label-large: 0.875rem / 1.25rem var(--font-bai);
-  --type-label-medium: 0.75rem / 1rem var(--font-bai);
-  --type-label-small: 0.6875rem / 1rem var(--font-bai);
-  --type-body-large: 1rem / 1.5rem var(--font-bai);
-  --type-body-medium: 0.875rem / 1.25rem var(--font-bai);
-  --type-body-small: 0.75rem / 1rem var(--font-bai);
-  --type-chinese-large: 7rem / 4rem var(--font-kart);
-  --type-chinese-medium: 4.5rem / 3rem var(--font-kart);
-  --type-chinese-small: 2.25rem / 2.25rem var(--font-kart);
-  --type-chinese-cursive: 0.6rem / 6rem var(--font-kart);
+  --type-display-large: 500 3.5625rem / 4rem var(--font-bai);
+  --type-display-medium: 500 2.8125rem / 3.25rem var(--font-bai);
+  --type-display-small: 500 2.25rem / 2.75rem var(--font-bai);
+  --type-headline-large: 500 2rem / 2.5rem var(--font-bai);
+  --type-headline-medium: 500 1.75rem / 2.25rem var(--font-bai);
+  --type-headline-small: 500 1.5rem / 2rem var(--font-bai);
+  --type-title-large: 500 1.375rem / 1.75rem var(--font-bai);
+  --type-title-large-bold: 700 1.375rem / 1.75rem var(--font-bai);
+  --type-title-medium: 700 1rem / 1.5rem var(--font-bai);
+  --type-title-small: 500 0.875rem / 1.25rem var(--font-bai);
+  --type-label-large: 700 0.875rem / 1.25rem var(--font-bai);
+  --type-label-medium: 700 0.75rem / 1rem var(--font-bai);
+  --type-label-small: 700 0.6875rem / 1rem var(--font-bai);
+  --type-body-large: 400 1rem / 1.5rem var(--font-bai);
+  --type-body-medium: 400 0.875rem / 1.25rem var(--font-bai);
+  --type-body-small: 400 0.75rem / 1rem var(--font-bai);
+  --type-chinese-large: 400 7rem / 4rem var(--font-kart);
+  --type-chinese-medium: 400 4.5rem / 3rem var(--font-kart);
+  --type-chinese-small: 400 2.25rem / 2.25rem var(--font-kart);
+  --type-chinese-cursive: 400 0.6rem / 6rem var(--font-kart);
 
   --tracking-display-large: -0.25px;
   --tracking-display-medium: 0;

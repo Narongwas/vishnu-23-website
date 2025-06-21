@@ -38,18 +38,18 @@ export default function HomeWrapper({
           width={158}
           height={76}
           alt="cloud"
-          className="absolute top-111 -right-15 transform scale-x-[-1]"
+          className="absolute top-111 -right-18 transform -scale-x-100"
         />
         <div className="w-full h-8 bg-red-400">Header</div>
         <div className="fixed bottom-0 z-50 w-full h-29 bg-red-400">NavBar</div>
-        <div className="relative mt-11 mb-22 flex flex-col items-center">
-          <Image src={firstDateLogo} priority alt="firstdatelogo" />
+        <div className="relative mt-11 flex flex-col items-center">
           <Image
-            src={vishnuLogo}
+            src={firstDateLogo}
             priority
-            alt="vishnulogo"
-            className="absolute top-45"
+            alt="โลโก้ intania firstdate"
+            className="-mb-10"
           />
+          <Image src={vishnuLogo} priority alt="โลโก้ ค่ายวิษณุ" />
         </div>
         {children}
       </div>

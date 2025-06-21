@@ -23,6 +23,7 @@ const kart3Kingdom = localFont({
 
 const icon = localFont({
   src: "../../public/fonts/material-symbols-outlined.woff2",
+  variable: "--font-icon",
   display: "block",
 });
 

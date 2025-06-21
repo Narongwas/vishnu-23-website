@@ -1,14 +1,6 @@
-type FaqQuestion = {
-  question: string;
-  answer: string;
-};
+import { FaqSection } from "@/lib/types/FaqSectionProps";
 
-type FaqSection = {
-  title: string;
-  questions: FaqQuestion[];
-};
-
-export const MOCK_FAQ: FaqSection[] = [
+const MOCK_FAQ: FaqSection[] = [
   {
     title: "",
     questions: [
@@ -70,3 +62,5 @@ export const MOCK_FAQ: FaqSection[] = [
     ],
   },
 ];
+
+export default MOCK_FAQ;
