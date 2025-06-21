@@ -1,55 +1,41 @@
-"use client";
-
-import { ciColors } from "@/themes/colors";
-import styled from "styled-components";
 import HomeWrapper from "@/components/HomeWrapper";
-import FaqCollapse from "@/components/FaqCollapse";
-import { faqMock } from "@/jsondata/faqMock";
+import FaqCard from "@/components/FaqCard";
+import { MOCK_FAQ } from "@/jsondata/faqMock";
 import Image from "next/image";
-
-const MainText = styled.div`
-  color: ${ciColors.red};
-`;
+import separator from "../../public/decorating/shapes/separator.svg";
 
 export default function Home() {
   return (
     <HomeWrapper>
-      <MainText className="mt-[48px] flex flex-col gap-[20px]">
-        <div className="title-large">
-          Intania First Date 2025 <br />
-          19 กรกฎาคม 2568
+      <div className="mt-12 flex flex-col gap-5 text-red">
+        <div className="type-title-large font-medium">
+          <p>Intania First Date 2025</p>
+          <p>19 กรกฎาคม 2568</p>
         </div>
-        {/* <hr className="w-[160px] mx-auto border-[var(--ci-color-red)]" /> */}
-        <Image
-          src="/decorating/shapes/separator.svg"
-          width={160}
-          height={1.5}
-          className="mx-auto"
-          alt=""
-        />
-        <div className="title-large">
-          และค่ายวิษณุกรรมบุตรครั้งที่ 23 <br />
-          22–25 กรกฎาคม 2568
+        <Image src={separator} className="mx-auto" priority alt="Separator" />
+        <div className="type-title-large font-medium">
+          <p>และค่ายวิษณุกรรมบุตรครั้งที่ 23</p>
+          <p>22–25 กรกฎาคม 2568</p>
         </div>
-      </MainText>
+      </div>
 
       <div className="pb-30 z-30 w-full">
-        <div className="text-center text-[22px] font-bold mt-[68px] mb-[20px] text-[var(--ci-color-red)]">
-          คำถามที่พบบ่อย
+        <div className="type-title-large text-center font-bold mt-17 mb-5 text-red">
+          <p>คำถามที่พบบ่อย</p>
         </div>
-        <div className="flex flex-col items-center gap-[25px]">
-          {faqMock.map((item, index) => (
+        <div className="flex flex-col items-center gap-6">
+          {MOCK_FAQ.map((item, index) => (
             <div key={index} className="w-full  ">
               {item.title.length > 0 && (
-                <div className=" mb-[16px] bg-[url('/decorating/flag.svg')] bg-no-repeat w-[170px] h-[38px]">
-                  <div className="title-medium text-left pl-[26px] py-[7px] text-white">
+                <div className="mb-4 bg-[url('/decorating/shapes/flag.svg')] bg-no-repeat w-42 h-10">
+                  <p className="type-title-medium font-bold text-left pl-7 py-2 text-white">
                     {item.title}
-                  </div>
+                  </p>
                 </div>
               )}
-              <div className="flex flex-col items-center w-full gap-[12px]">
+              <div className="flex flex-col items-center w-full gap-3">
                 {item.questions.map((q, qIndex) => (
-                  <FaqCollapse
+                  <FaqCard
                     key={qIndex}
                     question={q.question}
                     answer={q.answer}

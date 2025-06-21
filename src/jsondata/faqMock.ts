@@ -1,4 +1,14 @@
-export const faqMock = [
+type FaqQuestion = {
+  question: string;
+  answer: string;
+};
+
+type FaqSection = {
+  title: string;
+  questions: FaqQuestion[];
+};
+
+export const MOCK_FAQ: FaqSection[] = [
   {
     title: "",
     questions: [

@@ -1,75 +1,58 @@
-"use client";
-
-import { ciColors } from "@/themes/colors";
 import Image from "next/image";
-import styled from "styled-components";
-
-const ScreenContainer = styled.div`
-  position: relative;
-  width: 100%;
-  min-height: 100dvh;
-  margin-bottom: 100px;
-  background: linear-gradient(${ciColors.yellow}, ${ciColors.yellowWhite});
-  background-attachment: fixed;
-  background-size: cover;
-  overflow: hidden;
-
-  --theme-color: ${ciColors.yellow};
-`;
-
-const NoiseOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  height: 100dvh;
-  background-image: url("/decorating/texture/noise.png");
-  background-repeat: repeat;
-  background-attachment: fixed;
-  pointer-events: none;
-  z-index: 5;
-`;
-
-const Cloud1Overlay = styled.div`
-  position: absolute;
-  background-image: url("/decorating/clouds/cloud1.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 9;
-`;
-const Cloud2Overlay = styled.div`
-  position: absolute;
-  background-image: url("/decorating/clouds/cloud2.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 9;
-`;
+import BackgroundWithNoise from "./BackgroundWithNoise";
+import firstDateLogo from "../../public/logo/firstdate.svg";
+import vishnuLogo from "../../public/logo/vishnu.svg";
+import cloud1Logo from "../../public/decorating/clouds/cloud1.svg";
+import cloud2Logo from "../../public/decorating/clouds/cloud2.svg";
+import cn from "@/lib/utils";
 
 export default function HomeWrapper({
   children,
+  classname,
 }: {
   children: React.ReactNode;
+  classname?: string;
 }) {
   return (
     // Reuse component for home page and login page
-    <ScreenContainer className="top-edge">
-      <NoiseOverlay />
-      <div className="relative h-full flex flex-col items-center max-w-[800px] text-center mx-auto  ">
-        <Cloud1Overlay className="w-[73.5px] h-[40px] top-[381px] left-[-19px] opacity-40" />
-        <Cloud2Overlay className="w-[106px] h-[51px] top-[189px] right-[-36px] opacity-40" />
-        <Cloud2Overlay className="w-[158px] h-[76px] top-[443px] right-[-62px] transform scale-x-[-1]" />
-        <div className="w-full h-[72px] bg-red-400">Header</div>
-        <div className="fixed bottom-0 z-50 w-full h-[116px] bg-red-400">
-          NavBar
-        </div>
-        <div className="mt-[44px] flex flex-col items-center">
+    <BackgroundWithNoise
+      classname={cn("bg-gradient-to-b from-yellow to-yellow-white", classname)}
+    >
+      <div className="relative h-full flex flex-col items-center max-w-200 text-center mx-auto">
+        <Image
+          src={cloud1Logo}
+          width={73.5}
+          height={40}
+          alt="cloud"
+          className="absolute top-95 -left-5 opacity-40"
+        />
+        <Image
+          src={cloud2Logo}
+          width={106}
+          height={51}
+          alt="cloud"
+          className="absolute top-47 -right-9 opacity-40"
+        />
+        <Image
+          src={cloud2Logo}
+          width={158}
+          height={76}
+          alt="cloud"
+          className="absolute top-111 -right-15 transform scale-x-[-1]"
+        />
+        <div className="w-full h-8 bg-red-400">Header</div>
+        <div className="fixed bottom-0 z-50 w-full h-29 bg-red-400">NavBar</div>
+        <div className="relative mt-11 mb-22 flex flex-col items-center">
+          <Image src={firstDateLogo} priority alt="firstdatelogo" />
           <Image
-            src="/logo/vishnu_firstdate.svg"
-            width={200}
-            height={0}
-            alt=""
+            src={vishnuLogo}
+            priority
+            alt="vishnulogo"
+            className="absolute top-45"
           />
         </div>
         {children}
       </div>
-    </ScreenContainer>
+    </BackgroundWithNoise>
   );
 }
