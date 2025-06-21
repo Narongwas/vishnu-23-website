@@ -9,19 +9,16 @@ const baiJamjuree = Bai_Jamjuree({
   subsets: ["latin", "thai"],
   weight: ["200", "300", "400", "500", "600", "700"],
   variable: "--font-bai",
-  display: "optional",
 });
 const liuJianMaoCao = Liu_Jian_Mao_Cao({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-liu",
-  display: "optional",
 });
 
 const kart3Kingdom = localFont({
   src: "../../public/fonts/Kart-3Kingdom.woff2",
   variable: "--font-kart",
-  display: "optional",
 });
 
 const icon = localFont({
