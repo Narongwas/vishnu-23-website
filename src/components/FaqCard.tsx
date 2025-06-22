@@ -1,49 +1,45 @@
 "use client";
 
-import Accordion from "@/components/ui/accordion/Accordion";
 import AccordionItem from "@/components/ui/accordion/AccordionItem";
-import AccordionContent from "@/components/ui/accordion/AccordionContent";
 import AccordionTrigger from "@/components/ui/accordion/AccordionTrigger";
-
-import { useState } from "react";
+import AccordionContent from "@/components/ui/accordion/AccordionContent";
 import cn from "@/lib/utils";
+import { useState } from "react";
 
 interface FaqCardProps {
   question: string;
   answer: string;
+  value: string;
   classname?: string;
 }
 
-export default function FaqCard({ question, answer }: FaqCardProps) {
-  const [open, setOpen] = useState(false);
+export default function FaqCard({
+  question,
+  answer,
+  value,
+  classname,
+}: FaqCardProps) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Accordion
-      type="single"
-      collapsible
-      onValueChange={(val) => setOpen(val === "item")}
-      className="w-full px-4 mx-auto"
+    <AccordionItem
+      value={value} //It's a require attribute for track what item is open or close
+      className={cn("relative overflow-hidden bg-white w-full ", classname)}
     >
-      <AccordionItem
-        value="item"
-        className="relative overflow-hidden bg-white "
+      <div className="relative z-10 bg-white">
+        <AccordionTrigger
+          className="font-bold px-4 py-3 type-title-medium data-[state=open]:bg-yellow/20 data-[state=closed]:bg-white"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <p className="w-full h-full">{question}</p>
+        </AccordionTrigger>
+      </div>
+      <AccordionContent
+        className="type-body-medium z-10 px-4 pt-3 text-black text-left transition duration-300"
+        isOpen={isOpen}
       >
-        <div
-          className={cn("relative z-10 ", open ? "bg-yellow/20" : "bg-white")}
-        >
-          <AccordionTrigger className="font-bold px-4 py-3 type-title-medium">
-            <p className="w-full h-full">{question}</p>
-          </AccordionTrigger>
-        </div>
-
-        <AccordionContent
-          className="type-body-medium z-10 px-4 pt-3 text-black text-left"
-          isOpen={open}
-        >
-          {/* Content text */}
-          <p>{answer}</p>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+        <p>{answer}</p>
+      </AccordionContent>
+    </AccordionItem>
   );
 }

@@ -1,18 +1,25 @@
 import cn from "@/lib/utils";
-import { IconProps } from "@/lib/types/IconProps";
 
-const Icon = ({
+type IconProps = {
+  name: string;
+  size?: number; // in px
+  fill?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+};
+
+export default function Icon({
   name,
   fill = false,
   size = 24,
   className,
   style,
-}: IconProps) => {
+}: IconProps) {
   const sizeRem = `${size / 16}rem`;
 
   return (
     <i
-      aria-hidden="true"
+      aria-hidden
       translate="no"
       style={{
         ...style,
@@ -29,6 +36,4 @@ const Icon = ({
       {name}
     </i>
   );
-};
-
-export default Icon;
+}

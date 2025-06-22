@@ -3,7 +3,9 @@ import FaqCard from "@/components/FaqCard";
 import MOCK_FAQ from "@/mock/faqMock";
 import Image from "next/image";
 import separator from "../../public/decorating/shapes/separator.svg";
-import FlagTitle from "@/components/FlagTitle";
+import SectionHeader from "@/components/SectionHeader";
+import Accordion from "@/components/ui/accordion/Accordion";
+import { LayoutGroup } from "motion/react";
 
 export default function Home() {
   return (
@@ -26,19 +28,25 @@ export default function Home() {
         </div>
         <div className="flex flex-col items-center gap-6">
           {MOCK_FAQ.map((item, index) => (
-            <div key={index} className="w-full  ">
+            <div key={index} className="w-full">
               {item.title.length > 0 && (
-                <FlagTitle title={item.title} classname="mb-4" />
+                <SectionHeader title={item.title} classname="mb-4" />
               )}
-              <div className="flex flex-col items-center w-full gap-3">
-                {item.questions.map((q, qIndex) => (
-                  <FaqCard
-                    key={qIndex}
-                    question={q.question}
-                    answer={q.answer}
-                  />
-                ))}
-              </div>
+              <LayoutGroup>
+                <Accordion
+                  type="multiple"
+                  className="flex flex-col items-center w-full gap-3 px-4 "
+                >
+                  {item.questions.map((q, qIndex) => (
+                    <FaqCard
+                      key={qIndex}
+                      question={q.question}
+                      answer={q.answer}
+                      value={`faq-${index}-${qIndex}`} //unique value
+                    />
+                  ))}
+                </Accordion>
+              </LayoutGroup>
             </div>
           ))}
         </div>

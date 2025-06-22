@@ -23,21 +23,21 @@ export default function HomeWrapper({
           src={cloud1Logo}
           width={73.5}
           height={40}
-          alt="cloud"
+          alt=""
           className="absolute top-95 -left-5 opacity-40"
         />
         <Image
           src={cloud2Logo}
           width={106}
           height={51}
-          alt="cloud"
+          alt=""
           className="absolute top-47 -right-9 opacity-40"
         />
         <Image
           src={cloud2Logo}
           width={158}
           height={76}
-          alt="cloud"
+          alt=""
           className="absolute top-111 -right-18 transform -scale-x-100"
         />
         <div className="w-full h-8 bg-red-400">Header</div>

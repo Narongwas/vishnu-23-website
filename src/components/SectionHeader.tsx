@@ -1,6 +1,6 @@
 import cn from "@/lib/utils";
 
-export default function FlagTitle({
+export default function SectionHeader({
   title,
   classname,
 }: {

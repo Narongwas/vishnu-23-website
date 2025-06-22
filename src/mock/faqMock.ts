@@ -1,4 +1,4 @@
-import { FaqSection } from "@/lib/types/FaqSectionProps";
+import { FaqSection } from "@/lib/types/faq";
 
 const MOCK_FAQ: FaqSection[] = [
   {

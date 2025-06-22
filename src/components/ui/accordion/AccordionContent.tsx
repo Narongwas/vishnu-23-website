@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { motion } from "framer-motion";
 import cn from "@/lib/utils";
@@ -17,32 +16,32 @@ export default function AccordionContent({
   isOpen,
   ...props
 }: AccordionContentProps) {
-  const innerRef = useRef<HTMLDivElement>(null);
-  const [measuredHeight, setMeasuredHeight] = useState(0);
-  useEffect(() => {
-    if (innerRef.current) {
-      setMeasuredHeight(innerRef.current.scrollHeight);
-    }
-  }, [children]);
-
   return (
     <AccordionPrimitive.Content
-      data-slot="accordion-content"
+      data-slot="accordion"
       forceMount
       className="overflow-hidden"
       {...props}
     >
       <motion.div
+        layout
         initial={false}
         animate={{
-          height: isOpen ? measuredHeight : 0,
+          height: isOpen ? "auto" : 0,
           opacity: isOpen ? 1 : 0,
         }}
-        transition={{ duration: 0.25, ease: "easeInOut" }}
+        transition={{
+          layout: {
+            duration: 0.3,
+            ease: "easeOut",
+          },
+          opacity: { duration: 0.2 },
+        }}
+        className="overflow-hidden"
       >
-        <div ref={innerRef} className={cn("pt-0 pb-4", className)}>
+        <motion.div layout className={cn("pt-0 py-4 ", className)}>
           {children}
-        </div>
+        </motion.div>
       </motion.div>
     </AccordionPrimitive.Content>
   );
