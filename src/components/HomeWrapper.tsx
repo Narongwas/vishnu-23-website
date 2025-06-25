@@ -6,6 +6,8 @@ import cloud1Logo from "../../public/decorating/clouds/cloud1.svg";
 import cloud2Logo from "../../public/decorating/clouds/cloud2.svg";
 import cn from "@/lib/helpers/cn";
 import NavBar from "@/components/NavBar";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import LoginButton from "@/components/LoginButton";
 
 export default function HomeWrapper({
   children,
@@ -19,7 +21,11 @@ export default function HomeWrapper({
     <BackgroundWithNoise
       className={cn("from-yellow to-yellow-white bg-gradient-to-b", classname)}
     >
-      <div className="relative mx-auto flex h-full max-w-200 flex-col items-center text-center">
+      <div className="flex justify-between lg:justify-around items-center w-full p-4">
+        <LanguageSwitcher />
+        <LoginButton />
+      </div>
+      <div className="relative h-full flex flex-col items-center max-w-200 text-center mx-auto">
         <Image
           src={cloud1Logo}
           width={73.5}
