@@ -1,8 +1,8 @@
 "use client";
 
-import AccordionItem from "@/components/Accordion/AccordionItem";
-import AccordionTrigger from "@/components/Accordion/AccordionTrigger";
-import AccordionContent from "@/components/Accordion/AccordionContent";
+import AccordionItem from "@/components/AccordionGroup/AccordionItem";
+import AccordionTrigger from "@/components/AccordionGroup/AccordionTrigger";
+import AccordionContent from "@/components/AccordionGroup/AccordionContent";
 import cn from "@/lib/helpers/cn";
 import { useState } from "react";
 import { StyleableFC } from "@/lib/types/misc";
