@@ -5,6 +5,7 @@ import AccordionTrigger from "@/components/Accordion/AccordionTrigger";
 import AccordionContent from "@/components/Accordion/AccordionContent";
 import cn from "@/lib/helpers/cn";
 import { useState } from "react";
+import { StyleableFC } from "@/lib/types/misc";
 
 interface FaqCardProps {
   question: string;
@@ -13,18 +14,20 @@ interface FaqCardProps {
   classname?: string;
 }
 
-export default function FaqCard({
+const FaqCard: StyleableFC<FaqCardProps> = ({
   question,
   answer,
   value,
-  classname,
-}: FaqCardProps) {
+  className,
+  style,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <AccordionItem
       value={value} //It's a require attribute for track what item is open or close
-      className={cn("relative w-full overflow-hidden bg-white", classname)}
+      className={cn("relative w-full overflow-hidden bg-white", className)}
+      style={style}
     >
       <div className="relative z-10 bg-white">
         <AccordionTrigger
@@ -42,4 +45,6 @@ export default function FaqCard({
       </AccordionContent>
     </AccordionItem>
   );
-}
+};
+
+export default FaqCard;

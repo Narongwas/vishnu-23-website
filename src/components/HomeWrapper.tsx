@@ -17,7 +17,7 @@ export default function HomeWrapper({
   return (
     // Reuse component for home page and login page
     <BackgroundWithNoise
-      classname={cn("bg-gradient-to-b from-yellow to-yellow-white", classname)}
+      className={cn("from-yellow to-yellow-white bg-gradient-to-b", classname)}
     >
       <div className="relative mx-auto flex h-full max-w-200 flex-col items-center text-center">
         <Image
