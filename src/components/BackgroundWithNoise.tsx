@@ -22,7 +22,7 @@ export default function BackgroundWithNoise({
   return (
     <div
       className={cn(
-        "relative w-full min-h-dvh mb-25 bg-fixed bg-cover overflow-hidden",
+        "relative w-full min-h-dvh mb-16 bg-fixed bg-cover overflow-hidden",
         classname
       )}
     >
