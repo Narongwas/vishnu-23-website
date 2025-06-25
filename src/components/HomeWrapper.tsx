@@ -5,7 +5,7 @@ import vishnuLogo from "../../public/logo/vishnu.svg";
 import cloud1Logo from "../../public/decorating/clouds/cloud1.svg";
 import cloud2Logo from "../../public/decorating/clouds/cloud2.svg";
 import cn from "@/lib/utils";
-import NavBar from "./NavBar";
+import NavBar from "@/components/NavBar";
 
 export default function HomeWrapper({
   children,
@@ -42,7 +42,7 @@ export default function HomeWrapper({
           className="absolute top-111 -right-18 transform -scale-x-100"
         />
         <div className="w-full h-8 bg-red-400">Header</div>
-        <NavBar/>
+        <NavBar />
         <div className="relative mt-11 flex flex-col items-center">
           <Image
             src={firstDateLogo}
