@@ -4,7 +4,7 @@ import MOCK_FAQ from "@/mock/faqMock";
 import Image from "next/image";
 import separator from "../../public/decorating/shapes/separator.svg";
 import SectionHeader from "@/components/SectionHeader";
-import Accordion from "@/components/accordion/Accordion";
+import Accordion from "@/components/Accordion/Accordion";
 import { LayoutGroup } from "motion/react";
 
 export default function Home() {

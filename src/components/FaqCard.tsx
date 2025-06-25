@@ -1,8 +1,8 @@
 "use client";
 
-import AccordionItem from "@/components/accordion/AccordionItem";
-import AccordionTrigger from "@/components/accordion/AccordionTrigger";
-import AccordionContent from "@/components/accordion/AccordionContent";
+import AccordionItem from "@/components/Accordion/AccordionItem";
+import AccordionTrigger from "@/components/Accordion/AccordionTrigger";
+import AccordionContent from "@/components/Accordion/AccordionContent";
 import cn from "@/lib/helpers/cn";
 import { useState } from "react";
 
