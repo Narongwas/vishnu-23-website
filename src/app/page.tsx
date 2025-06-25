@@ -30,7 +30,7 @@ export default function Home() {
           {MOCK_FAQ.map((item, index) => (
             <div key={index} className="w-full">
               {item.title.length > 0 && (
-                <SectionHeader title={item.title} classname="mb-4" />
+                <SectionHeader title={item.title} className="mb-4" />
               )}
               <LayoutGroup>
                 <Accordion
