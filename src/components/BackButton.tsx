@@ -3,35 +3,23 @@
 import { useRouter } from "next/navigation";
 
 type BackButtonProps = {
-  bgColor?: string;
-  iconColor?: string;
+  bgColorClass?: string;
+  iconColorClass?: string;
 };
 
 export default function BackButton({
-  bgColor = "var(--color-yellow)",
-  iconColor = "var(--color-red)",
+  bgColorClass = "bg-yellow",
+  iconColorClass = "text-red",
 }: BackButtonProps) {
   const router = useRouter();
 
   return (
     <button
       onClick={() => router.back()}
-      style={{
-        position: "absolute",
-        top: "2.5rem",
-        left: "1rem",
-        width: "2.75rem",
-        height: "2.75rem",
-        backgroundColor: bgColor,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      className={`absolute top-10 left-4 w-11 h-11 flex items-center justify-center ${bgColorClass}`}
+      type="button"
     >
-      <span
-        className="font-icon"
-        style={{ color: iconColor, fontSize: "1.25rem" }}
-      >
+      <span className={`font-icon ${iconColorClass} text-icon-size`}>
         arrow_back
       </span>
     </button>
