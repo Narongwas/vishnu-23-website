@@ -6,7 +6,7 @@ const Configuration: UserConfig = {
     "body-max-length": [RuleConfigSeverity.Error, "always", 80],
     "subject-max-length": [RuleConfigSeverity.Error, "always", 50],
     "subject-case": [
-      RuleConfigSeverity.Error,
+      RuleConfigSeverity.Disabled,
       "always",
       [
         "lower-case",
