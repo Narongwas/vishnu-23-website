@@ -4,7 +4,7 @@ import firstDateLogo from "../../public/logo/firstdate.svg";
 import vishnuLogo from "../../public/logo/vishnu.svg";
 import cloud1Logo from "../../public/decorating/clouds/cloud1.svg";
 import cloud2Logo from "../../public/decorating/clouds/cloud2.svg";
-import cn from "@/lib/utils";
+import cn from "@/lib/helpers/cn";
 import NavBar from "@/components/NavBar";
 
 export default function HomeWrapper({
@@ -19,7 +19,7 @@ export default function HomeWrapper({
     <BackgroundWithNoise
       classname={cn("bg-gradient-to-b from-yellow to-yellow-white", classname)}
     >
-      <div className="relative h-full flex flex-col items-center max-w-200 text-center mx-auto">
+      <div className="relative mx-auto flex h-full max-w-200 flex-col items-center text-center">
         <Image
           src={cloud1Logo}
           width={73.5}
@@ -39,9 +39,9 @@ export default function HomeWrapper({
           width={158}
           height={76}
           alt=""
-          className="absolute top-111 -right-18 transform -scale-x-100"
+          className="absolute top-111 -right-18 -scale-x-100 transform"
         />
-        <div className="w-full h-8 bg-red-400">Header</div>
+        <div className="h-8 w-full bg-red-400">Header</div>
         <NavBar />
         <div className="relative mt-11 flex flex-col items-center">
           <Image

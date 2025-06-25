@@ -3,7 +3,7 @@ import { Bai_Jamjuree, Liu_Jian_Mao_Cao } from "next/font/google";
 import "./globals.css";
 import type { Viewport } from "next";
 import type { Metadata } from "next";
-import cn from "@/lib/utils";
+import cn from "@/lib/helpers/cn";
 
 const baiJamjuree = Bai_Jamjuree({
   subsets: ["latin", "thai"],

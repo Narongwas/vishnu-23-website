@@ -4,13 +4,13 @@ import MOCK_FAQ from "@/mock/faqMock";
 import Image from "next/image";
 import separator from "../../public/decorating/shapes/separator.svg";
 import SectionHeader from "@/components/SectionHeader";
-import Accordion from "@/components/ui/accordion/Accordion";
+import Accordion from "@/components/accordion/Accordion";
 import { LayoutGroup } from "motion/react";
 
 export default function Home() {
   return (
     <HomeWrapper>
-      <div className="mt-4 flex flex-col gap-5 text-red">
+      <div className="text-red mt-4 flex flex-col gap-5">
         <div className="type-title-large">
           <p>Intania First Date 2025</p>
           <p>19 กรกฎาคม 2568</p>
@@ -22,8 +22,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="pb-30 z-30 w-full">
-        <div className="type-title-large-bold text-center mt-17 mb-5 text-red">
+      <div className="z-30 w-full pb-30">
+        <div className="type-title-large-bold text-red mt-17 mb-5 text-center">
           <p>คำถามที่พบบ่อย</p>
         </div>
         <div className="flex flex-col items-center gap-6">
@@ -35,7 +35,7 @@ export default function Home() {
               <LayoutGroup>
                 <Accordion
                   type="multiple"
-                  className="flex flex-col items-center w-full gap-3 px-4 "
+                  className="flex w-full flex-col items-center gap-3 px-4"
                 >
                   {item.questions.map((q, qIndex) => (
                     <FaqCard

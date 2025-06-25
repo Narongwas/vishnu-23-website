@@ -1,5 +1,5 @@
 "use client";
-import cn from "@/lib/utils";
+import cn from "@/lib/helpers/cn";
 import styled from "styled-components";
 
 const NoiseOverlay = styled.div`
@@ -22,7 +22,7 @@ export default function BackgroundWithNoise({
   return (
     <div
       className={cn(
-        "relative w-full min-h-dvh mb-16 bg-fixed bg-cover overflow-hidden",
+        "relative mb-16 min-h-dvh w-full overflow-hidden bg-cover bg-fixed",
         classname
       )}
     >

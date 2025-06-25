@@ -1,4 +1,4 @@
-import cn from "@/lib/utils";
+import cn from "@/lib/helpers/cn";
 
 export default function SectionHeader({
   title,
@@ -10,11 +10,11 @@ export default function SectionHeader({
   return (
     <div
       className={cn(
-        "mb-4 bg-[url('/decorating/shapes/flag.svg')] bg-no-repeat h-10",
+        "mb-4 h-10 bg-[url('/decorating/shapes/flag.svg')] bg-no-repeat",
         classname
       )}
     >
-      <p className="type-title-medium text-left pl-7 py-2 text-white">
+      <p className="type-title-medium py-2 pl-7 text-left text-white">
         {title}
       </p>
     </div>
