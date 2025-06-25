@@ -22,7 +22,7 @@ export default function FriendList({ friends }: FriendListProps) {
             height={60}
             className="rounded-full object-cover"
           />
-          <span className="text-white text-sm font-medium text-center">
+          <span className="text-white text-sm font-bold text-center">
             {friend.name}
           </span>
         </div>

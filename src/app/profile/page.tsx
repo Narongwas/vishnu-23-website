@@ -46,7 +46,9 @@ export default function ClientComponent() {
 
           <div className="w-full max-w-md flex flex-col gap-5">
             <div className="flex justify-between items-center">
-              <span className="text-white text-lg">เพื่อนของน้อง</span>
+              <span className="text-white text-lg font-bold">
+                เพื่อนของน้อง
+              </span>
               <SearchBox />
             </div>
 
