@@ -1,4 +1,4 @@
-import { addUserAdmin } from "@/services/users";
+import { addUserAdmin } from "@/lib/services/users";
 
 /*
 We might consider seperate logic out of this route like a controller or something

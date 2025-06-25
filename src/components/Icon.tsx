@@ -1,20 +1,19 @@
-import cn from "@/lib/utils";
+import cn from "@/lib/helpers/cn";
+import { StyleableFC } from "@/lib/types/misc";
 
 type IconProps = {
   name: string;
   size?: number; // in px
   fill?: boolean;
-  className?: string;
-  style?: React.CSSProperties;
 };
 
-export default function Icon({
+const Icon: StyleableFC<IconProps> = ({
   name,
   fill = false,
   size = 24,
   className,
   style,
-}: IconProps) {
+}) => {
   const sizeRem = `${size / 16}rem`;
 
   return (
@@ -36,4 +35,6 @@ export default function Icon({
       {name}
     </i>
   );
-}
+};
+
+export default Icon;

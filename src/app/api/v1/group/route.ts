@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db, firebaseAdmin } from "@/utils/firebase.admin";
+import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 
 // This API route retrieves the group from the user student email.
 export async function GET(request: NextRequest) {
