@@ -9,7 +9,7 @@ export default function LanguageSwitcher() {
       type="button"
     >
       <div className="flex flex-col justify-center items-center w-3 h-6 py-[2px]">
-        <Icon name={"language"} size={20} className={"text-red"} />
+        <Icon name="language" size={20} className="text-red" />
       </div>
       <span className="type-title-medium text-red">TH</span>
     </Button>
