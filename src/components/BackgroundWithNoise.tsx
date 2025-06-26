@@ -1,17 +1,6 @@
 "use client";
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
-import styled from "styled-components";
-
-const NoiseOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  background-image: url("/decorating/texture/noise.png");
-  background-repeat: repeat;
-  pointer-events: none;
-  z-index: 5;
-`;
 
 const BackgroundWithNoise: StyleableFC<{ children: React.ReactNode }> = ({
   children,
@@ -26,7 +15,7 @@ const BackgroundWithNoise: StyleableFC<{ children: React.ReactNode }> = ({
       )}
       style={style}
     >
-      <NoiseOverlay />
+      <div className="pointer-events-none absolute inset-0 z-5 h-full bg-[url('/decorating/texture/noise.png')] bg-repeat" />
       {children}
     </div>
   );
