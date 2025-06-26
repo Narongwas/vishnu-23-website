@@ -40,7 +40,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        "flex items-center justify-center gap-3 px-4 py-2.5",
+        "flex items-center justify-center",
         Size && SizeClasses[Size],
         Appearance && AppearanceClasses[Appearance],
         className
