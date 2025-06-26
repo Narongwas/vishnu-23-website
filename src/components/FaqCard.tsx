@@ -1,49 +1,65 @@
 "use client";
 
-import AccordionItem from "@/components/AccordionGroup/AccordionItem";
-import AccordionTrigger from "@/components/AccordionGroup/AccordionTrigger";
-import AccordionContent from "@/components/AccordionGroup/AccordionContent";
-import cn from "@/lib/helpers/cn";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { StyleableFC } from "@/lib/types/misc";
+import Icon from "@/components/Icon";
+import { FaqQuestion } from "@/lib/types/faq";
+import cn from "@/lib/helpers/cn";
 
-interface FaqCardProps {
-  question: string;
-  answer: string;
-  value: string;
-  classname?: string;
-}
-
-const FaqCard: StyleableFC<FaqCardProps> = ({
-  question,
+const FaqCard: StyleableFC<FaqQuestion> = ({
   answer,
-  value,
-  className,
+  question,
   style,
+  className,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const toggleOpen = () => setIsOpen((prev) => !prev);
 
   return (
-    <AccordionItem
-      value={value} //It's a require attribute for track what item is open or close
-      className={cn("relative w-full overflow-hidden bg-white", className)}
+    <motion.div
+      layout
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className={cn("z-10 overflow-hidden bg-white text-left", className)}
       style={style}
     >
-      <div className="relative z-10 bg-white">
-        <AccordionTrigger
-          className="type-title-medium data-[state=open]:bg-yellow/20 px-4 py-3 font-bold data-[state=closed]:bg-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <p className="h-full w-full">{question}</p>
-        </AccordionTrigger>
-      </div>
-      <AccordionContent
-        className="type-body-medium z-10 px-4 pt-3 text-left text-black transition duration-300"
-        isOpen={isOpen}
+      <motion.div
+        layout="position"
+        className={cn(
+          "type-title-medium flex w-full cursor-pointer items-center px-4 py-3 transition-all duration-200",
+          isOpen ? "bg-yellow/20" : "bg-white"
+        )}
+        onClick={toggleOpen}
       >
-        <p>{answer}</p>
-      </AccordionContent>
-    </AccordionItem>
+        <p className="type-title-medium w-full">{question}</p>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          <Icon
+            name="keyboard_arrow_down"
+            className="text-muted-foreground text-red size-4"
+          />
+        </motion.div>
+      </motion.div>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="overflow-hidden"
+          >
+            <div className="bg-white p-4">
+              <p className="type-body-medium">{answer}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 
