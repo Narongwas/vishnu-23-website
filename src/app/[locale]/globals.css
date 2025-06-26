@@ -55,8 +55,8 @@
 }
 
 @utility type-* {
-  font: --value(--type- *);
-  letter-spacing: --value(--tracking- *);
+  font: --value(--type-*);
+  letter-spacing: --value(--tracking-*);
 
   &.font-bold {
     font-weight: bold;

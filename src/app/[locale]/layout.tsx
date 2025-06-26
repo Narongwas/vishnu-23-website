@@ -1,9 +1,11 @@
 import localFont from "next/font/local";
 import { Bai_Jamjuree, Liu_Jian_Mao_Cao } from "next/font/google";
 import "./globals.css";
-import type { Viewport } from "next";
-import type { Metadata } from "next";
+import type { Viewport, Metadata } from "next";
 import cn from "@/lib/helpers/cn";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
 
 const baiJamjuree = Bai_Jamjuree({
   subsets: ["latin", "thai"],
@@ -17,12 +19,12 @@ const liuJianMaoCao = Liu_Jian_Mao_Cao({
 });
 
 const kart3Kingdom = localFont({
-  src: "../../public/fonts/Kart-3Kingdom.woff2",
+  src: "../../../public/fonts/Kart-3Kingdom.woff2",
   variable: "--font-kart",
 });
 
 const icon = localFont({
-  src: "../../public/fonts/material-symbols-outlined.woff2",
+  src: "../../../public/fonts/material-symbols-outlined.woff2",
   variable: "--font-icon",
   display: "block",
 });
@@ -36,13 +38,20 @@ export const viewport: Viewport = {
   themeColor: "#f4d590",
 };
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode;
-}>) {
+  params: { locale: string };
+}) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={cn(
           baiJamjuree.variable,
@@ -52,7 +61,9 @@ export default function RootLayout({
           "antialiased"
         )}
       >
-        {children}
+        <NextIntlClientProvider locale={locale}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
