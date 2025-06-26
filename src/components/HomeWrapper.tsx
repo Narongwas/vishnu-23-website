@@ -41,7 +41,6 @@ export default function HomeWrapper({
           alt=""
           className="absolute top-111 -right-18 -scale-x-100 transform"
         />
-        <div className="h-8 w-full bg-red-400">Header</div>
         <NavBar />
         <div className="relative mt-11 flex flex-col items-center">
           <Image
