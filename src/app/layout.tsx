@@ -4,7 +4,8 @@ import "@/app/globals.css";
 import type { Viewport } from "next";
 import type { Metadata } from "next";
 import cn from "@/lib/helpers/cn";
-import { AuthProvider } from "@/providers/AuthProvider";
+import { AuthProvider } from "@/contexts/AuthContext";
+import DevAuthUI from "@/components/DevAuthUI";
 
 const baiJamjuree = Bai_Jamjuree({
   subsets: ["latin", "thai"],
@@ -53,7 +54,10 @@ export default function RootLayout({
           "antialiased"
         )}
       >
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          {children}
+          <DevAuthUI />
+        </AuthProvider>
       </body>
     </html>
   );
