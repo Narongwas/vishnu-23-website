@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { firebaseAdmin } from "@/lib/services/firebase.admin";
+import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,6 +12,17 @@ export async function POST(request: NextRequest) {
 
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(idToken);
     const userRecord = await firebaseAdmin.auth().getUser(decodedToken.uid);
+    // to also fetch from real user data in firestore
+    const userQuery = await db
+      .collection("users")
+      .where("email", "==", userRecord.email)
+      .limit(1)
+      .get();
+
+    let firestoreUser = null;
+    if (!userQuery.empty) {
+      firestoreUser = { id: userQuery.docs[0].id, ...userQuery.docs[0].data() };
+    }
     const response = NextResponse.json(
       {
         success: true,
@@ -20,6 +31,7 @@ export async function POST(request: NextRequest) {
           email: userRecord.email,
           displayName: userRecord.displayName,
           photoURL: userRecord.photoURL,
+          userData: firestoreUser,
         },
       },
       { status: 200 }
