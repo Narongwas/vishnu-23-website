@@ -1,7 +1,7 @@
 import { db } from "@/lib/services/firebase.admin";
 import emailToId from "@/lib/helpers/emailToId";
 
-export async function GET(request: Request) {
+export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { email } = body;
@@ -69,7 +69,7 @@ export async function PATCH(request: Request) {
     }
 
     await userDoc.ref.update({ role });
-    return Response.json(null, { status: 204 });
+    return new Response(null, { status: 204 });
   } catch (e) {
     console.error("Error updating role:", e);
     return Response.json({ error: "Internal Server Error" }, { status: 500 });
