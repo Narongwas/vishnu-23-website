@@ -1,4 +1,4 @@
-import { db } from "@/utils/firebase.admin";
+import { db } from "@/lib/services/firebase.admin";
 
 /*
 Service layer will handle business logic and interact with database directly

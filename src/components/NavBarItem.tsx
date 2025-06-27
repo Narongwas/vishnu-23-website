@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Icon from "./Icon";
+import Icon from "@/components/Icon";
 
 export default function NavBarItem({
   icon,
@@ -18,13 +18,13 @@ export default function NavBarItem({
   return (
     <a
       href={href}
-      className="flex flex-col items-center py-[6px] gap-1"
+      className="flex flex-col items-center gap-1 py-[6px]"
       aria-label={label}
     >
-      <div className="relative flex justify-center items-center w-[56px] h-[32px]">
+      <div className="relative flex h-[32px] w-[56px] items-center justify-center">
         {isActive && (
           <span
-            className="absolute inset-0 rounded-[16px] bg-yellow"
+            className="bg-yellow absolute inset-0 rounded-[16px]"
             aria-hidden="true"
           />
         )}

@@ -1,9 +1,9 @@
 import localFont from "next/font/local";
 import { Bai_Jamjuree, Liu_Jian_Mao_Cao } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 import type { Viewport } from "next";
 import type { Metadata } from "next";
-import cn from "@/lib/utils";
+import cn from "@/lib/helpers/cn";
 import { AuthProvider } from "@/providers/AuthProvider";
 
 const baiJamjuree = Bai_Jamjuree({

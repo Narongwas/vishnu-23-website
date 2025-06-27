@@ -1,5 +1,6 @@
 "use client";
-import cn from "@/lib/utils";
+import cn from "@/lib/helpers/cn";
+import { StyleableFC } from "@/lib/types/misc";
 import styled from "styled-components";
 
 const NoiseOverlay = styled.div`
@@ -12,22 +13,23 @@ const NoiseOverlay = styled.div`
   z-index: 5;
 `;
 
-export default function BackgroundWithNoise({
+const BackgroundWithNoise: StyleableFC<{ children: React.ReactNode }> = ({
   children,
-  classname,
-}: {
-  children: React.ReactNode;
-  classname?: string;
-}) {
+  className,
+  style,
+}) => {
   return (
     <div
       className={cn(
-        "relative w-full min-h-dvh mb-16 bg-fixed bg-cover overflow-hidden",
-        classname
+        "relative mb-16 min-h-dvh w-full overflow-hidden bg-cover bg-fixed",
+        className
       )}
+      style={style}
     >
       <NoiseOverlay />
       {children}
     </div>
   );
-}
+};
+
+export default BackgroundWithNoise;

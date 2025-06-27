@@ -1,5 +1,5 @@
 import { FeatureFlag } from "@/app/interfaces";
-import { db } from "@/utils/firebase.admin";
+import { db } from "@/lib/services/firebase.admin";
 
 export async function getAllFeatureFlags(): Promise<FeatureFlag[]> {
   const featureFlagCollection = await db.collection("featureFlags").get();

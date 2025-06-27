@@ -2,7 +2,7 @@
 
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { motion } from "framer-motion";
-import cn from "@/lib/utils";
+import cn from "@/lib/helpers/cn";
 
 type AccordionContentProps = React.ComponentProps<
   typeof AccordionPrimitive.Content
@@ -39,7 +39,7 @@ export default function AccordionContent({
         }}
         className="overflow-hidden"
       >
-        <motion.div layout className={cn("pt-0 py-4 ", className)}>
+        <motion.div layout className={cn("py-4 pt-0", className)}>
           {children}
         </motion.div>
       </motion.div>

@@ -19,5 +19,7 @@
 
   "proseWrap": "preserve",
   "htmlWhitespaceSensitivity": "css",
-  "vueIndentScriptAndStyle": false
+  "vueIndentScriptAndStyle": false,
+
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
