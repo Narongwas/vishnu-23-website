@@ -1,10 +1,11 @@
+import { NextRequest } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
 import emailToId from "@/lib/helpers/emailToId";
 
-export async function POST(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { email } = body;
+    const params = await request.nextUrl.searchParams;
+    const email = params.get("email") || "";
 
     if (!email) {
       return Response.json({ error: "Email is required" }, { status: 400 });
