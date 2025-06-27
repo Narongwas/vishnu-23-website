@@ -13,6 +13,6 @@ export async function middleware(req: NextRequest) {
   if (!token && req.nextUrl.pathname !== "/") {
     return NextResponse.redirect(new URL("/auth/login", req.url));
   }
-
+  // todo: get token from cookies and redirect to login if not found -- palm
   return NextResponse.next();
 }
