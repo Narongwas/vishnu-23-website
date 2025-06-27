@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import emailToId from "@/lib/helpers/emailToId";
 
+
 // This API route retrieves the group from the user student email.
 export async function GET(request: NextRequest) {
   // get token from the authorization request header
@@ -27,6 +28,8 @@ export async function GET(request: NextRequest) {
   }
 
   const studentId = emailToId(email);
+  const studentId = parseInt(email.split("@")[0]);
+  
   const doc = await db
     .collection("users")
     .where("studentId", "==", studentId)
