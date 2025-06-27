@@ -4,13 +4,13 @@ import emailToId from "@/lib/helpers/emailToId";
 
 // This API route retrieves the group from the user student email.
 export async function GET(request: NextRequest) {
-  // get token from the authorization request header
   const authHeader = request.headers.get("Authorization");
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  const cookieToken = request.cookies.get("authToken")?.value;
+  const token = authHeader?.split(" ")[1] || cookieToken;
+
+  if (!token) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-
-  const token = authHeader.split(" ")[1];
 
   //decoding the token to get the user email and role
   const session = await firebaseAdmin.auth().verifyIdToken(token);
