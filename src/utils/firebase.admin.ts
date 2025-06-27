@@ -21,7 +21,6 @@ export function getFirebaseAdmin() {
 
 const firebaseAdmin = getFirebaseAdmin();
 const remoteConfig = firebaseAdmin.remoteConfig();
-
 const db = firebaseAdmin.firestore();
 
 export { firebaseAdmin, db, remoteConfig };
