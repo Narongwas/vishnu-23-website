@@ -1,4 +1,4 @@
-import NavBarItem from "./NavBarItem";
+import NavBarItem from "@/components/NavBarItem";
 
 export default function NavBar() {
   const NavBarPages = [
@@ -8,8 +8,8 @@ export default function NavBar() {
   ];
 
   return (
-    <nav className="fixed w-full h-16 bg-red flex items-center px-4 bottom-0 z-40">
-      <div className="w-full flex flex-row justify-around">
+    <nav className="bg-red fixed bottom-0 z-40 flex h-16 w-full items-center px-4">
+      <div className="flex w-full flex-row justify-around">
         {NavBarPages.map((item) => (
           <NavBarItem
             key={item.icon}
