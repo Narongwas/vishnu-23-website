@@ -1,5 +1,5 @@
-import { db } from "@/utils/firebase.admin";
-import emailToId from "@/utils/emailToId";
+import { db } from "@/lib/services/firebase.admin";
+import emailToId from "@/lib/helpers/emailToId";
 
 export async function GET(request: Request) {
   try {

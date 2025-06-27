@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { firebaseAdmin } from "@/utils/firebase.admin";
+import { firebaseAdmin } from "@/lib/services/firebase.admin";
 
 export const firebaseAuthMiddleware = async (req: NextRequest) => {
   const authHeader = req.headers.get("authorization");
