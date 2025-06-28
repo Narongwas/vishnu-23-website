@@ -1,10 +1,13 @@
 import NavBarItem from "@/components/NavBarItem";
+import { useTranslations } from "next-intl";
 
 export default function NavBar() {
+  const t = useTranslations("Common.navigation");
+
   const NavBarPages = [
-    { icon: "home", label: "Home", href: "/" },
-    { icon: "explore", label: "Explore", href: "/explore" },
-    { icon: "sports_esports", label: "Games", href: "/games" },
+    { icon: "home", label: t("home"), href: "/" },
+    { icon: "explore", label: t("explore"), href: "/explore" },
+    { icon: "sports_esports", label: t("games"), href: "/games" },
   ];
 
   return (

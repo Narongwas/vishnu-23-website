@@ -1,7 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Icon from "@/components/Icon";
+import { usePathname } from "next/navigation";
 
 export default function NavBarItem({
   icon,
@@ -22,13 +22,13 @@ export default function NavBarItem({
   return (
     <a
       href={href}
-      className="flex flex-col items-center gap-1 py-[6px]"
+      className="flex flex-col items-center gap-1 py-1.5"
       aria-label={label}
     >
-      <div className="relative flex h-[32px] w-[56px] items-center justify-center">
+      <div className="relative flex h-8 w-14 items-center justify-center">
         {isActive && (
           <span
-            className="bg-yellow absolute inset-0 rounded-[16px]"
+            className="bg-yellow absolute inset-0 rounded-2xl"
             aria-hidden="true"
           />
         )}
@@ -38,9 +38,7 @@ export default function NavBarItem({
           className={isActive ? "text-red z-10" : "text-yellow-white z-10"}
         />
       </div>
-      <span className="type-label-medium text-yellow-white tracking-label-small">
-        {label}
-      </span>
+      <span className="type-label-medium text-yellow-white">{label}</span>
     </a>
   );
 }
