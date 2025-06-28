@@ -59,6 +59,6 @@ const Button: StyleableFC<ButtonProps> = ({
       {label && <span className="type-title-medium">{label}</span>}
     </button>
   );
-}
+};
 
 export default Button;
