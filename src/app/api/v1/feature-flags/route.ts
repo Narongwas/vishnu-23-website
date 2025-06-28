@@ -1,5 +1,8 @@
 import { NextRequest } from "next/server";
-import { addNewFeatureFlag, getAllFeatureFlags } from "./services";
+import {
+  addNewFeatureFlag,
+  getAllFeatureFlags,
+} from "@/app/api/v1/feature-flags/services";
 // import { firebaseAuthMiddleware } from "@/middleware/firebaseAuthMiddleware";
 
 // Get : "api/v1/feature-flags" public
