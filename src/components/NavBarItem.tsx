@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Icon from "./Icon";
+import Icon from "@/components/Icon";
 
 export default function NavBarItem({
   icon,

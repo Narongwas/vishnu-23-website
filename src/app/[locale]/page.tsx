@@ -2,7 +2,7 @@ import HomeWrapper from "@/components/HomeWrapper";
 import FaqCard from "@/components/FaqCard";
 import MOCK_FAQ from "@/mock/faqMock";
 import Image from "next/image";
-import separator from "../../../public/decorating/shapes/separator.svg";
+import separator from "@/public/decorating/shapes/separator.svg";
 import SectionHeader from "@/components/SectionHeader";
 import Accordion from "@/components/AccordionGroup/Accordion";
 import { LayoutGroup } from "motion/react";

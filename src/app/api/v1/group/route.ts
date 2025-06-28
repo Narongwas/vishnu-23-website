@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
+import emailToId from "@/lib/helpers/emailToId";
 
 // This API route retrieves the group from the user student email.
 export async function GET(request: NextRequest) {
@@ -25,7 +26,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 403 });
   }
 
-  const studentId = parseInt(email.split("@")[0]);
+  const studentId = emailToId(email);
+
   const doc = await db
     .collection("users")
     .where("studentId", "==", studentId)
