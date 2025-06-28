@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
 import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware";
 
+// this is a GET method to get a list of friends
 export async function GET(request: NextRequest) {
   try {
     const { uid, error } = await firebaseAuthMiddleware(request);
@@ -43,12 +44,14 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { friendId } = body;
 
+    // get the user id from the request
     const { uid, error } = await firebaseAuthMiddleware(request);
 
     if (error || !uid) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    // get the user and friend data from the database
     const user = await db.collection("users").doc(uid).get();
     const friend = await db.collection("users").doc(friendId).get();
 
@@ -63,10 +66,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    //add the friend to the user's friends list
     await user.ref.update({
       friends: [...user.data()?.friends, friendId],
     });
-
+    //add the user to the friend's friends list
     await friend.ref.update({
       friends: [...friend.data()?.friends, uid],
     });
@@ -92,19 +96,24 @@ export async function DELETE(request: NextRequest) {
   try {
     const body = await request.json();
     const { friendId } = body;
+
+    // get the user id from the request
     const { uid, error } = await firebaseAuthMiddleware(request);
 
     if (error || !uid) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    //get the user and friend data
     const user = await db.collection("users").doc(uid).get();
     const friend = await db.collection("users").doc(friendId).get();
 
+    //check if the user and friend not exist
     if (!user.exists || !friend.exists) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
+    //check if the friend is in the user's friends list or not
     if (!user.data()?.friends.includes(friendId)) {
       return NextResponse.json(
         { error: "This user is not your friend" },
@@ -112,10 +121,11 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
+    //remove the friend from the user's friends list
     await user.ref.update({
       friends: user.data()?.friends.filter((f: string) => f !== friendId),
     });
-
+    //remove the user from the friend's friends list
     await friend.ref.update({
       friends: friend.data()?.friends.filter((f: string) => f !== uid),
     });

@@ -10,12 +10,14 @@ export async function GET(
     const { id } = params;
     const user = await db.collection("users").doc(id).get();
 
+    // Check if the user exists
     if (!user.exists) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     const friends = user.data()?.friends || [];
 
+    // get the friends' data from their ids
     const friendsData = await Promise.all(
       friends.map(async (friend: string) => {
         const friendData = await db.collection("users").doc(friend).get();
