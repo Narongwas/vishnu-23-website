@@ -15,7 +15,7 @@ const BackgroundWithNoise: StyleableFC<{ children: React.ReactNode }> = ({
       )}
       style={style}
     >
-      <div className="pointer-events-none absolute inset-0 z-5 h-full bg-[url('/decorating/texture/noise.png')] bg-repeat" />
+      <div className="pointer-events-none absolute inset-0 z-5 h-full bg-[url('@/public/decorating/texture/noise.png')] bg-repeat" />
       {children}
     </div>
   );
