@@ -1,11 +1,11 @@
-import Image from "next/image";
 import BackgroundWithNoise from "@/components/BackgroundWithNoise";
-import firstDateLogo from "@/public/logo/firstdate.svg";
-import vishnuLogo from "@/public/logo/vishnu.svg";
+import NavBar from "@/components/NavBar";
+import cn from "@/lib/helpers/cn";
 import cloud1Logo from "@/public/decorating/clouds/cloud1.svg";
 import cloud2Logo from "@/public/decorating/clouds/cloud2.svg";
-import cn from "@/lib/helpers/cn";
-import NavBar from "@/components/NavBar";
+import firstDateLogo from "@/public/logo/firstdate.svg";
+import vishnuLogo from "@/public/logo/vishnu.svg";
+import Image from "next/image";
 
 export default function HomeWrapper({
   children,

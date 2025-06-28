@@ -1,10 +1,10 @@
 "use client";
 
-import { StyleableFC } from "@/lib/types/misc";
-import FaqCard from "./FaqCard";
-import { FaqSection } from "@/lib/types/faq";
+import FaqCard from "@/components/FaqCard";
 import SectionHeader from "@/components/SectionHeader";
 import cn from "@/lib/helpers/cn";
+import { FaqSection } from "@/lib/types/faq";
+import { StyleableFC } from "@/lib/types/misc";
 
 const Accordion: StyleableFC<FaqSection> = ({
   title,

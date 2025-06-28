@@ -1,9 +1,9 @@
+import Accordion from "@/components/Accordion";
 import HomeWrapper from "@/components/HomeWrapper";
 import MOCK_FAQ from "@/mock/faqMock";
-import Image from "next/image";
 import separator from "@/public/decorating/shapes/separator.svg";
-import Accordion from "@/components/Accordion";
 import { LayoutGroup } from "motion/react";
+import Image from "next/image";
 
 export default function Home() {
   return (
