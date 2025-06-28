@@ -1,5 +1,6 @@
 "use client";
 
+import getMe from "@/lib/helpers/getMe";
 import React, { useEffect, useState } from "react";
 
 type Person = {
@@ -14,6 +15,7 @@ const ManagePeople: React.FC = () => {
   const [search, setSearch] = useState("");
   const [group, setGroup] = useState("");
   const [people, setPeople] = useState<Person[]>([]);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchPeople = async () => {
@@ -22,9 +24,8 @@ const ManagePeople: React.FC = () => {
         search,
         group,
       });
-
       try {
-        const res = await fetch(`/api/people?${params.toString()}`);
+        const res = await fetch(`/api/v1/users?${params.toString()}`); // fetch get all route
         if (!res.ok) throw new Error("Failed to fetch");
         const data: Person[] = await res.json();
         setPeople(data);
@@ -32,8 +33,12 @@ const ManagePeople: React.FC = () => {
         console.error("Error fetching people:", error);
       }
     };
-
     fetchPeople();
+    const fetchIsAdmin = async () => {
+      const userProfile = await getMe();
+      setIsAdmin(userProfile.roles === "admin");
+    };
+    fetchIsAdmin();
   }, [group, search, userType]);
 
   return (
@@ -41,17 +46,19 @@ const ManagePeople: React.FC = () => {
       <h1 className="mb-4 text-center text-2xl font-bold">MANAGE PEOPLE</h1>
 
       <div className="mb-4 flex justify-center space-x-2">
-        {(["staff", "camper"] as const).map((ut) => (
-          <button
-            key={ut}
-            onClick={() => setUserType(ut)}
-            className={`rounded px-4 py-2 ${
-              userType === ut ? "bg-red-600 text-white" : "border bg-white"
-            }`}
-          >
-            {ut === "staff" ? "ขุนพล" : "จอมยุทธ์"}
-          </button>
-        ))}
+        {(["staff", "camper"] as const)
+          .filter((ut) => isAdmin || ut === "camper")
+          .map((ut) => (
+            <button
+              key={ut}
+              onClick={() => setUserType(ut)}
+              className={`rounded px-4 py-2 ${
+                userType === ut ? "bg-red-600 text-white" : "border bg-white"
+              }`}
+            >
+              {ut === "staff" ? "ขุนพล" : "จอมยุทธ์"}
+            </button>
+          ))}
       </div>
 
       <div className="mb-4 flex space-x-2">
