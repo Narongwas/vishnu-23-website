@@ -14,7 +14,7 @@ const FaqCard: StyleableFC<FaqQuestion> = ({
   className,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleOpen = () => setIsOpen((prev) => !prev);
+  const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
     <motion.div
