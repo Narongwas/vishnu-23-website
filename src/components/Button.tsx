@@ -1,5 +1,6 @@
-import cn from "@/lib/helpers/cn";
 import Icon from "@/components/Icon";
+import cn from "@/lib/helpers/cn";
+import { StyleableFC } from "@/lib/types/misc";
 
 type ButtonSize = "Medium" | "Small" | "XSmall";
 type ButtonAppearance = "Primary" | "Secondary" | "Tertiary";
@@ -29,14 +30,15 @@ const AppearanceClasses: Record<ButtonAppearance, string> = {
   Tertiary: "bg-white text-red",
 };
 
-export default function Button({
+const Button: StyleableFC<ButtonProps> = ({
   icon,
   label,
   Size,
   Appearance,
   className,
+  style,
   ...props
-}: ButtonProps) {
+}) => {
   return (
     <button
       className={cn(
@@ -45,6 +47,7 @@ export default function Button({
         Appearance && AppearanceClasses[Appearance],
         className
       )}
+      style={style}
       type="button"
       {...props}
     >
@@ -57,3 +60,5 @@ export default function Button({
     </button>
   );
 }
+
+export default Button;
