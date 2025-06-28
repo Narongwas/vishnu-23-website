@@ -1,5 +1,8 @@
 import { NextRequest } from "next/server";
-import { deleteFeatureFlag, toggleFeatureFlag } from "../services";
+import {
+  deleteFeatureFlag,
+  toggleFeatureFlag,
+} from "@/app/api/v1/feature-flags/services";
 // import { firebaseAuthMiddleware } from "@/middleware/firebaseAuthMiddleware";
 
 // Put : "api/v1/feature-flags/:id" protected

@@ -1,9 +1,9 @@
 import Image from "next/image";
-import BackgroundWithNoise from "./BackgroundWithNoise";
-import firstDateLogo from "../../public/logo/firstdate.svg";
-import vishnuLogo from "../../public/logo/vishnu.svg";
-import cloud1Logo from "../../public/decorating/clouds/cloud1.svg";
-import cloud2Logo from "../../public/decorating/clouds/cloud2.svg";
+import BackgroundWithNoise from "@/components/BackgroundWithNoise";
+import firstDateLogo from "@/public/logo/firstdate.svg";
+import vishnuLogo from "@/public/logo/vishnu.svg";
+import cloud1Logo from "@/public/decorating/clouds/cloud1.svg";
+import cloud2Logo from "@/public/decorating/clouds/cloud2.svg";
 import cn from "@/lib/helpers/cn";
 import NavBar from "@/components/NavBar";
 
