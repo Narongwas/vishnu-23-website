@@ -13,6 +13,8 @@ import {
   getCurrentUser,
   getIdToken,
 } from "@/lib/firebase/auth";
+import { onIdTokenChanged } from "firebase/auth";
+import { auth } from "@/lib/services/firebase.client"; // adjust import as needed
 
 interface AuthContextType {
   user: User | null;
@@ -103,6 +105,24 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     return () => unsubscribe();
   }, [refreshToken]);
+
+  useEffect(() => {
+    const unsubscribe = onIdTokenChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        const idToken = await firebaseUser.getIdToken();
+        // Send the new token to your backend to update the cookie
+        await fetch("/api/v1/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idToken }),
+        });
+        setToken(idToken);
+      } else {
+        setToken(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const value = {
     user,

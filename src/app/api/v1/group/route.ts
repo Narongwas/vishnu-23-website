@@ -15,16 +15,10 @@ export async function GET(request: NextRequest) {
   const session = await firebaseAdmin.auth().verifyIdToken(token);
 
   const email: string | undefined = session?.email;
-  const role: string = session?.role;
-
   // Check if email is correct
-  if (
-    !email ||
-    (!email.endsWith("21@student.chula.ac.th") && role !== "admin") //I'm not sure how to define type of role, so I assume it's a string
-  ) {
+  if (!email) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 403 });
   }
-
   const doc = await db.collection("users").where("email", "==", email).get();
 
   return NextResponse.json(

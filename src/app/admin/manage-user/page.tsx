@@ -1,44 +1,45 @@
 "use client";
 
-import getMe from "@/lib/helpers/getMe";
 import React, { useEffect, useState } from "react";
 
-type Person = {
-  id: number;
-  name: string;
+export interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
   nickname: string;
+  email: string; // unique
+  department: string;
+  group: string;
   role: string;
-};
+  tier: string;
+  sensitiveInfo?: Record<string, string>; // only for camper
+  friends: string[]; // list of Firestore document IDs
+}
 
 const ManagePeople: React.FC = () => {
-  const [userType, setUserType] = useState<"staff" | "camper">("staff");
-  const [search, setSearch] = useState("");
-  const [group, setGroup] = useState("");
-  const [people, setPeople] = useState<Person[]>([]);
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [userType, setUserType] = useState<string>("staff");
+  const [search, setSearch] = useState<string>("");
+  const [group, setGroup] = useState<string>("");
+  const [people, setPeople] = useState<User[]>([]);
 
   useEffect(() => {
     const fetchPeople = async () => {
-      const params = new URLSearchParams({
-        userType,
-        search,
-        group,
-      });
+      const params = new URLSearchParams();
+      if (userType != "") params.append("userType", userType);
+      if (search != "") params.append("search", search);
+      if (group != "") params.append("group", group);
+
       try {
-        const res = await fetch(`/api/v1/users?${params.toString()}`); // fetch get all route
+        const res = await fetch(`/api/v1/users?${params.toString()}`);
         if (!res.ok) throw new Error("Failed to fetch");
-        const data: Person[] = await res.json();
-        setPeople(data);
+        const data = await res.json();
+        console.log("users : ", data.users);
+        setPeople(data.users);
       } catch (error) {
         console.error("Error fetching people:", error);
       }
     };
     fetchPeople();
-    const fetchIsAdmin = async () => {
-      const userProfile = await getMe();
-      setIsAdmin(userProfile.roles === "admin");
-    };
-    fetchIsAdmin();
   }, [group, search, userType]);
 
   return (
@@ -46,19 +47,17 @@ const ManagePeople: React.FC = () => {
       <h1 className="mb-4 text-center text-2xl font-bold">MANAGE PEOPLE</h1>
 
       <div className="mb-4 flex justify-center space-x-2">
-        {(["staff", "camper"] as const)
-          .filter((ut) => isAdmin || ut === "camper")
-          .map((ut) => (
-            <button
-              key={ut}
-              onClick={() => setUserType(ut)}
-              className={`rounded px-4 py-2 ${
-                userType === ut ? "bg-red-600 text-white" : "border bg-white"
-              }`}
-            >
-              {ut === "staff" ? "ขุนพล" : "จอมยุทธ์"}
-            </button>
-          ))}
+        {(["staff", "camper"] as const).map((ut) => (
+          <button
+            key={ut}
+            onClick={() => setUserType(ut)}
+            className={`rounded px-4 py-2 ${
+              userType === ut ? "bg-red-600 text-white" : "border bg-white"
+            }`}
+          >
+            {ut === "staff" ? "ขุนพล" : "จอมยุทธ์"}
+          </button>
+        ))}
       </div>
 
       <div className="mb-4 flex space-x-2">
@@ -73,6 +72,7 @@ const ManagePeople: React.FC = () => {
           value={group}
           onChange={(e) => setGroup(e.target.value)}
         >
+          <option value="">ทั้งหมด</option>
           <option value="A">ก๊กกะใจ๋</option>
           <option value="B">ก๊กไก่</option>
           <option value="C">ก๊กแก</option>
@@ -86,15 +86,19 @@ const ManagePeople: React.FC = () => {
             <th className="p-2 text-left">ชื่อ-สกุล</th>
             <th className="p-2 text-left">ก๊ก</th>
             <th className="p-2 text-left">ตำแหน่ง</th>
+            <th className="p-2 text-left">อีเมล</th>
           </tr>
         </thead>
         <tbody>
-          {people.map((person) => (
-            <tr key={person.id} className="border-t hover:bg-yellow-100">
+          {people.map((person: User) => (
+            <tr key={person.firstName} className="border-t hover:bg-yellow-100">
               <td className="text-center"></td>
-              <td className="p-2">{person.name}</td>
-              <td className="p-2">{person.nickname}</td>
+              <td className="p-2">
+                {person.firstName + " " + person.lastName}
+              </td>
+              <td className="p-2">{person.group}</td>
               <td className="p-2">{person.role}</td>
+              <td className="p-2">{person.email}</td>
             </tr>
           ))}
         </tbody>
