@@ -11,11 +11,11 @@ function chunkArray<T>(arr: T[], size: number): T[][] {
 
 // this is a GET method to get a list of friends by id
 export async function GET(
-  _request: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
     const user = await db.collection("users").doc(id).get();
 
     // Check if the user exists
