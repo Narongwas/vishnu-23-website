@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
 
+function chunkArray<T>(arr: T[], size: number): T[][] {
+  const result: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+}
+
 // this is a GET method to get a list of friends by id
 export async function GET(
   _request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const user = await db.collection("users").doc(id).get();
 
     // Check if the user exists
@@ -17,17 +25,25 @@ export async function GET(
 
     const friends = user.data()?.friends || [];
 
+    const friendChunks = chunkArray(friends, 10);
+
     // get the friends' data from their ids
-    const friendsData = await Promise.all(
-      friends.map(async (friend: string) => {
-        const friendData = await db.collection("users").doc(friend).get();
-        return {
-          id: friendData.id,
-          name: friendData.data()?.name || "Unknown",
-          email: friendData.data()?.email || "Unknown",
-        };
-      })
-    );
+    const friendsData = (
+      await Promise.all(
+        friendChunks.map(async (chunk) => {
+          if (chunk.length === 0) return [];
+          const friendDocs = await db
+            .collection("users")
+            .where("__name__", "in", chunk)
+            .get();
+          return friendDocs.docs.map((doc) => ({
+            id: doc.id,
+            name: doc.data().name || "Unknown",
+            email: doc.data().email || "Unknown",
+          }));
+        })
+      )
+    ).flat();
 
     return NextResponse.json(
       {

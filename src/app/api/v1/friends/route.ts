@@ -11,12 +11,15 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const friendsList = await fetch(`api/v1/friends/${uid}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const friendsList = await fetch(
+      `http://localhost:3000/api/v1/friends/${uid}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const friendsData = await friendsList.json();
 
@@ -59,21 +62,26 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    if (user.data()?.friends.includes(friendId)) {
+    const userFriends = user.data()?.friends || [];
+
+    if (userFriends?.includes(friendId)) {
       return NextResponse.json(
         { error: "This user was already your friend" },
         { status: 400 }
       );
     }
 
-    //add the friend to the user's friends list
-    await user.ref.update({
-      friends: [...user.data()?.friends, friendId],
-    });
-    //add the user to the friend's friends list
-    await friend.ref.update({
-      friends: [...friend.data()?.friends, uid],
-    });
+    await db
+      .batch()
+      .update(user.ref, {
+        //add the friend to the user's friends list
+        friends: [...(user.data()?.friends || []), friendId],
+      })
+      .update(friend.ref, {
+        //add the user to the friend's friends list
+        friends: [...(friend.data()?.friends || []), uid],
+      })
+      .commit();
 
     return NextResponse.json(
       {
@@ -121,14 +129,17 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    //remove the friend from the user's friends list
-    await user.ref.update({
-      friends: user.data()?.friends.filter((f: string) => f !== friendId),
-    });
-    //remove the user from the friend's friends list
-    await friend.ref.update({
-      friends: friend.data()?.friends.filter((f: string) => f !== uid),
-    });
+    await db
+      .batch()
+      .update(user.ref, {
+        //remove the friend from the user's friends list
+        friends: user.data()?.friends.filter((f: string) => f !== friendId),
+      })
+      .update(friend.ref, {
+        //remove the user from the friend's friends list
+        friends: friend.data()?.friends.filter((f: string) => f !== uid),
+      })
+      .commit();
 
     return NextResponse.json(
       {
