@@ -9,7 +9,7 @@ const SectionHeader: StyleableFC<{ title: string }> = ({
   return (
     <div
       className={cn(
-        "mb-4 h-10 bg-[url('@/public/decorating/shapes/flag.svg')] bg-no-repeat",
+        "mb-4 h-10 bg-[url('/decorating/shapes/flag.svg')] bg-no-repeat",
         className
       )}
       style={style}
