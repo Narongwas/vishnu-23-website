@@ -23,15 +23,6 @@ export async function GET(request: NextRequest) {
   const groupQry = searchParams.get("group");
   const searchQry = searchParams.get("search");
   const userType = searchParams.get("userType");
-  if (groupQry) {
-    console.log("groupQry exist");
-  }
-  if (searchQry) {
-    console.log("searchQry exist");
-  }
-  if (userType) {
-    console.log("userType exist");
-  }
   // this route we don't care about sensitive info cause we just list users
   // authorize access
   if (userData.role == "camper") {
@@ -67,9 +58,10 @@ export async function GET(request: NextRequest) {
     userQry = userQry.where("group", "==", groupQry);
   }
   const userSnap = await userQry.get();
-  let userList: User[] = userSnap.docs.map(
-    (doc) => ({ id: doc.id, ...doc.data() }) as User
-  );
+  let userList: User[] = userSnap.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as User[];
   if (searchQry) {
     userList = userList.filter(
       (user: User) =>

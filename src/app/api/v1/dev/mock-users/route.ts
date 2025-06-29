@@ -1,3 +1,5 @@
+// don't forget to delete this in prod
+
 import { NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
 
