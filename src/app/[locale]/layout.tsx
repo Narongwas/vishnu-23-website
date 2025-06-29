@@ -1,11 +1,12 @@
-import localFont from "next/font/local";
-import { Bai_Jamjuree, Liu_Jian_Mao_Cao } from "next/font/google";
 import "@/app/[locale]/globals.css";
-import type { Viewport, Metadata } from "next";
-import cn from "@/lib/helpers/cn";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import cn from "@/lib/helpers/cn";
+import type { Metadata, Viewport } from "next";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { Bai_Jamjuree, Liu_Jian_Mao_Cao } from "next/font/google";
+import localFont from "next/font/local";
+import { notFound } from "next/navigation";
 
 const baiJamjuree = Bai_Jamjuree({
   subsets: ["latin", "thai"],
@@ -50,6 +51,8 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  const messages = await getMessages();
+
   return (
     <html lang={locale}>
       <body
@@ -61,7 +64,7 @@ export default async function LocaleLayout({
           "antialiased"
         )}
       >
-        <NextIntlClientProvider locale={locale}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
       </body>

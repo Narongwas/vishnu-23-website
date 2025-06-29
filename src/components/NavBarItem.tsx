@@ -14,11 +14,10 @@ export default function NavBarItem({
 }) {
   const pathname = usePathname();
   const segments = pathname.split("/");
-  const pathWithoutLocale = "/" + segments.slice(2).join("/"); // slice(2) removes ['', locale]
-  const normalizedPath =
-    pathWithoutLocale === "/" ? "/" : pathWithoutLocale.replace(/\/$/, "");
-  const isActive = normalizedPath === href;
-
+  const pathWithoutLocale = "/" + segments.slice(2).join("/");
+  const isActive =
+    pathWithoutLocale === href || pathWithoutLocale.startsWith(href + "/"); //check /explore/example if you use exact match it will not be active at /explore/example
+  // have case like / (home) if you use startwith it will be active at /explore also
   return (
     <a
       href={href}
