@@ -5,7 +5,7 @@ import { firebaseAdmin } from "@/lib/services/firebase.admin";
 export async function GET(request: NextRequest) {
   try {
     const token =
-      request.headers.get("Token")?.split(" ")[1] ||
+      request.headers.get("token")?.split(" ")[1] ||
       request.cookies.get("token")?.value;
 
     if (!token) {
