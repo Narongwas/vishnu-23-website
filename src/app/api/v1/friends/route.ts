@@ -11,15 +11,12 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const friendsList = await fetch(
-      `http://localhost:3000/api/v1/friends/${uid}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const friendsList = await fetch(`/api/v1/friends/${uid}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     const friendsData = await friendsList.json();
 
