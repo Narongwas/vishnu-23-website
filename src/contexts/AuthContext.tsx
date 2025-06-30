@@ -7,12 +7,13 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { User } from "firebase/auth";
+import { onIdTokenChanged, User } from "firebase/auth";
 import {
   onAuthStateChange,
   getCurrentUser,
   getIdToken,
 } from "@/lib/firebase/auth";
+import { auth } from "@/lib/services/firebase.client";
 
 interface AuthContextType {
   user: User | null;
@@ -103,6 +104,23 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     return () => unsubscribe();
   }, [refreshToken]);
+
+  useEffect(() => {
+    const unsubscribe = onIdTokenChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        const idToken = await firebaseUser.getIdToken();
+        await fetch("/api/v1/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idToken }),
+        });
+        setToken(idToken);
+      } else {
+        setToken(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const value = {
     user,
