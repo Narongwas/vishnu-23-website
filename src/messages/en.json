@@ -1,0 +1,111 @@
+{
+  "Common": {
+    "meta": {
+      "title": {
+        "default": "Vishnu 23rd",
+        "template": "%s - Vishnu 23rd"
+      },
+      "description": null
+    },
+    "navigation": {
+      "home": "Home",
+      "explore": "Explore",
+      "games": "Games",
+      "admin": "Admin"
+    },
+    "action": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "confirm": "Confirm",
+      "close": "Close",
+      "back": "Back"
+    }
+  },
+  "LanguageSwitcher": {
+    "label": "EN",
+    "alt": "Change to English"
+  },
+  "HomeHero": {
+    "action": {
+      "logIn": "Log in",
+      "account": "Account"
+    },
+    "ifd": {
+      "event": "Intania First Date 2025",
+      "date": "19 July 2025"
+    },
+    "vishnu": {
+      "event": "Vishnu Camp 23rd",
+      "date": "22–25 July 2025"
+    }
+  },
+  "LogInBanner": {
+    "title": "Log in",
+    "helper": "Use the account ending with @student.chula.ac.th"
+  },
+  "GroupAnnouncement": {
+    "action": {
+      "home": "Return to home",
+      "line": "Join LINE Group"
+    }
+  },
+  "Profile": {
+    "action": {
+      "edit": "Edit",
+      "logout": "Log out",
+      "add": "Add friend",
+      "editPfp": "Edit profile picture"
+    },
+    "friends": {
+      "title": "Your friends",
+      "search": "Search"
+    },
+    "form": {
+      "nickname": "Nickname"
+    },
+    "social": {
+      "line": "LINE",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "discord": "Discord",
+      "twitter": "X/Twitter",
+      "phone": "Phone"
+    }
+  },
+  "FriendScanner": {
+    "action": {
+      "qr": "Your QR code",
+      "code": "Add with code",
+      "help": "Help",
+      "add": "Add"
+    }
+  },
+  "FriendCodeDialog": {
+    "title": "Add with code",
+    "desc": "Ask your friend to go to <strong>Account > Add Friend > Your QR code</strong> and copy the code below QR.",
+    "form": {
+      "code": "Friend code"
+    }
+  },
+  "FriendQRHelpDialog": {
+    "title": "Add with QR",
+    "desc": {
+      "0": "Ask your friend to go to <strong>Account > Add Friend > Your QR code</strong> and use your phone to scan your friend's QR code.",
+      "1": "If you can't use the camera, add with a code."
+    },
+    "alt": "QR code",
+    "action": {
+      "save": "Save"
+    }
+  },
+  "Friend": {
+    "unavailable": "No data found",
+    "action": {
+      "unfriend": "Unfriend"
+    }
+  },
+  "UnfriendDialog": {
+    "title": "Remove from friends",
+    "desc": "You will no longer see “{friend}” in your friend lis. We won’t notify {friend}."
+  }
+}

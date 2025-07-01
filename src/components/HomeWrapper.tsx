@@ -9,7 +9,6 @@ import LoginButton from "@/components/LoginButton";
 import NavBar from "@/components/NavBar";
 import vishnuLogo from "@/public/logo/vishnu.svg";
 
-
 export default function HomeWrapper({
   children,
   classname,
