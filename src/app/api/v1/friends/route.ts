@@ -74,10 +74,6 @@ export async function POST(request: NextRequest) {
         //add the friend to the user's friends list
         friends: [...(user.data()?.friends || []), friendId],
       })
-      .update(friend.ref, {
-        //add the user to the friend's friends list
-        friends: [...(friend.data()?.friends || []), uid],
-      })
       .commit();
 
     return NextResponse.json(
@@ -131,10 +127,6 @@ export async function DELETE(request: NextRequest) {
       .update(user.ref, {
         //remove the friend from the user's friends list
         friends: user.data()?.friends.filter((f: string) => f !== friendId),
-      })
-      .update(friend.ref, {
-        //remove the user from the friend's friends list
-        friends: friend.data()?.friends.filter((f: string) => f !== uid),
       })
       .commit();
 
