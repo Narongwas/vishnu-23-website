@@ -6,7 +6,6 @@ import firstDateLogo from "@/public/logo/firstdate.svg";
 import Image from "next/image";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import LoginButton from "@/components/LoginButton";
-import NavBar from "@/components/NavBar";
 import vishnuLogo from "@/public/logo/vishnu.svg";
 
 export default function HomeWrapper({
@@ -31,23 +30,22 @@ export default function HomeWrapper({
           width={73.5}
           height={40}
           alt=""
-          className="absolute top-95 -left-5 opacity-40"
+          className="absolute top-95 -left-5 z-50 opacity-40"
         />
         <Image
           src={cloud2Logo}
           width={106}
           height={51}
           alt=""
-          className="absolute top-47 -right-9 opacity-40"
+          className="absolute top-47 -right-9 z-50 opacity-40"
         />
         <Image
           src={cloud2Logo}
           width={158}
           height={76}
           alt=""
-          className="absolute top-111 -right-18 -scale-x-100 transform"
+          className="absolute top-111 -right-18 z-50 -scale-x-100 transform"
         />
-        <NavBar />
         <div className="relative mt-11 flex flex-col items-center">
           <Image
             src={firstDateLogo}

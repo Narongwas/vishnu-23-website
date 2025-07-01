@@ -7,6 +7,7 @@ import SectionHeader from "@/components/SectionHeader";
 import Accordion from "@/components/AccordionGroup/Accordion";
 import { LayoutGroup } from "motion/react";
 import { useTranslations } from "next-intl";
+import NavBar from "@/components/NavBar";
 
 export default function Home() {
   const t = useTranslations("HomeHero");
@@ -54,6 +55,7 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <NavBar />
     </HomeWrapper>
   );
 }
