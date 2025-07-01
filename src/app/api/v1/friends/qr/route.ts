@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import QRCode from "qrcode";
+
+const generateCode = () => Math.floor(10000 + Math.random() * 90000).toString();
+
 export async function GET(request: NextRequest) {
   try {
     const token =
@@ -14,6 +17,8 @@ export async function GET(request: NextRequest) {
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
     const uid = decodedToken.uid;
 
+    const code = generateCode();
+
     const user = await db.collection("users").doc(uid).get();
     const name = user.data()?.name;
 
@@ -24,9 +29,14 @@ export async function GET(request: NextRequest) {
       })
     );
 
+    await user.data()?.ref.update({
+      addFriendCode: code,
+    });
+
     return NextResponse.json(
       {
         qrcode: qrDataUrl,
+        code: code,
       },
       {
         status: 200,
