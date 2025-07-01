@@ -17,6 +17,13 @@ export async function GET(request: NextRequest) {
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
     const uid = decodedToken.uid;
 
+    if (!uid) {
+      return NextResponse.json(
+        { error: "this QR code is not correct" },
+        { status: 404 }
+      );
+    }
+
     // return the user ID
     return NextResponse.json(
       {
