@@ -52,8 +52,10 @@ export async function POST(request: NextRequest) {
     }
 
     // get the user and friend data from the database
-    const user = await db.collection("users").doc(uid).get();
-    const friend = await db.collection("users").doc(friendId).get();
+    const [user, friend] = await Promise.all([
+      db.collection("users").doc(uid).get(),
+      db.collection("users").doc(friendId).get(),
+    ]);
 
     if (!user.exists || !friend.exists) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
@@ -106,8 +108,10 @@ export async function DELETE(request: NextRequest) {
     }
 
     //get the user and friend data
-    const user = await db.collection("users").doc(uid).get();
-    const friend = await db.collection("users").doc(friendId).get();
+    const [user, friend] = await Promise.all([
+      db.collection("users").doc(uid).get(),
+      db.collection("users").doc(friendId).get(),
+    ]);
 
     //check if the user and friend not exist
     if (!user.exists || !friend.exists) {
