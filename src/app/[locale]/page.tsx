@@ -5,7 +5,7 @@ import Image from "next/image";
 import separator from "@/public/decorating/shapes/separator.svg";
 import SectionHeader from "@/components/SectionHeader";
 import Accordion from "@/components/AccordionGroup/Accordion";
-import { LayoutGroup } from "motion/react";
+// import { LayoutGroup } from "motion/react";
 import { useTranslations } from "next-intl";
 
 export default function Home() {
@@ -35,21 +35,21 @@ export default function Home() {
               {item.title.length > 0 && (
                 <SectionHeader title={item.title} className="mb-4" />
               )}
-              <LayoutGroup>
-                <Accordion
-                  type="multiple"
-                  className="flex w-full flex-col items-center gap-3 px-4"
-                >
-                  {item.questions.map((q, qIndex) => (
-                    <FaqCard
-                      key={qIndex}
-                      question={q.question}
-                      answer={q.answer}
-                      value={`faq-${index}-${qIndex}`} //unique value
-                    />
-                  ))}
-                </Accordion>
-              </LayoutGroup>
+              {/* <LayoutGroup> */}
+              <Accordion
+                type="multiple"
+                className="flex w-full flex-col items-center gap-3 px-4"
+              >
+                {item.questions.map((q, qIndex) => (
+                  <FaqCard
+                    key={qIndex}
+                    question={q.question}
+                    answer={q.answer}
+                    value={`faq-${index}-${qIndex}`} //unique value
+                  />
+                ))}
+              </Accordion>
+              {/* </LayoutGroup> */}
             </div>
           ))}
         </div>
