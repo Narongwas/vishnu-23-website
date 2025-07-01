@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
     );
 
     //add the code to the user's document in Firestore
-    await user.data()?.ref.update({
+    await user.ref.update({
       addFriendCode: code,
     });
 
