@@ -13,6 +13,11 @@ export default function LanguageSwitcher() {
   function handleSwitch() {
     const segments = pathname.split("/");
 
+    if (!["th", "en"].includes(segments[1])) {
+      console.warn("Not a valid locale segment:", segments[1]); // check valid locale
+      return;
+    }
+
     segments[1] = nextLocale;
 
     router.push(segments.join("/"));
