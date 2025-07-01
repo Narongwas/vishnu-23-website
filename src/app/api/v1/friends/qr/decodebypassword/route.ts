@@ -17,6 +17,7 @@ export async function GET(request: NextRequest) {
     const userSnapshot = await db
       .collection("users")
       .where("addFriendCode", "==", code)
+      .select("name")
       .get();
 
     // Check if the user exists
