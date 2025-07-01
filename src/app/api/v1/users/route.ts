@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
-import type { User } from "@/app/admin/manage-user/page"; // adjust the import path as needed
+import type { User } from "@/app/admin/manage-user/page";
 
-// This API route retrieves the group from the user student email.
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get("Authorization");
   const cookieToken = request.cookies.get("authToken")?.value;
@@ -65,9 +64,9 @@ export async function GET(request: NextRequest) {
   if (searchQry) {
     userList = userList.filter(
       (user: User) =>
-        user.firstName?.toLowerCase().includes(searchQry) ||
-        user.lastName?.toLowerCase().includes(searchQry) ||
-        user.email?.toLowerCase().includes(searchQry)
+        user.firstName?.includes(searchQry) ||
+        user.lastName?.includes(searchQry) ||
+        user.email?.includes(searchQry)
     );
   }
 
