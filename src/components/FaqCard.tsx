@@ -2,63 +2,54 @@
 
 import Icon from "@/components/Icon";
 import cn from "@/lib/helpers/cn";
-import { FaqQuestion } from "@/lib/types/faq";
+import type { FaqQuestion } from "@/lib/types/faq";
 import { StyleableFC } from "@/lib/types/misc";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useState } from "react";
 
-const FaqCard: StyleableFC<FaqQuestion> = ({
-  answer,
-  question,
+const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
+  questions,
   style,
   className,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
     <motion.div
       layout
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className={cn("z-10 overflow-hidden bg-white text-left", className)}
+      className={cn("overflow-hidden bg-white text-left", className)}
       style={style}
     >
       <motion.div
         layout="position"
         className={cn(
-          "type-title-medium flex w-full cursor-pointer items-center px-4 py-3 transition-all duration-200",
-          isOpen ? "bg-yellow/20" : "bg-white"
+          "flex w-full cursor-pointer items-center px-4 py-3 transition-colors duration-200",
+          isOpen && "bg-yellow/20"
         )}
-        onClick={toggleOpen}
       >
-        <p className="type-title-medium w-full">{question}</p>
+        <p className="type-title-medium w-full">{questions.question}</p>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
+          onClick={() => setIsOpen((isOpen) => !isOpen)}
         >
-          <Icon
-            name="keyboard_arrow_down"
-            className="text-muted-foreground text-red size-4"
-          />
+          <Icon name="expand_more" className="text-red" />
         </motion.div>
       </motion.div>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="content"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="overflow-hidden"
-          >
-            <div className="bg-white p-4">
-              <p className="type-body-medium">{answer}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        layout="position"
+        className="overflow-hidden"
+        style={{ height: isOpen ? "auto" : 0 }}
+      >
+        <motion.div
+          animate={{ opacity: isOpen ? 1 : 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="type-body-medium p-4"
+        >
+          <p>{questions.answer}</p>
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
 };
