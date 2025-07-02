@@ -1,19 +1,19 @@
 "use client";
 
-import React, {
+import {
+  getCurrentUser,
+  getIdToken,
+  onAuthStateChange,
+} from "@/lib/firebase/auth";
+import { auth } from "@/lib/services/firebase.client";
+import { onIdTokenChanged, User } from "firebase/auth";
+import {
   createContext,
   useCallback,
   useContext,
   useEffect,
   useState,
 } from "react";
-import { onIdTokenChanged, User } from "firebase/auth";
-import {
-  onAuthStateChange,
-  getCurrentUser,
-  getIdToken,
-} from "@/lib/firebase/auth";
-import { auth } from "@/lib/services/firebase.client";
 
 interface AuthContextType {
   user: User | null;

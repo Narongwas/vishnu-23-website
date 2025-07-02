@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/lib/contexts/AuthContext";
 import { signInWithGoogle, signOut } from "@/lib/firebase/auth";
 import Image from "next/image";
 

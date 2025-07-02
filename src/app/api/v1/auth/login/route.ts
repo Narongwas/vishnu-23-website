@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { firebaseAdmin } from "@/lib/services/firebase.admin";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
@@ -7,7 +7,10 @@ export async function POST(request: NextRequest) {
     const { idToken } = body;
 
     if (!idToken) {
-      return Response.json({ error: "ID token is required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "ID token is required" },
+        { status: 400 }
+      );
     }
 
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(idToken);
@@ -36,6 +39,9 @@ export async function POST(request: NextRequest) {
     return response;
   } catch (error) {
     console.error("Login error:", error);
-    return Response.json({ error: "Authentication failed" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Authentication failed" },
+      { status: 401 }
+    );
   }
 }

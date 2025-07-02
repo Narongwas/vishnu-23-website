@@ -1,19 +1,22 @@
+import { auth } from "@/lib/services/firebase.client";
 import {
-  signInWithPopup,
   GoogleAuthProvider,
+  User,
+  browserLocalPersistence,
   signOut as firebaseSignOut,
   onAuthStateChanged,
-  User,
   setPersistence,
-  browserLocalPersistence,
+  signInWithPopup,
 } from "firebase/auth";
-import { auth } from "@/lib/services/firebase.client";
 
 setPersistence(auth, browserLocalPersistence);
 
 const googleProvider = new GoogleAuthProvider();
 googleProvider.addScope("email");
 googleProvider.addScope("profile");
+googleProvider.setCustomParameters({
+  hd: "student.chula.ac.th",
+});
 
 // sign in with popup for now
 export const signInWithGoogle = async () => {

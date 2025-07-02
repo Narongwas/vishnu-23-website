@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import { useAuth } from "@/lib/contexts/AuthContext";
 import { signInWithGoogle } from "@/lib/firebase/auth";
-import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
 
 interface GoogleLoginBtnProps {
   onSuccess?: () => void;
@@ -25,9 +25,9 @@ export default function GoogleLoginBtn({
       const { user, error } = await signInWithGoogle();
 
       if (error) {
-        onError?.((error as unknown as string) || "Login failed");
-        setIsLoading(false);
-        return;
+        const errorMessage =
+          error instanceof Error ? error.message : JSON.stringify(error);
+        onError?.(errorMessage || "Login failed");
       }
 
       if (user) {
