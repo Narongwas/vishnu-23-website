@@ -20,6 +20,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 403 });
   }
   const doc = await db.collection("users").where("email", "==", email).get();
+  if (doc.empty) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
 
   return NextResponse.json(
     { group: doc.docs[0].data().group },
