@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
-import type { User } from "@/app/admin/manage-user/page";
+import type { User } from "@/lib/types";
 
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get("Authorization");

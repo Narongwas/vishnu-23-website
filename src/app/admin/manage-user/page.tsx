@@ -1,20 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
-export interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  nickname: string;
-  email: string; // unique
-  department: string;
-  group: string;
-  role: string;
-  tier: string;
-  sensitiveInfo?: Record<string, string>; // only for camper
-  friends: string[]; // list of Firestore document IDs
-}
+import { User } from "@/lib/types";
 
 const ManagePeople: React.FC = () => {
   const [userType, setUserType] = useState<string>("staff");
