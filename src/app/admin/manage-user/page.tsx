@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { User } from "@/lib/types";
+import { User } from "@/lib/types/users";
 
 const ManagePeople: React.FC = () => {
   // add authorization guard for only admin

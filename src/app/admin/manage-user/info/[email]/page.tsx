@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { User } from "@/lib/types";
+import { User } from "@/lib/types/users";
 import { useParams } from "next/navigation";
 export default function Page() {
   const [info, setInfo] = useState<User | null>(null);
