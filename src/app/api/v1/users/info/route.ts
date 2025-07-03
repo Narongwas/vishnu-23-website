@@ -34,10 +34,10 @@ export async function GET(request: NextRequest) {
   // authorize the access level first
   if (userData.role == "camper") {
     // just incase but we already prevented this in fe
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   if (userData.tier == "group" && fullUserInfo.group != userData.group) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   // then check if it can see the sensitive info
   if (
