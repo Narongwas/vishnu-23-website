@@ -26,14 +26,14 @@ export async function GET(request: NextRequest) {
   // authorize access
   if (userData.role == "camper") {
     // just incase but we already prevented this in fe
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   if (groupQry && userData.tier == "group" && groupQry != userData.group) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   if (!groupQry && userData.tier == "group") {
     // if try to fetch all when not in core tier
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   // filter by userType , group , search

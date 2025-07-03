@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { User } from "@/lib/types";
 
 const ManagePeople: React.FC = () => {
+  // add authorization guard for only admin
+
   const [userType, setUserType] = useState<string>("staff");
   const [search, setSearch] = useState<string>("");
   const [group, setGroup] = useState<string>("");
