@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 
-// This API route retrieves the group from the user student email.
+// This API route retrieves the info of user with some authorization
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get("Authorization");
   const cookieToken = request.cookies.get("authToken")?.value;
