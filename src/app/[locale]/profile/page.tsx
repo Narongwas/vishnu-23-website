@@ -3,6 +3,7 @@ import PageAction from "@/components/PageAction";
 import SearchBar from "@/components/SearchBar";
 import Image from "next/image";
 import ProfileWrapper from "@/app/[locale]/profile/components/ProfileWrapper";
+import FriendItem from "@/app/[locale]/profile/components/FriendItem";
 
 const friends = [
   { id: 1, name: "แสด", avatar: "/images/default-avatar.png" },
@@ -66,21 +67,7 @@ export default async function Page() {
 
           <div className="grid w-full grid-cols-6 justify-items-center gap-y-2">
             {friends.map((friend) => (
-              <div
-                key={friend.id}
-                className="flex w-14 flex-col items-center gap-y-2"
-              >
-                <Image
-                  className="rounded-full object-cover"
-                  src={friend.avatar}
-                  alt={friend.name}
-                  width={60}
-                  height={60}
-                />
-                <div className="type-title-medium text-center leading-normal tracking-tight text-white">
-                  {friend.name}
-                </div>
-              </div>
+              <FriendItem key={friend.id} friend={friend} />
             ))}
           </div>
         </div>
