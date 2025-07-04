@@ -1,7 +1,7 @@
 "use client";
 import cn from "@/lib/helpers/cn";
-import { StyleableFC } from "@/lib/types/misc";
 import Icon from "@/components/Icon";
+import { StyleableFC } from "@/lib/types/misc";
 
 const SearchBar: StyleableFC<{
   onSearch?: (query: string) => void;
@@ -16,7 +16,7 @@ const SearchBar: StyleableFC<{
   return (
     <form
       className={cn(
-        "outline-0.5 outline-red relative flex h-11 w-[148px] items-center gap-2 bg-white py-2.5 pr-2.5 pl-4 outline transition-all duration-300 ease-in-out focus-within:w-full",
+        "relative flex h-11 w-[148px] items-center gap-2 bg-white py-2.5 pr-2.5 pl-4 transition-all duration-300 ease-in-out focus-within:w-full",
         className
       )}
       style={style}
