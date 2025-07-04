@@ -1,11 +1,13 @@
-import Image from "next/image";
 import BackgroundWithNoise from "@/components/BackgroundWithNoise";
-import firstDateLogo from "@/public/logo/firstdate.svg";
-import vishnuLogo from "@/public/logo/vishnu.svg";
+import cn from "@/lib/helpers/cn";
 import cloud1Logo from "@/public/decorating/clouds/cloud1.svg";
 import cloud2Logo from "@/public/decorating/clouds/cloud2.svg";
-import cn from "@/lib/helpers/cn";
+import firstDateLogo from "@/public/logo/firstdate.svg";
+import Image from "next/image";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import LoginButton from "@/components/LoginButton";
 import NavBar from "@/components/NavBar";
+import vishnuLogo from "@/public/logo/vishnu.svg";
 
 export default function HomeWrapper({
   children,
@@ -19,6 +21,10 @@ export default function HomeWrapper({
     <BackgroundWithNoise
       className={cn("from-yellow to-yellow-white bg-gradient-to-b", classname)}
     >
+      <div className="relative z-10 flex w-full items-center justify-between p-4 lg:justify-around">
+        <LanguageSwitcher />
+        <LoginButton />
+      </div>
       <div className="relative mx-auto flex h-full max-w-200 flex-col items-center text-center">
         <Image
           src={cloud1Logo}
