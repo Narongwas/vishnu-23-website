@@ -28,13 +28,15 @@ export async function GET(request: NextRequest) {
     const user = await db.collection("users").doc(uid).get();
     const name = user.data()?.name;
 
-    //generate a QR with the user's name and token
-    const qrDataUrl = await QRCode.toDataURL(
-      JSON.stringify({
-        name,
-        token,
-      })
-    );
+    //note: I'm not sure what the path is, so I decided to use this path instead
+    const path =
+      "https://preview--vishnu-23-web.asia-east1.hosted.app/th/profile/addFriend";
+    const query = new URLSearchParams({ name, token }).toString();
+
+    const url = `${path}?${query}`;
+
+    //generate a QR with URL that contains the user's name and token in the query string
+    const qrDataUrl = await QRCode.toDataURL(url);
 
     //add the code to the user's document in Firestore
     await user.ref.update({
