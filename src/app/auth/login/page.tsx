@@ -2,21 +2,24 @@
 
 import GoogleLoginBtn from "@/components/GoogleLoginButton";
 import { useAuth } from "@/lib/contexts/AuthContext";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
   const { user, loading } = useAuth();
+  const searchParams = useSearchParams();
+
+  const redirectTo = searchParams.get("redirect") || "/";
 
   useEffect(() => {
     if (!loading && user) {
-      router.push("/");
+      router.push(redirectTo);
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, redirectTo]);
 
   const handleLoginSuccess = () => {
-    router.push("/", { scroll: false });
+    router.push(redirectTo, { scroll: false });
   };
 
   const handleLoginError = (error: string) => {
