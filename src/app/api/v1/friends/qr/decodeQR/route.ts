@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { firebaseAdmin } from "@/lib/services/firebase.admin";
+import { firebaseAdmin, db } from "@/lib/services/firebase.admin";
 
 // This is a GET method to decode token from QR code and return the userID
 export async function GET(request: NextRequest) {
@@ -23,6 +23,10 @@ export async function GET(request: NextRequest) {
         { status: 404 }
       );
     }
+
+    await db.collection("users").doc(uid).update({
+      addFriendCode: firebaseAdmin.firestore.FieldValue.delete(),
+    });
 
     // return the user ID
     return NextResponse.json(
