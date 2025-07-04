@@ -7,7 +7,7 @@ export default async function GroupReveal() {
     return <div>You must be logged in to view your group.</div>;
   }
 
-  const res = await fetch(`${process.env.API_BASE_URL}/api/v1/group`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/group`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
