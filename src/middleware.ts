@@ -6,14 +6,6 @@ export async function middleware(req: NextRequest) {
   const cookieToken = req.cookies.get("authToken")?.value;
   const token = authHeader?.split(" ")[1] || cookieToken;
 
-  // Debug logs - active only in development environment
-  if (process.env.NODE_ENV === "development") {
-    console.log("Middleware - Path:", req.nextUrl.pathname);
-    console.log("Middleware - Has auth header:", !!authHeader);
-    console.log("Middleware - Has cookie token:", !!cookieToken);
-    console.log("Middleware - Final token:", !!token);
-  }
-
   // public page routes
   const publicRoutes = ["/", "/auth/login"];
   const isPublicRoute = publicRoutes.includes(req.nextUrl.pathname);
