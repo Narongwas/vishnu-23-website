@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import { PageAction } from "@/components/PageAction";
+import PageAction from "@/components/PageAction";
 import SearchBar from "@/components/SearchBar";
 import BackgroundWithNoise from "@/components/BackgroundWithNoise";
 import Image from "next/image";
@@ -18,7 +18,7 @@ const friends = [
 export default async function Page() {
   return (
     <BackgroundWithNoise>
-      <div className="min-h-screen w-full bg-[linear-gradient(180deg,var(--color-red)_7.32%,var(--color-orange)_47.03%)]">
+      <div className="min-h-screen w-full bg-[linear-gradient(180deg,var(--color-red)_7.32%,var(--color-orange)_47.03%)] bg-fixed">
         <div className="relative mx-auto w-full max-w-md overflow-hidden">
           <div className="flex flex-col items-center gap-6 px-4 pt-0 pb-[148px]">
             <div className="relative flex w-full flex-col items-center gap-3 pt-6">
