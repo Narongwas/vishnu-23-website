@@ -3,7 +3,7 @@ import { verifyIdToken } from "@/lib/services/firebase.admin";
 
 export async function getServerAuth() {
   const cookieStore = await cookies();
-  const token = cookieStore.get("session")?.value;
+  const token = cookieStore.get("authToken")?.value;
 
   if (!token) return { user: null, token: null };
 
