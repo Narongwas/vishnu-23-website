@@ -1,0 +1,46 @@
+import ListItem from "@/app/[locale]/admin/features-management/components/ListItem";
+import Switch from "@/app/[locale]/admin/features-management/components/Switch";
+import {
+  getAllFeatureFlags,
+  toggleFeatureFlag,
+} from "@/app/api/v1/feature-flags/services";
+import BackgroundWithNoise from "@/components/BackgroundWithNoise";
+import SubPageHeader from "@/components/SubPageHeader";
+import { revalidatePath } from "next/cache";
+
+export default async function FeatureManagementPage() {
+  const flags = await getAllFeatureFlags();
+
+  async function toggleFlag(formData: FormData) {
+    "use server";
+    const id = formData.get("id") as string;
+    await toggleFeatureFlag(id);
+    revalidatePath("/admin/features-management");
+  }
+
+  return (
+    <BackgroundWithNoise className="from-yellow to-yellow-white bg-gradient-to-b">
+      <SubPageHeader
+        title="Features"
+        curvedText="Manage"
+        background="bg-yellow mix-blend-soft-light"
+      />
+      <div className="relative z-10 mx-auto -mt-16 h-full max-w-200 px-4">
+        <div className="type-body-large text-left">
+          <ListItem className="type-title-medium bg-yellow border-black">
+            ชื่อฟีเจอร์
+          </ListItem>
+          {flags.map((flag) => (
+            <ListItem key={flag.id} className="grid-cols-2">
+              <div>{flag.featureName}</div>
+              <form action={toggleFlag} className="flex justify-end">
+                <input type="hidden" name="id" value={flag.id} />
+                <Switch checked={flag.enabled} />
+              </form>
+            </ListItem>
+          ))}
+        </div>
+      </div>
+    </BackgroundWithNoise>
+  );
+}
