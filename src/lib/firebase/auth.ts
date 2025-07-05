@@ -22,6 +22,14 @@ googleProvider.setCustomParameters({
 export const signInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
+    const email = result.user.email;
+
+    if (!email || !email.endsWith("21@student.chula.ac.th")) {
+      throw new Error(
+        "You can only sign in with chula email with faculty of engineering"
+      );
+    }
+
     return { user: result.user, error: null };
   } catch (error) {
     console.error("Google sign-in error:", error);
