@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/services/firebase.admin";
 
 async function getUserHistory(uid: string) {
@@ -47,6 +48,14 @@ async function getUserHistory(uid: string) {
   return { userHistory: userHistoryData };
 }
 
+async function addUserHistory(uid: string, predictionId: string) {
+  const userData = await db.collection("users").doc(uid).get();
+
+  await userData.ref.update({
+    predictions: [...(userData.data()?.predictions || []), predictionId],
+  });
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { uid, error } = await firebaseAuthMiddleware(request);
@@ -84,20 +93,42 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest) {
+  const { uid, error } = await firebaseAuthMiddleware(request);
 
-//     const { uid, decodedToken, error } = await firebaseAuthMiddleware(request);
+  if (!uid || error) {
+    return NextResponse.json(
+      { error: "Unauthorize or token is invalid" },
+      { status: 401 }
+    );
+  }
 
-//     if (!uid || error) {
-//         return NextResponse.json({ error: "Unauthorize or token is invalid" }, { status: 401 });
-//     }
+  try {
+    const { predictionId } = await request.json();
 
-//     const body = await request.json();
-//     const predictionId : string = body.predictionId;
-//     const answer : string = body.answer || "";
+    if (!predictionId) {
+      return NextResponse.json(
+        { error: "Prediction ID is required" },
+        { status: 400 }
+      );
+    }
 
-//     if (!predictionId || !answer) {
-//         return NextResponse.json({ error: "Prediction ID and answer are required" }, { status: 400 });
-//     }
+    await addUserHistory(uid, predictionId);
 
-// }
+    revalidatePath("/[locale]/game/prediction/histories");
+
+    return NextResponse.json(
+      {
+        message: "Prediction added to user history",
+        predictionId: predictionId,
+      },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.error("Error in POST /api/v1/prediction/history:", err);
+    return NextResponse.json(
+      { error: "Error adding prediction history: " + err },
+      { status: 500 }
+    );
+  }
+}
