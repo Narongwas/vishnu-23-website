@@ -5,6 +5,27 @@ import QRCode from "qrcode";
 // Function to generate a random 5-digit code
 const generateCode = () => Math.floor(10000 + Math.random() * 90000).toString();
 
+// Function to get friend code if user don't have friend code it will be created
+export const getFriendCode = async (uid: string) => {
+  const userData = await db.collection("users").doc(uid).get();
+  if (!userData.data()?.addFriendCode) {
+    let code = generateCode();
+    const isCodeExist = await db
+      .collection("users")
+      .where("addFriendCode", "==", code)
+      .get();
+    while (!isCodeExist.empty) {
+      code = generateCode();
+    }
+    await userData.ref.update({
+      addFriendCode: code,
+    });
+    return code;
+  }
+
+  return userData.data()?.code;
+};
+
 //this is a GET method to generate a QR and 5-digit code for adding friends
 export async function GET(request: NextRequest) {
   // Check if the request is authenticated
@@ -22,7 +43,7 @@ export async function GET(request: NextRequest) {
     const uid = decodedToken.uid;
 
     // Generate a random 5-digit code
-    const code = generateCode();
+    const code = getFriendCode(uid);
 
     //get user name from user document
     const user = await db.collection("users").doc(uid).get();
@@ -37,11 +58,6 @@ export async function GET(request: NextRequest) {
 
     //generate a QR with URL that contains the user's name and token in the query string
     const qrDataUrl = await QRCode.toDataURL(url);
-
-    //add the code to the user's document in Firestore
-    await user.ref.update({
-      addFriendCode: code,
-    });
 
     // Return the QR code and the 5-digit code
     return NextResponse.json(
