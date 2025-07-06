@@ -18,9 +18,9 @@ const ButtonPanel: StyleableFC<ButtonPanelProps> = ({
     <div className="absolute top-0 z-10 flex w-full items-center justify-between py-4 pr-6">
       <BackButton variants="Tertiary" />
       {sortMode === "alpha" ? (
-        <SortByRankButton onClick={() => onChangeSort("place")} />
+        <SortByAlphaButton onClick={() => onChangeSort("place")} />
       ) : (
-        <SortByAlphaButton onClick={() => onChangeSort("alpha")} />
+        <SortByRankButton onClick={() => onChangeSort("alpha")} />
       )}
     </div>
   );
