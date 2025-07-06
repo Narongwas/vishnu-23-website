@@ -8,22 +8,24 @@ const generateCode = () => Math.floor(10000 + Math.random() * 90000).toString();
 // Function to get friend code if user don't have friend code it will be created
 export const getFriendCode = async (uid: string) => {
   const userData = await db.collection("users").doc(uid).get();
+
   if (!userData.data()?.addFriendCode) {
-    let code = generateCode();
-    const isCodeExist = await db
-      .collection("users")
-      .where("addFriendCode", "==", code)
-      .get();
-    while (!isCodeExist.empty) {
+    let code: string;
+    let isCodeExist: FirebaseFirestore.QuerySnapshot;
+
+    do {
       code = generateCode();
-    }
-    await userData.ref.update({
-      addFriendCode: code,
-    });
+      isCodeExist = await db
+        .collection("users")
+        .where("addFriendCode", "==", code)
+        .get();
+    } while (!isCodeExist.empty);
+
+    await userData.ref.update({ addFriendCode: code });
     return code;
   }
 
-  return userData.data()?.code;
+  return userData.data()?.addFriendCode;
 };
 
 //this is a GET method to generate a QR and 5-digit code for adding friends
@@ -43,7 +45,7 @@ export async function GET(request: NextRequest) {
     const uid = decodedToken.uid;
 
     // Generate a random 5-digit code
-    const code = getFriendCode(uid);
+    const code = await getFriendCode(uid);
 
     //get user name from user document
     const user = await db.collection("users").doc(uid).get();
