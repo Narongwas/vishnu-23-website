@@ -41,7 +41,7 @@ const PredictionBall: StyleableFC = ({ className, style }) => {
           duration: 0.8,
           ease: "easeIn",
         }}
-        className="fixed -bottom-80 left-1/2 -translate-x-1/2"
+        className="fixed -bottom-95 left-1/2 -translate-x-1/2"
       >
         <PageAction icon="check" text="ทำนาย" />
       </motion.div>
