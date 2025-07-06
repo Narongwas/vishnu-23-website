@@ -5,7 +5,6 @@ import {
   toggleFeatureFlag,
 } from "@/app/api/v1/feature-flags/services";
 import BackButton from "@/components/BackButton";
-import BackgroundWithNoise from "@/components/BackgroundWithNoise";
 import SubPageHeader from "@/components/SubPageHeader";
 import { revalidatePath } from "next/cache";
 
@@ -20,17 +19,13 @@ export default async function FeatureManagementPage() {
   }
 
   return (
-    <BackgroundWithNoise className="from-yellow to-yellow-white bg-gradient-to-b">
-      <div className="absolute top-0 z-10 flex w-full items-center justify-between p-4 lg:justify-around">
+    <>
+      <div className="absolute top-0 z-10 flex w-full items-center justify-between p-4">
         <BackButton variants="Tertiary" />
         <div></div>
       </div>
-      <SubPageHeader
-        title="Features"
-        curvedText="Manage"
-        background="bg-yellow mix-blend-soft-light"
-      />
-      <div className="relative z-10 mx-auto -mt-16 h-full max-w-200 px-4">
+      <SubPageHeader title="Features" curvedText="Manage" />
+      <div className="relative z-10 mx-auto -mt-16 h-full px-4">
         <div className="type-body-large text-left">
           <ListItem className="type-title-medium bg-yellow relative border-black">
             <div className="absolute inset-0 bg-[url('/decorating/texture/fabric.png')] opacity-50 mix-blend-soft-light" />
@@ -47,6 +42,6 @@ export default async function FeatureManagementPage() {
           ))}
         </div>
       </div>
-    </BackgroundWithNoise>
+    </>
   );
 }
