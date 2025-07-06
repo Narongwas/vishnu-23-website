@@ -4,7 +4,6 @@ import { StyleableFC } from "@/lib/types/misc";
 import cloud1Logo from "@/public/decorating/clouds/cloud1.svg";
 import cloud2Logo from "@/public/decorating/clouds/cloud2.svg";
 import Image from "next/image";
-import stain from "@/public/decorating/texture/stain.png";
 
 type Props = {
   title: string;
@@ -31,12 +30,10 @@ const SubPageHeader: StyleableFC<Props> = ({
     >
       <div className="relative mx-auto h-full max-w-90">
         {/* Big Circle */}
-        <Image
-          src={stain}
-          alt=""
+        <div
           className={cn(
-            "top-3 h-52 w-52 rounded-full mix-blend-hard-light",
             centerBase,
+            "top-3 h-52 w-52 rounded-full bg-[url('/decorating/texture/stain.png')] bg-cover bg-no-repeat mix-blend-hard-light",
             background
           )}
         />
