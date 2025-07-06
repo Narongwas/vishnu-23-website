@@ -2,7 +2,7 @@ import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
 import redCloud from "@/public/decorating/clouds/cloud2.svg";
 import yellowCloud from "@/public/decorating/clouds/yellow_cloud.svg";
-import stain from "@/public/decorating/texture/stain.svg";
+import stain from "@/public/decorating/texture/stain.png";
 import Image from "next/image";
 
 const typeMap = {
