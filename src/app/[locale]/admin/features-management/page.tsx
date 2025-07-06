@@ -22,7 +22,6 @@ export default async function FeatureManagementPage() {
     <>
       <div className="absolute top-0 z-10 flex w-full items-center justify-between p-4">
         <BackButton variants="Tertiary" />
-        <div></div>
       </div>
       <SubPageHeader title="Features" curvedText="Manage" />
       <div className="relative z-10 mx-auto -mt-16 h-full px-4">
