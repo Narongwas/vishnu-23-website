@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
+import { db } from "@/lib/services/firebase.admin";
 
 // This is a GET method to decode add friend code and return the user ID
 // by send a code in the query string
@@ -27,10 +27,6 @@ export async function GET(request: NextRequest) {
         { status: 404 }
       );
     }
-
-    await userSnapshot.docs[0].ref.update({
-      addFriendCode: firebaseAdmin.firestore.FieldValue.delete(),
-    });
 
     // Return the user's name and uid
     return NextResponse.json(
