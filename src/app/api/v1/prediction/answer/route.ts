@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware";
 import { db } from "@/lib/services/firebase.admin";
 
@@ -13,17 +13,23 @@ async function getPredictionAnswer(uid: string, predictionId: string) {
     db.collection("prediction").doc(predictionId).get(),
   ]);
 
-  if (prediction.exists) {
+  if (!prediction.exists) {
     return { fetchingError: "this prediction not found" };
   }
 
   if (answerData.empty) {
-    return { predictionId, answer: "", isCorrect: false };
+    return {
+      predictionId,
+      answer: "",
+      solution: prediction.data()?.solution,
+      isCorrect: false,
+    };
   }
 
   return {
     predictionId,
     answer: answerData.docs[0].data().answer,
+    solution: prediction.data()?.solution,
     isCorrect: answerData.docs[0].data().isCorrect,
   };
 }
@@ -33,7 +39,7 @@ export async function GET(request: NextRequest) {
     const { uid, error } = await firebaseAuthMiddleware(request);
 
     if (error || !uid) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      return new NextResponse(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
       });
     }
@@ -41,18 +47,27 @@ export async function GET(request: NextRequest) {
     const prediction = request.nextUrl.searchParams.get("prediction");
 
     if (!prediction) {
-      return new Response(
+      return new NextResponse(
         JSON.stringify({ error: "Prediction ID is required" }),
         { status: 400 }
       );
     }
 
-    const { answer, isCorrect } = await getPredictionAnswer(uid, prediction);
+    const { answer, isCorrect, solution, fetchingError } =
+      await getPredictionAnswer(uid, prediction);
 
-    return Response.json(
+    if (fetchingError) {
+      return NextResponse.json(
+        { error: "Prediction not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
       {
         prediction,
         answer,
+        solution,
         isCorrect,
       },
       {
@@ -64,8 +79,81 @@ export async function GET(request: NextRequest) {
     );
   } catch (e) {
     console.error("Error in GET request:", e);
-    return new Response(JSON.stringify({ error: "error get answer" }), {
+    return new NextResponse(JSON.stringify({ error: "error get answer" }), {
       status: 500,
     });
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    const { uid, error } = await firebaseAuthMiddleware(request);
+
+    if (error || !uid) {
+      return NextResponse.json({ error: "Unauthorized", status: 401 });
+    }
+
+    const body = await request.json();
+    const predictionId = body.prediction;
+    const answer: string = body.answer;
+
+    if (!predictionId) {
+      return NextResponse.json(
+        { error: "Prediction ID is required" },
+        { status: 400 }
+      );
+    }
+
+    if (!answer) {
+      return NextResponse.json(
+        { error: "Answer is required" },
+        { status: 400 }
+      );
+    }
+
+    const [answerData, prediction] = await Promise.all([
+      db
+        .collection("answers")
+        .where("userId", "==", uid)
+        .where("predictionId", "==", predictionId)
+        .get(),
+      db.collection("prediction").doc(predictionId).get(),
+    ]);
+
+    if (!prediction.exists) {
+      return NextResponse.json(
+        { error: "Prediction ID is not correct" },
+        { status: 404 }
+      );
+    }
+
+    if (!prediction.data()?.enable) {
+      return NextResponse.json(
+        { error: "this prediction was closed" },
+        { status: 403 }
+      );
+    }
+
+    if (answerData.empty) {
+      await db.collection("answers").add({
+        predictionId: predictionId,
+        userId: uid,
+        answer: answer,
+        isCorrect: answer.trim() === prediction.data()?.solution.trim(),
+      });
+    } else {
+      await answerData.docs[0].ref.update({
+        answer: answer,
+        isCorrect: answer.trim() === prediction.data()?.solution.trim(),
+      });
+    }
+
+    return new NextResponse(null, { status: 204 });
+  } catch (err) {
+    console.error("Error changing answer : " + err);
+    return NextResponse.json(
+      { error: "Error changing answer" },
+      { status: 500 }
+    );
   }
 }
