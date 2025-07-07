@@ -7,7 +7,7 @@ const PredictionHelpCard: StyleableFC<{
   onClose: () => void;
 }> = ({ onClose, className, style }) => {
   return (
-    <Modal onClose={onClose} className={cn(className)} style={style}>
+    <Modal onClose={onClose} className={cn("z-10", className)} style={style}>
       <Icon name="temple_buddhist" className="text-red" />
       <p className="type-headline-small">หอทำนายชะตาสวรรค์</p>
 

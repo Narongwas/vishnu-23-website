@@ -15,7 +15,7 @@ const PredictionBall: StyleableFC = ({ className, style }) => {
     <>
       <div
         className={cn(
-          "relative flex h-150 w-150 items-center justify-center",
+          "relative z-5 flex h-150 w-150 items-center justify-center",
           className
         )}
         style={style}
@@ -41,7 +41,7 @@ const PredictionBall: StyleableFC = ({ className, style }) => {
           duration: 0.8,
           ease: "easeIn",
         }}
-        className="fixed -bottom-95 left-1/2 -translate-x-1/2"
+        className="fixed -bottom-95 left-1/2 z-5 -translate-x-1/2"
       >
         <PageAction icon="check" text="ทำนาย" />
       </motion.div>
