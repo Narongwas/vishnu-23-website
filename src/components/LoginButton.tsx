@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import { useAuth } from "@/components/AuthContext";
 import { signInWithGoogle } from "@/lib/firebase/auth";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface GoogleLoginBtnProps {
@@ -18,19 +18,14 @@ export default function GoogleLoginBtn({
   onError,
 }: GoogleLoginBtnProps) {
   const { loginWithToken, token, user } = useAuth();
-  const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
+  const isLoggedIn = !!token;
   const redirectTo = useSearchParams().get("redirect") || "/";
   const router = useRouter();
-
-  useEffect(() => {
-    if (token != null) {
-      setLoggedIn(true);
-    }
-  }, [token]);
+  const loginAttempted = useRef(false);
 
   console.log("photo : " + user?.photoURL);
 
-  const handleGoogleLogin = async () => {
+  const handleGoogleLogin = useCallback(async () => {
     try {
       const { user, error } = await signInWithGoogle();
 
@@ -42,7 +37,6 @@ export default function GoogleLoginBtn({
       if (user) {
         console.log("GoogleLoginButton - User signed in:", user.email);
         await loginWithToken(user);
-        setLoggedIn(true);
         onSuccess?.();
         router.push(redirectTo);
       }
@@ -50,7 +44,14 @@ export default function GoogleLoginBtn({
       console.error("Login error:", error);
       onError?.((error as unknown as string) || "Login failed");
     }
-  };
+  }, [loginWithToken, onError, onSuccess, redirectTo, router]);
+
+  useEffect(() => {
+    if (!isLoggedIn && redirectTo !== "/" && !loginAttempted.current) {
+      loginAttempted.current = true;
+      handleGoogleLogin();
+    }
+  }, [redirectTo, isLoggedIn, handleGoogleLogin]);
 
   return isLoggedIn ? (
     <>
