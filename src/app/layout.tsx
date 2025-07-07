@@ -1,6 +1,6 @@
 import "@/app/globals.css";
 import DevAuthUI from "@/components/DevAuthUI";
-import { AuthProvider } from "@/lib/contexts/AuthContext";
+import { AuthProvider } from "@/components/AuthContext";
 import cn from "@/lib/helpers/cn";
 import type { Metadata, Viewport } from "next";
 import { Bai_Jamjuree, Liu_Jian_Mao_Cao } from "next/font/google";

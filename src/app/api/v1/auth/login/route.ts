@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     console.error("Login error:", error);
     return NextResponse.json(
       { error: "Authentication failed" },
-      { status: 401 }
+      { status: 500 }
     );
   }
 }

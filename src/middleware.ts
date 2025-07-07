@@ -7,7 +7,7 @@ export async function middleware(req: NextRequest) {
   const token = authHeader?.split(" ")[1] || cookieToken;
 
   // public page routes
-  const publicRoutes = ["/", "/auth/login"];
+  const publicRoutes = ["/"];
   const isPublicRoute = publicRoutes.includes(req.nextUrl.pathname);
 
   // public api routes
@@ -25,22 +25,22 @@ export async function middleware(req: NextRequest) {
   if (!token && !isPublicRoute && !isPublicApiRoute && !isStaticFile) {
     console.log("Redirecting to login - no token");
     return NextResponse.redirect(
-      new URL(
-        `/auth/login?redirect=${encodeURIComponent(req.nextUrl.pathname)}`,
-        req.url
-      )
+      new URL(`/?redirect=${encodeURIComponent(req.nextUrl.pathname)}`, req.url)
     );
   }
 
-  // redirect to intended page if authenticated
-  if (token && req.nextUrl.pathname === "/auth/login") {
-    const redirectTo = req.nextUrl.searchParams.get("redirect") || "/";
-    console.log(
-      "Redirecting to intended page - already authenticated:",
-      redirectTo
-    );
-    return NextResponse.redirect(new URL(redirectTo, req.url));
-  }
+  //redirect to intended page if authenticated
+  // if (token && req.nextUrl.pathname === "/") {
+  //   const redirectTo = req.nextUrl.searchParams.get("redirect");
+  //   if(!redirectTo){
+  //     return NextResponse.redirect(new URL("/", req.url));
+  //   }
+  //   console.log(
+  //     "Redirecting to intended page - already authenticated:",
+  //     redirectTo
+  //   );
+  //   return NextResponse.redirect(new URL(redirectTo, req.url));
+  // }
 
   // add the token to the authorization header if it exists for api routes
   if (token && req.nextUrl.pathname.startsWith("/api/") && !isPublicApiRoute) {

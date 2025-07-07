@@ -1,9 +1,11 @@
 "use client";
+
 import Button from "@/components/Button";
-import { useAuth } from "@/lib/contexts/AuthContext";
+import { useAuth } from "@/components/AuthContext";
 import { signInWithGoogle } from "@/lib/firebase/auth";
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface GoogleLoginBtnProps {
   onSuccess?: () => void;
@@ -17,6 +19,8 @@ export default function GoogleLoginBtn({
 }: GoogleLoginBtnProps) {
   const { loginWithToken, token, user } = useAuth();
   const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
+  const redirectTo = useSearchParams().get("redirect") || "/";
+  const router = useRouter();
 
   useEffect(() => {
     if (token != null) {
@@ -40,6 +44,7 @@ export default function GoogleLoginBtn({
         await loginWithToken(user);
         setLoggedIn(true);
         onSuccess?.();
+        router.push(redirectTo);
       }
     } catch (error) {
       console.error("Login error:", error);
