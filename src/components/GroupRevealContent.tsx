@@ -1,5 +1,6 @@
 import { getServerAuth } from "@/lib/firebase/getServerAuth";
 
+//This is a template for fetching group
 export default async function GroupReveal() {
   const { token } = await getServerAuth();
 
