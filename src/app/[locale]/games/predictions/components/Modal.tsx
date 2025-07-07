@@ -1,3 +1,5 @@
+"use client";
+
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
 

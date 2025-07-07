@@ -1,3 +1,5 @@
+"use client";
+
 import Modal from "@/app/[locale]/games/predictions/components/Modal";
 import Icon from "@/components/Icon";
 import cn from "@/lib/helpers/cn";

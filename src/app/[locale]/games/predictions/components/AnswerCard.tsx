@@ -1,3 +1,5 @@
+"use client";
+
 import Ball from "@/app/[locale]/games/predictions/components/Ball";
 import Modal from "@/app/[locale]/games/predictions/components/Modal";
 import Icon from "@/components/Icon";
