@@ -1,4 +1,4 @@
-import { FeatureFlag } from "@/app/interfaces";
+import { FeatureFlag } from "@/app/[locale]/interfaces";
 import { db } from "@/lib/services/firebase.admin";
 
 export async function getAllFeatureFlags(): Promise<FeatureFlag[]> {

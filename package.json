@@ -11,16 +11,16 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@radix-ui/react-accordion": "^1.2.11",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "firebase": "^11.9.1",
     "firebase-admin": "^13.4.0",
     "motion": "^12.18.1",
     "next": "15.3.3",
+    "next-intl": "^4.3.1",
+    "qrcode": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "styled-components": "^6.1.19",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
@@ -29,6 +29,7 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

@@ -1,6 +1,10 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
+export const config = {
+  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+};
+
 export async function middleware(req: NextRequest) {
   const authHeader = req.headers.get("authorization");
   const cookieToken = req.cookies.get("authToken")?.value;
@@ -28,19 +32,6 @@ export async function middleware(req: NextRequest) {
       new URL(`/?redirect=${encodeURIComponent(req.nextUrl.pathname)}`, req.url)
     );
   }
-
-  //redirect to intended page if authenticated
-  // if (token && req.nextUrl.pathname === "/") {
-  //   const redirectTo = req.nextUrl.searchParams.get("redirect");
-  //   if(!redirectTo){
-  //     return NextResponse.redirect(new URL("/", req.url));
-  //   }
-  //   console.log(
-  //     "Redirecting to intended page - already authenticated:",
-  //     redirectTo
-  //   );
-  //   return NextResponse.redirect(new URL(redirectTo, req.url));
-  // }
 
   // add the token to the authorization header if it exists for api routes
   if (token && req.nextUrl.pathname.startsWith("/api/") && !isPublicApiRoute) {
