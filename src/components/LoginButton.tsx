@@ -3,6 +3,7 @@
 import Button from "@/components/Button";
 import { signInWithGoogle } from "@/lib/firebase/auth";
 import { useAuth } from "@/lib/hooks/useAuth";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
@@ -68,6 +69,8 @@ export default function GoogleLoginBtn({
     }
   }, [redirectTo, isLoggedIn, handleGoogleLogin]);
 
+  const t = useTranslations("HomeHero");
+
   return (
     <>
       <Suspense fallback={null}>
@@ -85,11 +88,11 @@ export default function GoogleLoginBtn({
         <Button
           onClick={handleGoogleLogin}
           icon="login"
-          label="เข้าสู่ระบบ"
+          label={t("action.logIn")}
           Size="Small"
           Appearance="Primary"
-          aria-label="เข้าสู่ระบบ"
-          title="เข้าสู่ระบบ"
+          aria-label={t("action.logIn")}
+          title={t("action.logIn")}
         />
       )}
     </>
