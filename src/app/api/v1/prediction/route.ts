@@ -1,0 +1,89 @@
+import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/lib/services/firebase.admin";
+
+async function addPrediction(prediction: {
+  question: string;
+  solution: string;
+  day: number;
+  time: string;
+}) {
+  await db.collection("prediction").add({
+    question: prediction.question,
+    solution: prediction.solution,
+    day: prediction.day,
+    time: prediction.time,
+    enable: false,
+  });
+}
+
+export async function GET() {
+  try {
+    const predictions = (await db.collection("prediction").get()).docs;
+
+    return NextResponse.json(
+      {
+        predictions: predictions.map((doc) => {
+          const data = doc.data();
+
+          return {
+            predictionId: doc.id,
+            question: data.question,
+            solution: data.solution,
+            day: data.day,
+            time: data.time,
+            enable: data.enable,
+          };
+        }),
+      },
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  } catch (err) {
+    console.error("Fetching error : " + err);
+    return NextResponse.json({ error: "Fetching error" }, { status: 500 });
+  }
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { question, solution, day, time } = body;
+
+    if (!question || !solution || !day || !time) {
+      return NextResponse.json(
+        {
+          error: "question,answer,day and time are required",
+        },
+        { status: 400 }
+      );
+    }
+
+    await addPrediction({ question, solution, day, time });
+
+    return NextResponse.json(
+      {
+        message: "successfully create prediction",
+      },
+      {
+        status: 201,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  } catch (err) {
+    console.error("Error create prediction : " + err);
+    return NextResponse.json(
+      {
+        error: "Error create prediction : " + err,
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+}
