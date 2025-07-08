@@ -1,5 +1,6 @@
 "use client";
 
+import { AuthContext } from "@/lib/contexts/AuthContext";
 import {
   getCurrentUser,
   getIdToken,
@@ -7,31 +8,7 @@ import {
 } from "@/lib/firebase/auth";
 import { auth } from "@/lib/services/firebase.client";
 import { onIdTokenChanged, User } from "firebase/auth";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-
-interface AuthContextType {
-  user: User | null;
-  loading: boolean;
-  token: string | null;
-  refreshToken: () => Promise<void>;
-  loginWithToken: (user: User) => Promise<void>;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+import { useCallback, useEffect, useState } from "react";
 
 interface AuthProviderProps {
   children: React.ReactNode;
