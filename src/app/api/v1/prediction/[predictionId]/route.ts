@@ -35,6 +35,7 @@ export async function GET({
         day: predictionData.data()?.day,
         time: predictionData.data()?.time,
         enable: predictionData.data()?.enable,
+        showAnswer: predictionData.data()?.showAnswer,
       },
       {
         status: 200,
@@ -63,7 +64,7 @@ export async function PATCH(
   try {
     const body = await request.json();
     const { predictionId } = await params;
-    const { question, solution, enable } = body;
+    const { question, solution, enable, showAnswer } = body;
 
     const prediction = await db
       .collection("prediction")
@@ -81,6 +82,7 @@ export async function PATCH(
       question: question ? question : prediction.data()?.question,
       solution: solution ? solution : prediction.data()?.solution,
       enable: enable,
+      showAnswer: showAnswer,
     });
 
     return new NextResponse(null, { status: 204 });

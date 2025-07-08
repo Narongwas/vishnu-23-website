@@ -13,6 +13,7 @@ async function addPrediction(prediction: {
     day: prediction.day,
     time: prediction.time,
     enable: false,
+    showAnswer: false,
   });
 }
 
@@ -32,6 +33,7 @@ export async function GET() {
             day: data.day,
             time: data.time,
             enable: data.enable,
+            showAnswer: data.showAnswer,
           };
         }),
       },
