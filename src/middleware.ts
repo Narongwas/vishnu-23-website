@@ -1,3 +1,5 @@
+import { routing } from "@/i18n/routing";
+import createIntlMiddleware from "next-intl/middleware";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
@@ -5,13 +7,15 @@ export const config = {
   matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
 };
 
+const intlMiddleware = createIntlMiddleware(routing);
+
 export async function middleware(req: NextRequest) {
   const authHeader = req.headers.get("authorization");
   const cookieToken = req.cookies.get("authToken")?.value;
   const token = authHeader?.split(" ")[1] || cookieToken;
 
-  // public page routes
-  const publicRoutes = ["/"];
+  // public page routes (now with locale)
+  const publicRoutes = ["/", "/en", "/th"];
   const isPublicRoute = publicRoutes.includes(req.nextUrl.pathname);
 
   // public api routes
@@ -31,6 +35,12 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(
       new URL(`/?redirect=${encodeURIComponent(req.nextUrl.pathname)}`, req.url)
     );
+  }
+
+  // Only then handle intl redirects
+  const intlResponse = intlMiddleware(req);
+  if (intlResponse) {
+    return intlResponse;
   }
 
   // add the token to the authorization header if it exists for api routes
