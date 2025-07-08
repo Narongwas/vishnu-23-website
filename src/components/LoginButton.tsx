@@ -1,16 +1,31 @@
 "use client";
 
 import Button from "@/components/Button";
-import { useAuth } from "@/components/AuthContext";
 import { signInWithGoogle } from "@/lib/firebase/auth";
+import { useAuth } from "@/lib/hooks/useAuth";
 import Image from "next/image";
-import { useEffect, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
 interface GoogleLoginBtnProps {
   onSuccess?: () => void;
   onError?: (error: string) => void;
   className?: string;
+}
+
+function SearchParamsHandler({
+  onRedirectChange,
+}: {
+  onRedirectChange: (redirect: string) => void;
+}) {
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/";
+
+  useEffect(() => {
+    onRedirectChange(redirectTo);
+  }, [redirectTo, onRedirectChange]);
+
+  return null;
 }
 
 export default function GoogleLoginBtn({
@@ -19,7 +34,7 @@ export default function GoogleLoginBtn({
 }: GoogleLoginBtnProps) {
   const { loginWithToken, token, user } = useAuth();
   const isLoggedIn = !!token;
-  const redirectTo = useSearchParams().get("redirect") || "/";
+  const [redirectTo, setRedirectTo] = useState("/");
   const router = useRouter();
   const loginAttempted = useRef(false);
 
@@ -53,25 +68,30 @@ export default function GoogleLoginBtn({
     }
   }, [redirectTo, isLoggedIn, handleGoogleLogin]);
 
-  return isLoggedIn ? (
+  return (
     <>
-      <Image
-        src={user?.photoURL ?? ""}
-        alt=""
-        width={48}
-        height={48}
-        className="rounded-full border border-gray-300"
-      />
+      <Suspense fallback={null}>
+        <SearchParamsHandler onRedirectChange={setRedirectTo} />
+      </Suspense>
+      {isLoggedIn ? (
+        <Image
+          src={user?.photoURL ?? ""}
+          alt=""
+          width={48}
+          height={48}
+          className="rounded-full border border-gray-300"
+        />
+      ) : (
+        <Button
+          onClick={handleGoogleLogin}
+          icon="login"
+          label="เข้าสู่ระบบ"
+          Size="Small"
+          Appearance="Primary"
+          aria-label="เข้าสู่ระบบ"
+          title="เข้าสู่ระบบ"
+        />
+      )}
     </>
-  ) : (
-    <Button
-      onClick={handleGoogleLogin}
-      icon="login"
-      label={t("action.logIn")}
-      Size="Small"
-      Appearance="Primary"
-      aria-label={t("action.logIn")}
-      title={t("action.logIn")}
-    />
   );
 }
