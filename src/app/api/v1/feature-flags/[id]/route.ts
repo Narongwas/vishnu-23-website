@@ -1,9 +1,9 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import {
   deleteFeatureFlag,
   toggleFeatureFlag,
 } from "@/app/api/v1/feature-flags/services";
-// import { firebaseAuthMiddleware } from "@/middleware/firebaseAuthMiddleware";
+import { firebaseAdmin } from "@/lib/services/firebase.admin";
 
 // Put : "api/v1/feature-flags/:id" protected
 // toggle feature flag
@@ -11,22 +11,22 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  // Authentication logic
-  // const authResult = await firebaseAuthMiddleware(request);
-  // if (authResult.error || !authResult.decodedToken) {
-  //   return new Response(
-  //     JSON.stringify({ error: authResult.error || "Unauthorized" }),
-  //     {
-  //       status: 401,
-  //       headers: { "Content-Type": "application/json" },
-  //     }
-  //   );
-  // }
-  // if (!authResult.decodedToken.admin) {
-  //   return new Response(JSON.stringify({ error: "Forbidden not admin" }), {
-  //     status: 403,
-  //   });
-  // }
+  // get token from the authorization request header
+  const authHeader = request.headers.get("Authorization");
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  //decoding the token to get the user email and role
+  const session = await firebaseAdmin.auth().verifyIdToken(token);
+
+  const role: string = session?.role;
+
+  if (role != "admin") {
+    return NextResponse.json({ error: "Invalid credentials" }, { status: 403 });
+  }
 
   // toggling logic
   try {
@@ -52,22 +52,22 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  // Authentication logic
-  // const authResult = await firebaseAuthMiddleware(request);
-  // if (authResult.error || !authResult.decodedToken) {
-  //   return new Response(
-  //     JSON.stringify({ error: authResult.error || "Unauthorized" }),
-  //     {
-  //       status: 401,
-  //       headers: { "Content-Type": "application/json" },
-  //     }
-  //   );
-  // }
-  // if (!authResult.decodedToken.admin) {
-  //   return new Response(JSON.stringify({ error: "Forbidden not admin" }), {
-  //     status: 403,
-  //   });
-  // }
+  // get token from the authorization request header
+  const authHeader = request.headers.get("Authorization");
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  //decoding the token to get the user email and role
+  const session = await firebaseAdmin.auth().verifyIdToken(token);
+
+  const role: string = session?.role;
+
+  if (role != "admin") {
+    return NextResponse.json({ error: "Invalid credentials" }, { status: 403 });
+  }
 
   // delete logic
   try {

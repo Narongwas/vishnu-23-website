@@ -2,6 +2,7 @@ import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import emailToId from "@/lib/helpers/emailToId";
 import { NextResponse } from "next/server";
 
+// private
 export async function PATCH(request: Request) {
   // get token from the authorization request header
   const authHeader = request.headers.get("Authorization");
