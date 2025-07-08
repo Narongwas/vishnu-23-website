@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
+import { FieldValue } from "firebase-admin/firestore";
 
 export async function GET(request: NextRequest) {
   try {
@@ -65,6 +66,41 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching prediction leaderboard : " + err);
     return NextResponse.json(
       { error: "Error fetching prediction leaderboard" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PATCH(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const [first, second, third]: { group: string; point?: number }[] = body;
+
+    if (!first.group || !second.group || !third.group) {
+      return NextResponse.json(
+        { error: "List of first 3 groups is required" },
+        { status: 400 }
+      );
+    }
+
+    await db
+      .batch()
+      .update(db.collection("group").doc(first.group), {
+        totalScore: FieldValue.increment(first.point ?? 0),
+      })
+      .update(db.collection("group").doc(second.group), {
+        totalScore: FieldValue.increment(second.point ?? 0),
+      })
+      .update(db.collection("group").doc(third.group), {
+        totalScore: FieldValue.increment(third.point ?? 0),
+      })
+      .commit();
+
+    return new NextResponse(null, { status: 204 });
+  } catch (err) {
+    console.error("Error adding score" + err);
+    return NextResponse.json(
+      { error: "Error adding score" + err },
       { status: 500 }
     );
   }
