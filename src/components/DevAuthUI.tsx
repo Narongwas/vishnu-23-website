@@ -24,7 +24,7 @@ export default function DevAuthUI() {
           "Content-Type": "application/json",
         },
       });
-      window.location.reload();
+      window.location.href = "/";
     } catch (error) {
       console.error("Logout error:", error);
     }
