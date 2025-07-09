@@ -74,7 +74,7 @@ export default function GoogleLoginBtn({
           href="/profile"
           aria-label="Go to profile"
           title="Go to profile"
-          className="inline-block border-none bg-transparent p-0"
+          className="inline-block"
         >
           <Image
             src={user?.photoURL ?? "/decorating/profile/ProfileImage.svg"}
