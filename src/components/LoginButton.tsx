@@ -69,13 +69,21 @@ export default function GoogleLoginBtn({
         <SearchParamsHandler onRedirectChange={setRedirectTo} />
       </Suspense>
       {isLoggedIn ? (
-        <Image
-          src={user?.photoURL ?? ""}
-          alt=""
-          width={48}
-          height={48}
-          className="rounded-full border border-gray-300"
-        />
+        <button
+          type="button"
+          onClick={() => router.push("/profile")}
+          className="border-none bg-transparent p-0"
+          aria-label="Go to profile"
+          title="Go to profile"
+        >
+          <Image
+            src={user?.photoURL ?? ""}
+            alt="user profile"
+            width={44}
+            height={44}
+            className="rounded-full"
+          />
+        </button>
       ) : (
         <Button
           onClick={handleGoogleLogin}
