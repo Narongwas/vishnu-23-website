@@ -77,7 +77,7 @@ export default function GoogleLoginBtn({
           className="inline-block border-none bg-transparent p-0"
         >
           <Image
-            src={user?.photoURL ?? ""}
+            src={user?.photoURL ?? "/decorating/profile/ProfileImage.svg"}
             alt={
               user?.displayName
                 ? `${user.displayName}'s profile picture`
