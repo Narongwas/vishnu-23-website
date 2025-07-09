@@ -1,19 +1,21 @@
-import { NextResponse } from "next/server";
+import { routing } from "@/i18n/routing";
+import createIntlMiddleware from "next-intl/middleware";
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+
+export const config = {
+  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+};
+
+const intlMiddleware = createIntlMiddleware(routing);
 
 export async function middleware(req: NextRequest) {
   const authHeader = req.headers.get("authorization");
   const cookieToken = req.cookies.get("authToken")?.value;
   const token = authHeader?.split(" ")[1] || cookieToken;
 
-  // todo: remove in prod
-  console.log("Middleware - Path:", req.nextUrl.pathname);
-  console.log("Middleware - Has auth header:", !!authHeader);
-  console.log("Middleware - Has cookie token:", !!cookieToken);
-  console.log("Middleware - Final token:", !!token);
-
-  // public page routes
-  const publicRoutes = ["/", "/auth/login"];
+  // public page routes (now with locale)
+  const publicRoutes = ["/", "/en", "/th"];
   const isPublicRoute = publicRoutes.includes(req.nextUrl.pathname);
 
   // public api routes
@@ -30,17 +32,15 @@ export async function middleware(req: NextRequest) {
   // redirect to login if no token
   if (!token && !isPublicRoute && !isPublicApiRoute && !isStaticFile) {
     console.log("Redirecting to login - no token");
-    return NextResponse.redirect(new URL("/auth/login", req.url));
+    return NextResponse.redirect(
+      new URL(`/?redirect=${encodeURIComponent(req.nextUrl.pathname)}`, req.url)
+    );
   }
 
-  // redirect to intended page if authenticated
-  if (token && req.nextUrl.pathname === "/auth/login") {
-    const redirectTo = req.nextUrl.searchParams.get("redirect") || "/";
-    console.log(
-      "Redirecting to intended page - already authenticated:",
-      redirectTo
-    );
-    return NextResponse.redirect(new URL(redirectTo, req.url));
+  // Only then handle intl redirects
+  const intlResponse = intlMiddleware(req);
+  if (intlResponse) {
+    return intlResponse;
   }
 
   // add the token to the authorization header if it exists for api routes

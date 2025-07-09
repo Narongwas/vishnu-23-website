@@ -1,4 +1,4 @@
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/lib/hooks/useAuth";
 import { useCallback } from "react";
 
 interface FetchOptions extends RequestInit {

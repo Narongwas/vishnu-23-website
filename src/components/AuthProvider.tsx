@@ -1,38 +1,14 @@
 "use client";
 
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { User } from "firebase/auth";
+import { AuthContext } from "@/lib/contexts/AuthContext";
 import {
-  onAuthStateChange,
   getCurrentUser,
   getIdToken,
+  onAuthStateChange,
 } from "@/lib/firebase/auth";
-import { onIdTokenChanged } from "firebase/auth";
-import { auth } from "@/lib/services/firebase.client"; // adjust import as needed
-
-interface AuthContextType {
-  user: User | null;
-  loading: boolean;
-  token: string | null;
-  refreshToken: () => Promise<void>;
-  loginWithToken: (user: User) => Promise<void>;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+import { auth } from "@/lib/services/firebase.client";
+import { onIdTokenChanged, User } from "firebase/auth";
+import { useCallback, useEffect, useState } from "react";
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -110,7 +86,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const unsubscribe = onIdTokenChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         const idToken = await firebaseUser.getIdToken();
-        // Send the new token to your backend to update the cookie
         await fetch("/api/v1/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },

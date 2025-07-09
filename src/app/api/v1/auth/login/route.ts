@@ -1,5 +1,5 @@
+import { firebaseAdmin } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
-import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 
 export async function POST(request: NextRequest) {
   try {
@@ -7,21 +7,26 @@ export async function POST(request: NextRequest) {
     const { idToken } = body;
 
     if (!idToken) {
-      return Response.json({ error: "ID token is required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "ID token is required" },
+        { status: 400 }
+      );
     }
 
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(idToken);
     const userRecord = await firebaseAdmin.auth().getUser(decodedToken.uid);
-    // to also fetch from real user data in firestore
-    const userQuery = await db
-      .collection("users")
-      .where("email", "==", userRecord.email)
-      .limit(1)
-      .get();
 
-    let firestoreUser = null;
-    if (!userQuery.empty) {
-      firestoreUser = { id: userQuery.docs[0].id, ...userQuery.docs[0].data() };
+    if (
+      !userRecord.email ||
+      !userRecord.email.endsWith("21@student.chula.ac.th")
+    ) {
+      return NextResponse.json(
+        {
+          error:
+            "You can only sign in with chula email with faculty of engineering",
+        },
+        { status: 403 }
+      );
     }
     const response = NextResponse.json(
       {
@@ -31,7 +36,6 @@ export async function POST(request: NextRequest) {
           email: userRecord.email,
           displayName: userRecord.displayName,
           photoURL: userRecord.photoURL,
-          userData: firestoreUser,
         },
       },
       { status: 200 }
@@ -48,6 +52,9 @@ export async function POST(request: NextRequest) {
     return response;
   } catch (error) {
     console.error("Login error:", error);
-    return Response.json({ error: "Authentication failed" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Authentication failed" },
+      { status: 500 }
+    );
   }
 }
