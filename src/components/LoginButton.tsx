@@ -5,6 +5,7 @@ import { signInWithGoogle } from "@/lib/firebase/auth";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useState } from "react";
 
@@ -69,21 +70,24 @@ export default function GoogleLoginBtn({
         <SearchParamsHandler onRedirectChange={setRedirectTo} />
       </Suspense>
       {isLoggedIn ? (
-        <button
-          type="button"
-          onClick={() => router.push("/profile")}
-          className="border-none bg-transparent p-0"
+        <Link
+          href="/profile"
           aria-label="Go to profile"
           title="Go to profile"
+          className="inline-block border-none bg-transparent p-0"
         >
           <Image
             src={user?.photoURL ?? ""}
-            alt="user profile"
+            alt={
+              user?.displayName
+                ? `${user.displayName}'s profile picture`
+                : "User's profile picture"
+            }
             width={44}
             height={44}
             className="rounded-full"
           />
-        </button>
+        </Link>
       ) : (
         <Button
           onClick={handleGoogleLogin}
