@@ -8,7 +8,7 @@ async function addPrediction(prediction: {
   day: number;
   time: string;
 }) {
-  await db.collection("prediction").add({
+  await db.collection("predictions").add({
     question: prediction.question,
     solution: prediction.solution,
     day: prediction.day,
@@ -21,7 +21,7 @@ async function addPrediction(prediction: {
 //this is a method to get all prediction
 export async function GET() {
   try {
-    const predictions = (await db.collection("prediction").get()).docs;
+    const predictions = (await db.collection("predictions").get()).docs;
 
     return NextResponse.json(
       {

@@ -17,15 +17,15 @@ export async function GET(request: NextRequest) {
     }
 
     const [prediction, answersData, groupsSnap, usersSnap] = await Promise.all([
-      db.collection("prediction").doc(predictionId).get(),
+      db.collection("predictions").doc(predictionId).get(),
       db
-        .collection("answer")
+        .collection("answers")
         .where("predictionId", "==", predictionId)
         .where("isCorrect")
         .select("userId", "isCorrect")
         .get(),
-      db.collection("group").get(),
-      db.collection("user").get(),
+      db.collection("groups").get(),
+      db.collection("users").get(),
     ]);
 
     const groups = groupsSnap.docs.map((doc) => {
@@ -94,13 +94,13 @@ export async function PATCH(request: NextRequest) {
 
     await db
       .batch()
-      .update(db.collection("group").doc(first.group), {
+      .update(db.collection("groups").doc(first.group), {
         totalScore: FieldValue.increment(first.point ?? 0),
       })
-      .update(db.collection("group").doc(second.group), {
+      .update(db.collection("groups").doc(second.group), {
         totalScore: FieldValue.increment(second.point ?? 0),
       })
-      .update(db.collection("group").doc(third.group), {
+      .update(db.collection("groups").doc(third.group), {
         totalScore: FieldValue.increment(third.point ?? 0),
       })
       .commit();

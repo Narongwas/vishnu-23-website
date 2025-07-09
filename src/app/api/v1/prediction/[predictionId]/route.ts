@@ -21,7 +21,7 @@ export async function GET(
     }
 
     const predictionData = await db
-      .collection("prediction")
+      .collection("predictions")
       .doc(predictionId)
       .get();
 
@@ -72,7 +72,7 @@ export async function PATCH(
     const { question, solution, enable, showAnswer } = body;
 
     const prediction = await db
-      .collection("prediction")
+      .collection("predictions")
       .doc(predictionId)
       .get();
 
@@ -116,7 +116,7 @@ export async function DELETE(
   try {
     const { predictionId } = await params;
 
-    await db.collection("prediction").doc(predictionId).delete();
+    await db.collection("predictions").doc(predictionId).delete();
 
     return new NextResponse(null, { status: 204 });
   } catch (err) {
