@@ -52,7 +52,7 @@ const Button: StyleableFC<ButtonProps> = ({
       {...props}
     >
       {icon && (
-        <span className="-mx-1 flex flex-col items-center justify-center">
+        <span className="-mx-1 flex h-6 flex-col items-center justify-center">
           <Icon name={icon} size={IconSize[Size]} />
         </span>
       )}

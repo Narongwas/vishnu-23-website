@@ -10,7 +10,7 @@ const BackgroundWithNoise: StyleableFC<{ children: React.ReactNode }> = ({
   return (
     <div
       className={cn(
-        "relative mb-16 min-h-dvh w-full overflow-hidden bg-cover bg-fixed",
+        "relative min-h-200 w-full overflow-hidden bg-cover bg-fixed",
         className
       )}
       style={style}
