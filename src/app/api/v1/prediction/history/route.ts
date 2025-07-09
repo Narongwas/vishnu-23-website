@@ -3,6 +3,7 @@ import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware"
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/services/firebase.admin";
 
+//This is a function to get history by userId (use in get method)
 async function getUserHistory(uid: string) {
   const userData = await db.collection("users").doc(uid).get();
 
@@ -10,6 +11,7 @@ async function getUserHistory(uid: string) {
     return { getHistoryError: "User not found" };
   }
 
+  //get user history (array of prediction ID)
   const userHistory = userData.data()?.predictions || [];
 
   const [predictionsData, answersData] = await Promise.all([
@@ -26,6 +28,7 @@ async function getUserHistory(uid: string) {
       .get(),
   ]);
 
+  //get an array of user history data
   const userHistoryData = userHistory.map((predictionId: string) => {
     const prediction = predictionsData.docs.find(
       (doc) => doc.id === predictionId
@@ -34,6 +37,8 @@ async function getUserHistory(uid: string) {
       (doc) => doc.data().predictionId === predictionId
     );
 
+    //return prediction history
+    //if user does not answer this prediction answer will be an empty string, and not Correct
     return {
       predictionId,
       question: prediction?.data()?.question,
@@ -45,9 +50,11 @@ async function getUserHistory(uid: string) {
     };
   });
 
+  //return object of userHistory
   return { userHistory: userHistoryData };
 }
 
+//this is a function to add user history by userId and predictionId
 async function addUserHistory(uid: string, predictionId: string) {
   const userData = await db.collection("users").doc(uid).get();
 
@@ -56,6 +63,7 @@ async function addUserHistory(uid: string, predictionId: string) {
   });
 }
 
+//This is a method to get list of prediction history
 export async function GET(request: NextRequest) {
   try {
     const { uid, error } = await firebaseAuthMiddleware(request);
@@ -69,6 +77,7 @@ export async function GET(request: NextRequest) {
 
     const { userHistory, getHistoryError } = await getUserHistory(uid);
 
+    //get history error ,user not found
     if (getHistoryError) {
       return NextResponse.json({ error: getHistoryError }, { status: 404 });
     }
@@ -93,6 +102,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
+//method to add new history
 export async function POST(request: NextRequest) {
   const { uid, error } = await firebaseAuthMiddleware(request);
 
@@ -104,6 +114,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    //send prediction ID in http body
     const { predictionId } = await request.json();
 
     if (!predictionId) {
@@ -113,6 +124,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    //use addUserHistory function
     await addUserHistory(uid, predictionId);
 
     revalidatePath("/[locale]/game/prediction/histories");

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
 
+//this is a function to add new prediction
 async function addPrediction(prediction: {
   question: string;
   solution: string;
@@ -17,6 +18,7 @@ async function addPrediction(prediction: {
   });
 }
 
+//this is a method to get all prediction
 export async function GET() {
   try {
     const predictions = (await db.collection("prediction").get()).docs;
@@ -50,6 +52,7 @@ export async function GET() {
   }
 }
 
+//this is a method to add new prediction
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

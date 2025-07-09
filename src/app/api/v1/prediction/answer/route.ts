@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware";
 import { db } from "@/lib/services/firebase.admin";
 
+//get prediction answer by uid and prediction ID
 async function getPredictionAnswer(uid: string, predictionId: string) {
   const [answerData, prediction] = await Promise.all([
     db
@@ -17,6 +18,7 @@ async function getPredictionAnswer(uid: string, predictionId: string) {
     return { fetchingError: "this prediction not found" };
   }
 
+  //if user is not answer , answer will be an empty string
   if (answerData.empty) {
     return {
       predictionId,
@@ -26,6 +28,7 @@ async function getPredictionAnswer(uid: string, predictionId: string) {
     };
   }
 
+  //return an object of predictionId answer solution and boolean isCorrect
   return {
     predictionId,
     answer: answerData.docs[0].data().answer,
@@ -34,6 +37,7 @@ async function getPredictionAnswer(uid: string, predictionId: string) {
   };
 }
 
+//method to get user answer by user ID and prediction ID
 export async function GET(request: NextRequest) {
   try {
     const { uid, error } = await firebaseAuthMiddleware(request);
@@ -56,6 +60,7 @@ export async function GET(request: NextRequest) {
     const { answer, isCorrect, solution, fetchingError } =
       await getPredictionAnswer(uid, prediction);
 
+    //fetching error , prediction not found
     if (fetchingError) {
       return NextResponse.json(
         { error: "Prediction not found" },
@@ -85,6 +90,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
+//this is a method to change user answer
 export async function PUT(request: NextRequest) {
   try {
     const { uid, error } = await firebaseAuthMiddleware(request);
@@ -93,6 +99,7 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized", status: 401 });
     }
 
+    //get prediction ID and new answer from body
     const body = await request.json();
     const predictionId = body.prediction;
     const answer: string = body.answer;
@@ -111,6 +118,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
+    //get user answer and get prediction
     const [answerData, prediction] = await Promise.all([
       db
         .collection("answers")
@@ -134,6 +142,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
+    //if user not answer this prediction ,it will create new answer
     if (answerData.empty) {
       await db.collection("answers").add({
         predictionId: predictionId,
@@ -142,6 +151,7 @@ export async function PUT(request: NextRequest) {
         isCorrect: answer.trim() === prediction.data()?.solution.trim(),
       });
     } else {
+      //if user answered before , it update the answer
       await answerData.docs[0].ref.update({
         answer: answer,
         isCorrect: answer.trim() === prediction.data()?.solution.trim(),

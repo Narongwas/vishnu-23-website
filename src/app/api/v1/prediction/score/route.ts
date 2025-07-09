@@ -2,10 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
 import { FieldValue } from "firebase-admin/firestore";
 
+//This is a method to get a list of group and number of member who is correct
+// in predictionId query
 export async function GET(request: NextRequest) {
   try {
     const predictionId = request.nextUrl.searchParams.get("prediction");
 
+    //If not send predictionId return error
     if (!predictionId) {
       return NextResponse.json(
         { error: "prediction ID is required" },
@@ -31,10 +34,13 @@ export async function GET(request: NextRequest) {
 
     const userData = usersSnap.docs;
 
+    // groupList is a list of object that contains group(e.g. A,B,...), groupname and
+    // number of user that correct
     const groupsList = groups.map(({ group, name }) => {
       const usersInGroup = userData
         .filter((userDoc) => userDoc.data().group === group)
         .map((userDoc) => userDoc.id);
+
       const userCorrect = answersData.docs.filter((answerDoc) =>
         usersInGroup.includes(answerDoc.data().userId)
       );
@@ -46,6 +52,7 @@ export async function GET(request: NextRequest) {
       };
     });
 
+    //sort by correctCount in descending order
     groupsList.sort((a, b) => b.correctCount - a.correctCount);
 
     return NextResponse.json(
@@ -71,6 +78,8 @@ export async function GET(request: NextRequest) {
   }
 }
 
+//This is a method to add group score, that has a highest member who is correct
+//Should send body like [{ group1 , point1},{ group2 , point2},{ group3, point3}]
 export async function PATCH(request: NextRequest) {
   try {
     const body = await request.json();

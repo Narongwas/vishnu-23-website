@@ -7,6 +7,7 @@ export type Prediction = {
   enable: boolean;
 };
 
+//get prediction that enable
 export async function getEnablePrediction(): Promise<Prediction> {
   const predictions = await fetch("/api/v1/prediction", {
     method: "GET",

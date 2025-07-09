@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
 
+//meyhod to get prediction by ID
 export async function GET({
   params,
 }: {
@@ -53,6 +54,7 @@ export async function GET({
   }
 }
 
+//method to edit prediction question, solution and answer
 export async function PATCH(
   request: NextRequest,
   {
@@ -99,6 +101,7 @@ export async function PATCH(
   }
 }
 
+//method to delete prediction by ID
 export async function DELETE({
   params,
 }: {
