@@ -2,11 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
 
 //meyhod to get prediction by ID
-export async function GET({
-  params,
-}: {
-  params: Promise<{ predictionId: string }>;
-}) {
+export async function GET(
+  _request: NextRequest,
+  {
+    params,
+  }: {
+    params: Promise<{ predictionId: string }>;
+  }
+) {
   try {
     const { predictionId } = await params;
 
@@ -102,11 +105,14 @@ export async function PATCH(
 }
 
 //method to delete prediction by ID
-export async function DELETE({
-  params,
-}: {
-  params: Promise<{ predictionId: string }>;
-}) {
+export async function DELETE(
+  _request: NextRequest,
+  {
+    params,
+  }: {
+    params: Promise<{ predictionId: string }>;
+  }
+) {
   try {
     const { predictionId } = await params;
 
