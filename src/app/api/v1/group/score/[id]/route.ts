@@ -23,7 +23,7 @@ export async function GET(
   }
 }
 
-// Set group score : Private (admin)
+// Add group score : Private (admin)
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -59,7 +59,7 @@ export async function POST(
     );
   } catch (err) {
     return NextResponse.json(
-      JSON.stringify({ error: "Failed to get group score : " + err }),
+      JSON.stringify({ error: "Failed to add group score : " + err }),
       { status: 500 }
     );
   }
@@ -95,7 +95,7 @@ export async function PUT(
     return NextResponse.json({ score: newScore }, { status: 200 });
   } catch (err) {
     return NextResponse.json(
-      JSON.stringify({ error: "Failed to get group score : " + err }),
+      JSON.stringify({ error: "Failed to set group score : " + err }),
       { status: 500 }
     );
   }
