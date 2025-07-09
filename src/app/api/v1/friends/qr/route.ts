@@ -29,9 +29,29 @@ export const getFriendCode = async (uid: string) => {
 };
 
 //this is a GET method to generate a QR and 5-digit code for adding friends
-export async function GET(request: NextRequest) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ locale: string }> }
+) {
   // Check if the request is authenticated
   try {
+    const pathToGo = request.nextUrl.searchParams.get("feature");
+    const locale = await params;
+
+    if (!pathToGo) {
+      return NextResponse.json(
+        { error: "feature to go is required" },
+        { status: 400 }
+      );
+    }
+
+    if (!["bingo", "addFriend"].includes(pathToGo)) {
+      return NextResponse.json(
+        { error: "feature can be only bingo or add friend" },
+        { status: 404 }
+      );
+    }
+
     const token =
       request.headers.get("Authorization")?.split(" ")[1] ||
       request.cookies.get("authToken")?.value;
@@ -51,9 +71,14 @@ export async function GET(request: NextRequest) {
     const user = await db.collection("users").doc(uid).get();
     const name = user.data()?.name;
 
+    let path;
     //note: I'm not sure what the path is, so I decided to use this path instead
-    const path =
-      "https://preview--vishnu-23-web.asia-east1.hosted.app/th/profile/addFriend";
+    if (pathToGo === "addFriend") {
+      path = `https://preview--vishnu-23-web.asia-east1.hosted.app/${locale}/profile/addFriend`;
+    } else if (pathToGo === "bingo") {
+      path = `https://preview--vishnu-23-web.asia-east1.hosted.app/${locale}/admin/bingo/result`;
+    }
+
     const query = new URLSearchParams({ name, token }).toString();
 
     const url = `${path}?${query}`;
