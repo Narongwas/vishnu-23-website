@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
 import {
   addNewFeatureFlag,
   getAllFeatureFlags,
 } from "@/app/api/v1/feature-flags/services";
 import { firebaseAdmin } from "@/lib/services/firebase.admin";
+import { NextRequest, NextResponse } from "next/server";
 
 // Get : "api/v1/feature-flags" public
 // get all feature flag
@@ -46,14 +46,14 @@ export async function POST(request: NextRequest) {
   const { featureName, enabled } = body;
   try {
     await addNewFeatureFlag(featureName, enabled);
-    return new Response(
+    return NextResponse.json(
       JSON.stringify({
         msg: `Successfully added new ${featureName} feature flag`,
       }),
       { status: 201 }
     );
   } catch (err) {
-    return new Response(
+    return NextResponse.json(
       JSON.stringify({ error: "Failed to add feature flag : ", err }),
       { status: 500 }
     );

@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import type { User } from "@/lib/types/users";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get("Authorization");
@@ -42,19 +42,9 @@ export async function GET(request: NextRequest) {
   // filter by userType , group , search
   let userQry;
   if (userType == "camper") {
-    userQry = db.collection("users").where("role", "==", "camper");
+    userQry = db.collection("users").where("role", "in", ["camper"]);
   } else {
-    userQry = db
-      .collection("users")
-      .where("role", "in", [
-        "med",
-        "reg",
-        "coop",
-        "board",
-        "head",
-        "staff",
-        "admin",
-      ]); // add all non-camper role here
+    userQry = db.collection("users").where("role", "not-in", ["camper"]); // add all non-camper role here
   }
   if (groupQry) {
     userQry = userQry.where("group", "==", groupQry);
