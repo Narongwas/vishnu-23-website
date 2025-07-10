@@ -62,14 +62,17 @@ export async function GET(
 
     // Verify the token and get the user ID
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
-    const uid = decodedToken.uid;
-
-    // Generate a random 5-digit code
-    const code = await getFriendCode(uid);
 
     //get user name from user document
-    const user = await db.collection("users").doc(uid).get();
+    const userQuery = await db
+      .collection("users")
+      .where("email", "==", decodedToken.email)
+      .get();
+    const user = userQuery.docs[0];
     const name = user.data()?.name;
+
+    // Generate a random 5-digit code
+    const code = await getFriendCode(user.id);
 
     let path;
     //note: I'm not sure what the path is, so I decided to use this path instead

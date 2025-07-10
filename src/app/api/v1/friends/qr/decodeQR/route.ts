@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { firebaseAdmin } from "@/lib/services/firebase.admin";
+import { db } from "@/lib/services/firebase.admin";
 
 // This is a GET method to decode token from QR code and return the userID
 export async function GET(request: NextRequest) {
@@ -15,14 +16,23 @@ export async function GET(request: NextRequest) {
 
     // Verify the token and get the user ID
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
-    const uid = decodedToken.uid;
+    const email = decodedToken.email;
 
-    if (!uid) {
+    if (!email) {
       return NextResponse.json(
         { error: "this QR code is not correct" },
         { status: 404 }
       );
     }
+
+    const userQuery = await db
+      .collection("user")
+      .where("email", "==", email)
+      .select("__name__")
+      .limit(1)
+      .get();
+
+    const uid = userQuery.docs[0].id;
 
     // return the user ID
     return NextResponse.json(
