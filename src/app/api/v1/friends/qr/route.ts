@@ -74,9 +74,9 @@ export async function GET(
     let path;
     //note: I'm not sure what the path is, so I decided to use this path instead
     if (pathToGo === "addFriend") {
-      path = `https://preview--vishnu-23-web.asia-east1.hosted.app/${locale}/profile/addFriend`;
+      path = `${process.env.NEXT_PUBLIC_BASE_URL}${locale}/profile/addFriend`;
     } else if (pathToGo === "bingo") {
-      path = `https://preview--vishnu-23-web.asia-east1.hosted.app/${locale}/admin/bingo/result`;
+      path = `${process.env.NEXT_PUBLIC_BASE_URL}${locale}/admin/bingo/result`;
     }
 
     const query = new URLSearchParams({ name, token }).toString();
