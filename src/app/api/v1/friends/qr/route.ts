@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import QRCode from "qrcode";
+import emailToId from "@/lib/helpers/emailToId";
 
 // Function to generate a random 5-digit code
 const generateCode = () => Math.floor(10000 + Math.random() * 90000).toString();
@@ -64,12 +65,12 @@ export async function GET(
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
 
     //get user name from user document
-    const userQuery = await db
+    const user = await db
       .collection("users")
-      .where("email", "==", decodedToken.email)
+      .doc("" + emailToId(decodedToken.email || ""))
       .get();
-    const user = userQuery.docs[0];
-    const name = user.data()?.name;
+
+    const name = user.data()?.nickName;
 
     // Generate a random 5-digit code
     const code = await getFriendCode(user.id);

@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     // Return the user's name and uid
     return NextResponse.json(
       {
-        name: userSnapshot.docs[0].data().name,
+        name: userSnapshot.docs[0].data().nickName,
         uid: userSnapshot.docs[0].id,
       },
       {
