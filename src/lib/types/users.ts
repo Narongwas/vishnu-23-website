@@ -6,8 +6,11 @@ export interface User {
   email: string; // unique
   department: string;
   group: string;
+  fullRole: string;
   role: string;
   tier: string;
+  contact: string[];
   sensitiveInfo?: Record<string, string>; // only for camper
-  friends: string[]; // list of Firestore document IDs
+  friends?: string[]; // list of Firestore document IDs
+  predictions?: string[];
 }
