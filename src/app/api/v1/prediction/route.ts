@@ -26,16 +26,9 @@ export async function GET() {
     return NextResponse.json(
       {
         predictions: predictions.map((doc) => {
-          const data = doc.data();
-
           return {
             predictionId: doc.id,
-            question: data.question,
-            solution: data.solution,
-            day: data.day,
-            time: data.time,
-            enable: data.enable,
-            showAnswer: data.showAnswer,
+            ...doc.data(),
           };
         }),
       },
