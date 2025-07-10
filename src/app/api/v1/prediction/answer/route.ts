@@ -11,7 +11,7 @@ async function getPredictionAnswer(uid: string, predictionId: string) {
       .where("predictionId", "==", predictionId)
       .select("answer", "isCorrect")
       .get(),
-    db.collection("prediction").doc(predictionId).get(),
+    db.collection("predictions").doc(predictionId).get(),
   ]);
 
   if (!prediction.exists) {
@@ -57,6 +57,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    console.log(prediction);
     const { answer, isCorrect, solution, fetchingError } =
       await getPredictionAnswer(uid, prediction);
 
@@ -125,7 +126,7 @@ export async function PUT(request: NextRequest) {
         .where("userId", "==", uid)
         .where("predictionId", "==", predictionId)
         .get(),
-      db.collection("prediction").doc(predictionId).get(),
+      db.collection("predictions").doc(predictionId).get(),
     ]);
 
     if (!prediction.exists) {

@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
       db
         .collection("answers")
         .where("predictionId", "==", predictionId)
-        .where("isCorrect")
+        .where("isCorrect", "==", true)
         .select("userId", "isCorrect")
         .get(),
       db.collection("groups").get(),

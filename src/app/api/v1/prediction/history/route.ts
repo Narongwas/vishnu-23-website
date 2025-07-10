@@ -18,13 +18,13 @@ async function getUserHistory(uid: string) {
     db
       .collection("predictions")
       .where("__name__", "in", userHistory)
-      .select("question", "solution", "Day", "Time")
+      .select("question", "solution", "day", "time")
       .get(),
     db
       .collection("answers")
       .where("userId", "==", uid)
       .where("predictionId", "in", userHistory)
-      .select("isCorrect", "answer")
+      .select("predictionId", "isCorrect", "answer")
       .get(),
   ]);
 
@@ -115,9 +115,9 @@ export async function POST(request: NextRequest) {
 
   try {
     //send prediction ID in http body
-    const { predictionId } = await request.json();
+    const { prediction } = await request.json();
 
-    if (!predictionId) {
+    if (!prediction) {
       return NextResponse.json(
         { error: "Prediction ID is required" },
         { status: 400 }
@@ -125,14 +125,14 @@ export async function POST(request: NextRequest) {
     }
 
     //use addUserHistory function
-    await addUserHistory(uid, predictionId);
+    await addUserHistory(uid, prediction);
 
     revalidatePath("/[locale]/game/prediction/histories");
 
     return NextResponse.json(
       {
         message: "Prediction added to user history",
-        predictionId: predictionId,
+        predictionId: prediction,
       },
       { status: 200 }
     );
