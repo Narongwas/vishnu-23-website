@@ -22,10 +22,7 @@ export async function GET(request: NextRequest) {
 
     // Check if the user exists
     if (userSnapshot.empty) {
-      return NextResponse.json(
-        { error: "add friend code is not correct" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     // Return the user's name and uid
