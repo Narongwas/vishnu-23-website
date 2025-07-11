@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware";
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/services/firebase.admin";
+import emailToId from "@/lib/helpers/emailToId";
 
 //This is a function to get history by userId (use in get method)
 async function getUserHistory(uid: string) {
@@ -66,14 +67,16 @@ async function addUserHistory(uid: string, predictionId: string) {
 //This is a method to get list of prediction history
 export async function GET(request: NextRequest) {
   try {
-    const { uid, error } = await firebaseAuthMiddleware(request);
+    const { decodedToken, error } = await firebaseAuthMiddleware(request);
 
-    if (!uid || error) {
+    if (!decodedToken?.uid || error) {
       return NextResponse.json(
         { error: "Unauthorize or token is invalid" },
         { status: 401 }
       );
     }
+
+    const uid = "" + emailToId(decodedToken.email || "");
 
     const { userHistory, getHistoryError } = await getUserHistory(uid);
 
@@ -104,9 +107,9 @@ export async function GET(request: NextRequest) {
 
 //method to add new history
 export async function POST(request: NextRequest) {
-  const { uid, error } = await firebaseAuthMiddleware(request);
+  const { decodedToken, error } = await firebaseAuthMiddleware(request);
 
-  if (!uid || error) {
+  if (!decodedToken?.uid || error) {
     return NextResponse.json(
       { error: "Unauthorize or token is invalid" },
       { status: 401 }
@@ -115,6 +118,9 @@ export async function POST(request: NextRequest) {
 
   try {
     //send prediction ID in http body
+
+    const uid = "" + emailToId(decodedToken.email || "");
+
     const { prediction } = await request.json();
 
     if (!prediction) {

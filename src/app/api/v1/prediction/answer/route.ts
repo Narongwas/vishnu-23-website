@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware";
 import { db } from "@/lib/services/firebase.admin";
+import emailToId from "@/lib/helpers/emailToId";
 
 //get prediction answer by uid and prediction ID
 async function getPredictionAnswer(uid: string, predictionId: string) {
@@ -40,9 +41,9 @@ async function getPredictionAnswer(uid: string, predictionId: string) {
 //method to get user answer by user ID and prediction ID
 export async function GET(request: NextRequest) {
   try {
-    const { uid, error } = await firebaseAuthMiddleware(request);
+    const { decodedToken, error } = await firebaseAuthMiddleware(request);
 
-    if (error || !uid) {
+    if (error || !decodedToken?.uid) {
       return new NextResponse(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
       });
@@ -57,7 +58,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    console.log(prediction);
+    const uid = "" + emailToId(decodedToken.email || "");
+
     const { answer, isCorrect, solution, fetchingError } =
       await getPredictionAnswer(uid, prediction);
 
@@ -94,9 +96,9 @@ export async function GET(request: NextRequest) {
 //this is a method to change user answer
 export async function PUT(request: NextRequest) {
   try {
-    const { uid, error } = await firebaseAuthMiddleware(request);
+    const { decodedToken, error } = await firebaseAuthMiddleware(request);
 
-    if (error || !uid) {
+    if (error || !decodedToken?.uid) {
       return NextResponse.json({ error: "Unauthorized", status: 401 });
     }
 
@@ -118,6 +120,8 @@ export async function PUT(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    const uid = "" + emailToId(decodedToken.email || "");
 
     //get user answer and get prediction
     const [answerData, prediction] = await Promise.all([
