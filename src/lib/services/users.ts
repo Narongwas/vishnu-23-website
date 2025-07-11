@@ -8,10 +8,22 @@ Service layer will handle business logic and interact with database directly
 */
 
 // this interface created just for testing purpose
-interface User {
-  name: string;
+export interface User {
+  firstName: string;
+  lastName: string;
   email: string;
-  password: string;
+  photoURL?: string;
+  friends: string[];
+  [key: string]: unknown;
+}
+
+export interface Friend {
+  firstName: string;
+  lastName: string;
+  email: string;
+  photoURL?: string;
+  [key: string]: unknown;
+  nickName?: string;
 }
 export async function addUserAdmin(userData: User) {
   const docRef = await db.collection("users").add(userData);

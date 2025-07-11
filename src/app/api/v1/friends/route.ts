@@ -6,20 +6,16 @@ import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware"
 export async function GET(request: NextRequest) {
   try {
     const { uid, error } = await firebaseAuthMiddleware(request);
-
     if (error || !uid) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
     const friendsList = await fetch(`/api/v1/friends/${uid}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
-
     const friendsData = await friendsList.json();
-
     return NextResponse.json(
       {
         friends: friendsData.friendId || [],
