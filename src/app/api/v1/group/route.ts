@@ -30,11 +30,8 @@ export async function GET(request: NextRequest) {
 
   const doc = await db
     .collection("users")
-    .where("studentId", "==", studentId)
+    .doc("" + studentId)
     .get();
 
-  return NextResponse.json(
-    { group: doc.docs[0].data().group },
-    { status: 200 }
-  );
+  return NextResponse.json({ group: doc.data()?.group }, { status: 200 });
 }
