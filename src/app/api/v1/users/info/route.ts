@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
+import { NextRequest, NextResponse } from "next/server";
 
 // This API route retrieves the info of user with some authorization
 export async function GET(request: NextRequest) {

@@ -25,7 +25,7 @@ export default function Page() {
       firstName : {info?.firstName} <br />
       lastName : {info?.lastName} <br />
       nickName : {info?.nickname} <br />
-      email : {info?.nickname} <br />
+      email : {info?.email} <br />
       department : {info?.department} <br />
       group : {info?.group} <br />
       role : {info?.role} <br />

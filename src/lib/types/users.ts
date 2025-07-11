@@ -8,7 +8,7 @@ export interface User {
   group: string;
   fullRole: string;
   role: string;
-  tier: string;
+  tier: string | null; // null for campers
   contact: string[];
   sensitiveInfo?: Record<string, string>; // only for camper
   friends?: string[]; // list of Firestore document IDs

@@ -80,7 +80,7 @@ const ManagePeople: React.FC = () => {
         </thead>
         <tbody>
           {people.map((person: User) => (
-            <tr key={person.firstName} className="border-t hover:bg-yellow-100">
+            <tr key={person.id} className="border-t hover:bg-yellow-100">
               <td className="text-center"></td>
               <td className="p-2">
                 {person.firstName + " " + person.lastName}

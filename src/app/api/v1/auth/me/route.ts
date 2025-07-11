@@ -13,6 +13,9 @@ export async function GET(request: NextRequest) {
   const email: string | undefined = session?.email;
 
   const doc = await db.collection("users").where("email", "==", email).get();
+  if (doc.empty) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
 
   return NextResponse.json(
     { user: { ...doc.docs[0].data() } },
