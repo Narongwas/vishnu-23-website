@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error:
-            "You can only sign in with chula email with faculty of engineering",
+            "Please sign in using your Chulalongkorn University Faculty of Engineering email address only.",
         },
         { status: 403 }
       );
