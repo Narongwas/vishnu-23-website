@@ -29,8 +29,6 @@ export async function POST(request: NextRequest) {
   if (res) {
     return res;
   }
-
-  // Adding new feature flag logic
   const body = await request.json();
   const { featureName, enabled } = body;
   try {

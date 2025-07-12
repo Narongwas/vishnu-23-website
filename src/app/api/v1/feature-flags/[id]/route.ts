@@ -16,7 +16,6 @@ export async function PUT(
     return res;
   }
 
-  // toggling logic
   try {
     const id = (await params).id;
     const status = await toggleFeatureFlag(id);
@@ -45,7 +44,6 @@ export async function DELETE(
     return res;
   }
 
-  // delete logic
   try {
     const id = (await params).id;
     await deleteFeatureFlag(id);
