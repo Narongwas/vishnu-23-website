@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const uid = "" + emailToId(decodedToken.email || "");
+    const uid = emailToId(decodedToken.email || "");
 
     const friendsList = await fetch(`/api/v1/friends/${uid}`, {
       method: "GET",
@@ -151,6 +151,7 @@ export async function DELETE(request: NextRequest) {
           id: friend.id,
           name: friend.data()?.nickName,
           email: friend.data()?.email,
+          profile: friend.data()?.profileURL,
         },
       },
       { status: 200 }
