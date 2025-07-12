@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@/lib/contexts/AuthContext";
+import { useAuth } from "@/lib/hooks/useAuth";
 import { signInWithGoogle, signOut } from "@/lib/firebase/auth";
 import Image from "next/image";
 
@@ -24,7 +24,7 @@ export default function DevAuthUI() {
           "Content-Type": "application/json",
         },
       });
-      window.location.reload();
+      window.location.href = "/";
     } catch (error) {
       console.error("Logout error:", error);
     }

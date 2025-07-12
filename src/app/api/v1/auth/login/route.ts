@@ -15,6 +15,19 @@ export async function POST(request: NextRequest) {
 
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(idToken);
     const userRecord = await firebaseAdmin.auth().getUser(decodedToken.uid);
+
+    if (
+      !userRecord.email ||
+      !userRecord.email.endsWith("21@student.chula.ac.th")
+    ) {
+      return NextResponse.json(
+        {
+          error:
+            "You can only sign in with chula email with faculty of engineering",
+        },
+        { status: 403 }
+      );
+    }
     const response = NextResponse.json(
       {
         success: true,
@@ -41,7 +54,7 @@ export async function POST(request: NextRequest) {
     console.error("Login error:", error);
     return NextResponse.json(
       { error: "Authentication failed" },
-      { status: 401 }
+      { status: 500 }
     );
   }
 }
