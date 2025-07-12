@@ -1,7 +1,7 @@
 import {
   addNewFeatureFlag,
   getAllFeatureFlags,
-} from "@/app/api/v1/feature-flags/services";
+} from "@/lib/services/featureFlags.service";
 import { protect } from "@/lib/middleware/protect";
 import { NextRequest, NextResponse } from "next/server";
 

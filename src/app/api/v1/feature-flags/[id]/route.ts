@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   deleteFeatureFlag,
   toggleFeatureFlag,
-} from "@/app/api/v1/feature-flags/services";
+} from "@/lib/services/featureFlags.service";
 import { protect } from "@/lib/middleware/protect";
 
 // Put : "api/v1/feature-flags/:id" protected
