@@ -38,8 +38,9 @@ export async function GET(
             .get();
           return friendDocs.docs.map((doc) => ({
             id: doc.id,
-            name: doc.data().name || "Unknown",
+            name: doc.data().nickName || "",
             email: doc.data().email || "Unknown",
+            profile: doc.data().profileURL,
           }));
         })
       )
