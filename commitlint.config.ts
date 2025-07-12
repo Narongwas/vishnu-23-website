@@ -19,6 +19,24 @@ const Configuration: UserConfig = {
         "sentence-case",
       ],
     ],
+    "type-enum": [
+      RuleConfigSeverity.Error,
+      "always",
+      [
+        "build",
+        "chore",
+        "ci",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "revert",
+        "style",
+        "test",
+        "merge",
+      ],
+    ],
   },
 };
 
