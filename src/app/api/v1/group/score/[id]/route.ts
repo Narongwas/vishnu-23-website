@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { protect } from "@/lib/middleware/protect";
 import { db } from "@/lib/services/firebase.admin";
 import { FieldValue } from "firebase-admin/firestore";
-import { protect } from "@/lib/middleware/protect";
+import { NextRequest, NextResponse } from "next/server";
 
 // Get each group score : Public
 export async function GET(
