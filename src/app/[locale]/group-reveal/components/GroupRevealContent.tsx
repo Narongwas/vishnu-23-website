@@ -5,7 +5,7 @@ import cn from "@/lib/helpers/cn";
 import cloud1Logo from "@/public/decorating/clouds/cloud1.svg";
 import cloud2Logo from "@/public/decorating/clouds/cloud2.svg";
 import Image from "next/image";
-import AnimatedPageAction from "@/app/[locale]/groupReveal/components/AnimatedPageAction";
+import AnimatedPageAction from "@/app/[locale]/group-reveal/components/AnimatedPageAction";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
