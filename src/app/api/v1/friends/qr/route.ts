@@ -67,7 +67,7 @@ export async function GET(
     //get user name from user document
     const user = await db
       .collection("users")
-      .doc("" + emailToId(decodedToken.email || ""))
+      .doc(emailToId(decodedToken.email || ""))
       .get();
 
     const name = user.data()?.nickName;

@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const uid = emailToId(decodedToken.email || "") + "";
+    const uid = emailToId(decodedToken.email || "");
 
     // get the user and friend data from the database
     const user = await db.collection("users").doc(uid).get();
@@ -114,7 +114,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const uid = "" + emailToId(decodedToken?.email || "");
+    const uid = emailToId(decodedToken?.email || "");
 
     //get the user and friend data
     const user = await db.collection("users").doc(uid).get();

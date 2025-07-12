@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const uid = "" + emailToId(decodedToken.email || "");
+    const uid = emailToId(decodedToken.email || "");
 
     // return the user ID
     return NextResponse.json(
