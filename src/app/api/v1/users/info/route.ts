@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
+import { NextRequest, NextResponse } from "next/server";
 
 // This API route retrieves the info of user with some authorization
 export async function GET(request: NextRequest) {
@@ -27,6 +27,9 @@ export async function GET(request: NextRequest) {
   const fullUserInfo = (
     await db.collection("users").where("email", "==", emailQry).get()
   ).docs[0].data();
+  if (!fullUserInfo) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
   const modifiedUserInfo = {
     ...fullUserInfo,
     sensitiveInfo: null,
@@ -43,14 +46,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   // then check if it can see the sensitive info
-  if (
-    userData.role == "reg" ||
-    userData.role == "med" ||
-    userData.role == "coop" ||
-    userData.role == "board" ||
-    userData.role == "head" ||
-    userData.role == "admin"
-  ) {
+  const rolesWithAccess = ["reg", "med", "coop", "board", "head", "admin"];
+  if (rolesWithAccess.includes(userData.role)) {
     modifiedUserInfo.sensitiveInfo = fullUserInfo.sensitiveInfo;
   }
   return NextResponse.json({ users: modifiedUserInfo }, { status: 200 });

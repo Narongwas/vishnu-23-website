@@ -1,0 +1,111 @@
+{
+  "Common": {
+    "meta": {
+      "title": {
+        "default": "Vishnu 23rd",
+        "template": "%s - Vishnu 23rd"
+      },
+      "description": null
+    },
+    "navigation": {
+      "home": "Home",
+      "explore": "Explore",
+      "games": "Games",
+      "admin": "Admin"
+    },
+    "action": {
+      "cancel": "ยกเลิก",
+      "save": "บันทึก",
+      "confirm": "ยืนยัน",
+      "close": "ปิด",
+      "back": "กลับ"
+    }
+  },
+  "LanguageSwitcher": {
+    "label": "TH",
+    "alt": "เปลี่ยนเป็นภาษาไทย"
+  },
+  "HomeHero": {
+    "action": {
+      "logIn": "เข้าสู่ระบบ",
+      "account": "บัญชี"
+    },
+    "ifd": {
+      "event": "Intania First Date 2025",
+      "date": "19 กรกฎาคม 2568"
+    },
+    "vishnu": {
+      "event": "และค่ายวิษณุกรรมบุตรครั้งที่ 23",
+      "date": "22–25 กรกฎาคม 2568"
+    }
+  },
+  "LogInBanner": {
+    "title": "เข้าสู่ระบบ",
+    "helper": "ใช้บัญชีที่ลงท้ายด้วย @student.chula.ac.th"
+  },
+  "GroupAnnouncement": {
+    "action": {
+      "home": "กลับหน้าหลัก",
+      "line": "เข้ากลุ่ม LINE"
+    }
+  },
+  "Profile": {
+    "action": {
+      "edit": "แก้ไข",
+      "logout": "ออกจากระบบ",
+      "add": "เพิ่มเพื่อน",
+      "editPfp": "แก้ไขรูป"
+    },
+    "friends": {
+      "title": "เพื่อนของน้อง",
+      "search": "ค้นหา"
+    },
+    "form": {
+      "nickname": "ชื่อเล่น"
+    },
+    "social": {
+      "line": "LINE",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "discord": "Discord",
+      "twitter": "X/Twitter",
+      "phone": "โทรศัพท์"
+    }
+  },
+  "FriendScanner": {
+    "action": {
+      "qr": "QR code ของน้อง",
+      "code": "เพิ่มด้วยรหัส",
+      "help": "ช่วยเหลือ",
+      "add": "เพิ่ม"
+    }
+  },
+  "FriendCodeDialog": {
+    "title": "เพิ่มเพื่อนด้วยรหัส",
+    "desc": "ให้เพื่อนไปที่หน้า <strong>บัญชี > เพิ่มเพื่อน > QR code ของน้อง</strong> แล้วลอกรหัสที่อยู่ใต้ QR code ของเพื่อน",
+    "form": {
+      "code": "รหัสของเพื่อน"
+    }
+  },
+  "FriendQRHelpDialog": {
+    "title": "เพิ่มเพื่อนด้วย QR code",
+    "desc": {
+      "0": "ให้เพื่อนไปที่หน้า <strong>บัญชี > เพิ่มเพื่อน > QR code ของน้อง</strong> แล้วใช้โทรศัพท์ของน้องไปสแกน QR code ของเพื่อน จากนั้น กด <strong>ยืนยัน<strong>",
+      "1": "ถ้าน้องไม่สามารถใช้กล้องได้<br>กด เพิ่มด้วยรหัส"
+    },
+    "alt": "QR code",
+    "action": {
+      "save": "บันทึก"
+    }
+  },
+  "Friend": {
+    "unavailable": "ไม่มีข้อมูลสำหรับช่องทางนี้",
+    "action": {
+      "unfriend": "ยกเลิกการเป็นเพื่อน"
+    }
+  },
+  "UnfriendDialog": {
+    "title": "ยกเลิกการเป็นเพื่อน",
+    "desc": "น้องจะไม่เห็น “{friend}” ในรายชื่อเพื่อนของน้อง อีกต่อไป โดยเราจะไม่บอก{friend}"
+  }
+}

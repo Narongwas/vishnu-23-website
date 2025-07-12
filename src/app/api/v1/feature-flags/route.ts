@@ -1,9 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
 import {
   addNewFeatureFlag,
   getAllFeatureFlags,
 } from "@/app/api/v1/feature-flags/services";
 import { protect } from "@/lib/middleware/protect";
+import { NextRequest, NextResponse } from "next/server";
+
 // Get : "api/v1/feature-flags" public
 // get all feature flag
 export async function GET() {

@@ -1,30 +1,30 @@
-"use client";
-import { useAuth } from "@/contexts/AuthContext";
-import { useEffect, useState } from "react";
+import { getServerAuth } from "@/lib/firebase/getServerAuth";
 
-export default function GroupRevealClient() {
-  const { token } = useAuth();
-  const [group, setGroup] = useState<string | null>("");
-  useEffect(() => {
-    if (!token) return;
-    const fetchData = async () => {
-      const res = await fetch("/api/v1/group", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        credentials: "include",
-      });
-      if (!res.ok) throw new Error("Failed to fetch group");
-      const data = await res.json();
-      console.log(data.group);
-      setGroup(data.group);
-    };
-    fetchData();
-  }, [token]);
+//This is a template for fetching group
+export default async function GroupReveal() {
+  const { token } = await getServerAuth();
+
+  if (!token) {
+    return <div>You must be logged in to view your group.</div>;
+  }
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/group`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return <div>Failed to fetch group info</div>;
+  }
+
+  const data = await res.json();
+
   return (
     <div>
       Congratulations your group is <br />
-      Group : {group}
+      Group : {data.group}
     </div>
   );
 }
