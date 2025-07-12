@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const uid = "" + emailToId(decodedToken.email || "");
+    const uid = emailToId(decodedToken.email || "");
 
     const { answer, isCorrect, solution, fetchingError } =
       await getPredictionAnswer(uid, prediction);
@@ -121,7 +121,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const uid = "" + emailToId(decodedToken.email || "");
+    const uid = emailToId(decodedToken.email || "");
 
     //get user answer and get prediction
     const [answerData, prediction] = await Promise.all([

@@ -76,7 +76,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const uid = "" + emailToId(decodedToken.email || "");
+    const uid = emailToId(decodedToken.email || "");
 
     const { userHistory, getHistoryError } = await getUserHistory(uid);
 
@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
   try {
     //send prediction ID in http body
 
-    const uid = "" + emailToId(decodedToken.email || "");
+    const uid = emailToId(decodedToken.email || "");
 
     const { prediction } = await request.json();
 
