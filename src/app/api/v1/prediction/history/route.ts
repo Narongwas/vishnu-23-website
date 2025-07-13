@@ -59,6 +59,12 @@ async function getUserHistory(uid: string) {
 async function addUserHistory(uid: string, predictionId: string) {
   const userData = await db.collection("users").doc(uid).get();
 
+  const userPredictions = userData.data()?.predictions || [];
+
+  if (userPredictions.includes(predictionId)) {
+    return { addingError: "Prediction already exists in user history" };
+  }
+
   await userData.ref.update({
     predictions: [...(userData.data()?.predictions || []), predictionId],
   });
@@ -131,7 +137,15 @@ export async function POST(request: NextRequest) {
     }
 
     //use addUserHistory function
-    await addUserHistory(uid, prediction);
+    const addUserHistoryResult = await addUserHistory(uid, prediction);
+    const addingError = addUserHistoryResult?.addingError;
+
+    if (addingError) {
+      return NextResponse.json(
+        { error: addingError },
+        { status: 409 } // Conflict if prediction already exists
+      );
+    }
 
     revalidatePath("/[locale]/game/prediction/histories");
 
