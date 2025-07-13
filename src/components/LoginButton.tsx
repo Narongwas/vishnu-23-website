@@ -70,7 +70,7 @@ export default function GoogleLoginBtn({
     }
   }, [redirectTo, isLoggedIn, handleGoogleLogin]);
 
-  const t = useTranslations("HomeHero");
+  const t = useTranslations("Home.Hero");
 
   return (
     <>

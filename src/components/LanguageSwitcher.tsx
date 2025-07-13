@@ -8,7 +8,7 @@ export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const t = useTranslations("LanguageSwitcher");
+  const t = useTranslations("Common.LanguageSwitcher");
   const nextLocale = locale === "th" ? "en" : "th";
   function handleSwitch() {
     const segments = pathname.split("/");
