@@ -21,7 +21,7 @@ export default function HomeWrapper({
     <BackgroundWithNoise
       className={cn("from-yellow to-yellow-white bg-gradient-to-b", classname)}
     >
-      <div className="pt- absolute z-10 flex w-full items-center justify-between p-4">
+      <div className="absolute z-10 flex w-full items-center justify-between p-4">
         <LanguageSwitcher />
         <LoginButton />
       </div>
