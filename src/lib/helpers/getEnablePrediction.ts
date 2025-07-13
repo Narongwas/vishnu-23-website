@@ -5,6 +5,7 @@ export type Prediction = {
   day: number;
   time: string;
   enable: boolean;
+  showAnswer: boolean;
 };
 
 //get prediction that enable
