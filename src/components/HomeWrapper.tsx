@@ -19,7 +19,10 @@ export default function HomeWrapper({
   return (
     // Reuse component for home page and login page
     <BackgroundWithNoise
-      className={cn("from-yellow to-yellow-white bg-gradient-to-b", classname)}
+      className={cn(
+        "from-yellow to-yellow-white focus-ring-red bg-gradient-to-b",
+        classname
+      )}
     >
       <div className="absolute z-10 flex w-full items-center justify-between p-4">
         <LanguageSwitcher />
