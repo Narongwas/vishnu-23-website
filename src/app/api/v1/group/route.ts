@@ -1,3 +1,4 @@
+import emailToId from "@/lib/helpers/emailToId";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
 
