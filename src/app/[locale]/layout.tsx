@@ -1,4 +1,6 @@
 import "@/app/[locale]/globals.css";
+import { AuthProvider } from "@/components/AuthProvider";
+import DevAuthUI from "@/components/DevAuthUI";
 import { routing } from "@/i18n/routing";
 import cn from "@/lib/helpers/cn";
 import type { Metadata, Viewport } from "next";
@@ -64,9 +66,12 @@ export default async function LocaleLayout({
           "antialiased"
         )}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <AuthProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+            <DevAuthUI />
+          </NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );

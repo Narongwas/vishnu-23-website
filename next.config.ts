@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   env: {
     BASE_URL: process.env.BASE_URL,
   },
+  images: {
+    remotePatterns: [new URL("https://lh3.googleusercontent.com/**")],
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();
