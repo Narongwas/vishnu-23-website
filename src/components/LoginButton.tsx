@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
 interface GoogleLoginBtnProps {
   onSuccess?: () => void;
@@ -38,6 +38,7 @@ export default function GoogleLoginBtn({
   const isLoggedIn = !!token;
   const [redirectTo, setRedirectTo] = useState("/");
   const router = useRouter();
+  const loginAttempted = useRef(false);
 
   console.log("photo : " + user?.photoURL);
 
@@ -61,6 +62,13 @@ export default function GoogleLoginBtn({
       onError?.((error as unknown as string) || "Login failed");
     }
   }, [loginWithToken, onError, onSuccess, redirectTo, router]);
+
+  useEffect(() => {
+    if (!isLoggedIn && redirectTo !== "/" && !loginAttempted.current) {
+      loginAttempted.current = true;
+      handleGoogleLogin();
+    }
+  }, [redirectTo, isLoggedIn, handleGoogleLogin]);
 
   const t = useTranslations("HomeHero");
 
