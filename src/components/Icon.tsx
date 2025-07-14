@@ -10,7 +10,7 @@ type IconProps = {
 const Icon: StyleableFC<IconProps> = ({
   name,
   fill = false,
-  size = 24,
+  size = 20,
   className,
   style,
 }) => {

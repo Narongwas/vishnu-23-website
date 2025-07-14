@@ -33,7 +33,7 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
           transition={{ duration: 0.3, ease: "easeOut" }}
           onClick={() => setIsOpen((isOpen) => !isOpen)}
         >
-          <Icon name="expand_more" className="text-red" />
+          <Icon name="expand_more" size={24} className="text-red" />
         </motion.div>
       </motion.div>
 
