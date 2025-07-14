@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/Button";
+import Icon from "@/components/Icon";
 import { StyleableFC } from "@/lib/types/misc";
 import { useRouter } from "next/navigation";
 
@@ -9,12 +10,9 @@ const BackButton: StyleableFC<{
 }> = ({ variants }) => {
   const router = useRouter();
   return (
-    <Button
-      icon="arrow_back"
-      Size="Small"
-      Appearance={variants}
-      onClick={() => router.back()}
-    />
+    <Button Size="Small" Appearance={variants} onClick={() => router.back()}>
+      <Icon name="arrow_back" />
+    </Button>
   );
 };
 
