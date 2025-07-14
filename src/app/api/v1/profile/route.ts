@@ -14,21 +14,25 @@ export async function PATCH(request: NextRequest) {
 
     const uid = emailToId(decodedToken.email || "");
 
-    const userSnap = await db.collection("users").doc(uid).get();
+    const userSnap = db.collection("users").doc(uid);
 
-    if (!userSnap.exists) {
+    if (!userSnap) {
       return NextResponse.json({ error: "User not correct" }, { status: 404 });
     }
 
     const { profile, contact } = await request.json();
 
-    //merge contact field
-    const newContact = { ...(userSnap.data()?.contact ?? {}), ...contact };
+    const profileAndContact: { profileURL?: string; contact?: string } = {};
 
-    await userSnap.ref.update({
-      profileURL: profile ?? userSnap.data()?.profileURL,
-      contact: newContact,
-    });
+    //merge contact field
+    if (profile) {
+      profileAndContact.profileURL = profile;
+    }
+    if (contact) {
+      profileAndContact.contact = contact;
+    }
+
+    await userSnap.set(profileAndContact, { merge: true });
 
     return new NextResponse(null, { status: 204 });
   } catch (err) {
