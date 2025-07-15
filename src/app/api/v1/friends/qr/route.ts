@@ -63,7 +63,7 @@ export async function GET(
     //note: I'm not sure what the path is, so I decided to use this path instead
     const path = `${process.env.NEXT_PUBLIC_BASE_URL}${locale}/profile/addFriend`;
 
-    const query = new URLSearchParams({ name, token }).toString();
+    const query = new URLSearchParams({ name, id: user.id }).toString();
 
     const url = `${path}?${query}`;
 
