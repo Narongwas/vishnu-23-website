@@ -29,7 +29,6 @@ export async function GET(request: NextRequest) {
       },
       {
         status: 200,
-        headers: { "Content-Type": "application/json" },
       }
     );
   } catch (e) {
