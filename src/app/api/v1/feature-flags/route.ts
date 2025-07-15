@@ -10,12 +10,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET() {
   try {
     const featureFlags = await getAllFeatureFlags();
-    return NextResponse.json(JSON.stringify(featureFlags), {
-      headers: { "Content-Type": "application/json" },
-    });
+    return NextResponse.json(featureFlags, { status: 200 });
   } catch (err) {
     return NextResponse.json(
-      JSON.stringify({ error: "Failed to fetch feature flags : ", err }),
+      { error: "Failed to fetch feature flags : ", err },
       { status: 500 }
     );
   }
@@ -34,14 +32,14 @@ export async function POST(request: NextRequest) {
   try {
     await addNewFeatureFlag(featureName, enabled);
     return NextResponse.json(
-      JSON.stringify({
+      {
         msg: `Successfully added new ${featureName} feature flag`,
-      }),
+      },
       { status: 201 }
     );
   } catch (err) {
     return NextResponse.json(
-      JSON.stringify({ error: "Failed to add feature flag : ", err }),
+      { error: "Failed to add feature flag : ", err },
       { status: 500 }
     );
   }
