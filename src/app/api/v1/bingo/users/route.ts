@@ -14,7 +14,15 @@ export async function GET(request: NextRequest) {
   }
 
   // verify the token
-  const session = await firebaseAdmin.auth().verifyIdToken(token);
+  let session;
+  try {
+    session = await firebaseAdmin.auth().verifyIdToken(token);
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Invalid or expired token: " + error },
+      { status: 401 }
+    );
+  }
 
   // get the user email from the token
   const email: string | undefined = session?.email;
