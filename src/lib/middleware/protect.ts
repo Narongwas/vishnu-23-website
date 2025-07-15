@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function protect(req: NextRequest, roles: string[]) {
   // get token from the authorization request header
