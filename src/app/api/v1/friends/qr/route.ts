@@ -7,7 +7,7 @@ import emailToId from "@/lib/helpers/emailToId";
 const generateCode = () => Math.floor(10000 + Math.random() * 90000).toString();
 
 // Function to get friend code if user don't have friend code it will be created
-export const getFriendCode = async (uid: string) => {
+const getFriendCode = async (uid: string) => {
   const userData = await db.collection("users").doc(uid).get();
 
   if (!userData.data()?.addFriendCode) {
