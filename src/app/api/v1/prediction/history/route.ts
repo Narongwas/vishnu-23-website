@@ -105,7 +105,7 @@ export async function GET(request: NextRequest) {
   } catch (err) {
     console.error("Error in GET /api/v1/prediction/history:", err);
     return NextResponse.json(
-      { error: "Error fetching predition history : " + err },
+      { error: "Error fetching prediction history : " + err },
       { status: 500 }
     );
   }

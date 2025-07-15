@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
 
-//meyhod to get prediction by ID
+//method to get prediction by ID
 export async function GET(
   _request: NextRequest,
   {
