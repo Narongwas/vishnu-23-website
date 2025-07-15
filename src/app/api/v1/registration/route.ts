@@ -12,6 +12,13 @@ export async function GET(request: NextRequest) {
 
     const studentId = decodedToken.email?.split("@")[0] || "";
 
+    if (!studentId) {
+      return NextResponse.json(
+        { error: "student ID is required" },
+        { status: 400 }
+      );
+    }
+
     const userSnap = await db.collection("users").doc(studentId).get();
     const userGroup = userSnap.data()?.group;
 
