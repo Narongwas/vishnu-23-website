@@ -99,7 +99,7 @@ export async function PUT(request: NextRequest) {
     const { decodedToken, error } = await firebaseAuthMiddleware(request);
 
     if (error || !decodedToken?.uid) {
-      return NextResponse.json({ error: "Unauthorized", status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     //get prediction ID and new answer from body
