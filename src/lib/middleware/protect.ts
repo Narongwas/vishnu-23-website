@@ -23,7 +23,7 @@ export async function protect(req: NextRequest, roles: string[]) {
   const role: string = userData.role;
 
   if (!roles.includes(role)) {
-    return NextResponse.json({ error: "Invalid credentials" }, { status: 403 });
+    return NextResponse.json({ error: "Permission denied" }, { status: 403 });
   }
 
   return null;
