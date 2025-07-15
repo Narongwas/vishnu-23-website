@@ -1,13 +1,13 @@
 "use client";
 
+import { getRedirectResult, User } from "firebase/auth";
+import { auth } from "@/lib/services/firebase.client";
 import { AuthContext } from "@/lib/contexts/AuthContext";
 import {
   getCurrentUser,
   getIdToken,
   onAuthStateChange,
 } from "@/lib/firebase/auth";
-import { auth } from "@/lib/services/firebase.client";
-import { onIdTokenChanged, User } from "firebase/auth";
 import { useCallback, useEffect, useState } from "react";
 
 interface AuthProviderProps {
@@ -23,7 +23,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (user) {
       const idToken = await getIdToken();
       setToken(idToken);
-      console.log("AuthContext - Token refreshed:", !!idToken);
     }
   }, [user]);
 
@@ -39,40 +38,40 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       });
 
       if (response.ok) {
-        console.log("AuthContext - Login API success");
         setToken(idToken);
-      } else {
-        console.error("AuthContext - Login API failed");
       }
-    } catch (error) {
-      console.error("AuthContext - Login error:", error);
-    }
+    } catch {}
   };
 
   useEffect(() => {
-    console.log("AuthContext - Setting up auth listener");
-
     const unsubscribe = onAuthStateChange(async (firebaseUser) => {
-      console.log(
-        "AuthContext - Auth state changed:",
-        firebaseUser?.email || "null"
-      );
       setUser(firebaseUser);
       setLoading(false);
+
+      try {
+        const result = await getRedirectResult(auth);
+        if (result?.user) {
+          const email = result.user.email;
+          if (!email || !email.endsWith("21@student.chula.ac.th")) {
+            alert("You can only sign in with Chula Engineering email.");
+            await auth.signOut();
+            return;
+          }
+          setUser(result.user);
+          await loginWithToken(result.user);
+        }
+      } catch {}
 
       if (firebaseUser) {
         const idToken = await getIdToken();
         setToken(idToken);
-        console.log("AuthContext - Token set:", !!idToken);
       } else {
         setToken(null);
-        console.log("AuthContext - Token cleared");
       }
     });
 
     const currentUser = getCurrentUser();
     if (currentUser) {
-      console.log("AuthContext - Current user found:", currentUser.email);
       setUser(currentUser);
       refreshToken();
     } else {
@@ -81,23 +80,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     return () => unsubscribe();
   }, [refreshToken]);
-
-  useEffect(() => {
-    const unsubscribe = onIdTokenChanged(auth, async (firebaseUser) => {
-      if (firebaseUser) {
-        const idToken = await firebaseUser.getIdToken();
-        await fetch("/api/v1/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ idToken }),
-        });
-        setToken(idToken);
-      } else {
-        setToken(null);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
 
   const value = {
     user,
