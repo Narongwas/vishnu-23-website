@@ -104,6 +104,14 @@ export async function PATCH(request: NextRequest) {
     }
   }
 
+  // if club number is not found, return error
+  if (idx === -1) {
+    return NextResponse.json(
+      { error: "Club number not found" },
+      { status: 404 }
+    );
+  }
+
   // Ensure bingoCounter is an array
   const bingoCounter = Array.isArray(userData?.bingoCounter)
     ? [...userData.bingoCounter]
