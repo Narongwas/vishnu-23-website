@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
 import emailToId from "@/lib/helpers/emailToId";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
+import { NextRequest, NextResponse } from "next/server";
 
 // PATCH : "api/v1/bingo/admin" private
 // get user uid from token or code and update user's bingoCounter
