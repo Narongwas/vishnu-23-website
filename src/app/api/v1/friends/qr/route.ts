@@ -36,22 +36,7 @@ export async function GET(
 ) {
   // Check if the request is authenticated
   try {
-    const pathToGo = request.nextUrl.searchParams.get("feature");
     const locale = await params;
-
-    if (!pathToGo) {
-      return NextResponse.json(
-        { error: "feature to go is required" },
-        { status: 400 }
-      );
-    }
-
-    if (!["bingo", "addFriend"].includes(pathToGo)) {
-      return NextResponse.json(
-        { error: "feature can be only bingo or add friend" },
-        { status: 404 }
-      );
-    }
 
     const token =
       request.headers.get("Authorization")?.split(" ")[1] ||
@@ -75,13 +60,8 @@ export async function GET(
     // Generate a random 5-digit code
     const code = await getFriendCode(user.id);
 
-    let path;
     //note: I'm not sure what the path is, so I decided to use this path instead
-    if (pathToGo === "addFriend") {
-      path = `${process.env.NEXT_PUBLIC_BASE_URL}${locale}/profile/addFriend`;
-    } else if (pathToGo === "bingo") {
-      path = `${process.env.NEXT_PUBLIC_BASE_URL}${locale}/admin/bingo/result`;
-    }
+    const path = `${process.env.NEXT_PUBLIC_BASE_URL}${locale}/profile/addFriend`;
 
     const query = new URLSearchParams({ name, token }).toString();
 
