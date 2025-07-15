@@ -18,7 +18,7 @@ export async function GET(
     return NextResponse.json({ score: groupData?.totalScore }, { status: 200 });
   } catch (err) {
     return NextResponse.json(
-      JSON.stringify({ error: "Failed to get group score : " + err }),
+      { error: "Failed to get group score : " + err },
       { status: 500 }
     );
   }
@@ -50,7 +50,7 @@ export async function POST(
     );
   } catch (err) {
     return NextResponse.json(
-      JSON.stringify({ error: "Failed to add group score : " + err }),
+      { error: "Failed to add group score : " + err },
       { status: 500 }
     );
   }
@@ -75,7 +75,7 @@ export async function PUT(
     return NextResponse.json({ score: newScore }, { status: 200 });
   } catch (err) {
     return NextResponse.json(
-      JSON.stringify({ error: "Failed to set group score : " + err }),
+      { error: "Failed to set group score : " + err },
       { status: 500 }
     );
   }
