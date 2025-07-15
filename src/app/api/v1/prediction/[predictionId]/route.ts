@@ -120,10 +120,10 @@ export async function DELETE(
 
     return new NextResponse(null, { status: 204 });
   } catch (err) {
-    console.error("Error edit prediction : " + err);
+    console.error("Error delete prediction : " + err);
     return NextResponse.json(
       {
-        error: "Error edit prediction : " + err,
+        error: "Error delete prediction : " + err,
       },
       {
         status: 500,
