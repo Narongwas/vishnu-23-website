@@ -250,6 +250,17 @@
       "description": "Google Developer Group on Campus เป็น Community สำหรับทุกคนที่มีความสนใจในเทคโนโลยีโดยเฉพาะด้านการพัฒนาซอร์ฟแวร์ โดยเราจะเน้นการจัดกิจกรรมในรูปแบบของ Workshop, Study Jam, Bootcamp และ Speaker Session ต่าง ๆ จากทั้งคนภายใน Community และ Experts ในด้านต่าง ๆ",
       "logo": "pad_08_Google-Developer-Group-on-Campus.png",
       "ig": "https://www.instagram.com/gdsc.chula?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+    },
+    {
+      "id": 41,
+      "name": "ชมรมฟอมูล่า",
+      "description": "ชมรมฟอร์มูล่า ภาควิชาวิศวกรรมเครื่องกล จุฬาลงกรณ์มหาวิทยาลัย หรือ Chulalongkorn University Formula Student Club ก่อตั้งขึ้นในปี พ.ศ.2550 โดยกลุ่มนิสิตคณะวิศวกรรมศาสตร์ที่มีความสนใจในด้านยานยนต์ ในการพัฒนาและฝึกฝนทักษะด้านวิศวกรรมศาสตร์ทั้งทางทฤษฎีและทางปฏิบัติ ในปีนี้ ชมรมมีเป้าหมายในการจัดทำรถเพื่อเข้าร่วมการแข่งขัน TSAE Auto Challenge Student Formula 2026 โดยใช้ชื่อทีม “RAPIDAMENTE” เพื่อเป็นการยกระดับเทคโนโลยีและความรู้ของนิสิตจุฬาลงกรณ์มหาวิทยาลัย และยังเป็นการสร้างชื่อเสียงให้แก่คณะและมหาวิทยาลัยอีกด้วย",
+      "logo": "pad_08_Google-Developer-Group-on-Campus.png",
+      "ig": "https://www.instagram.com/curapidamente?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+      "boothPosition": {
+        "building": "ลานเกียร์",
+        "position": 3
+      }
     }
   ],
   "academic": [
@@ -368,11 +379,7 @@
       "name": "Quantitative Computational Finance Club",
       "description": "Quantitative Computational Finance Club หรือ Quant CU เป็นพื้นที่ใหันิสิตจากหลากหลายคณะ ร่วมศึกษาความรู้ด้านการเงินเชิงปริมาณหรือวิศวกรรมการเงิน โดยชมรมจะอำนวยความสะดวกผ่านการจัดเตรียมเนื้อหาต่าง ๆ และมีผู้เชี่ยวชาญจากอุตสาหกรรมการเงินร่วมให้คำปรึกษา นอกจากนี้ Quant CU ยังสนับสนุนสมาชิกในการวิจัย (Quant Research) สนับสนุนการเข้าร่วมโครงการแข่งขันภายนอก และช่วยเหลือการศึกษาต่อในด้านที่เกี่ยวข้อง",
       "logo": "pad_20_Quantitative-Computational-Finance-Club.png",
-      "ig": "https://www.instagram.com/quantcu/",
-      "boothPosition": {
-        "building": "ลานเกียร์",
-        "position": 3
-      }
+      "ig": "https://www.instagram.com/quantcu/"
     },
     {
       "id": 3,
