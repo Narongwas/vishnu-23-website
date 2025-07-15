@@ -51,7 +51,7 @@ export async function GET(
         friends: friendsData,
         user: user.data(),
       },
-      { status: 200, headers: { "Content-Type": "application/json" } }
+      { status: 200 }
     );
   } catch (error) {
     console.error("Error fetching friends:", error);
