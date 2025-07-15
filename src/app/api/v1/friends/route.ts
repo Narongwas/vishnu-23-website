@@ -57,8 +57,10 @@ export async function POST(request: NextRequest) {
     const uid = emailToId(decodedToken.email || "");
 
     // get the user and friend data from the database
-    const user = await db.collection("users").doc(uid).get();
-    const friend = await db.collection("users").doc(friendId).get();
+    const [user, friend] = await Promise.all([
+      db.collection("users").doc(uid).get(),
+      db.collection("users").doc(friendId).get(),
+    ]);
 
     if (!user.exists || !friend.exists) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
@@ -78,10 +80,6 @@ export async function POST(request: NextRequest) {
       .update(user.ref, {
         //add the friend to the user's friends list
         friends: [...(user.data()?.friends || []), friendId],
-      })
-      .update(friend.ref, {
-        //add the user to the friend's friends list
-        friends: [...(friend.data()?.friends || []), uid],
       })
       .commit();
 
@@ -117,8 +115,10 @@ export async function DELETE(request: NextRequest) {
     const uid = emailToId(decodedToken?.email || "");
 
     //get the user and friend data
-    const user = await db.collection("users").doc(uid).get();
-    const friend = await db.collection("users").doc(friendId).get();
+    const [user, friend] = await Promise.all([
+      db.collection("users").doc(uid).get(),
+      db.collection("users").doc(friendId).get(),
+    ]);
 
     //check if the user and friend not exist
     if (!user.exists || !friend.exists) {
@@ -138,10 +138,6 @@ export async function DELETE(request: NextRequest) {
       .update(user.ref, {
         //remove the friend from the user's friends list
         friends: user.data()?.friends.filter((f: string) => f !== friendId),
-      })
-      .update(friend.ref, {
-        //remove the user from the friend's friends list
-        friends: friend.data()?.friends.filter((f: string) => f !== uid),
       })
       .commit();
 

@@ -7,6 +7,8 @@ import { getMessages } from "next-intl/server";
 import { Bai_Jamjuree, Liu_Jian_Mao_Cao } from "next/font/google";
 import localFont from "next/font/local";
 import { notFound } from "next/navigation";
+import DevAuthUI from "@/components/DevAuthUI";
+import { AuthProvider } from "@/components/AuthProvider";
 
 const baiJamjuree = Bai_Jamjuree({
   subsets: ["latin", "thai"],
@@ -64,9 +66,12 @@ export default async function LocaleLayout({
           "antialiased"
         )}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <AuthProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+            <DevAuthUI />
+          </NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );

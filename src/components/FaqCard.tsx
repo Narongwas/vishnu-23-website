@@ -1,49 +1,56 @@
 "use client";
 
-import AccordionItem from "@/components/AccordionGroup/AccordionItem";
-import AccordionTrigger from "@/components/AccordionGroup/AccordionTrigger";
-import AccordionContent from "@/components/AccordionGroup/AccordionContent";
+import Icon from "@/components/Icon";
 import cn from "@/lib/helpers/cn";
-import { useState } from "react";
+import type { FaqQuestion } from "@/lib/types/faq";
 import { StyleableFC } from "@/lib/types/misc";
+import { motion } from "motion/react";
+import { useState } from "react";
 
-interface FaqCardProps {
-  question: string;
-  answer: string;
-  value: string;
-  classname?: string;
-}
-
-const FaqCard: StyleableFC<FaqCardProps> = ({
-  question,
-  answer,
-  value,
-  className,
+const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
+  questions,
   style,
+  className,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <AccordionItem
-      value={value} //It's a require attribute for track what item is open or close
-      className={cn("relative w-full overflow-hidden bg-white", className)}
+    <motion.div
+      layout
+      className={cn("overflow-hidden bg-white text-left", className)}
       style={style}
     >
-      <div className="relative z-10 bg-white">
-        <AccordionTrigger
-          className="type-title-medium data-[state=open]:bg-yellow/20 px-4 py-3 font-bold data-[state=closed]:bg-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <p className="h-full w-full">{question}</p>
-        </AccordionTrigger>
-      </div>
-      <AccordionContent
-        className="type-body-medium z-10 px-4 pt-3 text-left text-black transition duration-300"
-        isOpen={isOpen}
+      <motion.div
+        layout="position"
+        className={cn(
+          "flex w-full cursor-pointer items-center px-4 py-3 transition-colors duration-200",
+          isOpen && "bg-yellow/20"
+        )}
       >
-        <p>{answer}</p>
-      </AccordionContent>
-    </AccordionItem>
+        <p className="type-title-medium w-full">{questions.question}</p>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          onClick={() => setIsOpen((isOpen) => !isOpen)}
+        >
+          <Icon name="expand_more" className="text-red" />
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        layout="position"
+        className="overflow-hidden"
+        style={{ height: isOpen ? "auto" : 0 }}
+      >
+        <motion.div
+          animate={{ opacity: isOpen ? 1 : 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="type-body-medium p-4"
+        >
+          <p>{questions.answer}</p>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 
