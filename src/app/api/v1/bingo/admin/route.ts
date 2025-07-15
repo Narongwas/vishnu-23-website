@@ -14,10 +14,19 @@ export async function PATCH(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("code");
 
   // get club number from the query string
-  const clubNumber = request.nextUrl.searchParams.get("clubNumber");
-  if (!clubNumber) {
+  const clubNumberStr = request.nextUrl.searchParams.get("clubNumber");
+  if (!clubNumberStr) {
     return NextResponse.json(
       { error: "Club number is required" },
+      { status: 400 }
+    );
+  }
+
+  // convert club number to number
+  const clubNumber = Number(clubNumberStr);
+  if (isNaN(clubNumber)) {
+    return NextResponse.json(
+      { error: "Club number is invalid" },
       { status: 400 }
     );
   }
@@ -89,7 +98,7 @@ export async function PATCH(request: NextRequest) {
   // find the index of the club number in the group bingo array
   let idx = -1;
   for (let i = 0; i < group.bingo.length; i++) {
-    if (group.bingo[i] === Number(clubNumber)) {
+    if (group.bingo[i] === clubNumber) {
       idx = i;
       break;
     }
