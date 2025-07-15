@@ -9,7 +9,7 @@ export type Prediction = {
 };
 
 //get prediction that enable
-export async function getEnablePrediction(): Promise<Prediction> {
+export async function getEnablePrediction(): Promise<Prediction | undefined> {
   const predictions = await fetch("/api/v1/prediction", {
     method: "GET",
     headers: {
