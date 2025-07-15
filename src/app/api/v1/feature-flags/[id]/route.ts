@@ -20,14 +20,14 @@ export async function PUT(
     const id = (await params).id;
     const status = await toggleFeatureFlag(id);
     return NextResponse.json(
-      JSON.stringify({
+      {
         msg: `Successfully toggled feature flag of id : ${id} to ${status}`,
-      }),
+      },
       { status: 200 }
     );
   } catch (err) {
     return NextResponse.json(
-      JSON.stringify({ error: "Failed to toggle feature flag : " + err }),
+      { error: "Failed to toggle feature flag : " + err },
       { status: 500 }
     );
   }
@@ -48,14 +48,14 @@ export async function DELETE(
     const id = (await params).id;
     await deleteFeatureFlag(id);
     return NextResponse.json(
-      JSON.stringify({
+      {
         msg: `Successfully deleted the feature flag of id : ${id}`,
-      }),
+      },
       { status: 200 }
     );
   } catch (err) {
     return NextResponse.json(
-      JSON.stringify({ error: "Failed to delete feature flag : " + err }),
+      { error: "Failed to delete feature flag : " + err },
       { status: 500 }
     );
   }

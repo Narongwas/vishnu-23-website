@@ -22,7 +22,6 @@ export async function GET() {
 // Post : "api/v1/feature-flags" private
 // create new feature flag
 export async function POST(request: NextRequest) {
-  // get token from the authorization request header
   const res = await protect(request, ["admin"]);
   if (res) {
     return res;
