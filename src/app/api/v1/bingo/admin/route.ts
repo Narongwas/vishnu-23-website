@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 // clubNumber is always required
 export async function PATCH(request: NextRequest) {
   const token =
-    request.headers.get("token")?.split(" ")[1] ||
+    request.headers.get("Authorization")?.split(" ")[1] ||
     request.cookies.get("token")?.value;
 
   const code = request.nextUrl.searchParams.get("code");
