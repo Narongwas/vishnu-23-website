@@ -16,9 +16,11 @@ export async function protect(req: NextRequest, roles: string[]) {
   const email: string | undefined = session?.email;
 
   const doc = await db.collection("users").where("email", "==", email).get();
+  if (doc.empty) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   const userData = doc.docs[0].data();
   const role: string = userData.role;
-  console.log("role : ", role);
 
   if (!roles.includes(role)) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 403 });
