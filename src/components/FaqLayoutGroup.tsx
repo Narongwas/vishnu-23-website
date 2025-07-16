@@ -2,10 +2,10 @@
 
 import FaqGroup from "@/components/FaqGroup";
 import cn from "@/lib/helpers/cn";
+import { FaqSection } from "@/lib/types/faq";
 import { StyleableFC } from "@/lib/types/misc";
 import { LayoutGroup } from "motion/react";
 import { useTranslations } from "next-intl";
-import { FaqSection } from "@/lib/types/faq";
 
 const FaqLayoutGroup: StyleableFC = ({ className, style }) => {
   const t = useTranslations("");
