@@ -20,6 +20,13 @@ export async function GET(request: NextRequest) {
     }
 
     const userSnap = await db.collection("users").doc(studentId).get();
+
+    if (!["admin", "camper"].includes(userSnap.data()?.role)) {
+      return NextResponse.json(
+        { error: "only camper and admin can access this route" },
+        { status: 403 }
+      );
+    }
     const userGroup = userSnap.data()?.group;
 
     const group = await db.collection("groups").doc(userGroup).get();
