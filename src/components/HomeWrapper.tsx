@@ -48,7 +48,7 @@ export default function HomeWrapper({
           className="absolute top-111 -right-18 -scale-x-100 transform"
         />
         <NavBar />
-        <div className="relative mt-11 flex flex-col items-center">
+        <div className="relative flex flex-col items-center">
           <Image
             src={firstDateLogo}
             priority
