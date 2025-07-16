@@ -13,7 +13,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html>
       <body className={cn("antialiased")}>
         <BackgroundWithNoise className="from-yellow to-yellow-white bg-gradient-to-b">
           <div className="relative mx-auto max-w-200">{children}</div>

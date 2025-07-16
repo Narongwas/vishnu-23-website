@@ -5,8 +5,8 @@ import FilteredResult from "@/app/[locale]/explore/clubs/components/FilteredResu
 import GenreFilter from "@/app/[locale]/explore/clubs/components/GenreFilter";
 import SelectDropdown from "@/components//SelectDropdown";
 import SearchBar from "@/components/Searchbar";
-import rawClubs from "@/data/club.json";
-import CLUB_GENRES from "@/data/clubGenre";
+import rawClubs from "@/jsondata/club.json";
+import CLUB_GENRES from "@/jsondata/clubGenre";
 import cn from "@/lib/helpers/cn";
 import { ClubItem } from "@/lib/types/club";
 import { StyleableFC } from "@/lib/types/misc";

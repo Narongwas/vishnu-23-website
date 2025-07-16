@@ -17,13 +17,13 @@ const cards = [
   {
     image: clubs,
     title: "Clubs",
-    label: "เยี่ยมชมทุกชมรม\nดูกันว่าชมรมไหนดีที่สุดสำหรับน้อง",
+    label: "เยี่ยมชมทุกชมรม และดูกันว่า\nชมรมไหนดีที่สุดสำหรับน้อง",
     link: "/explore/clubs",
   },
   {
     image: presentation,
     title: "Presentation",
-    label: "ดาวน์โหลดสไลด์\nเพื่อไม่พลาดข้อมูลสำคัญของคณะ",
+    label: "ดาวน์โหลดสไลด์ เพื่อไม่พลาด\nข้อมูลสำคัญของคณะ",
     link: "/explore/presentation",
   },
 ];
@@ -38,7 +38,7 @@ export default function ExplorePage() {
       />
 
       <MountainBackground
-        className="absolute -top-40 left-0 h-full w-full"
+        className="absolute -top-72 left-0 h-full w-full"
         background="bg-blue"
       />
 

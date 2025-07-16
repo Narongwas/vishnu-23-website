@@ -2,7 +2,7 @@
 
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
-import CLUB_GENRES from "@/data/clubGenre";
+import CLUB_GENRES from "@/jsondata/clubGenre";
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
 

@@ -1,7 +1,7 @@
 import cn from "@/lib/helpers/cn";
 import type { ClubItem } from "@/lib/types/club";
 import { StyleableFC } from "@/lib/types/misc";
-import CLUB_GENRES from "@/data/clubGenre";
+import CLUB_GENRES from "@/jsondata/clubGenre";
 
 type Genre = (typeof CLUB_GENRES)[number];
 
