@@ -3,20 +3,25 @@ import { NextResponse } from "next/server";
 
 interface GroupData {
   id: string;
+  name: string;
   bingoScore: number;
-  [key: string]: unknown; // For other dynamic properties
+  // Add other specific fields you want here
 }
+
+// List of columns to include in CSV (in desired order)
+const CSV_COLUMNS: (keyof GroupData)[] = ["id", "name", "bingoScore"]; // Customize this order
 
 function convertToCSV(data: GroupData[]): string {
   if (data.length === 0) return "";
 
-  const headers = Object.keys(data[0]);
+  // Use our predefined columns instead of all object keys
+  const headers = CSV_COLUMNS;
   const rows = data.map((row) =>
     headers
       .map((field) => {
         let value = row[field];
 
-        // Handle Firestore Timestamps
+        // Handle Firestore Timestamps (if you have any in your selected columns)
         if (value && typeof value === "object" && "toDate" in value) {
           value = (value as { toDate: () => Date }).toDate().toISOString();
         }
