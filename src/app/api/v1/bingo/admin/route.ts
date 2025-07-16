@@ -3,8 +3,8 @@ import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
 
 // PATCH : "api/v1/bingo/admin" private
-// get user uid from token or code and update user's bingoCounter
-// only send code or token, not both
+// get user uid from token or friendCode and update user's bingoCounter
+// only send friendCode or token, not both
 // clubNumber is always required
 export async function PATCH(request: NextRequest) {
   const token =
@@ -31,10 +31,10 @@ export async function PATCH(request: NextRequest) {
     );
   }
 
-  // if token and code is provided return error, only need one of them
+  // if token and friendCode is provided return error, only need one of them
   if (token && friendCode) {
     return NextResponse.json(
-      { error: "Please provide only one of token or code" },
+      { error: "Please provide only one of token or friendCode" },
       { status: 400 }
     );
   }
@@ -56,7 +56,7 @@ export async function PATCH(request: NextRequest) {
     uid = emailToId(decodedToken.email || "");
   }
 
-  // if code is provided, get the uid from the code
+  // if friendCode is provided, get the uid from the friendCode
   if (friendCode) {
     const userSnapshot = await db
       .collection("users")
