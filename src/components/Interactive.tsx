@@ -41,32 +41,31 @@ const Interactive: StyleableFC<Props> = ({
     const rippleContainer = rippleContainerRef.current;
     if (!rippleContainer) return;
 
+    const ripple = document.createElement("span");
+    ripple.className =
+      "absolute aspect-square rounded-full opacity-25 pointer-events-none bg-current";
+    ripple.style.transform = `scale(0)`;
+    ripple.style.transition = `transform 0.5s, opacity 0.5s`;
+    rippleContainer.appendChild(ripple);
+
     const rect = rippleContainer.getBoundingClientRect();
     const diameter = Math.max(rect.width * 4, 320);
     const blurRadius = Math.max(Math.round(rect.width / 2), 4);
 
-    const ripple = document.createElement("span");
-    ripple.className =
-      "absolute aspect-square rounded-full opacity-25 pointer-events-none bg-current";
+    ripple.style.left = `${x - diameter / 2}px`;
+    ripple.style.top = `${y - diameter / 2}px`;
+    ripple.style.width = `${diameter}px`;
+    ripple.style.height = `${diameter}px`;
+    ripple.style.filter = `blur(${blurRadius}px)`;
+    ripple.style.transform = `scale(0)`;
+    ripple.style.transition = `transform 0.5s, opacity 0.5s`;
 
-    ripple.style.cssText = `
-            left: ${x - diameter / 2}px;
-            top: ${y - diameter / 2}px;
-            width: ${diameter}px;
-            height: ${diameter}px;
-            filter: blur(${blurRadius}px);
-            transform: scale(0);
-            transition: transform 500ms cubic-bezier(0.4, 0.0, 0.2, 1), opacity 500ms cubic-bezier(0.4, 0.0, 0.2, 1);
-        `;
+    void ripple.offsetHeight;
 
-    rippleContainer.appendChild(ripple);
+    ripple.style.transform = `scale(1)`;
+    ripple.style.opacity = "0";
 
-    requestAnimationFrame(() => {
-      ripple.style.transform = "scale(1)";
-      ripple.style.opacity = "0";
-    });
-
-    setTimeout(() => ripple.remove(), 1000);
+    setTimeout(() => ripple.remove(), 500);
   }
 
   const MotionElement = href ? motion.a : motion.button;
