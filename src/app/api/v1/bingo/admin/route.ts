@@ -11,7 +11,7 @@ export async function PATCH(request: NextRequest) {
     request.headers.get("Authorization")?.split(" ")[1] ||
     request.cookies.get("token")?.value;
 
-  const code = request.nextUrl.searchParams.get("code");
+  const friendCode = request.nextUrl.searchParams.get("friendCode");
 
   // get club number from the query string
   const clubNumberStr = request.nextUrl.searchParams.get("clubNumber");
@@ -32,7 +32,7 @@ export async function PATCH(request: NextRequest) {
   }
 
   // if token and code is provided return error, only need one of them
-  if (token && code) {
+  if (token && friendCode) {
     return NextResponse.json(
       { error: "Please provide only one of token or code" },
       { status: 400 }
@@ -57,10 +57,10 @@ export async function PATCH(request: NextRequest) {
   }
 
   // if code is provided, get the uid from the code
-  if (code) {
+  if (friendCode) {
     const userSnapshot = await db
       .collection("users")
-      .where("addFriendCode", "==", Number(code))
+      .where("addFriendCode", "==", Number(friendCode))
       .get();
 
     if (userSnapshot.empty) {
