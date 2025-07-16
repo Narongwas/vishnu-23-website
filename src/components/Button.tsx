@@ -42,17 +42,13 @@ const Button: StyleableFC<ButtonProps> = ({
       type="button"
       className={cn(
         "relative flex items-center justify-center",
+        "bg-[url('/decorating/texture/fabric.png')] bg-cover bg-blend-soft-light",
         SizeClasses[Size],
         AppearanceClasses[Appearance],
         iconMarginSelector[Size],
         className
       )}
-      style={{
-        backgroundImage: `url('/decorating/texture/fabric.png')`,
-        backgroundBlendMode: "soft-light",
-        backgroundSize: "cover",
-        ...style,
-      }}
+      style={style}
       {...props}
     >
       {children}
