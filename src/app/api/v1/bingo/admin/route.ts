@@ -93,7 +93,9 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "Group not found" }, { status: 404 });
   }
 
-  const group = groups.docs[0].data();
+  const groupDoc = groups.docs[0];
+  const group = groupDoc.data();
+  const groupId = groupDoc.id;
 
   // find the index of the club number in the group bingo array
   let idx = -1;
@@ -119,11 +121,79 @@ export async function PATCH(request: NextRequest) {
 
   // Set the specific index to true
   bingoCounter[idx] = true;
+  console.log("idx: ", idx);
 
-  // Update the whole array back to Firestore
+  // get the old user score
+  const oldUserScore = userData?.bingoScore;
+
+  let newUserScore = oldUserScore;
+
+  console.log("oldUserScore", oldUserScore);
+  console.log("newUserScore", newUserScore);
+
+  if (idx >= 25) {
+    // outside square
+    newUserScore += 2;
+  } else {
+    // individual square
+    newUserScore += 1;
+
+    // get row and column
+    const row = Math.floor(idx / 5);
+    const col = idx % 5;
+
+    // check horizontal
+    for (let i = 0; i < 5; i++) {
+      console.log("horizontal: ", bingoCounter[row * 5 + i]);
+      if (!bingoCounter[row * 5 + i]) {
+        console.log("horizontal break");
+        break;
+      }
+      if (i === 4) {
+        newUserScore += 5;
+      }
+    }
+
+    // check vertical
+    for (let i = 0; i < 5; i++) {
+      console.log("idx", i * 5 + col);
+      console.log("vertical: ", bingoCounter[i * 5 + col]);
+      if (!bingoCounter[i * 5 + col]) {
+        console.log("vertical break");
+        break;
+      }
+      if (i === 4) {
+        newUserScore += 5;
+      }
+    }
+
+    // check all
+    for (let i = 0; i < 25; i++) {
+      if (!bingoCounter[i]) {
+        break;
+      }
+      if (i === 24) {
+        newUserScore += 50;
+      }
+    }
+  }
+
+  const addedScore = newUserScore - oldUserScore;
+  const newGroupScore = group.bingoScore + addedScore;
+
+  console.log("addedScore", addedScore);
+  console.log("newGroupScore", newGroupScore);
+
   try {
+    // update user's bingoCounter and score
     await db.collection("users").doc(uid).update({
       bingoCounter: bingoCounter,
+      bingoScore: newUserScore,
+    });
+
+    // update group's score
+    await db.collection("groups").doc(groupId).update({
+      bingoScore: newGroupScore,
     });
   } catch (error) {
     console.error("Error updating user's bingoCounter:", error);
