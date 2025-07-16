@@ -3,7 +3,7 @@ import {
   toggleFeatureFlag,
   deleteFeatureFlag,
   addNewFeatureFlag,
-} from "@/app/api/v1/feature-flags/services";
+} from "@/lib/services/featureFlags.service";
 import { revalidatePath } from "next/cache";
 
 export default async function AdminDashboard() {
