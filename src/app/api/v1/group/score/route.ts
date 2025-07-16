@@ -11,7 +11,6 @@ export async function GET() {
 
     const groups = snapshot.docs.map((doc) => ({
       id: doc.id,
-      ...doc.data(),
       score: doc.data()?.totalScore || 0,
     }));
 
