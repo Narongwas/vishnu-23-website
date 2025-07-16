@@ -23,7 +23,6 @@ const AnimatedPageAction: StyleableFC<{
     fetchGroup();
   }, [group]);
 
-  // ...existing code...
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}

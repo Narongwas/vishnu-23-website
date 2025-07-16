@@ -28,7 +28,7 @@
   "Home": {
     "Hero": {
       "action": {
-        "login": "Log in",
+        "logIn": "Log in",
         "account": "Account"
       },
       "ifd": {
