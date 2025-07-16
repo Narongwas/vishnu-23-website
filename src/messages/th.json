@@ -58,6 +58,16 @@
       "line": "เข้ากลุ่ม LINE"
     }
   },
+  "RegistrationAnnouncement": {
+    "title": "จุดลงทะเบียน",
+    "footer": {
+      "0": "สามารถลงทะเบียนได้ที่ <location></location> เวลา <time></time>",
+      "1": "ตำแหน่งการลงทะเบียนของน้องแต่ละคนอาจไม่เหมือนกัน"
+    },
+    "action": {
+      "home": "กลับหน้าหลัก"
+    }
+  },
   "Games": {
     "tabName": "Games",
     "header": {

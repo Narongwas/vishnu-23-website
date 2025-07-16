@@ -60,7 +60,7 @@
   "RegistrationAnnouncement": {
     "title": "Registration point",
     "footer": {
-      "0": "You can register at {location} at {time}",
+      "0": "You can register at <location></location> at <time></time>",
       "1": "Registration location may differ from person to person."
     },
     "action": {
