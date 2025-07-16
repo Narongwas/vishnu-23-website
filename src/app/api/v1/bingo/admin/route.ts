@@ -121,17 +121,17 @@ export async function PATCH(request: NextRequest) {
 
   // Set the specific index to true
   bingoCounter[idx] = true;
-  console.log("idx: ", idx);
 
   // get the old user score
   const oldUserScore = userData?.bingoScore;
 
   let newUserScore = oldUserScore;
 
-  console.log("oldUserScore", oldUserScore);
-  console.log("newUserScore", newUserScore);
+  const TOTAL_BINGO_SQUARES = 25;
+  const TOTAL_BINGO_ROW = Math.sqrt(TOTAL_BINGO_SQUARES);
+  const TOTAL_BINGO_COL = Math.sqrt(TOTAL_BINGO_SQUARES);
 
-  if (idx >= 25) {
+  if (idx >= TOTAL_BINGO_SQUARES) {
     // outside square
     newUserScore += 2;
   } else {
@@ -139,40 +139,35 @@ export async function PATCH(request: NextRequest) {
     newUserScore += 1;
 
     // get row and column
-    const row = Math.floor(idx / 5);
-    const col = idx % 5;
+    const row = Math.floor(idx / TOTAL_BINGO_ROW);
+    const col = idx % TOTAL_BINGO_COL;
 
     // check horizontal
-    for (let i = 0; i < 5; i++) {
-      console.log("horizontal: ", bingoCounter[row * 5 + i]);
-      if (!bingoCounter[row * 5 + i]) {
-        console.log("horizontal break");
+    for (let i = 0; i < TOTAL_BINGO_ROW; i++) {
+      if (!bingoCounter[row * TOTAL_BINGO_ROW + i]) {
         break;
       }
-      if (i === 4) {
+      if (i === TOTAL_BINGO_ROW - 1) {
         newUserScore += 5;
       }
     }
 
     // check vertical
-    for (let i = 0; i < 5; i++) {
-      console.log("idx", i * 5 + col);
-      console.log("vertical: ", bingoCounter[i * 5 + col]);
-      if (!bingoCounter[i * 5 + col]) {
-        console.log("vertical break");
+    for (let i = 0; i < TOTAL_BINGO_COL; i++) {
+      if (!bingoCounter[i * TOTAL_BINGO_COL + col]) {
         break;
       }
-      if (i === 4) {
+      if (i === TOTAL_BINGO_COL - 1) {
         newUserScore += 5;
       }
     }
 
     // check all
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < TOTAL_BINGO_SQUARES; i++) {
       if (!bingoCounter[i]) {
         break;
       }
-      if (i === 24) {
+      if (i === TOTAL_BINGO_SQUARES - 1) {
         newUserScore += 50;
       }
     }
@@ -181,24 +176,30 @@ export async function PATCH(request: NextRequest) {
   const addedScore = newUserScore - oldUserScore;
   const newGroupScore = group.bingoScore + addedScore;
 
-  console.log("addedScore", addedScore);
-  console.log("newGroupScore", newGroupScore);
-
   try {
-    // update user's bingoCounter and score
-    await db.collection("users").doc(uid).update({
-      bingoCounter: bingoCounter,
-      bingoScore: newUserScore,
-    });
-
-    // update group's score
-    await db.collection("groups").doc(groupId).update({
-      bingoScore: newGroupScore,
+    // Use Firestore transaction to ensure atomic updates
+    await db.runTransaction(async (transaction) => {
+      const userRef = db.collection("users").doc(uid);
+      const groupRef = db.collection("groups").doc(groupId);
+      // Read current data
+      const userDoc = await transaction.get(userRef);
+      const groupDoc = await transaction.get(groupRef);
+      if (!userDoc.exists || !groupDoc.exists) {
+        throw new Error("User or group document does not exist");
+      }
+      // Update user's bingoCounter and score
+      transaction.update(userRef, {
+        bingoCounter: bingoCounter,
+        bingoScore: newUserScore,
+      });
+      // Update group's score
+      transaction.update(groupRef, {
+        bingoScore: newGroupScore,
+      });
     });
   } catch (error) {
-    console.error("Error updating user's bingoCounter:", error);
     return NextResponse.json(
-      { error: "Failed to update user's bingoCounter" },
+      { error: "Failed to update user's bingoCounter, " + error },
       { status: 500 }
     );
   }
