@@ -1,9 +1,9 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import {
   deleteFeatureFlag,
   toggleFeatureFlag,
-} from "@/app/api/v1/feature-flags/services";
-// import { firebaseAuthMiddleware } from "@/middleware/firebaseAuthMiddleware";
+} from "@/lib/services/featureFlags.service";
+import { protect } from "@/lib/middleware/protect";
 
 // Put : "api/v1/feature-flags/:id" protected
 // toggle feature flag
@@ -11,36 +11,23 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  // Authentication logic
-  // const authResult = await firebaseAuthMiddleware(request);
-  // if (authResult.error || !authResult.decodedToken) {
-  //   return new Response(
-  //     JSON.stringify({ error: authResult.error || "Unauthorized" }),
-  //     {
-  //       status: 401,
-  //       headers: { "Content-Type": "application/json" },
-  //     }
-  //   );
-  // }
-  // if (!authResult.decodedToken.admin) {
-  //   return new Response(JSON.stringify({ error: "Forbidden not admin" }), {
-  //     status: 403,
-  //   });
-  // }
+  const res = await protect(request, ["admin"]);
+  if (res) {
+    return res;
+  }
 
-  // toggling logic
   try {
     const id = (await params).id;
     const status = await toggleFeatureFlag(id);
-    return new Response(
-      JSON.stringify({
+    return NextResponse.json(
+      {
         msg: `Successfully toggled feature flag of id : ${id} to ${status}`,
-      }),
+      },
       { status: 200 }
     );
   } catch (err) {
-    return new Response(
-      JSON.stringify({ error: "Failed to toggle feature flag : " + err }),
+    return NextResponse.json(
+      { error: "Failed to toggle feature flag : " + err },
       { status: 500 }
     );
   }
@@ -52,36 +39,23 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  // Authentication logic
-  // const authResult = await firebaseAuthMiddleware(request);
-  // if (authResult.error || !authResult.decodedToken) {
-  //   return new Response(
-  //     JSON.stringify({ error: authResult.error || "Unauthorized" }),
-  //     {
-  //       status: 401,
-  //       headers: { "Content-Type": "application/json" },
-  //     }
-  //   );
-  // }
-  // if (!authResult.decodedToken.admin) {
-  //   return new Response(JSON.stringify({ error: "Forbidden not admin" }), {
-  //     status: 403,
-  //   });
-  // }
+  const res = await protect(request, ["admin"]);
+  if (res) {
+    return res;
+  }
 
-  // delete logic
   try {
     const id = (await params).id;
     await deleteFeatureFlag(id);
-    return new Response(
-      JSON.stringify({
+    return NextResponse.json(
+      {
         msg: `Successfully deleted the feature flag of id : ${id}`,
-      }),
+      },
       { status: 200 }
     );
   } catch (err) {
-    return new Response(
-      JSON.stringify({ error: "Failed to delete feature flag : " + err }),
+    return NextResponse.json(
+      { error: "Failed to delete feature flag : " + err },
       { status: 500 }
     );
   }
