@@ -84,6 +84,7 @@ export default async function GroupReveal() {
       <AnimatedPageAction
         text="/logo/SocialIcon.svg"
         label={tGroupAnnouncement("action.line")}
+        group={data.group}
       />
     </BackgroundWithNoise>
   );
