@@ -34,7 +34,7 @@ export default function ExplorePage() {
       <TopLevelPageHeader
         title="Explore"
         chineseText="探图"
-        subtitle="อยากรู้จักชมรม เปิดแม็พ หรือแค่อยากโหลดสไลด์ มาดูกันว่าวิศวะมีอะไรให้น้องบ้าง"
+        subtitle="จากชมรมถึงแผนที่ มาดูกันซิ ว่าวิศวะมีอะไรให้น้องบ้าง"
       />
 
       <MountainBackground
