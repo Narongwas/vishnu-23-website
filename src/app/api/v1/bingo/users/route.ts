@@ -49,7 +49,11 @@ export async function GET(request: NextRequest) {
   const group = groups.docs[0].data();
 
   return NextResponse.json(
-    { bingo: group.bingo, bingoCounter: user.bingoCounter },
+    {
+      bingo: group.bingo,
+      bingoCounter: user.bingoCounter,
+      bingoScore: user.bingoScore,
+    },
     { status: 200 }
   );
 }

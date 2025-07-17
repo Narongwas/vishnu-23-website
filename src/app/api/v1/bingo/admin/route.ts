@@ -1,4 +1,3 @@
-import emailToId from "@/lib/helpers/emailToId";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
 import clubAdminEmailList from "@/jsondata/club-admin-email.json";
@@ -37,10 +36,8 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // get camper token from the authorization request header or cookie
-  const camperToken =
-    request.headers.get("CamperAuthorization")?.split(" ")[1] ||
-    request.cookies.get("CamperToken")?.value;
+  // get camper id from the query string
+  const camperId = request.nextUrl.searchParams.get("camperId");
 
   // get friend code from the query string
   const friendCode = request.nextUrl.searchParams.get("friendCode");
@@ -63,31 +60,19 @@ export async function PATCH(request: NextRequest) {
     );
   }
 
-  // if camperToken and friendCode is provided return error, only need one of them
-  if (camperToken && friendCode) {
+  // if camperId and friendCode is provided return error, only need one of them
+  if (camperId && friendCode) {
     return NextResponse.json(
-      { error: "Please provide only one of camperToken or friendCode" },
+      { error: "Please provide only one of camperId or friendCode" },
       { status: 400 }
     );
   }
 
   let uid: string | undefined;
 
-  // if camperToken is provided, get the uid from the camperToken
-  if (camperToken) {
-    const decodedCamperToken = await firebaseAdmin
-      .auth()
-      .verifyIdToken(camperToken);
-    const email = decodedCamperToken.email;
-
-    if (!email) {
-      return NextResponse.json(
-        { error: "this QR code is not correct" },
-        { status: 404 }
-      );
-    }
-
-    uid = emailToId(decodedCamperToken.email || "");
+  // if camperId is provided, get the uid from the camperId
+  if (camperId) {
+    uid = camperId;
   }
 
   // if friendCode is provided, get the uid from the friendCode
