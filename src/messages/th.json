@@ -137,6 +137,67 @@
       "line": "เข้ากลุ่ม LINE"
     }
   },
+  "Map": {
+    "Faculty": {
+      "header": {
+        "parent": "Explore",
+        "title": "Map"
+      },
+      "alt": "แผนที่คณะวิศวจุฬาฯ",
+      "instruction": "แตะบนอาคารที่ต้องการดูแผนที่ชมรม",
+      "building": {
+        "larngear": "ลานเกียร์",
+        "eng3": "ตึก 3",
+        "eng4": "ตึก 4",
+        "en100": "อาคารวิศวฯ 100 ปี"
+      }
+    },
+    "Building": {
+      "instruction": "แตะบนบูทเพื่อดูข้อมูลชมรม",
+      "active": "ชมรมที่เลือกอยู่",
+      "list": "หมายเลขชมรม"
+    }
+  },
+  "Clubs": {
+    "header": {
+      "parent": "Explore",
+      "title": "Clubs"
+    },
+    "Filter": {
+      "search": "ค้นหา",
+      "booth": {
+        "all": "ทั้งหมด",
+        "true": "จัดบูธ",
+        "false": "ไม่จัดบูธ"
+      },
+      "filter": {
+        "alt": "ตัวกรอง",
+        "tech": "เทคโนฯ",
+        "education": "วิชาการ",
+        "sports": "กีฬา",
+        "arts": "ศิลปะ",
+        "volunteer": "อาสา",
+        "other": "อื่น ๆ"
+      }
+    },
+    "List": {
+      "title": {
+        "tech": "เทคโนโลยี",
+        "education": "วิชาการ",
+        "sports": "กีฬา",
+        "arts": "ศิลปะและวัฒนธรรม",
+        "volunteer": "พัฒนาสังคมและบำเพ็ญประโยชน์",
+        "other": "อื่น ๆ"
+      }
+    },
+    "Card": {
+      "action": {
+        "more": "แสดงเพิ่มเติม",
+        "less": "แสดงน้อยลง",
+        "instagram": "Instagram • @{username}"
+      }
+    }
+  },
   "Games": {
     "tabName": "Games",
     "header": {
