@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
+import Icon from "@/components/Icon";
 
 const HelpButton: StyleableFC<{
   className?: string;
@@ -9,9 +10,10 @@ const HelpButton: StyleableFC<{
     <Button
       Size="Small"
       Appearance="Secondary"
-      icon="Help"
       className={cn("text-black", className)}
-    />
+    >
+      <Icon name="help" />
+    </Button>
   );
 };
 

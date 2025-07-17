@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
 import { useRouter } from "next/navigation";
+import Icon from "@/components/Icon";
 
 const BackButton: StyleableFC<{
   className?: string;
@@ -13,10 +14,11 @@ const BackButton: StyleableFC<{
     <Button
       Size="Small"
       Appearance="Secondary"
-      icon="arrow_back"
       className={cn("z-10 text-black", className)}
       onClick={() => router.back()}
-    />
+    >
+      <Icon name="arrow_back" />
+    </Button>
   );
 };
 
