@@ -152,6 +152,12 @@
           ]
         }
       ]
+    },
+    "FaqCard": {
+      "action": {
+        "more": "แสดงคำตอบ",
+        "less": "ซ่อนคำตอบ"
+      }
     }
   },
   "GroupAnnouncement": {
