@@ -119,6 +119,13 @@ export async function PATCH(request: NextRequest) {
     ? [...userData.bingoCounter]
     : [];
 
+  if (bingoCounter[idx]) {
+    return NextResponse.json(
+      { error: "Club number already marked" },
+      { status: 400 }
+    );
+  }
+
   // Set the specific index to true
   bingoCounter[idx] = true;
 
@@ -128,36 +135,35 @@ export async function PATCH(request: NextRequest) {
   let newUserScore = oldUserScore;
 
   const TOTAL_BINGO_SQUARES = 25;
-  const TOTAL_BINGO_ROW = Math.sqrt(TOTAL_BINGO_SQUARES);
-  const TOTAL_BINGO_COL = Math.sqrt(TOTAL_BINGO_SQUARES);
+  const N = Math.sqrt(TOTAL_BINGO_SQUARES);
 
   if (idx >= TOTAL_BINGO_SQUARES) {
     // outside square
-    newUserScore += 2;
+    newUserScore += 1;
   } else {
     // individual square
     newUserScore += 1;
 
     // get row and column
-    const row = Math.floor(idx / TOTAL_BINGO_ROW);
-    const col = idx % TOTAL_BINGO_COL;
+    const row = Math.floor(idx / N);
+    const col = idx % N;
 
     // check horizontal
-    for (let i = 0; i < TOTAL_BINGO_ROW; i++) {
-      if (!bingoCounter[row * TOTAL_BINGO_ROW + i]) {
+    for (let i = 0; i < N; i++) {
+      if (!bingoCounter[row * N + i]) {
         break;
       }
-      if (i === TOTAL_BINGO_ROW - 1) {
+      if (i === N - 1) {
         newUserScore += 5;
       }
     }
 
     // check vertical
-    for (let i = 0; i < TOTAL_BINGO_COL; i++) {
-      if (!bingoCounter[i * TOTAL_BINGO_COL + col]) {
+    for (let i = 0; i < N; i++) {
+      if (!bingoCounter[i * N + col]) {
         break;
       }
-      if (i === TOTAL_BINGO_COL - 1) {
+      if (i === N - 1) {
         newUserScore += 5;
       }
     }
