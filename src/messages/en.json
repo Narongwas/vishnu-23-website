@@ -1,47 +1,134 @@
 {
   "Common": {
-    "meta": {
+    "Meta": {
       "title": {
         "default": "Vishnu 23rd",
         "template": "%s - Vishnu 23rd"
       },
-      "description": null
+      "description": ""
     },
-    "navigation": {
+    "Navigation": {
       "home": "Home",
       "explore": "Explore",
       "games": "Games",
       "admin": "Admin"
     },
-    "action": {
+    "Action": {
       "cancel": "Cancel",
       "save": "Save",
       "confirm": "Confirm",
       "close": "Close",
       "back": "Back"
+    },
+    "LanguageSwitcher": {
+      "label": "EN",
+      "alt": "เปลี่ยนเป็นภาษาไทย"
     }
   },
-  "LanguageSwitcher": {
-    "label": "EN",
-    "alt": "Change to English"
-  },
-  "HomeHero": {
-    "action": {
-      "logIn": "Log in",
-      "account": "Account"
+  "Home": {
+    "Hero": {
+      "action": {
+        "logIn": "Log in",
+        "account": "Account"
+      },
+      "ifd": {
+        "event": "Intania First Date 2025",
+        "date": "19 July 2025"
+      },
+      "vishnu": {
+        "event": "Vishnu Camp 23rd",
+        "date": "22-25 July 2025"
+      }
     },
-    "ifd": {
-      "event": "Intania First Date 2025",
-      "date": "19 July 2025"
+    "KingdomCard": {
+      "rank": {
+        "long": "{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} place",
+        "short": "{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
+      },
+      "score": "{score, number} rai"
     },
-    "vishnu": {
-      "event": "Vishnu Camp 23rd",
-      "date": "22–25 July 2025"
+    "Sponsors": {
+      "title": "Our supporters"
+    },
+    "Faq": {
+      "title": "Frequently Asked Questions",
+      "questions": [
+        {
+          "id": "1",
+          "title": "",
+          "questions": [
+            {
+              "id": "1.1",
+              "question": "What are Intania First Date and Vishnu Camp? Do we have to go? What can we get from attending?",
+              "answer": "These two events are organized by Chula Engineering students for Intania 109. The goal is to help you meet new friends, get to know seniors and become familiar with the faculty before the semester begins. Although it isn't compulsory, we're sure that everyone who joins will get a memorable experience--so come join us!"
+            }
+          ]
+        },
+        {
+          "id": "2.",
+          "title": "First Date",
+          "questions": [
+            {
+              "id": "2.1",
+              "question": "What are the differences between Intania First Date and CU First Date?",
+              "answer": "CU First Date is the first event for all freshmen from every faculty and is held in the morning. However, Intania First Date is an event only for Intania freshmen and is held in the afternoon of the same day."
+            },
+            {
+              "id": "2.2",
+              "question": "What are the schedules for Intania First Date?",
+              "answer": "Registration starts from 12:00 p.m. to 1:00 p.m. and activities run from 1:00 p.m. to 7:00 p.m."
+            },
+            {
+              "id": "2.3",
+              "question": "How to dress for First Date?",
+              "answer": "There will be a dress code announcement soon. Stay tuned for the details on instagram account."
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "title": "Vishnu Camp",
+          "questions": [
+            {
+              "id": "3.1",
+              "question": "What are the schedules and activities for Vishnu Camp?",
+              "answer": "Vishnu Camp is a 4-day camp, running from morning to evening. However, you can choose to stay overnight by completing a form. On the event day, registration starts at 8:00 a.m. and activities end between 5:00 p.m. and 8:30 p.m. A detailed schedule will be announced soon."
+            },
+            {
+              "id": "3.2",
+              "question": "Is attending certain parts or days allowed?",
+              "answer": "It is recommended to join every day (better not miss it!), but if you're unavailable, that's totally fine--just fill out the form the days you can join."
+            },
+            {
+              "id": "3.3",
+              "question": "How do we get to the camp?",
+              "answer": "You can get to the camp by BTS or MRT. A video guide on how to get to the faculty will be posted soon--stay tuned on instagram account!"
+            },
+            {
+              "id": "3.4",
+              "question": "Where is the camp held? If we stay overnight, where will we sleep?",
+              "answer": "The camp is held at Faculty of Engineering, Chulalongkorn University. If you stay overnight, you will sleep in the classroom. Each room accommodates around 30-40 people, with seperates building for males and females."
+            },
+            {
+              "id": "3.5",
+              "question": "What are the activities for each day?",
+              "answer": "The activity schedules will be posted soon--stay tuned!"
+            }
+          ]
+        },
+        {
+          "id": "4",
+          "title": "Others",
+          "questions": [
+            {
+              "id": "4.1",
+              "question": "If we don't know anyone yet, will we feel lonely?",
+              "answer": "Definitely not! There are a lot of activities designed to help you get to know each other. The staff will be there to take care of you and make you feel like a part of family."
+            }
+          ]
+        }
+      ]
     }
-  },
-  "LogInBanner": {
-    "title": "Log in",
-    "helper": "Use the account ending with @student.chula.ac.th"
   },
   "GroupAnnouncement": {
     "action": {
@@ -49,63 +136,266 @@
       "line": "Join LINE Group"
     }
   },
-  "Profile": {
-    "action": {
-      "edit": "Edit",
-      "logout": "Log out",
-      "add": "Add friend",
-      "editPfp": "Edit profile picture"
+  "RegistrationAnnouncement": {
+    "title": "Registration point",
+    "footer": {
+      "0": "You can register at {location} at {time}",
+      "1": "Registration location may differ from person to person."
     },
-    "friends": {
+    "action": {
+      "home": "Return to home"
+    }
+  },
+  "Games": {
+    "tabName": "Games",
+    "header": {
+      "chinese": "游戏",
+      "title": "Games",
+      "subtitle": "The glory rests in your hands. Can you bring victory to your kingdom?"
+    },
+    "bingo": {
+      "title": "Bingo",
+      "subtitle": "Visit a club with a code you can show, and get the legendary five-in-a-row!"
+    },
+    "predictions": {
+      "title": "Predictions",
+      "subtitle": "Your guess is your destiny in the Tower of Heavenly Fates."
+    }
+  },
+  "Predictions": {
+    "overline": "{time, select, morning {Morning} afternoon {Afternoon}} prediction",
+    "footer": {
+      "revealTime": "Answer revealed at {time}",
+      "scoring": "Scores depend on how many people in your kingdom answered correctly."
+    },
+    "action": {
+      "history": "History",
+      "help": "Help",
+      "predict": "Predict"
+    },
+    "CrystalBall": {
+      "form": {
+        "placeholder": "Answer"
+      }
+    },
+    "HelpDialog": {
+      "title": "Tower of Heavenly Fates",
+      "playing": {
+        "title": "How to play",
+        "body": {
+          "0": "You’ll see a question for the morning and the afternoon of each day. Submit a short answer as a prediction before the time limit.",
+          "1": {
+            "0": {
+              "icon": "Correct",
+              "answer": "20"
+            },
+            "1": {
+              "icon": "Incorrect",
+              "answer": "My FINAL answer is 20 TIMES!!!"
+            }
+          },
+          "2": "You’re free to guess! Your answer doesn’t have to match others’ in your kingdom."
+        }
+      },
+      "scoring": {
+        "title": "How scores are awarded",
+        "body": {
+          "0": "Scores are based on ranking the number of people who answered correctly in each kingdom.",
+          "1": "The more people in your kingdom answered correctly, the higher the score."
+        }
+      }
+    },
+    "AnswerDialog": {
+      "title": "A heavenly message…",
+      "round": "This {time, select, morning {Morning} afternoon {Afternoon}}",
+      "isCorrect": "Is your answer correct?"
+    },
+    "AnswerBall": {
+      "large": "{correct, select, true {Yup} false {Nope}}",
+      "small": "{correct, select, true {Correct} false {Incorrect}}",
+      "solution": "Solution: {solution}"
+    },
+    "History": {
+      "title": "Prediction History"
+    },
+    "PredictionCard": {
+      "round": "Day {day} • {time, select, morning {Morning} afternoon {Afternoon}}",
+      "solution": "Solution: {solution}"
+    }
+  },
+  "Bingo": {
+    "header": {
+      "parent": "Play",
+      "title": "Bingo"
+    },
+    "scores": "{score, plural, =1 {1 point} other {# points}}",
+    "action": {
+      "help": "Help",
+      "breakdown": "Your bingo table",
+      "qr": "Your QR code"
+    },
+    "BingoCard": {
+      "empty": "Visit booth clubs to unlock bingo square"
+    },
+    "BingoSquare": {
+      "empty": "Locked square"
+    },
+    "BingoIcon": {
+      "single": "Single square",
+      "row": "Row/diagonal",
+      "full": "Full table",
+      "bonus": "Bonus square"
+    },
+    "HelpDialog": {
+      "title": "Bingo",
+      "playing": {
+        "title": "How to play",
+        "body": "You start with a hidden 5×5 bingo table. Reveal a random bingo square by visiting a club and showing staff your QR code."
+      },
+      "scoring": {
+        "title": "How scores are awarded",
+        "body": {
+          "0": "Each square awards 1 point",
+          "1": "Each square awards 1 point",
+          "2": "Completing the entire table awards 50 additional points",
+          "3": "Get bonus points if the scan didn’t reveal any squares on the table"
+        }
+      }
+    },
+    "BreakdownDialog": {
+      "title": "Your bingo table",
+      "bonus": {
+        "title": "Bonus squares"
+      },
+      "breakdown": {
+        "title": "Your breakdown"
+      }
+    },
+    "QRCodeDialog": {
+      "desc": "Show your QR code to the club staff to get bingo points"
+    }
+  },
+  "Profile": {
+    "Profile": {
+      "action": {
+        "edit": "Edit",
+        "logout": "Log out",
+        "add": "Add friend"
+      }
+    },
+    "FriendsList": {
       "title": "Your friends",
       "search": "Search"
     },
-    "form": {
-      "nickname": "Nickname"
+    "EditProfile": {
+      "form": {
+        "nickname": "Nickname",
+        "social": {
+          "title": "Stay connected with your friends",
+          "subtitle": "Tap a platform and enter your username!"
+        }
+      },
+      "action": {
+        "editPfp": "Edit profile picture"
+      }
     },
-    "social": {
-      "line": "LINE",
-      "instagram": "Instagram",
-      "facebook": "Facebook",
-      "discord": "Discord",
-      "twitter": "X/Twitter",
-      "phone": "Phone"
-    }
-  },
-  "FriendScanner": {
-    "action": {
-      "qr": "Your QR code",
-      "code": "Add with code",
-      "help": "Help",
-      "add": "Add"
-    }
-  },
-  "FriendCodeDialog": {
-    "title": "Add with code",
-    "desc": "Ask your friend to go to <strong>Account > Add Friend > Your QR code</strong> and copy the code below QR.",
-    "form": {
-      "code": "Friend code"
-    }
-  },
-  "FriendQRHelpDialog": {
-    "title": "Add with QR",
-    "desc": {
-      "0": "Ask your friend to go to <strong>Account > Add Friend > Your QR code</strong> and use your phone to scan your friend's QR code.",
-      "1": "If you can't use the camera, add with a code."
+    "SocialButton": {
+      "line": {
+        "label": "LINE",
+        "placeholder": "LINE ID"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "placeholder": "username"
+      },
+      "facebook": {
+        "label": "Facebook",
+        "placeholder": "Facebook",
+        "url": "Profile URL"
+      },
+      "tiktok": {
+        "label": "TikTok",
+        "placeholder": "@username"
+      },
+      "xtwitter": {
+        "label": "X/Twitter",
+        "placeholder": "@Username"
+      },
+      "discord": {
+        "label": "Discord",
+        "placeholder": "username",
+        "url": "Invite URL"
+      },
+      "youtube": {
+        "label": "YouTube",
+        "placeholder": "@handle"
+      },
+      "twitch": {
+        "label": "Twitch",
+        "placeholder": "username"
+      },
+      "github": {
+        "label": "GitHub",
+        "placeholder": "Username"
+      },
+      "steam": {
+        "label": "Steam",
+        "placeholder": "Steam",
+        "quickInvite": "Quick Invite",
+        "url": "Profile URL"
+      },
+      "riot": {
+        "label": "Riot Games",
+        "placeholder": "Username#123"
+      },
+      "roblox": {
+        "label": "Roblox",
+        "placeholder": "Username",
+        "url": "Profile URL"
+      },
+      "epic": {
+        "label": "Epic Games",
+        "placeholder": "Username"
+      },
+      "psn": {
+        "label": "PlayStation",
+        "placeholder": "Online ID"
+      }
     },
-    "alt": "QR code",
-    "action": {
-      "save": "Save"
+    "FriendScanner": {
+      "action": {
+        "qr": "Your QR code",
+        "code": "Add with code",
+        "help": "Help",
+        "add": "Add"
+      }
+    },
+    "FriendCodeDialog": {
+      "title": "Add with code",
+      "desc": "Ask your friend to go to <strong>Account > Add Friend > Your QR code</strong> and copy the code below the QR code.",
+      "form": {
+        "code": "Friend code"
+      }
+    },
+    "QRHelpDialog": {
+      "title": "Add with QR",
+      "desc": {
+        "0": "Ask your friend to go to <strong>Account > Add Friend > Your QR code</strong> and use your phone to scan your friend’s QR code.",
+        "1": "If you can’t use the camera, tap Add with code."
+      },
+      "alt": "QR code",
+      "action": {
+        "save": "Save"
+      }
+    },
+    "Friend": {
+      "action": {
+        "unfriend": "Unfriend"
+      }
+    },
+    "UnfriendDialog": {
+      "title": "Remove from friends",
+      "desc": "You will no longer see “{friend}” in your friend list. We won’t notify {friend}."
     }
-  },
-  "Friend": {
-    "unavailable": "No data found",
-    "action": {
-      "unfriend": "Unfriend"
-    }
-  },
-  "UnfriendDialog": {
-    "title": "Remove from friends",
-    "desc": "You will no longer see “{friend}” in your friend lis. We won’t notify {friend}."
   }
 }

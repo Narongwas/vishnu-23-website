@@ -26,14 +26,14 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
           "flex w-full cursor-pointer items-center px-4 py-3 transition-colors duration-200",
           isOpen && "bg-yellow/20"
         )}
+        onClick={() => setIsOpen((isOpen) => !isOpen)}
       >
         <p className="type-title-medium w-full">{questions.question}</p>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          onClick={() => setIsOpen((isOpen) => !isOpen)}
         >
-          <Icon name="expand_more" className="text-red" />
+          <Icon name="expand_more" size={24} className="text-red" />
         </motion.div>
       </motion.div>
 
