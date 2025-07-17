@@ -3,7 +3,7 @@ import { StyleableFC } from "@/lib/types/misc";
 import Interactive from "@/components/Interactive";
 
 type ButtonSize = "Medium" | "Small" | "XSmall";
-type ButtonAppearance = "Primary" | "Secondary" | "Tertiary";
+type ButtonAppearance = "Primary" | "Secondary" | "Tertiary" | "Games";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   Size: ButtonSize;
@@ -27,6 +27,7 @@ const AppearanceClasses: Record<ButtonAppearance, string> = {
   Primary: "bg-red text-white",
   Secondary: "bg-yellow text-red",
   Tertiary: "bg-white text-red",
+  Games: "bg-yellow text-blue",
 };
 
 const Button: StyleableFC<ButtonProps> = ({
