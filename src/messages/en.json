@@ -350,7 +350,7 @@
         "title": "How scores are awarded",
         "body": {
           "0": "Each square awards 1 point",
-          "1": "Each square awards 1 point",
+          "1": "Each row or diagonal awards 5 additional points",
           "2": "Completing the entire table awards 50 additional points",
           "3": "Get bonus points if the scan didn’t reveal any squares on the table"
         }
