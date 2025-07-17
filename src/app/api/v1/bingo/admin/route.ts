@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import clubAdminEmailList from "@/jsondata/club-admin-email.json";
 
 // PATCH : "api/v1/bingo/admin" protected
-// get user uid from camperToken or friendCode and update user's bingoCounter
-// only send friendCode or camperToken, not both
+// get user uid from camperId or friendCode and update user's bingoCounter
+// only send friendCode or camperId, not both
 // clubNumber is always required
 export async function PATCH(request: NextRequest) {
   // get staff token from the authorization request header or cookie
