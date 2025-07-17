@@ -51,7 +51,9 @@
       }
     },
     "Leaderboard": {
-      "header": "<title>ศึก 18 ก๊ก</title><subtitle>ยุทธภพสยบดินแดน</subtitle>",
+      "header": "<title>ศึก 18 ก๊ก</title><subtitle>ยุทธภพสยบดินแดน</subtitle>"
+    },
+    "KingdomCard": {
       "rank": {
         "long": "อันดับ {rank, number} place",
         "short": "{rank, number}"
