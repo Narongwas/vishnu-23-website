@@ -7,6 +7,8 @@ import cloud2Logo from "@/public/decorating/clouds/cloud2.svg";
 import Image from "next/image";
 import AnimatedPageAction from "@/app/[locale]/group-reveal/components/AnimatedPageAction";
 import Link from "next/link";
+import Icon from "@/components/Icon";
+import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
 import { getTranslations } from "next-intl/server";
 
 //This is a template for fetching group
@@ -44,12 +46,13 @@ export default async function GroupReveal() {
         <div className="absolute top-1/2 right-0 z-20 -translate-y-1/2 pr-6">
           <Link href="/">
             <Button
-              icon="home"
               Size="Small"
               Appearance="Primary"
               aria-label={tGroupAnnouncement("action.home")}
               title={tGroupAnnouncement("action.home")}
-            />
+            >
+              <Icon name="home" />
+            </Button>
           </Link>
         </div>
         {/* ข้อความอยู่กลาง container */}
@@ -80,6 +83,9 @@ export default async function GroupReveal() {
             className="absolute -right-8 -bottom-4 z-50 opacity-100"
           />
         </div>
+      </div>
+      <div className="item mt-6 flex justify-center pb-8">
+        <AllPageSponsorFooter />
       </div>
       <AnimatedPageAction
         text="/logo/SocialIcon.svg"
