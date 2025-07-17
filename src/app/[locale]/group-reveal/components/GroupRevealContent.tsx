@@ -9,10 +9,10 @@ import AnimatedPageAction from "@/app/[locale]/group-reveal/components/AnimatedP
 import Link from "next/link";
 import Icon from "@/components/Icon";
 import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
+import { StyleableFC } from "@/lib/types/misc";
 import { getTranslations } from "next-intl/server";
 
-//This is a template for fetching group
-export default async function GroupReveal() {
+const GroupRevealContent: StyleableFC = async ({ className }) => {
   const t = await getTranslations("kokname");
   const tGroupAnnouncement = await getTranslations("GroupAnnouncement");
 
@@ -38,7 +38,8 @@ export default async function GroupReveal() {
   return (
     <BackgroundWithNoise
       className={cn(
-        "from-yellow to-yellow-white flex min-h-dvh flex-col items-center bg-gradient-to-b pb-40"
+        "from-yellow to-yellow-white flex min-h-dvh flex-col items-center bg-gradient-to-b pb-40",
+        className
       )}
     >
       <div className="relative mx-auto mt-5.5 flex h-16 w-full max-w-lg items-center justify-center px-4 sm:px-6 lg:px-8">
@@ -94,4 +95,6 @@ export default async function GroupReveal() {
       />
     </BackgroundWithNoise>
   );
-}
+};
+
+export default GroupRevealContent;

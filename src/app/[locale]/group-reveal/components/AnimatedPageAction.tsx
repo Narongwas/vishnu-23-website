@@ -1,6 +1,7 @@
 "use client";
 
 import { StyleableFC } from "@/lib/types/misc";
+import cn from "@/lib/helpers/cn";
 import PageAction from "@/components/PageAction";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
@@ -11,7 +12,8 @@ const AnimatedPageAction: StyleableFC<{
   text: string;
   label: string;
   group: string;
-}> = ({ text, label, group }) => {
+  className?: string;
+}> = ({ text, label, group, className }) => {
   const [groupInfo, setGroupInfo] = useState<Group | null>(null);
 
   useEffect(() => {
@@ -32,7 +34,10 @@ const AnimatedPageAction: StyleableFC<{
         ease: [0.25, 0.1, 0.25, 1],
         delay: 0.2,
       }}
-      className="fixed -bottom-90 left-1/2 z-30 -translate-x-1/2 lg:-bottom-80"
+      className={cn(
+        "fixed -bottom-90 left-1/2 z-30 -translate-x-1/2 lg:-bottom-80",
+        className
+      )}
     >
       {groupInfo?.lineLink ? (
         <a href={groupInfo.lineLink} target="_blank" rel="noopener noreferrer">
