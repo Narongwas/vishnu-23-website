@@ -1,6 +1,6 @@
 import BackButton from "@/components/BackButton";
 import BackgroundWithNoise from "@/components/BackgroundWithNoise";
-import ClubPanel from "@/components/ClubPanel";
+import ClubPanel from "@/app/[locale]/explore/clubs/components/ClubPanel";
 import SubPageHeader from "@/components/SubPageHeader";
 
 export default function ClubPage() {
