@@ -78,76 +78,57 @@
       "title": "Frequently asked questions",
       "sections": [
         {
-          "id": "1",
-          "title": "",
+          "title": null,
           "questions": [
             {
-              "id": "1.1",
               "question": "What are Intania First Date and Vishnu Camp? Do we have to go? What can we get from attending?",
-              "answer": "These two events are organized by Chula Engineering students for Intania 109. The goal is to help you meet new friends, get to know seniors and become familiar with the faculty before the semester begins. Although it isn't compulsory, we're sure that everyone who joins will get a memorable experience--so come join us!"
+              "answer": "These two events are organized by Chula Engineering students for Intania 109. The goal is to help you meet new friends, get to know seniors, and become familiar with the faculty before the semester begins. Although it isn’t compulsory, we’re sure that everyone who joins will get a memorable experience—so come join us!"
             }
           ]
         },
         {
-          "id": "2.",
           "title": "First Date",
           "questions": [
             {
-              "id": "2.1",
               "question": "What are the differences between Intania First Date and CU First Date?",
               "answer": "CU First Date is the first event for all freshmen from every faculty and is held in the morning. However, Intania First Date is an event only for Intania freshmen and is held in the afternoon of the same day."
             },
             {
-              "id": "2.2",
               "question": "What are the schedules for Intania First Date?",
               "answer": "Registration starts from 12:00 p.m. to 1:00 p.m. and activities run from 1:00 p.m. to 7:00 p.m."
             },
             {
-              "id": "2.3",
-              "question": "How to dress for First Date?",
-              "answer": "There will be a dress code announcement soon. Stay tuned for the details on instagram account."
+              "question": "Is there a dress code for First Date?",
+              "answer": "We will announce the dress code soon. Stay tuned for details on our Instagram account."
             }
           ]
         },
         {
-          "id": "3",
           "title": "Vishnu Camp",
           "questions": [
             {
-              "id": "3.1",
-              "question": "What are the schedules and activities for Vishnu Camp?",
-              "answer": "Vishnu Camp is a 4-day camp, running from morning to evening. However, you can choose to stay overnight by completing a form. On the event day, registration starts at 8:00 a.m. and activities end between 5:00 p.m. and 8:30 p.m. A detailed schedule will be announced soon."
+              "question": "What are the schedule and activities for Vishnu Camp?",
+              "answer": "Vishnu Camp is a overnight-optional day camp lasting 4 days, where those who choose to stay with us overnight can indicate so in the registration form. Registration starts at 8:00 a.m. and activities end between 5:00 p.m. and 8:30 p.m depending on the day. The detailed schedule will be announced soon."
             },
             {
-              "id": "3.2",
-              "question": "Is attending certain parts or days allowed?",
-              "answer": "It is recommended to join every day (better not miss it!), but if you're unavailable, that's totally fine--just fill out the form the days you can join."
+              "question": "Is attending only certain activities or days allowed?",
+              "answer": "We highly recommended you join us every day (better not miss it!), but if you’re unavailable, that’s totally fine—just fill out the form the days you can join."
             },
             {
-              "id": "3.3",
-              "question": "How do we get to the camp?",
-              "answer": "You can get to the camp by BTS or MRT. A video guide on how to get to the faculty will be posted soon--stay tuned on instagram account!"
+              "question": "How can I get to the camp?",
+              "answer": "You can get to the camp by BTS or MRT. A video guide on how to get to the faculty will be posted soon—stay tuned on instagram account!"
             },
             {
-              "id": "3.4",
-              "question": "Where is the camp held? If we stay overnight, where will we sleep?",
-              "answer": "The camp is held at Faculty of Engineering, Chulalongkorn University. If you stay overnight, you will sleep in the classroom. Each room accommodates around 30-40 people, with seperates building for males and females."
+              "question": "Where is the camp held? If I stay overnight, where will I sleep?",
+              "answer": "The camp is held at Faculty of Engineering, Chulalongkorn University. If you stay overnight, you will sleep in the classroom. Each room accommodates around 30–40 people with seperate buildings for men and women."
             },
             {
-              "id": "3.5",
               "question": "What are the activities for each day?",
-              "answer": "The activity schedules will be posted soon--stay tuned!"
-            }
-          ]
-        },
-        {
-          "id": "4",
-          "title": "Others",
-          "questions": [
+              "answer": "The activity schedule will be posted soon—stay tuned!"
+            },
             {
-              "id": "4.1",
-              "question": "If we don't know anyone yet, will we feel lonely?",
-              "answer": "Definitely not! There are a lot of activities designed to help you get to know each other. The staff will be there to take care of you and make you feel like a part of family."
+              "question": "I don’t have any friends yet, will I feel lonely?",
+              "answer": "Definitely not! There are a lot of activities designed to help you get to know each other. The staff will be there to take care of you and make you feel like a part of our family."
             }
           ]
         }
