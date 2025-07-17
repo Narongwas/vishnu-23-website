@@ -1,7 +1,11 @@
+"use client";
+
 import BoothMap from "@/app/[locale]/explore/map/components/BoothMap";
 import type { ClubItem } from "@/lib/types/club";
 import type { StyleableFC } from "@/lib/types/misc";
-import en100 from "@/public/map/EN-100.png";
+import en100EN from "@/public/map/EN100-en.png";
+import en100TH from "@/public/map/EN100-th.png";
+import { useLocale } from "next-intl";
 
 const booths = [
   { position: 14, style: "left-[28%] bottom-[26%]" },
@@ -23,13 +27,18 @@ const booths = [
 
 const EN100Map: StyleableFC<{
   clubList: ClubItem[];
-}> = (props) => (
-  <BoothMap
-    image={en100}
-    altText="Map of คณะวิศวฯ ตึก100"
-    booths={booths}
-    {...props}
-  />
-);
+}> = (props) => {
+  const locale = useLocale();
+  const en100 = locale === "th" ? en100TH : en100EN;
+
+  return (
+    <BoothMap
+      image={en100}
+      altText="Map of คณะวิศวฯ ตึก100"
+      booths={booths}
+      {...props}
+    />
+  );
+};
 
 export default EN100Map;

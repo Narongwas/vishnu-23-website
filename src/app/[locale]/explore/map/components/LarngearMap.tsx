@@ -1,7 +1,11 @@
+"use client";
+
+import { useLocale } from "next-intl";
 import BoothMap from "@/app/[locale]/explore/map/components/BoothMap";
 import type { ClubItem } from "@/lib/types/club";
 import type { StyleableFC } from "@/lib/types/misc";
-import larngearMap from "@/public/map/Larngear.png";
+import larngearMapTH from "@/public/map/Larngear-th.png";
+import larngearMapEN from "@/public/map/Larngear-en.png";
 
 const booths = [
   { position: 1, style: "left-[20%] top-[18%] w-[5%] h-[15%]" },
@@ -15,13 +19,18 @@ const booths = [
   { position: 9, style: "left-[3%] top-[8%] w-[15%] h-[20%]" },
 ];
 
-const LarngearMap: StyleableFC<{ clubList: ClubItem[] }> = (props) => (
-  <BoothMap
-    image={larngearMap}
-    altText="Map of คณะวิศวฯ ลานเกียร์"
-    booths={booths}
-    {...props}
-  />
-);
+const LarngearMap: StyleableFC<{ clubList: ClubItem[] }> = (props) => {
+  const locale = useLocale();
+  const image = locale === "th" ? larngearMapTH : larngearMapEN;
+
+  return (
+    <BoothMap
+      image={image}
+      altText="Map of คณะวิศวฯ ลานเกียร์"
+      booths={booths}
+      {...props}
+    />
+  );
+};
 
 export default LarngearMap;
