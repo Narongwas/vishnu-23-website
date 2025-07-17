@@ -1,17 +1,20 @@
 import { StyleableFC } from "@/lib/types/misc";
 import cn from "@/lib/helpers/cn";
 import Button from "@/components/Button";
+import Icon from "@/components/Icon";
 
-const LogoutButton: StyleableFC = ({ className }) => {
+const EditButton: StyleableFC = ({ className }) => {
   return (
     <Button
-      icon="edit"
-      label="แก้ไข"
       Size="Small"
       Appearance="Secondary"
       className={cn(className)}
-    />
+      disabled={true}
+    >
+      <Icon name="edit" />
+      <p className="type-title-medium">แก้ไข</p>
+    </Button>
   );
 };
 
-export default LogoutButton;
+export default EditButton;
