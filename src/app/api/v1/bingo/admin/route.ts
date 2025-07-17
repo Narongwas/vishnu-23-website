@@ -93,7 +93,9 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "Group not found" }, { status: 404 });
   }
 
-  const group = groups.docs[0].data();
+  const groupDoc = groups.docs[0];
+  const group = groupDoc.data();
+  const groupId = groupDoc.id;
 
   // find the index of the club number in the group bingo array
   let idx = -1;
@@ -117,18 +119,93 @@ export async function PATCH(request: NextRequest) {
     ? [...userData.bingoCounter]
     : [];
 
+  if (bingoCounter[idx]) {
+    return NextResponse.json(
+      { error: "Club number already marked" },
+      { status: 400 }
+    );
+  }
+
   // Set the specific index to true
   bingoCounter[idx] = true;
 
-  // Update the whole array back to Firestore
+  // get the old user score
+  const oldUserScore = userData?.bingoScore;
+
+  let newUserScore = oldUserScore;
+
+  const TOTAL_BINGO_SQUARES = 25;
+  const N = Math.sqrt(TOTAL_BINGO_SQUARES);
+
+  if (idx >= TOTAL_BINGO_SQUARES) {
+    // outside square
+    newUserScore += 1;
+  } else {
+    // individual square
+    newUserScore += 1;
+
+    // get row and column
+    const row = Math.floor(idx / N);
+    const col = idx % N;
+
+    // check horizontal
+    for (let i = 0; i < N; i++) {
+      if (!bingoCounter[row * N + i]) {
+        break;
+      }
+      if (i === N - 1) {
+        newUserScore += 5;
+      }
+    }
+
+    // check vertical
+    for (let i = 0; i < N; i++) {
+      if (!bingoCounter[i * N + col]) {
+        break;
+      }
+      if (i === N - 1) {
+        newUserScore += 5;
+      }
+    }
+
+    // check all
+    for (let i = 0; i < TOTAL_BINGO_SQUARES; i++) {
+      if (!bingoCounter[i]) {
+        break;
+      }
+      if (i === TOTAL_BINGO_SQUARES - 1) {
+        newUserScore += 50;
+      }
+    }
+  }
+
+  const addedScore = newUserScore - oldUserScore;
+  const newGroupScore = group.bingoScore + addedScore;
+
   try {
-    await db.collection("users").doc(uid).update({
-      bingoCounter: bingoCounter,
+    // Use Firestore transaction to ensure atomic updates
+    await db.runTransaction(async (transaction) => {
+      const userRef = db.collection("users").doc(uid);
+      const groupRef = db.collection("groups").doc(groupId);
+      // Read current data
+      const userDoc = await transaction.get(userRef);
+      const groupDoc = await transaction.get(groupRef);
+      if (!userDoc.exists || !groupDoc.exists) {
+        throw new Error("User or group document does not exist");
+      }
+      // Update user's bingoCounter and score
+      transaction.update(userRef, {
+        bingoCounter: bingoCounter,
+        bingoScore: newUserScore,
+      });
+      // Update group's score
+      transaction.update(groupRef, {
+        bingoScore: newGroupScore,
+      });
     });
   } catch (error) {
-    console.error("Error updating user's bingoCounter:", error);
     return NextResponse.json(
-      { error: "Failed to update user's bingoCounter" },
+      { error: "Failed to update user's bingoCounter, " + error },
       { status: 500 }
     );
   }

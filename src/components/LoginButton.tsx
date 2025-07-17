@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/Button";
+import Icon from "@/components/Icon";
 import { signInWithGoogle } from "@/lib/firebase/auth";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useTranslations } from "next-intl";
@@ -99,13 +100,14 @@ export default function GoogleLoginBtn({
       ) : (
         <Button
           onClick={handleGoogleLogin}
-          icon="login"
-          label={t("action.logIn")}
           Size="Small"
           Appearance="Primary"
           aria-label={t("action.logIn")}
           title={t("action.logIn")}
-        />
+        >
+          <Icon name="login" />
+          <span className="type-title-medium">{t("action.logIn")}</span>
+        </Button>
       )}
     </>
   );
