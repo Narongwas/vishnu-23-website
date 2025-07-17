@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/Button";
+import Icon from "@/components/Icon";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -25,13 +26,14 @@ export default function LanguageSwitcher() {
 
   return (
     <Button
-      icon="language"
-      label={t("label")}
       Size="Small"
       Appearance="Tertiary"
       aria-label={t("alt")}
       title={t("alt")}
       onClick={handleSwitch}
-    />
+    >
+      <Icon name="language" />
+      <span className="type-title-medium">{t("label")}</span>
+    </Button>
   );
 }

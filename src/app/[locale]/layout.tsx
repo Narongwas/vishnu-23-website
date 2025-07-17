@@ -1,4 +1,6 @@
 import "@/app/[locale]/globals.css";
+import { AuthProvider } from "@/components/AuthProvider";
+import DevAuthUI from "@/components/DevAuthUI";
 import { routing } from "@/i18n/routing";
 import cn from "@/lib/helpers/cn";
 import type { Metadata, Viewport } from "next";
@@ -7,8 +9,6 @@ import { getMessages } from "next-intl/server";
 import { Bai_Jamjuree, Liu_Jian_Mao_Cao } from "next/font/google";
 import localFont from "next/font/local";
 import { notFound } from "next/navigation";
-import DevAuthUI from "@/components/DevAuthUI";
-import { AuthProvider } from "@/components/AuthProvider";
 
 const baiJamjuree = Bai_Jamjuree({
   subsets: ["latin", "thai"],
