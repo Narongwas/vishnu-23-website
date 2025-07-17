@@ -159,10 +159,10 @@
   },
   "RegistrationAnnouncement": {
     "title": "Registration point",
-    "footer": {
-      "0": "You can register at {location} at {time}",
-      "1": "Registration location may differ from person to person."
-    },
+    "footer": [
+      "You can register at <location></location> at <time></time>",
+      "Registration location may differ from person to person."
+    ],
     "action": {
       "home": "Return to home"
     }
