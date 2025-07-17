@@ -38,8 +38,9 @@ export async function GET(
             .get();
           return friendDocs.docs.map((doc) => ({
             id: doc.id,
-            name: doc.data().name || "Unknown",
+            name: doc.data().nickName || "",
             email: doc.data().email || "Unknown",
+            profile: doc.data().profileURL,
           }));
         })
       )
@@ -50,7 +51,7 @@ export async function GET(
         friends: friendsData,
         user: user.data(),
       },
-      { status: 200, headers: { "Content-Type": "application/json" } }
+      { status: 200 }
     );
   } catch (error) {
     console.error("Error fetching friends:", error);

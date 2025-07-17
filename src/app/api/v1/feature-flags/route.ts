@@ -1,21 +1,19 @@
-import { NextRequest } from "next/server";
 import {
   addNewFeatureFlag,
   getAllFeatureFlags,
-} from "@/app/api/v1/feature-flags/services";
-// import { firebaseAuthMiddleware } from "@/middleware/firebaseAuthMiddleware";
+} from "@/lib/services/featureFlags.service";
+import { protect } from "@/lib/middleware/protect";
+import { NextRequest, NextResponse } from "next/server";
 
 // Get : "api/v1/feature-flags" public
 // get all feature flag
 export async function GET() {
   try {
     const featureFlags = await getAllFeatureFlags();
-    return new Response(JSON.stringify(featureFlags), {
-      headers: { "Content-Type": "application/json" },
-    });
+    return NextResponse.json(featureFlags, { status: 200 });
   } catch (err) {
-    return new Response(
-      JSON.stringify({ error: "Failed to fetch feature flags : ", err }),
+    return NextResponse.json(
+      { error: "Failed to fetch feature flags : ", err },
       { status: 500 }
     );
   }
@@ -24,37 +22,23 @@ export async function GET() {
 // Post : "api/v1/feature-flags" private
 // create new feature flag
 export async function POST(request: NextRequest) {
-  // Authentication logic
-  // const authResult = await firebaseAuthMiddleware(request);
-  // if (authResult.error || !authResult.decodedToken) {
-  //   return new Response(
-  //     JSON.stringify({ error: authResult.error || "Unauthorized" }),
-  //     {
-  //       status: 401,
-  //       headers: { "Content-Type": "application/json" },
-  //     }
-  //   );
-  // }
-  // if (!authResult.decodedToken.admin) {
-  //   return new Response(JSON.stringify({ error: "Forbidden not admin" }), {
-  //     status: 403,
-  //   });
-  // }
-
-  // Adding new feature flag logic
+  const res = await protect(request, ["admin"]);
+  if (res) {
+    return res;
+  }
   const body = await request.json();
   const { featureName, enabled } = body;
   try {
     await addNewFeatureFlag(featureName, enabled);
-    return new Response(
-      JSON.stringify({
+    return NextResponse.json(
+      {
         msg: `Successfully added new ${featureName} feature flag`,
-      }),
+      },
       { status: 201 }
     );
   } catch (err) {
-    return new Response(
-      JSON.stringify({ error: "Failed to add feature flag : ", err }),
+    return NextResponse.json(
+      { error: "Failed to add feature flag : ", err },
       { status: 500 }
     );
   }
