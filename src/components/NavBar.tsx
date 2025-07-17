@@ -2,7 +2,7 @@ import NavBarItem from "@/components/NavBarItem";
 import { useTranslations } from "next-intl";
 
 export default function NavBar() {
-  const t = useTranslations("Common.navigation");
+  const t = useTranslations("Common.Navigation");
 
   return (
     <nav className="bg-red fixed bottom-0 z-40 flex h-16 w-full items-center px-4">

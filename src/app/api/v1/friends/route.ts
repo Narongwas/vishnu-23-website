@@ -1,14 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
 import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware";
+import emailToId from "@/lib/helpers/emailToId";
 
 // this is a GET method to get a list of friends
 export async function GET(request: NextRequest) {
   try {
-    const { uid, error } = await firebaseAuthMiddleware(request);
-    if (error || !uid) {
+    const { decodedToken, error } = await firebaseAuthMiddleware(request);
+
+    if (!decodedToken?.email || error) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const uid = emailToId(decodedToken.email || "");
+
     const friendsList = await fetch(`/api/v1/friends/${uid}`, {
       method: "GET",
       headers: {
@@ -22,7 +27,6 @@ export async function GET(request: NextRequest) {
       },
       {
         status: 200,
-        headers: { "Content-Type": "application/json" },
       }
     );
   } catch (e) {
@@ -41,11 +45,13 @@ export async function POST(request: NextRequest) {
     const { friendId } = body;
 
     // get the user id from the request
-    const { uid, error } = await firebaseAuthMiddleware(request);
+    const { decodedToken, error } = await firebaseAuthMiddleware(request);
 
-    if (error || !uid) {
+    if (error || !decodedToken?.uid) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const uid = emailToId(decodedToken.email || "");
 
     // get the user and friend data from the database
     const [user, friend] = await Promise.all([
@@ -78,7 +84,7 @@ export async function POST(request: NextRequest) {
       {
         friend: {
           id: friend.id,
-          name: friend.data()?.name,
+          name: friend.data()?.nickName,
           email: friend.data()?.email,
         },
       },
@@ -97,11 +103,13 @@ export async function DELETE(request: NextRequest) {
     const { friendId } = body;
 
     // get the user id from the request
-    const { uid, error } = await firebaseAuthMiddleware(request);
+    const { decodedToken, error } = await firebaseAuthMiddleware(request);
 
-    if (error || !uid) {
+    if (error || !decodedToken?.uid) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const uid = emailToId(decodedToken?.email || "");
 
     //get the user and friend data
     const [user, friend] = await Promise.all([
@@ -134,8 +142,9 @@ export async function DELETE(request: NextRequest) {
       {
         friend: {
           id: friend.id,
-          name: friend.data()?.name,
+          name: friend.data()?.nickName,
           email: friend.data()?.email,
+          profile: friend.data()?.profileURL,
         },
       },
       { status: 200 }

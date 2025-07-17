@@ -1,47 +1,56 @@
 {
   "Common": {
-    "meta": {
+    "Meta": {
       "title": {
         "default": "Vishnu 23rd",
         "template": "%s - Vishnu 23rd"
       },
-      "description": null
+      "description": ""
     },
-    "navigation": {
+    "Navigation": {
       "home": "Home",
       "explore": "Explore",
       "games": "Games",
       "admin": "Admin"
     },
-    "action": {
+    "Action": {
       "cancel": "ยกเลิก",
       "save": "บันทึก",
       "confirm": "ยืนยัน",
       "close": "ปิด",
       "back": "กลับ"
+    },
+    "LanguageSwitcher": {
+      "label": "TH",
+      "alt": "Change to English"
     }
   },
-  "LanguageSwitcher": {
-    "label": "TH",
-    "alt": "เปลี่ยนเป็นภาษาไทย"
-  },
-  "HomeHero": {
-    "action": {
-      "logIn": "เข้าสู่ระบบ",
-      "account": "บัญชี"
+  "Home": {
+    "Hero": {
+      "action": {
+        "logIn": "เข้าสู่ระบบ",
+        "account": "บัญชี"
+      },
+      "ifd": {
+        "event": "Intania First Date 2025",
+        "date": "19 กรกฎาคม 2568"
+      },
+      "vishnu": {
+        "event": "และค่ายวิษณุกรรมบุตรครั้งที่ 23",
+        "date": "22–25 กรกฎาคม 2568"
+      }
     },
-    "ifd": {
-      "event": "Intania First Date 2025",
-      "date": "19 กรกฎาคม 2568"
+    "Leaderboard": {
+      "header": "<title>ศึก 18 ก๊ก</title><subtitle>ยุทธภพสยบดินแดน</subtitle>",
+      "rank": {
+        "long": "อันดับ {rank, number} place",
+        "short": "{rank, number}"
+      },
+      "score": "{score, number} ไร่"
     },
-    "vishnu": {
-      "event": "และค่ายวิษณุกรรมบุตรครั้งที่ 23",
-      "date": "22–25 กรกฎาคม 2568"
+    "Sponsors": {
+      "title": "ผู้สนับสนุนของเรา"
     }
-  },
-  "LogInBanner": {
-    "title": "เข้าสู่ระบบ",
-    "helper": "ใช้บัญชีที่ลงท้ายด้วย @student.chula.ac.th"
   },
   "GroupAnnouncement": {
     "action": {
@@ -49,63 +58,276 @@
       "line": "เข้ากลุ่ม LINE"
     }
   },
-  "Profile": {
-    "action": {
-      "edit": "แก้ไข",
-      "logout": "ออกจากระบบ",
-      "add": "เพิ่มเพื่อน",
-      "editPfp": "แก้ไขรูป"
+  "Games": {
+    "tabName": "Games",
+    "header": {
+      "chinese": "游戏",
+      "title": "Games",
+      "subtitle": "ส่งตรงความสนุกถึงมือน้อง คิดว่าน้องจะนำพาความยิ่งใหญ่สู่ก๊กของน้องได้หรือไม่"
     },
-    "friends": {
+    "bingo": {
+      "title": "Bingo",
+      "subtitle": "ร่วมกิจกรรมชมรมเพื่อเปิดช่องบนกระดาน ใครจะเป็นผู้พิชิต 5 ช่องในตำนาน?"
+    },
+    "predictions": {
+      "title": "Predictions",
+      "subtitle": "ทดสอบดวงชะตาของน้องในหอทำนายชะตาสวรรค์"
+    },
+    "overline": "ทำนายชะตาช่วง{time, select, morning {เช้า} afternoon {บ่าย}}",
+    "footer": {
+      "revealTime": "เฉลยเวลา {time}",
+      "scoring": "นับคะแนนที่ได้จากอันดับของจำนวนน้องที่ทายถูกในก๊ก"
+    },
+    "action": {
+      "history": "ประวัติ",
+      "help": "ช่วยเหลือ",
+      "predict": "ทำนาย"
+    }
+  },
+  "Predictions": {
+    "CrystalBall": {
+      "form": {
+        "placeholder": "คำตอบ"
+      }
+    },
+    "HelpDialog": {
+      "title": "หอทำนายชะตาสวรรค์",
+      "playing": {
+        "title": "เล่นยังไง",
+        "body": {
+          "0": "ในแต่ละวัน จะมีคำถามช่วงเช้าและช่วงบ่าย หน้าที่ของน้องคือการเขียนคำตอบสั้น ๆ เป็นคำทำนาย ก่อนเวลาที่กำหนด",
+          "1": {
+            "0": {
+              "icon": "ถูก",
+              "answer": "20"
+            },
+            "1": {
+              "icon": "ผิด",
+              "answer": "ผมขอตอบว่า 20 ครั้งครับ!!!"
+            }
+          },
+          "2": "น้อง ๆ แต่ละคนสามารถทายตามที่ตัวเองชอบได้เลย โดยไม่ต้องตอบเหมือนกันทั้งก๊ก"
+        }
+      },
+      "scoring": {
+        "title": "ให้คะแนนยังไง",
+        "body": {
+          "0": "จะนับคะแนนจากอันดับของจำนวนน้องที่ ทายถูกในก๊ก",
+          "1": "ก๊กที่มีคนตอบถูกมากที่สุด ก็จะได้คะแนนสูงสุด"
+        }
+      }
+    },
+    "AnswerDialog": {
+      "title": "สารจากสวรรค์…",
+      "round": "ช่วง{time, select, morning {เช้า} afternoon {บ่าย}}",
+      "isCorrect": "เป็นคำตอบที่"
+    },
+    "AnswerBall": {
+      "large": "{correct, select, true {ถั่วต้ม} false {ผิดจ้า}}",
+      "small": "{correct, select, true {ถูกต้อง} false {ผิด}}",
+      "solution": "คำตอบ: {solution}"
+    },
+    "History": {
+      "title": "ประวัติการทำนาย"
+    },
+    "PredictionCard": {
+      "round": "Day {day} ช่วง{time, select, morning {เช้า} afternoon {บ่าย}}",
+      "solution": "คำตอบ: {solution}"
+    }
+  },
+  "Bingo": {
+    "header": {
+      "parent": "Play",
+      "title": "Bingo"
+    },
+    "scores": "{score, number} คะแนน",
+    "action": {
+      "help": "ช่วยเหลือ",
+      "breakdown": "รายละเอียดกระดานของน้อง",
+      "qr": "QR code ของน้อง"
+    },
+    "BingoCard": {
+      "empty": "ไปที่ชมรมเพื่อปลดล็อคช่องบิงโก"
+    },
+    "BingoSquare": {
+      "empty": "ช่องนี้ล็อคอยู่"
+    },
+    "BingoIcon": {
+      "single": "ช่องเดียว",
+      "row": "แถว/แนวทแยง",
+      "full": "ครบตาราง",
+      "bonus": "ช่องโบนัส"
+    },
+    "HelpDialog": {
+      "title": "บิงโก",
+      "playing": {
+        "title": "เล่นยังไง",
+        "body": "เริ่มต้นจะมีตารางบิงโก 5×5 ที่ถูกซ่อนไว้ เมื่อน้อง ๆ ไปที่ชมรมไหน ก็เปิด QR code ให้พี่ประจำชมรมสแกน และระบบจะสุ่มเปิด ช่องของบิงโก"
+      },
+      "scoring": {
+        "title": "ให้คะแนนยังไง",
+        "body": {
+          "0": "แต่ละช่องที่ถูกเปิด จะได้ช่องละ 1 คะแนน",
+          "1": "เมื่อได้ทั้งแถวหรือแนวทแยง จะได้รับคะแนนเพิ่มแถวละ 5 คะแนน",
+          "2": "เมื่อเก็บครบทั้งตาราง จะได้รับเพิ่มอีก 50 คะแนน",
+          "3": "ถ้าสแกนแล้วไม่ตรงช่องไหนเลย ก็จะได้รับคะแนนโบนัส"
+        }
+      }
+    },
+    "BreakdownDialog": {
+      "title": "กระดานของน้อง",
+      "bonus": {
+        "title": "ช่องโบนัส"
+      },
+      "breakdown": {
+        "title": "คะแนนของน้อง"
+      }
+    },
+    "QRCodeDialog": {
+      "desc": "ยื่น QR code นี้ให้กับพี่ประจำชมรม เพื่อรับคะแนนจากช่องบิงโก"
+    }
+  },
+  "Profile": {
+    "Profile": {
+      "action": {
+        "edit": "แก้ไข",
+        "logout": "ออกจากระบบ",
+        "add": "เพิ่มเพื่อน"
+      }
+    },
+    "FriendsList": {
       "title": "เพื่อนของน้อง",
       "search": "ค้นหา"
     },
-    "form": {
-      "nickname": "ชื่อเล่น"
+    "EditProfile": {
+      "form": {
+        "nickname": "ชื่อเล่น",
+        "social": {
+          "title": "เชื่อมต่อกับเพื่อน ๆ หลังค่ายจบ",
+          "subtitle": "กดแพลตฟอร์มที่ใช่ แล้วใส่ username ได้เลย!"
+        }
+      },
+      "action": {
+        "editPfp": "แก้ไขรูป"
+      }
     },
-    "social": {
-      "line": "LINE",
-      "instagram": "Instagram",
-      "facebook": "Facebook",
-      "discord": "Discord",
-      "twitter": "X/Twitter",
-      "phone": "โทรศัพท์"
-    }
-  },
-  "FriendScanner": {
-    "action": {
-      "qr": "QR code ของน้อง",
-      "code": "เพิ่มด้วยรหัส",
-      "help": "ช่วยเหลือ",
-      "add": "เพิ่ม"
-    }
-  },
-  "FriendCodeDialog": {
-    "title": "เพิ่มเพื่อนด้วยรหัส",
-    "desc": "ให้เพื่อนไปที่หน้า <strong>บัญชี > เพิ่มเพื่อน > QR code ของน้อง</strong> แล้วลอกรหัสที่อยู่ใต้ QR code ของเพื่อน",
-    "form": {
-      "code": "รหัสของเพื่อน"
-    }
-  },
-  "FriendQRHelpDialog": {
-    "title": "เพิ่มเพื่อนด้วย QR code",
-    "desc": {
-      "0": "ให้เพื่อนไปที่หน้า <strong>บัญชี > เพิ่มเพื่อน > QR code ของน้อง</strong> แล้วใช้โทรศัพท์ของน้องไปสแกน QR code ของเพื่อน จากนั้น กด <strong>ยืนยัน<strong>",
-      "1": "ถ้าน้องไม่สามารถใช้กล้องได้<br>กด เพิ่มด้วยรหัส"
+    "SocialButton": {
+      "line": {
+        "label": "LINE",
+        "placeholder": "LINE ID"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "placeholder": "username"
+      },
+      "facebook": {
+        "label": "Facebook",
+        "placeholder": "Facebook",
+        "url": "Profile URL"
+      },
+      "tiktok": {
+        "label": "TikTok",
+        "placeholder": "@username"
+      },
+      "xtwitter": {
+        "label": "X/Twitter",
+        "placeholder": "@Username"
+      },
+      "discord": {
+        "label": "Discord",
+        "placeholder": "username",
+        "url": "Invite URL"
+      },
+      "youtube": {
+        "label": "YouTube",
+        "placeholder": "@handle"
+      },
+      "twitch": {
+        "label": "Twitch",
+        "placeholder": "username"
+      },
+      "github": {
+        "label": "GitHub",
+        "placeholder": "Username"
+      },
+      "steam": {
+        "label": "Steam",
+        "placeholder": "Steam",
+        "quickInvite": "Quick Invite",
+        "url": "Profile URL"
+      },
+      "riot": {
+        "label": "Riot Games",
+        "placeholder": "Username#123"
+      },
+      "roblox": {
+        "label": "Roblox",
+        "placeholder": "Username",
+        "url": "Profile URL"
+      },
+      "epic": {
+        "label": "Epic Games",
+        "placeholder": "Username"
+      },
+      "psn": {
+        "label": "PlayStation",
+        "placeholder": "Online ID"
+      }
     },
-    "alt": "QR code",
-    "action": {
-      "save": "บันทึก"
+    "FriendScanner": {
+      "action": {
+        "qr": "QR code ของน้อง",
+        "code": "เพิ่มด้วยรหัส",
+        "help": "ช่วยเหลือ",
+        "add": "เพิ่ม"
+      }
+    },
+    "FriendCodeDialog": {
+      "title": "เพิ่มเพื่อนด้วยรหัส",
+      "desc": "ให้เพื่อนไปที่หน้า <strong>บัญชี > เพิ่มเพื่อน > QR code ของน้อง</strong> แล้วลอกรหัสที่อยู่ใต้ QR code ของเพื่อน",
+      "form": {
+        "code": "รหัสของเพื่อน"
+      }
+    },
+    "QRHelpDialog": {
+      "title": "เพิ่มเพื่อนด้วย QR code",
+      "desc": {
+        "0": "ให้เพื่อนไปที่หน้า <strong>บัญชี > เพิ่มเพื่อน > QR code ของน้อง</strong> แล้วใช้โทรศัพท์ของน้องไปสแกน QR code ของเพื่อน จากนั้น กด <strong>ยืนยัน<strong>",
+        "1": "ถ้าน้องไม่สามารถใช้กล้องได้<br>กด เพิ่มด้วยรหัส"
+      },
+      "alt": "QR code",
+      "action": {
+        "save": "บันทึก"
+      }
+    },
+    "Friend": {
+      "action": {
+        "unfriend": "ยกเลิกการเป็นเพื่อน"
+      }
+    },
+    "UnfriendDialog": {
+      "title": "ยกเลิกการเป็นเพื่อน",
+      "desc": "น้องจะไม่เห็น “{friend}” ในรายชื่อเพื่อนของน้อง อีกต่อไป โดยเราจะไม่บอก{friend}"
     }
   },
-  "Friend": {
-    "unavailable": "ไม่มีข้อมูลสำหรับช่องทางนี้",
-    "action": {
-      "unfriend": "ยกเลิกการเป็นเพื่อน"
-    }
-  },
-  "UnfriendDialog": {
-    "title": "ยกเลิกการเป็นเพื่อน",
-    "desc": "น้องจะไม่เห็น “{friend}” ในรายชื่อเพื่อนของน้อง อีกต่อไป โดยเราจะไม่บอก{friend}"
+  "kokname": {
+    "A": "ก๊กกะปุ๊กลุก",
+    "B": "ก๊กกะดาย",
+    "C": "ก๊กกะแล็กซี่",
+    "D": "ก๊กกะเรียน",
+    "E": "ก๊กกะวี",
+    "F": "ก๊กกะต๊าก",
+    "G": "ก๊กกะแซะ",
+    "H": "ก๊กกะลอจี๊",
+    "J": "ก๊กกะตุกจิต",
+    "K": "ก๊กกะบะซิ่ง",
+    "L": "ก๊กกะวิสค่อน",
+    "M": "ก๊กกะใจ",
+    "N": "ก๊กกะเตี๋ยวเรือ",
+    "P": "ก๊กกะดึ๊บ",
+    "Q": "ก๊กกะบี่",
+    "R": "ก๊กกะซิบ",
+    "S": "ก๊กกะลาสี",
+    "T": "ก๊กกะจั๊วบิน"
   }
 }

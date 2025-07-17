@@ -3,12 +3,13 @@ import {
   toggleFeatureFlag,
   deleteFeatureFlag,
   addNewFeatureFlag,
-} from "@/app/api/v1/feature-flags/services";
+} from "@/lib/services/featureFlags.service";
 import { revalidatePath } from "next/cache";
 
 export default async function AdminDashboard() {
-  const flags = await getAllFeatureFlags();
+  // dont forget to put security check for only admin to access this page
 
+  const flags = await getAllFeatureFlags();
   async function toggle(formData: FormData) {
     "use server";
     const id = formData.get("id") as string;

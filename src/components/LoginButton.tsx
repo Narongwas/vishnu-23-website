@@ -5,8 +5,9 @@ import { signInWithGoogle } from "@/lib/firebase/auth";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
 interface GoogleLoginBtnProps {
   onSuccess?: () => void;
@@ -37,6 +38,7 @@ export default function GoogleLoginBtn({
   const isLoggedIn = !!token;
   const [redirectTo, setRedirectTo] = useState("/");
   const router = useRouter();
+  const loginAttempted = useRef(false);
 
   console.log("photo : " + user?.photoURL);
 
@@ -61,7 +63,14 @@ export default function GoogleLoginBtn({
     }
   }, [loginWithToken, onError, onSuccess, redirectTo, router]);
 
-  const t = useTranslations("HomeHero");
+  useEffect(() => {
+    if (!isLoggedIn && redirectTo !== "/" && !loginAttempted.current) {
+      loginAttempted.current = true;
+      handleGoogleLogin();
+    }
+  }, [redirectTo, isLoggedIn, handleGoogleLogin]);
+
+  const t = useTranslations("Home.Hero");
 
   return (
     <>
@@ -69,13 +78,24 @@ export default function GoogleLoginBtn({
         <SearchParamsHandler onRedirectChange={setRedirectTo} />
       </Suspense>
       {isLoggedIn ? (
-        <Image
-          src={user?.photoURL ?? ""}
-          alt=""
-          width={48}
-          height={48}
-          className="rounded-full border border-gray-300"
-        />
+        <Link
+          href="/profile"
+          aria-label="Go to profile"
+          title="Go to profile"
+          className="inline-block"
+        >
+          <Image
+            src={user?.photoURL ?? "/decorating/profile/ProfileImage.svg"}
+            alt={
+              user?.displayName
+                ? `${user.displayName}'s profile picture`
+                : "User's profile picture"
+            }
+            width={44}
+            height={44}
+            className="rounded-full"
+          />
+        </Link>
       ) : (
         <Button
           onClick={handleGoogleLogin}
