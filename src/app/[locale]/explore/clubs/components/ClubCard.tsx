@@ -7,6 +7,7 @@ import cn from "@/lib/helpers/cn";
 import type { ClubItem } from "@/lib/types/club";
 import { StyleableFC } from "@/lib/types/misc";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -17,6 +18,8 @@ const ClubCard: StyleableFC<{
   const [isOpen, setIsOpen] = useState(false);
   const logoURL = `/clubs-logo/${club.logo}`;
   const igURL = club.ig;
+  const t = useTranslations("");
+  const username = new URL(club?.ig || "").pathname.split("/")[1];
   return (
     <motion.div
       layout
@@ -77,14 +80,18 @@ const ClubCard: StyleableFC<{
                 </Button>
                 <Button Appearance="Secondary" Size="XSmall">
                   <span className="type-title-medium">
-                    {club.boothPosition?.building}
+                    {t(`Map.Faculty.building.${club.boothPosition?.building}`)}
                   </span>{" "}
                 </Button>
               </div>
             )}
             {igURL && (
               <Link href={igURL}>
-                <Button Appearance="Secondary" Size="Small">
+                <Button
+                  Appearance="Secondary"
+                  Size="Small"
+                  title={t("Clubs.Card.action.instagram", { username })}
+                >
                   <InstagramIcon />
                 </Button>
               </Link>
