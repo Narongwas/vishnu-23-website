@@ -1,10 +1,15 @@
+"use client";
+
 import { StyleableFC } from "@/lib/types/misc";
 import cn from "@/lib/helpers/cn";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import { signOut } from "@/lib/firebase/auth";
+import { useTranslations } from "next-intl";
 
 const LogoutButton: StyleableFC = ({ className }) => {
+  const t = useTranslations("Profile.Profile.action");
+
   const handleLogout = async () => {
     try {
       await signOut();
@@ -28,7 +33,7 @@ const LogoutButton: StyleableFC = ({ className }) => {
       onClick={handleLogout}
     >
       <Icon name="logout" />
-      <p className="type-title-medium">ออกจากระบบ</p>
+      <p className="type-title-medium">{t("logout")}</p>
     </Button>
   );
 };
