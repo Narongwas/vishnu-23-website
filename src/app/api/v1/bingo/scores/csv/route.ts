@@ -1,12 +1,6 @@
 import { db } from "@/lib/services/firebase.admin";
 import { NextResponse } from "next/server";
-
-interface GroupData {
-  id: string;
-  name: string;
-  bingoScore: number;
-  // Add other specific fields you want here
-}
+import { GroupData } from "@/lib/types/groups";
 
 // List of columns to include in CSV (in desired order)
 const CSV_COLUMNS: (keyof GroupData)[] = ["id", "name", "bingoScore"]; // Customize this order
