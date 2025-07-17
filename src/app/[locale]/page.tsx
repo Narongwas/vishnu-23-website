@@ -1,4 +1,5 @@
 import FaqLayoutGroup from "@/components/FaqLayoutGroup";
+import HomePageSponsorFooter from "@/components/HomePageSponsorFooter";
 import HomeWrapper from "@/components/HomeWrapper";
 import separator from "@/public/decorating/shapes/separator.svg";
 import { useTranslations } from "next-intl";
@@ -20,6 +21,8 @@ export default function Home() {
           <p>{t("vishnu.date")}</p>
         </div>
       </div>
+
+      <HomePageSponsorFooter />
 
       <div className="z-30 w-full pb-30">
         <div className="type-title-large text-red mt-17 mb-5 text-center font-bold">

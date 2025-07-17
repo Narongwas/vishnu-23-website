@@ -1,3 +1,4 @@
+import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
 import MountainBackground from "@/components/MountainBackground";
 import NavBar from "@/components/NavBar";
 import NavigationCard from "@/components/NavigationCard";
@@ -35,11 +36,11 @@ export default function GamePage() {
       />
 
       <MountainBackground
-        className="absolute -top-60 left-0 h-full w-full opacity-50"
+        className="absolute top-15 left-0 h-full w-full opacity-50"
         background=""
       />
 
-      <div className="relative z-15 mt-4 flex w-full flex-col items-center gap-4 px-4 pb-10">
+      <div className="relative z-15 mt-4 flex w-full flex-col items-center gap-4 px-4 pb-17">
         {cards.map((card, index) => (
           <NavigationCard
             key={index}
@@ -53,7 +54,9 @@ export default function GamePage() {
           />
         ))}
       </div>
-
+      <div className="relative z-20 -mt-20 pb-10 text-center">
+        <AllPageSponsorFooter className="type-title-small text-white" />
+      </div>
       <NavBar />
     </>
   );

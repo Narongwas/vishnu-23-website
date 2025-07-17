@@ -7,6 +7,8 @@ import clubs from "@/public/navigation/Clubs.png";
 import map from "@/public/navigation/Map.png";
 import presentation from "@/public/navigation/Presentation.png";
 
+import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
+
 const cards = [
   {
     image: map,
@@ -38,7 +40,7 @@ export default function ExplorePage() {
       />
 
       <MountainBackground
-        className="absolute -top-72 left-0 h-full w-full"
+        className="absolute top-15 left-0 h-full w-full"
         background="bg-blue"
       />
 
@@ -54,6 +56,9 @@ export default function ExplorePage() {
         ))}
       </div>
 
+      <div className="relative z-20 -mt-20 pb-20 text-center">
+        <AllPageSponsorFooter className="type-title-small" />
+      </div>
       <NavBar />
     </>
   );
