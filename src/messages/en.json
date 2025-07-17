@@ -393,12 +393,9 @@
       "search": "Search"
     },
     "EditProfile": {
-      "form": {
-        "nickname": "Nickname",
-        "social": {
-          "title": "Stay connected with your friends",
-          "subtitle": "Tap a platform and enter your username!"
-        }
+      "social": {
+        "title": "Stay connected with your friends",
+        "subtitle": "Tap a platform and enter your username!"
       },
       "action": {
         "editPfp": "Edit profile picture"
