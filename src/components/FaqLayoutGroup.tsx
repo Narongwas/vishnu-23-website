@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 
 const FaqLayoutGroup: StyleableFC = ({ className, style }) => {
   const t = useTranslations("Home.Faq");
-  const faqs = t.raw("questions") as FaqSection[];
+  const sections = t.raw("sections") as FaqSection[];
 
   return (
     <div className="z-30 w-full pb-30">
@@ -21,8 +21,8 @@ const FaqLayoutGroup: StyleableFC = ({ className, style }) => {
         style={style}
       >
         <LayoutGroup>
-          {faqs.map((section) => (
-            <FaqGroup key={section.id} section={section} />
+          {sections.map((section, index) => (
+            <FaqGroup key={index} section={section} />
           ))}
         </LayoutGroup>
       </div>
