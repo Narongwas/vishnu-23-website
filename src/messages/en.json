@@ -72,8 +72,8 @@
       }
     },
     "Faq": {
-      "title": "Frequently Asked Questions",
-      "questions": [
+      "title": "Frequently asked questions",
+      "sections": [
         {
           "id": "1",
           "title": "",
@@ -319,7 +319,7 @@
       "solution": "Solution: {solution}"
     },
     "History": {
-      "title": "Prediction History"
+      "title": "Prediction history"
     },
     "PredictionCard": {
       "round": "Day {day} • {time, select, morning {Morning} afternoon {Afternoon}}",
