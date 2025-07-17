@@ -3,13 +3,16 @@ import Score from "@/app/[locale]/games/bingo/components/Score";
 import ScoreCard from "@/app/[locale]/games/bingo/components/ScoreCard";
 import { useState } from "react";
 
-const ScoreSection = ({
-  score,
-  className,
-}: {
+type ScoreSectionProps = {
   score: number;
   className?: string;
-}) => {
+  bingoData: {
+    bingo: number[];
+    bingoCounter: boolean[];
+  } | null;
+};
+
+const ScoreSection = ({ score, className, bingoData }: ScoreSectionProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -20,7 +23,11 @@ const ScoreSection = ({
       >
         <Score score={score} />
       </div>
-      <ScoreCard isOpen={open} onClose={() => setOpen(false)} />
+      <ScoreCard
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        bingoData={bingoData}
+      />
     </>
   );
 };

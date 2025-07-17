@@ -10,8 +10,20 @@ import Image from "next/image";
 const ScoreCard: StyleableFC<{
   isOpen: boolean;
   onClose: () => void;
-}> = ({ isOpen, onClose, className }) => {
+  bingoData?: {
+    bingo: number[];
+    bingoCounter: boolean[];
+  } | null;
+}> = ({ isOpen, onClose, className, bingoData }) => {
   if (!isOpen) return null;
+
+  let bonusIndexes: number[] = [];
+  let bonusRevealed: boolean[] = [];
+  if (bingoData && bingoData.bingo && bingoData.bingoCounter) {
+    bonusIndexes = bingoData.bingo.slice(25, 28);
+    bonusRevealed = bonusIndexes.map((idx) => bingoData.bingoCounter[idx - 1]);
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <Modal onClose={onClose} className={className}>
@@ -22,9 +34,13 @@ const ScoreCard: StyleableFC<{
             <div className="type-title-medium">ช่องโบนัส</div>
             <div className="bg-blue z-10 p-2">
               <div className="grid grid-cols-3 gap-2">
-                <BingoSquare revealed={false} />
-                <BingoSquare revealed={true} />
-                <BingoSquare revealed={true} />
+                {bonusIndexes.map((clubNumber, i) => (
+                  <BingoSquare
+                    key={i}
+                    revealed={bonusRevealed[i]}
+                    clubNumber={clubNumber}
+                  />
+                ))}
               </div>
             </div>
           </div>

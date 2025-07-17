@@ -1,17 +1,18 @@
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
-import revealedStamp from "@/public/decorating/bingo/revealedStamp.svg";
 import firstDateLogo from "@/public/logo/firstdateWithWhite.svg";
 import Image from "next/image";
 
-const BingoSquare: StyleableFC<{ revealed: boolean }> = ({
+const BingoSquare: StyleableFC<{ revealed: boolean; clubNumber: number }> = ({
   revealed,
+  clubNumber,
   className,
 }) => {
   return (
     <div
       className={cn(
-        "bg-blue relative flex h-16 w-16 flex-shrink-0 items-center justify-center",
+        "relative flex h-16 w-16 flex-shrink-0 items-center justify-center",
+        revealed ? "bg-yellow" : "bg-blue",
         className
       )}
     >
@@ -19,7 +20,7 @@ const BingoSquare: StyleableFC<{ revealed: boolean }> = ({
       <div className="pointer-events-none absolute inset-0 bg-[url('/decorating/texture/fabric.png')] opacity-50 mix-blend-soft-light" />
       {revealed ? (
         <Image
-          src={revealedStamp}
+          src={`/bingostamp/${clubNumber}.png`}
           alt="Revealed Stamp"
           width={64}
           height={64}
