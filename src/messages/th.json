@@ -137,6 +137,96 @@
       "line": "เข้ากลุ่ม LINE"
     }
   },
+  "Explore": {
+    "tabName": "Explore",
+    "header": {
+      "chinese": "探图",
+      "title": "Explore",
+      "subtitle": "จากชมรมถึงแผนที่ มาดูกันซิว่าวิศวะมีอะไรให้น้องบ้าง"
+    },
+    "map": {
+      "title": "Map",
+      "subtitle": "เปิดแผนที่ท่องโลกวิศวะ ตามหาเส้นทางสู่ชมรมในตำนาน"
+    },
+    "clubs": {
+      "title": "Clubs",
+      "subtitle": "เยี่ยมชมทุกชมรม และดูกันว่าชมรมไหนดีที่สุดสำหรับน้อง"
+    },
+    "presentation": {
+      "title": "Presentation",
+      "subtitle": "ดาวน์โหลดสไลด์ เพื่อไม่พลาดข้อมูลสำคัญของคณะ"
+    }
+  },
+  "Map": {
+    "Faculty": {
+      "header": {
+        "parent": "Explore",
+        "title": "Map"
+      },
+      "alt": "แผนที่คณะวิศวจุฬาฯ",
+      "instruction": "แตะบนอาคารที่ต้องการดูแผนที่ชมรม",
+      "building": {
+        "larngear": "ลานเกียร์",
+        "eng3": "ตึก 3",
+        "eng4": "ตึก 4",
+        "en100": "อาคารวิศวฯ 100 ปี"
+      }
+    },
+    "Building": {
+      "instruction": "แตะบนบูทเพื่อดูข้อมูลชมรม",
+      "active": "ชมรมที่เลือกอยู่",
+      "list": "หมายเลขชมรม"
+    }
+  },
+  "Clubs": {
+    "header": {
+      "parent": "Explore",
+      "title": "Clubs"
+    },
+    "Filter": {
+      "search": "ค้นหา",
+      "booth": {
+        "all": "ทั้งหมด",
+        "true": "จัดบูท",
+        "false": "ไม่จัดบูท"
+      },
+      "filter": {
+        "alt": "ตัวกรอง",
+        "tech": "เทคโนฯ",
+        "education": "วิชาการ",
+        "sports": "กีฬา",
+        "arts": "ศิลปะ",
+        "volunteer": "อาสา",
+        "other": "อื่น ๆ"
+      }
+    },
+    "List": {
+      "title": {
+        "tech": "เทคโนโลยี",
+        "education": "วิชาการ",
+        "sports": "กีฬา",
+        "arts": "ศิลปะและวัฒนธรรม",
+        "volunteer": "พัฒนาสังคมและบำเพ็ญประโยชน์",
+        "other": "อื่น ๆ"
+      }
+    },
+    "Card": {
+      "action": {
+        "more": "แสดงเพิ่มเติม",
+        "less": "แสดงน้อยลง",
+        "instagram": "Instagram • @{username}"
+      }
+    }
+  },
+  "Presentation": {
+    "header": {
+      "parent": "Explore",
+      "title": "Presentation"
+    },
+    "action": {
+      "download": "ดาวน์โหลด"
+    }
+  },
   "Games": {
     "tabName": "Games",
     "header": {

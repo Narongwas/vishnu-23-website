@@ -146,6 +146,88 @@
       "home": "Return to home"
     }
   },
+  "Explore": {
+    "tabName": "Explore",
+    "header": {
+      "chinese": "探图",
+      "title": "Explore",
+      "subtitle": "Discover what Chula Engineering has to offer."
+    },
+    "map": {
+      "title": "Map",
+      "subtitle": "Your guide to Intania First Date. Get to know your new home."
+    },
+    "clubs": {
+      "title": "Clubs",
+      "subtitle": "From sports to robots, what club will be your calling?"
+    },
+    "presentation": {
+      "title": "Presentation",
+      "subtitle": "Slides with information you’ll need to succeed in this faculty."
+    }
+  },
+  "Map": {
+    "Faculty": {
+      "header": {
+        "parent": "Explore",
+        "title": "Map"
+      },
+      "alt": "Map of the Faculty of Engineering, Chulalongkorn University.",
+      "instruction": "Tap a building to view club map",
+      "building": {
+        "larngear": "Larngear",
+        "eng3": "ENG3",
+        "eng4": "ENG4",
+        "en100": "EN100"
+      }
+    },
+    "Building": {
+      "instruction": "Tap a booth to view club details",
+      "active": "Selected club",
+      "list": "Club numbers"
+    }
+  },
+  "Clubs": {
+    "header": {
+      "parent": "Explore",
+      "title": "Clubs"
+    },
+    "Filter": {
+      "search": "Search",
+      "booth": {
+        "all": "All",
+        "true": "Booth",
+        "false": "No booth"
+      },
+      "filter": {
+        "alt": "Filters",
+        "tech": "Tech",
+        "education": "Edu",
+        "sports": "Sports",
+        "arts": "Arts",
+        "volunteer": "Voluntr",
+        "other": "Other"
+      }
+    },
+    "List": {
+      "title": {
+        "tech": "Technology",
+        "education": "Education",
+        "sports": "Sports",
+        "arts": "Arts and culture",
+        "volunteer": "Social development and community service",
+        "other": "Other"
+      }
+    },
+    "Card": {
+      "action": {
+        "qr": "Your QR code",
+        "code": "Add with code",
+        "help": "Help",
+        "add": "Add"
+      }
+    }
+  },
   "Games": {
     "tabName": "Games",
     "header": {
