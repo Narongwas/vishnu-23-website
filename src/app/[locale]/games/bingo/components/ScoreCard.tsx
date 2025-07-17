@@ -13,6 +13,12 @@ const ScoreCard: StyleableFC<{
   bingoData?: {
     bingo: number[];
     bingoCounter: boolean[];
+    bingoScore: number;
+    onePointSquareCount: number;
+    fivePointSquareCount: number;
+    fiftyPointSquareCount: number;
+    specialSquareCount: number;
+    totalScore: number;
   } | null;
 }> = ({ isOpen, onClose, className, bingoData }) => {
   if (!isOpen) return null;
@@ -47,7 +53,9 @@ const ScoreCard: StyleableFC<{
           <div className="align-center flex flex-col justify-center gap-2">
             <div className="type-title-medium">คะแนนของน้อง</div>
             <div className="flex items-center justify-center">
-              <p className="type-body-medium">9</p>
+              <p className="type-body-medium">
+                {bingoData?.onePointSquareCount ?? 0}
+              </p>
               <Image
                 src={bingoOnePoint}
                 alt="bingoOnePoint"
@@ -56,10 +64,14 @@ const ScoreCard: StyleableFC<{
                 className="relative z-10 opacity-100"
               />
               <p className="items-left type-body-medium w-10">x1</p>
-              <p className="items-left type-body-medium w-7">= 9</p>
+              <p className="items-left type-body-medium w-10">
+                = {bingoData?.onePointSquareCount ?? 0}
+              </p>
             </div>
             <div className="flex items-center justify-center">
-              <p className="type-body-medium">2</p>
+              <p className="type-body-medium">
+                {(bingoData?.fivePointSquareCount ?? 0) / 5}
+              </p>
               <Image
                 src={bingoFivePoint}
                 alt="bingoFivePoint"
@@ -68,16 +80,24 @@ const ScoreCard: StyleableFC<{
                 className="relative z-10 opacity-100"
               />
               <p className="items-left type-body-medium w-10">x5</p>
-              <p className="items-left type-body-medium w-7">= 10</p>
+              <p className="items-left type-body-medium w-10">
+                = {bingoData?.fivePointSquareCount ?? 0}
+              </p>
             </div>
             <div className="flex items-center justify-center">
-              <p className="type-body-medium">0</p>
+              <p className="type-body-medium">
+                {(bingoData?.fiftyPointSquareCount ?? 0) / 50}
+              </p>
               <Icon name="dataset" size={24} className="text-red" />
               <p className="items-left type-body-medium w-10">x50</p>
-              <p className="items-left type-body-medium w-7">= 0</p>
+              <p className="items-left type-body-medium w-10">
+                = {bingoData?.fiftyPointSquareCount ?? 0}
+              </p>
             </div>
             <div className="flex items-center justify-center">
-              <p className="type-body-medium">2</p>
+              <p className="type-body-medium">
+                {bingoData?.specialSquareCount ?? 0}
+              </p>
               <Image
                 src={bingoSpecial}
                 alt="bingoSpecial"
@@ -86,9 +106,17 @@ const ScoreCard: StyleableFC<{
                 className="relative z-10 opacity-100"
               />
               <p className="items-left type-body-medium w-10">x1</p>
-              <p className="items-left type-body-medium w-7">= 2</p>
+              <p className="items-left type-body-medium w-10">
+                = {bingoData?.specialSquareCount ?? 0}
+              </p>
             </div>
-            <div className="type-body-medium">9 + 10 + 0 + 2 = 21</div>
+            <div className="type-body-medium">
+              {bingoData?.onePointSquareCount ?? 0} +{" "}
+              {bingoData?.fivePointSquareCount ?? 0} +{" "}
+              {bingoData?.fiftyPointSquareCount ?? 0} +{" "}
+              {bingoData?.specialSquareCount ?? 0} ={" "}
+              {bingoData?.totalScore ?? 0}
+            </div>
           </div>
         </div>
       </Modal>

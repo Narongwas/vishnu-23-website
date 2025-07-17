@@ -29,7 +29,7 @@ export default function BingoTable({ bingoData, className }: BingoTableProps) {
         <BingoSquare
           key={i}
           revealed={bingoCounter[clubIndex - 1]}
-          clubNumber={bingo[clubIndex - 1]}
+          clubNumber={clubIndex}
         />
       ))}
     </div>

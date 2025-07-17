@@ -1,4 +1,7 @@
-export default function countBingoTable(bingoCounter: boolean[]) {
+export default function countBingoTable(
+  bingo: number[],
+  bingoCounter: boolean[]
+) {
   let onePointSquareCount = 0;
   let fivePointSquareCount = 0;
   let fiftyPointSquareCount = 0;
@@ -8,19 +11,20 @@ export default function countBingoTable(bingoCounter: boolean[]) {
   const ROW = 5;
   const COLUMN = 5;
 
-  // one point squares
-  for (let i = 0; i < 25; i++) {
-    if (bingoCounter[i]) {
+  // one point squares (ช่อง 0-24)
+  for (let i = 1; i <= 25; i++) {
+    const clubIdx = bingo[i] - 1;
+    if (bingoCounter[clubIdx]) {
       onePointSquareCount += 1;
     }
   }
 
-  // five point squares
-  // check all row
+  // five point squares (row)
   for (let i = 0; i < ROW; i++) {
     let isRowCompleted = true;
     for (let j = 0; j < COLUMN; j++) {
-      if (!bingoCounter[i * COLUMN + j]) {
+      const clubIdx = bingo[i * COLUMN + j] - 1;
+      if (!bingoCounter[clubIdx]) {
         isRowCompleted = false;
         break;
       }
@@ -30,11 +34,12 @@ export default function countBingoTable(bingoCounter: boolean[]) {
     }
   }
 
-  // check all column
+  // five point squares (column)
   for (let i = 0; i < COLUMN; i++) {
     let isColumnCompleted = true;
     for (let j = 0; j < ROW; j++) {
-      if (!bingoCounter[j * COLUMN + i]) {
+      const clubIdx = bingo[j * COLUMN + i] - 1;
+      if (!bingoCounter[clubIdx]) {
         isColumnCompleted = false;
         break;
       }
@@ -44,18 +49,23 @@ export default function countBingoTable(bingoCounter: boolean[]) {
     }
   }
 
-  // fifty point squares
+  // fifty point squares (ถ้าทุกช่องในตารางหลักเปิดหมด)
+  let isAllRevealed = true;
   for (let i = 0; i < 25; i++) {
-    if (!bingoCounter[i]) {
+    const clubIdx = bingo[i] - 1;
+    if (!bingoCounter[clubIdx]) {
+      isAllRevealed = false;
       break;
-    } else if (i == 24) {
-      fiftyPointSquareCount += 50;
     }
   }
+  if (isAllRevealed) {
+    fiftyPointSquareCount += 50;
+  }
 
-  // special squares
+  // special squares (ช่อง 25-27)
   for (let i = 25; i < 28; i++) {
-    if (bingoCounter[i]) {
+    const clubIdx = bingo[i] - 1;
+    if (bingoCounter[clubIdx]) {
       specialSquareCount += 1;
     }
   }

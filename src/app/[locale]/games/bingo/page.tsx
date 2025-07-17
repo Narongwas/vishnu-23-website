@@ -45,7 +45,7 @@ export default async function BingoPage() {
             <BingoTable bingoData={data} />
           </div>
         </div>
-        <ScoreSection score={0} className="-mt-25" bingoData={data} />
+        <ScoreSection className="-mt-25" bingoData={data} />
         <BottomPage icon="qr_code" text="Qr code ของน้อง" />
       </div>
     </>
