@@ -1,6 +1,7 @@
 import emailToId from "@/lib/helpers/emailToId";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
+import clubAdminEmailList from "@/jsondata/club-admin-email.json";
 
 // PATCH : "api/v1/bingo/admin" protected
 // get user uid from camperToken or friendCode and update user's bingoCounter
@@ -23,21 +24,16 @@ export async function PATCH(request: NextRequest) {
     .verifyIdToken(staffToken);
   const staffEmail = decodedStaffToken.email;
 
-  // get the staff data from the database
-  const staffSnapshot = await db
-    .collection("users")
-    .where("email", "==", staffEmail)
-    .get();
-
-  // if staff is not found, return error
-  if (staffSnapshot.empty) {
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  // check if the staff is a club admin
+  let isClubAdmin = false;
+  for (const email of clubAdminEmailList.emails) {
+    if (email === staffEmail) {
+      isClubAdmin = true;
+      break;
+    }
   }
 
-  const staffData = staffSnapshot.docs[0].data();
-
-  // if staff is not a staff, return error
-  if (staffData.role !== "staff") {
+  if (!isClubAdmin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
