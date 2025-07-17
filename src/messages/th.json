@@ -23,6 +23,16 @@
     "LanguageSwitcher": {
       "label": "TH",
       "alt": "Change to English"
+    },
+    "SponsorsFooter": {
+      "title": "ผู้สนับสนุนของเรา",
+      "sponsor": {
+        "0": "Bright Hair Studio",
+        "1": "be-engineer",
+        "2": "Eazy Cal",
+        "3": "Pocari",
+        "4": "Gulf Development"
+      }
     }
   },
   "Home": {
@@ -49,7 +59,18 @@
       "score": "{score, number} ไร่"
     },
     "Sponsors": {
-      "title": "ผู้สนับสนุนของเรา"
+      "title": "ผู้สนับสนุนของเรา",
+      "sponsors": {
+        "0": "Bright Hair Studio",
+        "1": "be-engineer",
+        "2": "Eazy Cal",
+        "3": "Pocari",
+        "4": "Gulf Development",
+        "5": "ธนาคารกสิกรไทย",
+        "6": "C asean Samyan CO-OP",
+        "7": "TOA",
+        "8": "Casio"
+      }
     },
     "Faq": {
       "title": "คำถามที่พบบ่อย",
