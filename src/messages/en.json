@@ -152,6 +152,7 @@
     }
   },
   "GroupAnnouncement": {
+    "group": "Group {group}",
     "action": {
       "home": "Return to home",
       "line": "Join LINE Group"
@@ -380,6 +381,7 @@
   },
   "Profile": {
     "Profile": {
+      "group": "Group {group}",
       "action": {
         "edit": "Edit",
         "logout": "Log out",

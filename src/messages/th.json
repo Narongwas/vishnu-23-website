@@ -153,6 +153,7 @@
     }
   },
   "GroupAnnouncement": {
+    "group": "Group {group}",
     "action": {
       "home": "กลับหน้าหลัก",
       "line": "เข้ากลุ่ม LINE"
@@ -379,6 +380,7 @@
   },
   "Profile": {
     "Profile": {
+      "group": "Group {group}",
       "action": {
         "edit": "แก้ไข",
         "logout": "ออกจากระบบ",
