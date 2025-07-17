@@ -17,10 +17,10 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
   return (
     <motion.div
       layout
-      className={cn("overflow-hidden bg-white text-left", className)}
+      className={cn("overflow-hidden bg-white *:text-start", className)}
       style={style}
     >
-      <motion.div
+      <motion.button
         layout="position"
         className={cn(
           "flex w-full cursor-pointer items-center px-4 py-3 transition-colors duration-200",
@@ -28,27 +28,29 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
         )}
         onClick={() => setIsOpen((isOpen) => !isOpen)}
       >
-        <p className="type-title-medium w-full">{questions.question}</p>
+        <p className="type-title-medium w-full text-balance">
+          {questions.question}
+        </p>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <Icon name="expand_more" size={24} className="text-red" />
         </motion.div>
-      </motion.div>
+      </motion.button>
 
       <motion.div
         layout="position"
         className="overflow-hidden"
         style={{ height: isOpen ? "auto" : 0 }}
       >
-        <motion.div
+        <motion.p
           animate={{ opacity: isOpen ? 1 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="type-body-medium p-4"
+          className="type-body-medium px-4 py-3"
         >
-          <p>{questions.answer}</p>
-        </motion.div>
+          {questions.answer}
+        </motion.p>
       </motion.div>
     </motion.div>
   );
