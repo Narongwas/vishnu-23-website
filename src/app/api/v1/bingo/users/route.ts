@@ -1,3 +1,4 @@
+import countBingoTable from "@/lib/helpers/countBingoTable";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -48,11 +49,24 @@ export async function GET(request: NextRequest) {
 
   const group = groups.docs[0].data();
 
+  const {
+    onePointSquareCount,
+    fivePointSquareCount,
+    fiftyPointSquareCount,
+    specialSquareCount,
+    totalScore,
+  } = countBingoTable(user.bingoCounter);
+
   return NextResponse.json(
     {
       bingo: group.bingo,
       bingoCounter: user.bingoCounter,
       bingoScore: user.bingoScore,
+      onePointSquareCount,
+      fivePointSquareCount,
+      fiftyPointSquareCount,
+      specialSquareCount,
+      totalScore,
     },
     { status: 200 }
   );
