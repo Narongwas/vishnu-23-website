@@ -1,7 +1,7 @@
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
 
-// GET : "api/v1/bingo/users" private
+// GET : "api/v1/bingo/users" protected
 // get user bingo and bingoCounter
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get("Authorization");

@@ -2,15 +2,51 @@ import emailToId from "@/lib/helpers/emailToId";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
 
-// PATCH : "api/v1/bingo/admin" private
-// get user uid from token or friendCode and update user's bingoCounter
-// only send friendCode or token, not both
+// PATCH : "api/v1/bingo/admin" protected
+// get user uid from camperToken or friendCode and update user's bingoCounter
+// only send friendCode or camperToken, not both
 // clubNumber is always required
 export async function PATCH(request: NextRequest) {
-  const token =
-    request.headers.get("Authorization")?.split(" ")[1] ||
-    request.cookies.get("token")?.value;
+  // get staff token from the authorization request header or cookie
+  const staffToken =
+    request.headers.get("StaffAuthorization")?.split(" ")[1] ||
+    request.cookies.get("StaffToken")?.value;
 
+  // if staff token is not provided, return error
+  if (!staffToken) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // verify the staff token
+  const decodedStaffToken = await firebaseAdmin
+    .auth()
+    .verifyIdToken(staffToken);
+  const staffEmail = decodedStaffToken.email;
+
+  // get the staff data from the database
+  const staffSnapshot = await db
+    .collection("users")
+    .where("email", "==", staffEmail)
+    .get();
+
+  // if staff is not found, return error
+  if (staffSnapshot.empty) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+
+  const staffData = staffSnapshot.docs[0].data();
+
+  // if staff is not a staff, return error
+  if (staffData.role !== "staff") {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // get camper token from the authorization request header or cookie
+  const camperToken =
+    request.headers.get("CamperAuthorization")?.split(" ")[1] ||
+    request.cookies.get("CamperToken")?.value;
+
+  // get friend code from the query string
   const friendCode = request.nextUrl.searchParams.get("friendCode");
 
   // get club number from the query string
@@ -31,20 +67,22 @@ export async function PATCH(request: NextRequest) {
     );
   }
 
-  // if token and friendCode is provided return error, only need one of them
-  if (token && friendCode) {
+  // if camperToken and friendCode is provided return error, only need one of them
+  if (camperToken && friendCode) {
     return NextResponse.json(
-      { error: "Please provide only one of token or friendCode" },
+      { error: "Please provide only one of camperToken or friendCode" },
       { status: 400 }
     );
   }
 
   let uid: string | undefined;
 
-  // if token is provided, get the uid from the token
-  if (token) {
-    const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
-    const email = decodedToken.email;
+  // if camperToken is provided, get the uid from the camperToken
+  if (camperToken) {
+    const decodedCamperToken = await firebaseAdmin
+      .auth()
+      .verifyIdToken(camperToken);
+    const email = decodedCamperToken.email;
 
     if (!email) {
       return NextResponse.json(
@@ -53,7 +91,7 @@ export async function PATCH(request: NextRequest) {
       );
     }
 
-    uid = emailToId(decodedToken.email || "");
+    uid = emailToId(decodedCamperToken.email || "");
   }
 
   // if friendCode is provided, get the uid from the friendCode
