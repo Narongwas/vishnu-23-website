@@ -85,7 +85,7 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
           />
         </div>
       </div>
-      <div className="item mt-6 flex justify-center pb-8">
+      <div className="item relative z-10 mt-6 flex justify-center pb-8">
         <AllPageSponsorFooter />
       </div>
       <AnimatedPageAction
