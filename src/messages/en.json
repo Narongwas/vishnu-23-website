@@ -59,6 +59,14 @@
   },
   "RegistrationAnnouncement": {
     "title": "Registration point",
+    "point": {
+      "EN100": "EN100",
+      "ENG3": "ENG3",
+      "ENG4": "ENG4",
+      "Plateau": "Plateau",
+      "Ruamjai": "Suan Ruamjai"
+    },
+    "time": "12:00 PM - 1:00 PM",
     "footer": {
       "0": "You can register at <location></location> at <time></time>",
       "1": "Registration location may differ from person to person."
