@@ -2,11 +2,10 @@
 
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion } from "motion/react";
 
 type SwitchProps = {
-  checked?: boolean;
+  checked: boolean;
   onChange?: (value: boolean) => void;
 };
 
@@ -16,53 +15,38 @@ const Switch: StyleableFC<SwitchProps> = ({
   className,
   style,
 }) => {
-  const [internalChecked, setInternalChecked] = useState(checked ?? false);
-  const isControlled = typeof checked === "boolean";
-  const isChecked = isControlled ? checked : internalChecked;
-
-  const [pressed, setPressed] = useState(false);
-
   const toggle = () => {
-    const newValue = !isChecked;
-    if (!isControlled) setInternalChecked(newValue);
-    onChange?.(newValue);
+    onChange?.(!checked);
   };
 
   return (
     <div className={cn("flex items-center gap-3", className)} style={style}>
-      <button
-        type="submit"
-        onClick={toggle}
-        onPointerDown={() => setPressed(true)}
-        onPointerUp={() => setPressed(false)}
-        onPointerLeave={() => setPressed(false)}
-        className={cn(
-          "relative flex h-8 w-14 items-center rounded-full px-1",
-          isChecked ? "bg-red" : "bg-yellow-white border-orange border-2",
-          isChecked ? "justify-end" : "justify-start"
-        )}
+      <motion.button
+        aria-checked={checked}
         role="switch"
-        aria-checked={isChecked}
+        whileTap="pressed"
+        onClick={toggle}
+        className={cn(
+          "relative flex h-8 w-14 cursor-pointer rounded-full",
+          checked
+            ? "bg-red active:*:bg-yellow p-1"
+            : "bg-yellow-white border-orange active:*:bg-red border-2 p-1.5",
+          checked ? "justify-end" : "justify-start"
+        )}
       >
         <motion.span
           layout
-          animate={{
-            width: pressed ? "1.75rem" : isChecked ? "1.5rem" : "1rem",
-            height: pressed ? "1.75rem" : isChecked ? "1.5rem" : "1rem",
+          variants={{
+            initial: { scale: 1 },
+            pressed: { scale: 28 / (checked ? 24 : 16) },
           }}
           transition={{ duration: 0.15 }}
           className={cn(
-            "w-4 rounded-full",
-            pressed
-              ? isChecked
-                ? "bg-yellow"
-                : "bg-red"
-              : isChecked
-                ? "bg-white"
-                : "bg-orange"
+            "aspect-square rounded-full transition-colors",
+            checked ? "bg-white" : "bg-orange"
           )}
         />
-      </button>
+      </motion.button>
     </div>
   );
 };

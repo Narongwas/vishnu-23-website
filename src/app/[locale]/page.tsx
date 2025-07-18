@@ -21,12 +21,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="z-30 w-full pb-30">
-        <div className="type-title-large text-red mt-17 mb-5 text-center font-bold">
-          <p>คำถามที่พบบ่อย</p>
-        </div>
-        <FaqLayoutGroup />
-      </div>
+      <FaqLayoutGroup />
     </HomeWrapper>
   );
 }

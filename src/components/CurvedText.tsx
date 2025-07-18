@@ -1,19 +1,15 @@
 import { StyleableFC } from "@/lib/types/misc";
 
-type CurvedTextProps = {
-  label: string;
-};
-
-const CurvedText: StyleableFC<CurvedTextProps> = ({
-  label,
-  className,
-  style,
-}) => {
+const CurvedText: StyleableFC<{
+  children: React.ReactNode;
+  ariaLabel: string;
+}> = ({ children, ariaLabel, className, style }) => {
   return (
     <svg
       width="100"
       height="100"
       viewBox="0 0 100 100"
+      aria-label={ariaLabel}
       className={className}
       style={style}
     >
@@ -31,7 +27,7 @@ const CurvedText: StyleableFC<CurvedTextProps> = ({
           textAnchor="middle"
           className="type-chinese-small"
         >
-          {label}
+          {children}
         </textPath>
       </text>
     </svg>
