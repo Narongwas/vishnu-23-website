@@ -14,7 +14,7 @@ export default async function Map() {
       <div className="relative z-10 -mt-16 flex flex-col items-center gap-4 py-17">
         <FacultyMap />
       </div>
-      <AllPageSponsorFooter className="type-title-small text-center" />
+      <AllPageSponsorFooter className="type-title-small mt-8 text-center" />
     </>
   );
 }

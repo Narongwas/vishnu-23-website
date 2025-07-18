@@ -1,6 +1,7 @@
 import EN100Map from "@/app/[locale]/explore/map/components/EN100Map";
 import ENG3Map from "@/app/[locale]/explore/map/components/ENG3Map";
 import LarngearMap from "@/app/[locale]/explore/map/components/LarngearMap";
+import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
 import BackButton from "@/components/BackButton";
 import CLUBS from "@/jsondata/club.json";
 import type { ClubItem } from "@/lib/types/club";
@@ -65,6 +66,7 @@ export default async function BuildingMapPage({
           <p>ไม่พบแผนที่ของอาคารนี้</p>
         )}
       </div>
+      <AllPageSponsorFooter className="type-title-small mt-10 text-center" />
     </>
   );
 }

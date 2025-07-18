@@ -13,7 +13,7 @@ export default async function ClubPage() {
         <BackButton variants="tertiary" />
       </div>
       <ClubPanel className="-mt-16 pb-10" />
-      <AllPageSponsorFooter className="type-title-small text-center" />
+      <AllPageSponsorFooter />
     </>
   );
 }
