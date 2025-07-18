@@ -53,7 +53,8 @@ export default async function ExplorePage() {
                 key={index}
                 image={card.image}
                 title={card.title}
-                label={card.label}
+                desc={card.label}
+                variant="yellow"
                 href={card.href}
               />
             )
