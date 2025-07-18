@@ -35,6 +35,17 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
 
   const data = await res.json();
 
+  const groupInfoRes = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/group/info/${data.group}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+    }
+  );
+  const groupInfo = groupInfoRes.ok ? await groupInfoRes.json() : null;
+
   return (
     <BackgroundWithNoise
       className={cn(
@@ -43,7 +54,6 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
       )}
     >
       <div className="relative mx-auto mt-5.5 flex h-16 w-full max-w-lg items-center justify-center px-4 sm:px-6 lg:px-8">
-        {/* ปุ่ม home ลอยขวาบน */}
         <div className="absolute top-1/2 right-0 z-20 -translate-y-1/2 pr-6">
           <Link href="/">
             <Button
@@ -56,15 +66,14 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
             </Button>
           </Link>
         </div>
-        {/* ข้อความอยู่กลาง container */}
         <div className="type-headline-small w-full text-center">
-          {t(data.group)}
+          {t(groupInfo.id)}
         </div>
       </div>
       <div className="relative z-10 mt-4.5 flex w-full justify-center">
         <div className="relative">
           <Image
-            src={`/group/${data.group}.webp`}
+            src={`/group/${groupInfo.id}.webp`}
             width={256}
             height={256}
             alt="Kingdom Flag"
@@ -89,9 +98,9 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
         <AllPageSponsorFooter />
       </div>
       <AnimatedPageAction
-        text="/logo/SocialIcon.svg"
-        label={tGroupAnnouncement("action.line")}
-        group={data.group}
+        image="/logo/SocialIcon.svg"
+        text={tGroupAnnouncement("action.line")}
+        groupInfo={groupInfo}
       />
     </BackgroundWithNoise>
   );

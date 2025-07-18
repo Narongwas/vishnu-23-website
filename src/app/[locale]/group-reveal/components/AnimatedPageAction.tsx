@@ -4,27 +4,14 @@ import { StyleableFC } from "@/lib/types/misc";
 import cn from "@/lib/helpers/cn";
 import PageAction from "@/components/PageAction";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
-import { getGroupInfoById } from "@/lib/helpers/getGroupInfoById";
 import { Group } from "@/lib/types/group";
 
 const AnimatedPageAction: StyleableFC<{
+  image: string;
   text: string;
-  label: string;
-  group: string;
+  groupInfo: Group;
   className?: string;
-}> = ({ text, label, group, className }) => {
-  const [groupInfo, setGroupInfo] = useState<Group | null>(null);
-
-  useEffect(() => {
-    if (!group) return;
-    async function fetchGroup() {
-      const info = await getGroupInfoById(group);
-      setGroupInfo(info);
-    }
-    fetchGroup();
-  }, [group]);
-
+}> = ({ image, text, groupInfo, className }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -41,10 +28,10 @@ const AnimatedPageAction: StyleableFC<{
     >
       {groupInfo?.lineLink ? (
         <a href={groupInfo.lineLink} target="_blank" rel="noopener noreferrer">
-          <PageAction image={text} text={label} />
+          <PageAction image={image} text={text} />
         </a>
       ) : (
-        <PageAction image={text} text={label} />
+        <PageAction image={image} text={text} />
       )}
     </motion.div>
   );
