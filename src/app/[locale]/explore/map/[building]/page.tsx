@@ -66,7 +66,7 @@ export default async function BuildingMapPage({
           <p>ไม่พบแผนที่ของอาคารนี้</p>
         )}
       </div>
-      <AllPageSponsorFooter className="type-title-small mt-10 text-center" />
+      <AllPageSponsorFooter className="mt-10" />
     </>
   );
 }
