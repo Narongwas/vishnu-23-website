@@ -41,7 +41,7 @@ export default async function BuildingMapPage({
   const allClubs: ClubItem[] = Object.values(CLUBS).flat();
 
   const clubsInBuilding = allClubs
-    .filter((club) => club.boothPosition?.building === displayName)
+    .filter((club) => club.boothPosition?.building === building)
     .sort(
       (a, b) =>
         (a.boothPosition?.position ?? Infinity) -
@@ -53,7 +53,7 @@ export default async function BuildingMapPage({
   return (
     <>
       <div className="relative z-10 flex w-full items-center justify-between py-4">
-        <BackButton variants="Tertiary" />
+        <BackButton variants="tertiary" />
         <p className="type-headline-small text-center">
           {t(`Faculty.building.${building}`)}
         </p>

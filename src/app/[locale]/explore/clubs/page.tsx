@@ -1,6 +1,5 @@
 import ClubPanel from "@/app/[locale]/explore/clubs/components/ClubPanel";
 import BackButton from "@/components/BackButton";
-import ClubPanel from "@/components/ClubPanel";
 import SubPageHeader from "@/components/SubPageHeader";
 
 export default function ClubPage() {

@@ -71,7 +71,7 @@ const TopLevelPageHeader: StyleableFC<Props> = ({
           <h2
             className={cn(
               centerBase,
-              "type-title-large top-41 w-70",
+              "type-title-large top-41 z-10 w-70",
               subtitleColor
             )}
           >
