@@ -28,8 +28,8 @@ const NavigationCard: StyleableFC<{
         )}
         style={style}
       >
-        <div className="space-y-3 text-center text-balance">
-          <h2 className="type-chinese-medium">{title}</h2>
+        <div className="relative text-center text-balance">
+          <h2 className="type-chinese-medium mb-3">{title}</h2>
           <p
             className={cn(
               "type-body-medium w-70",
@@ -38,7 +38,10 @@ const NavigationCard: StyleableFC<{
           >
             {desc}
           </p>
-          <Icon name="arrow_forward" className="absolute -right-8 bottom-0" />
+          <Icon
+            name="arrow_forward"
+            className="absolute -right-8 -bottom-0.5"
+          />
         </div>
       </Interactive>
     </div>
