@@ -1,11 +1,9 @@
 import { StyleableFC } from "@/lib/types/misc";
 
-
 const CurvedText: StyleableFC<{
   children: React.ReactNode;
   ariaLabel: string;
 }> = ({ children, ariaLabel, className, style }) => {
-
   return (
     <svg
       width="100"
