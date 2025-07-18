@@ -21,15 +21,16 @@ const SubPageHeader: StyleableFC<Props> = ({
 }) => {
   const centerBase = "absolute left-1/2 -translate-x-1/2";
   const cloudStyle = "w-full h-full object-contain";
+
   return (
-    <div
+    <header
       className={cn(
         "text-blue fill-blue relative h-60 w-full shrink-0 text-center",
         className
       )}
     >
       <div className="relative mx-auto h-full max-w-90">
-        {/* Big Circle */}
+        {/* Big Circle Background */}
         <div
           className={cn(
             centerBase,
@@ -39,27 +40,30 @@ const SubPageHeader: StyleableFC<Props> = ({
         />
         {/* Curved Text */}
         <CurvedText
-          label={curvedText}
+          ariaLabel={curvedText}
           className={cn("top-14 overflow-visible", centerBase)}
-        />
-        {/* Title */}
-        <div className={cn("type-chinese-medium top-21", centerBase)}>
+        >
+          {curvedText}
+        </CurvedText>
+        {/* Title (h1) */}
+        <h1 className={cn("type-chinese-medium top-21", centerBase)}>
           {title}
-        </div>
-        {/* Sub title */}
-        <div className={cn("type-title-medium top-40", centerBase)}>
-          {subtitle}
-        </div>
-        {/* Cloud 1 (top-left) */}
+        </h1>
+        {/* Subtitle (h2, optional) */}
+        {subtitle && (
+          <h2 className={cn("type-title-medium top-40", centerBase)}>
+            {subtitle}
+          </h2>
+        )}
+        {/* Decorative Clouds */}
         <div className="absolute top-6 left-14 h-10 w-20 overflow-hidden">
           <Image alt="" src={cloud1Logo} className={cloudStyle} />
         </div>
-        {/* Cloud 2 (bottom-right) */}
         <div className="absolute top-33 right-10 h-7 w-14">
           <Image alt="" src={cloud2Logo} className={cloudStyle} />
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
