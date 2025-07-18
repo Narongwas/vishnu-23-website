@@ -1,10 +1,9 @@
 "use client";
 
-import { StyleableFC } from "@/lib/types/misc";
-import cn from "@/lib/helpers/cn";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import { signOut } from "@/lib/firebase/auth";
+import { StyleableFC } from "@/lib/types/misc";
 import { useTranslations } from "next-intl";
 
 const LogoutButton: StyleableFC = ({ className }) => {
@@ -29,7 +28,7 @@ const LogoutButton: StyleableFC = ({ className }) => {
     <Button
       Size="small"
       Appearance="primary"
-      className={cn(className)}
+      className={className}
       onClick={handleLogout}
     >
       <Icon name="logout" />

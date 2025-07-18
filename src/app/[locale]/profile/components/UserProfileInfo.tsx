@@ -2,13 +2,13 @@
 
 import EditButton from "@/app/[locale]/profile/components/EditButton";
 import LogoutButton from "@/app/[locale]/profile/components/LogoutButton";
+import BackButton from "@/components/BackButton";
 import cn from "@/lib/helpers/cn";
 import getMe from "@/lib/helpers/getMe";
 import { StyleableFC } from "@/lib/types/misc";
+import { User } from "@/lib/types/users";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { User } from "@/lib/services/users";
-import BackButton from "@/components/BackButton";
 
 const UserProfileInfo: StyleableFC = ({ className }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -29,10 +29,10 @@ const UserProfileInfo: StyleableFC = ({ className }) => {
       </div>
       <div className="flex items-center justify-center">
         <Image
-          src={user?.photoURL ?? "/decorating/profile/defaultProfile.png"}
+          src={"/decorating/profile/defaultProfile.png"}
           alt={
-            user?.displayName
-              ? `${user.displayName}'s profile picture`
+            user?.nickname
+              ? `${user.nickname}'s profile picture`
               : "User's profile picture"
           }
           width={108}
