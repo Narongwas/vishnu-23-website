@@ -2,7 +2,7 @@ import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
 import Interactive from "@/components/Interactive";
 
-type ButtonSize = "medium" | "small" | "xsmall";
+type ButtonSize = "medium" | "small" | "x-small";
 type ButtonAppearance =
   | "primary"
   | "secondary"
@@ -18,13 +18,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const SizeClasses: Record<ButtonSize, string> = {
   medium: "px-6 py-4 gap-4",
   small: "px-4 py-2.5 gap-3",
-  xsmall: "px-3 py-1.5 gap-2",
+  "x-small": "px-3 py-1.5 gap-2",
 };
 
 const iconMarginSelector: Record<ButtonSize, string[]> = {
   medium: ["[&>svg]:-mx-2", "[&>svg]:h-6", "[&>i]:-mx-2"],
   small: ["[&>svg]:-mx-1", "[&>svg]:h-4", "[&>i]:-mx-1"],
-  xsmall: ["[&>svg]:-mx-1.5", "[&>svg]:h-4", "[&>i]:-mx-1.5"],
+  "x-small": ["[&>svg]:-mx-1.5", "[&>svg]:h-4", "[&>i]:-mx-1.5"],
 };
 
 const AppearanceClasses: Record<ButtonAppearance, string> = {
