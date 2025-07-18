@@ -23,7 +23,7 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
       <motion.div
         layout="position"
         className={cn(
-          "flex w-full cursor-pointer items-center px-4 py-3 transition-colors duration-200",
+          "flex w-full items-center px-4 py-3 transition-colors duration-200",
           isOpen && "bg-yellow/20"
         )}
       >
@@ -33,7 +33,11 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
           transition={{ duration: 0.3, ease: "easeOut" }}
           onClick={() => setIsOpen((isOpen) => !isOpen)}
         >
-          <Icon name="expand_more" size={24} className="text-red" />
+          <Icon
+            name="expand_more"
+            size={24}
+            className="text-red cursor-pointer"
+          />
         </motion.div>
       </motion.div>
 

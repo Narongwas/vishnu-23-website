@@ -53,11 +53,35 @@
   --tracking-chinese-cursive: -20px;
 }
 
+@layer base {
+  :focus-visible {
+    outline: 3px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+}
+
+.focus-ring-red {
+  --focus-ring-color: var(--color-red);
+}
+
+.focus-ring-yellow {
+  --focus-ring-color: var(--color-yellow);
+}
+
 @utility type-* {
   font: --value(--type-*);
   letter-spacing: --value(--tracking-*);
 
   &.font-bold {
     font-weight: bold;
+  }
+}
+
+@utility fabric-texture {
+  @apply relative;
+
+  &::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 bg-[url('/decorating/texture/fabric.png')] opacity-50 mix-blend-soft-light;
   }
 }

@@ -3,28 +3,6 @@ import { db } from "@/lib/services/firebase.admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { NextRequest, NextResponse } from "next/server";
 
-// Get each group score : Public
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  try {
-    const id = (await params).id;
-    const doc = await db.collection("groups").doc(id).get();
-    if (!doc.exists) {
-      return NextResponse.json({ error: "Group not found" }, { status: 404 });
-    }
-    const groupData = doc.data();
-    return NextResponse.json({ score: groupData?.totalScore }, { status: 200 });
-  } catch (err) {
-    return NextResponse.json(
-      { error: "Failed to get group score : " + err },
-      { status: 500 }
-    );
-  }
-}
-
-// Add group score : Private (admin)
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -56,7 +34,6 @@ export async function POST(
   }
 }
 
-// Set group score : Private (admin)
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
