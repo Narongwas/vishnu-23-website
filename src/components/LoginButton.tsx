@@ -2,12 +2,12 @@
 
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
+import { Link, useRouter } from "@/i18n/navigation";
 import { signInWithGoogle } from "@/lib/firebase/auth";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
 interface GoogleLoginBtnProps {

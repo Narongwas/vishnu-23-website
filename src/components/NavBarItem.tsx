@@ -2,8 +2,8 @@
 
 import Icon from "@/components/Icon";
 import Interactive from "@/components/Interactive";
+import { usePathname } from "@/i18n/navigation";
 import cn from "@/lib/helpers/cn";
-import { usePathname } from "next/navigation";
 
 export default function NavBarItem({
   icon,
@@ -15,10 +15,7 @@ export default function NavBarItem({
   href: string;
 }) {
   const pathname = usePathname();
-  const segments = pathname.split("/");
-  const pathWithoutLocale = "/" + segments.slice(2).join("/");
-  const isActive =
-    pathWithoutLocale === href || pathWithoutLocale.startsWith(href + "/");
+  const isActive = pathname === href || pathname.startsWith(href + "/");
   return (
     <Interactive
       href={href}

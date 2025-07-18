@@ -2,8 +2,8 @@
 
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
+import { useRouter } from "@/i18n/navigation";
 import { StyleableFC } from "@/lib/types/misc";
-import { useRouter } from "next/navigation";
 
 type BackButtonProps = {
   variants: "primary" | "secondary" | "tertiary" | "secondary-variant";
