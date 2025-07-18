@@ -4,12 +4,37 @@ import React, { useState } from "react";
 import Icon from "@/components/Icon";
 
 const options = [
-  { value: "qcf", label: "Quantitative Computational Finance" },
-  { value: "option2", label: "Option 2" },
-  { value: "option3", label: "Option 3" },
-  { value: "option4", label: "Option 4" },
-  { value: "option5", label: "Option 5" },
-  { value: "option6", label: "Option 6" },
+  { value: "1", label: "ชมรมฟุตบอลคณะวิศวกรรมศาสตร์" },
+  { value: "2", label: "INTANIA INNOVATION CONTEST" },
+  { value: "3", label: "ชมรมฟอร์มูล่า" },
+  { value: "4", label: "เทเบิลเทนนิส" },
+  { value: "5", label: "INTANIA BASEBALL & SOFTBALL CLUB" },
+  { value: "6", label: "INTANIA RUNNING CLUB" },
+  { value: "7", label: "INTANIA RUGBY CLUB" },
+  { value: "8", label: "AWAREHOUSE" },
+  { value: "9", label: "ชมรมหมากกระดาน" },
+  { value: "10", label: "ชมรมวอลเลย์บอล" },
+  { value: "11", label: "STEPOUT" },
+  { value: "12", label: "INTANIA PRODUCTION HOUSE" },
+  { value: "13", label: "ENGINEERING EXPATS CLUB" },
+  {
+    value: "14",
+    label: "ชมรมบาสเกตบอล คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
+  },
+  { value: "15", label: "ค่ายยุววิศวกรมพิธ" },
+  { value: "16", label: "INTANIAVERSE" },
+  { value: "17", label: "ชมรมนักประดิษฐ์วิศวกรรม" },
+  { value: "18", label: "มวยสากล" },
+  { value: "19", label: "INTANIA SWIMMING CLUB" },
+  { value: "20", label: "INTANIA STAGE PLAY" },
+  { value: "21", label: "MMA" },
+  { value: "22", label: "ชมรมเทนนิส - INTANIA TENNIS CLUB" },
+  { value: "23", label: "FECAMP" },
+  { value: "24", label: "THAILAND INCUBATOR CLUB (THINC.)" },
+  { value: "25", label: "ชมรมแบตมินตัน" },
+  { value: "26", label: "ชมรมนิสิตทุน" },
+  { value: "27", label: "โต้วาที (INTANIA DEBATE CLUB)" },
+  { value: "28", label: "ชมรมวิชาการ คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย" },
 ];
 
 const SelectDropDown = () => {
