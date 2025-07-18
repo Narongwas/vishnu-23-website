@@ -78,8 +78,8 @@ const FacultyMap: StyleableFC = ({ className, style }) => {
         {buildings.map((building) => (
           <Button
             key={building.key}
-            Appearance="Primary"
-            Size="Small"
+            Appearance="primary"
+            Size="small"
             className="type-title-medium"
             onClick={() => handleClick(building.key)}
           >
