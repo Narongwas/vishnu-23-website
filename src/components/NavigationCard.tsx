@@ -24,7 +24,8 @@ const NavigationCard: StyleableFC<{
   style,
 }) => {
   return (
-    <div
+    <Link
+      href={link}
       className={cn("relative flex w-full flex-col items-center", className)}
       style={style}
     >
@@ -43,16 +44,14 @@ const NavigationCard: StyleableFC<{
 
           <div className="relative">
             <p className={cn("type-body-medium w-70", labelColor)}>{label}</p>
-            <Link href={link} className="absolute -right-8 bottom-0">
-              <Icon
-                name="arrow_forward"
-                className={cn("text-red", titleColor)}
-              />
-            </Link>
+            <Icon
+              name="arrow_forward"
+              className={cn("text-red absolute -right-8 bottom-0", titleColor)}
+            />
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
