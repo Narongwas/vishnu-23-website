@@ -18,8 +18,8 @@ const GenreFilter: StyleableFC<{
       {genres.map((g) => (
         <Button
           key={g.key}
-          Appearance={selectedGenre === g.key ? "Primary" : "Tertiary"}
-          Size="Small"
+          Appearance={selectedGenre === g.key ? "primary" : "tertiary"}
+          Size="small"
           onClick={() => onSelect(g.key === selectedGenre ? null : g.key)}
           className={cn("flex justify-center", className)}
           style={style}

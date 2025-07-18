@@ -77,8 +77,8 @@ const ClubCard: StyleableFC<{
             {club.boothPosition && (
               <div className="flex gap-1">
                 <Button
-                  Appearance="Secondary"
-                  Size="XSmall"
+                  Appearance="secondary"
+                  Size="x-small"
                   className="flex gap-2"
                 >
                   <Icon name="storefront" />
@@ -86,7 +86,7 @@ const ClubCard: StyleableFC<{
                     {club.boothPosition?.position}
                   </span>
                 </Button>
-                <Button Appearance="Secondary" Size="XSmall">
+                <Button Appearance="secondary" Size="x-small">
                   <span className="type-title-medium">
                     {t(`Map.Faculty.building.${club.boothPosition?.building}`)}
                   </span>{" "}
@@ -96,8 +96,8 @@ const ClubCard: StyleableFC<{
             {igURL && (
               <Link href={igURL}>
                 <Button
-                  Appearance="Secondary"
-                  Size="Small"
+                  Appearance="secondary"
+                  Size="small"
                   title={t("Clubs.Card.action.instagram", { username })}
                 >
                   <InstagramIcon />
