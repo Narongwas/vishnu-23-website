@@ -3,18 +3,20 @@
 import Button from "@/components/Button";
 import { StyleableFC } from "@/lib/types/misc";
 import { useRouter } from "next/navigation";
+import Icon from "@/components/Icon";
 
-const BackButton: StyleableFC<{
-  variants: "Primary" | "Secondary" | "Tertiary" | "Games";
-}> = ({ variants }) => {
+type BackButtonProps = {
+  variants: "primary" | "secondary" | "tertiary" | "secondary-variant";
+};
+
+const BackButton: StyleableFC<Pick<BackButtonProps, "variants">> = ({
+  variants,
+}) => {
   const router = useRouter();
   return (
-    <Button
-      icon="arrow_back"
-      Size="Small"
-      Appearance={variants}
-      onClick={() => router.back()}
-    />
+    <Button Appearance={variants} Size="small" onClick={() => router.back()}>
+      <Icon name="arrow_back" />
+    </Button>
   );
 };
 
