@@ -86,7 +86,7 @@ export default function GoogleLoginBtn({
           className="inline-block"
         >
           <Image
-            src={user?.photoURL ?? "/decorating/profile/ProfileImage.svg"}
+            src="/decorating/profile/defaultProfile.png"
             alt={
               user?.displayName
                 ? `${user.displayName}'s profile picture`
@@ -100,8 +100,8 @@ export default function GoogleLoginBtn({
       ) : (
         <Button
           onClick={handleGoogleLogin}
-          Size="Small"
-          Appearance="Primary"
+          Size="small"
+          Appearance="primary"
           aria-label={t("action.logIn")}
           title={t("action.logIn")}
         >

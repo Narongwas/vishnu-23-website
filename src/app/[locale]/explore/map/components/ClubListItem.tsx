@@ -5,15 +5,17 @@ import cn from "@/lib/helpers/cn";
 import { ClubItem } from "@/lib/types/club";
 import { StyleableFC } from "@/lib/types/misc";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const ClubListItem: StyleableFC<{
   clubList: ClubItem[];
   onClick: (club: ClubItem) => void;
 }> = ({ clubList, onClick, className, style }) => {
+  const t = useTranslations("Map");
   return (
     <div className={cn("space-y-4", className)} style={style}>
       <p className="type-title-large text-red text-center font-bold">
-        หมายเลขชมรม
+        {t("Building.list")}
       </p>
       {clubList.map((club, index) => (
         <Interactive
