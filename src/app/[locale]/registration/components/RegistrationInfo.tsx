@@ -47,7 +47,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
   const facultyMap = locale === "th" ? FacultyMapTH : FacultyMapEN;
 
   const realImg = registrationData
-    ? `/registration/picture/Img-${registrationData.firstdate}.jpg`
+    ? `/registration/Img-${registrationData.firstdate}.jpg`
     : "";
 
   if (!registrationData) return null;
