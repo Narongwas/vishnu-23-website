@@ -32,9 +32,9 @@ export default async function BuildingMapPage({
   const t = await getTranslations("Map");
 
   const displayName = buildingDisplayNameMap[building];
-  const mapImage = buildingImageMap[building];
+  const BuildingMap = buildingImageMap[building];
 
-  if (!mapImage || !displayName) {
+  if (!BuildingMap || !displayName) {
     return <div className="p-4">ไม่พบแผนที่ของอาคารนี้</div>;
   }
 
@@ -47,8 +47,6 @@ export default async function BuildingMapPage({
         (a.boothPosition?.position ?? Infinity) -
         (b.boothPosition?.position ?? Infinity)
     );
-
-  const BuildingMap = buildingImageMap[building];
 
   return (
     <>
