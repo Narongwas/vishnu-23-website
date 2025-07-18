@@ -40,7 +40,9 @@ const FacultyMap: StyleableFC = ({ className, style }) => {
   const handleClick = (target: string) => {
     setSelected(target);
     setIsTransitioning(true);
-    router.push(`/explore/map/${target}`);
+    setTimeout(() => {
+      router.push(`/explore/map/${target}`);
+    }, 1000);
   };
 
   const facultyMap = locale === "th" ? facultyMapTH : facultyMapEN;
