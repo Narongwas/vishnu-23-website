@@ -96,7 +96,7 @@ export default function FeatureControl() {
           key={flag.id}
           className="type-body-large flex items-center justify-between"
         >
-          <span>{flag.featureName}</span>
+          <span className="grow">{flag.featureName}</span>
           <Switch
             checked={flag.enabled}
             onChange={() => toggleLocalFlag(flag.id)}
