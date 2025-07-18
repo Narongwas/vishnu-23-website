@@ -1,7 +1,7 @@
-import { Link } from "@/i18n/navigation";
-import { StyleableFC } from "@/lib/types/misc";
-import cn from "@/lib/helpers/cn";
 import Icon from "@/components/Icon";
+import Interactive from "@/components/Interactive";
+import cn from "@/lib/helpers/cn";
+import { StyleableFC } from "@/lib/types/misc";
 import Image, { StaticImageData } from "next/image";
 
 const NavigationCard: StyleableFC<{
@@ -12,34 +12,36 @@ const NavigationCard: StyleableFC<{
   href: string;
 }> = ({ image, title, desc, variant, href, className, style }) => {
   return (
-    <Link
-      href={href}
-      className={cn(
-        "relative flex w-full flex-col items-center text-balance",
-        variant === "yellow" ? "text-red" : "text-yellow",
-        className
-      )}
-      style={style}
-    >
-      <div className="from-yellow to-yellow-white absolute h-135 w-250 bg-gradient-to-b [clip-path:ellipse()]" />
-      <div className="relative -mt-12 mb-10 flex h-full w-92 flex-col items-center pb-5">
-        <Image src={image} alt="" priority />
-        <div className="relative z-15 flex w-full flex-col items-center gap-3 text-center">
+    <div className="flex w-full flex-col items-center">
+      <Image
+        src={image}
+        alt=""
+        priority
+        className="pointer-events-none relative z-10 -mb-32 max-w-92"
+      />
+      <Interactive
+        href={href}
+        className={cn(
+          "from-yellow to-yellow-white -mb-72 flex h-135 w-250 flex-col items-center bg-gradient-to-b pt-33 [clip-path:ellipse()]",
+          variant === "yellow" ? "text-red" : "text-yellow",
+          className
+        )}
+        style={style}
+      >
+        <div className="space-y-3 text-center text-balance">
           <h2 className="type-chinese-medium">{title}</h2>
-          <div className="relative">
-            <p
-              className={cn(
-                "type-body-medium w-70",
-                variant === "yellow" ? "text-black" : "text-white"
-              )}
-            >
-              {desc}
-            </p>
-            <Icon name="arrow_forward" className="absolute -right-8 bottom-0" />
-          </div>
+          <p
+            className={cn(
+              "type-body-medium w-70",
+              variant === "yellow" ? "text-black" : "text-white"
+            )}
+          >
+            {desc}
+          </p>
+          <Icon name="arrow_forward" className="absolute -right-8 bottom-0" />
         </div>
-      </div>
-    </Link>
+      </Interactive>
+    </div>
   );
 };
 
