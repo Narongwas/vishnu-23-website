@@ -1,6 +1,7 @@
 "use client";
 
 import Icon from "@/components/Icon";
+import Interactive from "@/components/Interactive";
 import cn from "@/lib/helpers/cn";
 import type { FaqQuestion } from "@/lib/types/faq";
 import { StyleableFC } from "@/lib/types/misc";
@@ -20,28 +21,28 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
       className={cn("overflow-hidden bg-white *:text-start", className)}
       style={style}
     >
-      <motion.button
+      <motion.div
         layout="position"
         className={cn(
-          "flex w-full items-center px-4 py-3 transition-colors duration-200",
+          "flex w-full transition-colors duration-200",
           isOpen && "bg-yellow/20"
         )}
       >
-        <p className="type-title-medium w-full text-balance">
+        <p className="type-title-medium w-full px-4 py-3 text-balance">
           {questions.question}
         </p>
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+        <Interactive
           onClick={() => setIsOpen((isOpen) => !isOpen)}
+          className="text-red px-4"
         >
-          <Icon
-            name="expand_more"
-            size={24}
-            className="text-red cursor-pointer"
-          />
-        </motion.div>
-      </motion.button>
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <Icon name="expand_more" size={24} />
+          </motion.div>
+        </Interactive>
+      </motion.div>
 
       <motion.div
         layout="position"
