@@ -1,14 +1,20 @@
 import Button from "@/components/Button";
+import Icon from "@/components/Icon";
 
-const SortButton = () => {
-  return (
-    <Button
-      icon="sort_by_alpha"
-      Size="Small"
-      Appearance="Tertiary"
-      className="relative z-10"
-    />
-  );
+type SortButtonProps = {
+  sortType: "id" | "score";
+  onToggle: () => void;
 };
+
+const SortButton = ({ sortType, onToggle }: SortButtonProps) => (
+  <Button
+    Size="Small"
+    Appearance="Tertiary"
+    className="relative z-10"
+    onClick={onToggle}
+  >
+    <Icon name={sortType === "id" ? "sort_by_alpha" : "format_list_numbered"} />
+  </Button>
+);
 
 export default SortButton;

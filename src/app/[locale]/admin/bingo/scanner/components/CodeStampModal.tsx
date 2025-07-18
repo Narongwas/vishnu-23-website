@@ -46,19 +46,22 @@ const CodeStampModal = ({ isOpen, onClose }: PassStampModalProps) => {
         </div>
         <div className="flex">
           <Button
-            label="ยกเลิก"
             Size="Medium"
             Appearance="Secondary"
             className="w-full"
             onClick={onClose}
-          />
+          >
+            <p className="type-title-medium">ยกเลิก</p>
+          </Button>
+
           <Button
-            label="ยืนยัน"
             Size="Medium"
             Appearance="Primary"
             className="w-full"
             onClick={onClose}
-          />
+          >
+            <p className="type-title-medium">ยืนยัน</p>
+          </Button>
         </div>
       </div>
     </div>

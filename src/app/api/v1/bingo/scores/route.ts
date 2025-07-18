@@ -13,7 +13,15 @@ export async function GET(request: NextRequest) {
   }
 
   const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
-  const role = decodedToken.role;
+
+  const doc = await db
+    .collection("users")
+    .where("email", "==", decodedToken.email)
+    .get();
+  const role = doc.docs[0]?.data()?.role;
+
+  console.log("Decoded Token:", decodedToken);
+  console.log("User Role:", role);
 
   if (role !== "admin") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

@@ -19,7 +19,7 @@ const SelectDropDown = () => {
   return (
     <div className="type-title-medium relative flex items-center justify-center px-10">
       <div
-        className="z-10 inline-flex w-80 cursor-pointer items-center justify-center gap-3 rounded border border-gray-300 bg-white px-4 py-2 shadow"
+        className="z-10 inline-flex w-40 cursor-pointer items-center justify-center gap-3 bg-white px-4 py-2"
         onClick={() => setOpen((prev) => !prev)}
       >
         <span className="w-full truncate bg-transparent text-lg focus:outline-none">

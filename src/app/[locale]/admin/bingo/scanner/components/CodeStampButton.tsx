@@ -4,6 +4,7 @@ import { useState } from "react";
 import Button from "@/components/Button";
 import CodeStampModal from "@/app/[locale]/admin/bingo/scanner/components/CodeStampModal";
 //import AlreadyStampDialog from "@/app/[locale]/admin/bingo/scanner/components/AlreadyStampDialog";
+import Icon from "@/components/Icon";
 
 const CodeStampButton = () => {
   const [open, setOpen] = useState(false);
@@ -11,13 +12,14 @@ const CodeStampButton = () => {
   return (
     <>
       <Button
-        icon="pin"
-        label="สแตมป์ด้วยรหัส"
         Size="Small"
         Appearance="Tertiary"
         className="relative z-10"
         onClick={() => setOpen(true)}
-      />
+      >
+        <Icon name="pin" />
+        <p className="type-title-medium">แสตมป์ด้วยรหัส</p>
+      </Button>
       <CodeStampModal isOpen={open} onClose={() => setOpen(false)} />
     </>
   );

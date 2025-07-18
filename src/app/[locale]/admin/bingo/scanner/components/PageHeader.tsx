@@ -1,11 +1,11 @@
 import BackButton from "@/app/[locale]/admin/bingo/components/BackButton";
-import CodeStampButton from "@/app/[locale]/admin/bingo/scanner/components/CodeStampButton";
+import SelectDropDown from "@/app/[locale]/admin/bingo/scanner/components/SelectDropDown";
 
 const PageHeader = () => {
   return (
     <div className="flex justify-between px-4 pt-4 pb-10">
       <BackButton />
-      <CodeStampButton />
+      <SelectDropDown />
     </div>
   );
 };
