@@ -17,19 +17,19 @@ export default async function ExplorePage() {
       image: map,
       title: "Map",
       label: t("map.subtitle"),
-      link: "/explore/map",
+      href: "/explore/map",
     },
     {
       image: clubs,
       title: "Clubs",
       label: t("clubs.subtitle"),
-      link: "/explore/clubs",
+      href: "/explore/clubs",
     },
     {
       image: presentation,
       title: "Presentation",
       label: t("presentation.subtitle"),
-      link: "/explore/presentation",
+      href: "/explore/presentation",
     },
   ];
   return (
@@ -45,7 +45,7 @@ export default async function ExplorePage() {
         background="bg-blue"
       />
 
-      <div className="relative z-15 mt-4 flex w-full flex-col items-center gap-4 px-4 pb-10">
+      <div className="relative z-15 mt-4 flex w-full flex-col items-center px-4 pb-10">
         {cards.map(
           (card, index) =>
             !(card.title === "Presentation" && !presentationFlag) && (
@@ -53,8 +53,9 @@ export default async function ExplorePage() {
                 key={index}
                 image={card.image}
                 title={card.title}
-                label={card.label}
-                link={card.link}
+                desc={card.label}
+                variant="yellow"
+                href={card.href}
               />
             )
         )}
