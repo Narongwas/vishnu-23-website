@@ -1,5 +1,7 @@
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
+import stain from "@/public/decorating/texture/stain.png";
+import Image from "next/image";
 
 type Props = {
   title: string;
@@ -29,10 +31,12 @@ const TopLevelPageHeader: StyleableFC<Props> = ({
     >
       <div className="relative mx-auto h-full max-w-100">
         {/* Circle Background */}
-        <div
+        <Image
+          src={stain}
+          alt=""
           className={cn(
+            "top-3 h-70 w-70 rounded-full mix-blend-hard-light",
             centerBase,
-            "top-3 h-70 w-70 rounded-full bg-[url('/decorating/texture/stain.png')] bg-cover bg-no-repeat opacity-30 saturate-0",
             background
           )}
         />
@@ -67,7 +71,7 @@ const TopLevelPageHeader: StyleableFC<Props> = ({
           <h2
             className={cn(
               centerBase,
-              "type-title-large top-41 w-70",
+              "type-title-large top-41 z-10 w-70",
               subtitleColor
             )}
           >

@@ -8,6 +8,7 @@ import type { ClubItem } from "@/lib/types/club";
 import type { StyleableFC } from "@/lib/types/misc";
 import Image, { StaticImageData } from "next/image";
 import { useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export interface BoothPosition {
   position: number;
@@ -31,6 +32,7 @@ const BoothMap: StyleableFC<BoothMapProps> = ({
 }) => {
   const [selectedClub, setSelectedClub] = useState<ClubItem | null>(null);
   const scrollTargetRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("Map");
 
   const scrollToCard = () => {
     scrollTargetRef.current?.scrollIntoView({
@@ -67,7 +69,7 @@ const BoothMap: StyleableFC<BoothMapProps> = ({
             aria-label={`Booth ${position}`}
             onClick={() => handleClickBooth(position)}
             className={cn(
-              "absolute z-20 h-[10%] w-[8%] cursor-pointer border",
+              "absolute z-20 h-[10%] w-[8%] cursor-pointer",
               boothStyle
             )}
           />
@@ -76,7 +78,7 @@ const BoothMap: StyleableFC<BoothMapProps> = ({
 
       <div className="text-red mt-2 flex w-full items-center justify-start gap-2.5">
         <Icon name="touch_app" size={24} />
-        <p className="type-title-medium">แตะบนบูทเพื่อดูข้อมูลชมรม</p>
+        <p className="type-title-medium">{t("Building.instruction")}</p>
       </div>
 
       <div ref={scrollTargetRef} className="h-1" />
