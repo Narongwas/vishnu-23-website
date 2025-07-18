@@ -55,7 +55,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
   return (
     <div className={cn("mt-4 px-5", className)} style={style}>
       <div className="mb-10 flex w-full flex-col items-center gap-3">
-        <div className="relative">
+        <div className="relative w-full">
           <Image
             src={facultyMap}
             alt={t(`point.${registrationData.firstdate}`)}
