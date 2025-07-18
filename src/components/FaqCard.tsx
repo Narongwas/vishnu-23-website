@@ -6,6 +6,7 @@ import cn from "@/lib/helpers/cn";
 import type { FaqQuestion } from "@/lib/types/faq";
 import { StyleableFC } from "@/lib/types/misc";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
@@ -13,6 +14,7 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
   style,
   className,
 }) => {
+  const t = useTranslations("Home.FaqCard");
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -32,6 +34,7 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
           {questions.question}
         </p>
         <Interactive
+          title={t(isOpen ? "action.less" : "action.more")}
           onClick={() => setIsOpen((isOpen) => !isOpen)}
           className="text-red px-4"
         >
