@@ -1,7 +1,6 @@
 "use client";
 
 import { StyleableFC } from "@/lib/types/misc";
-import cn from "@/lib/helpers/cn";
 import PageAction from "@/components/PageAction";
 import { Group } from "@/lib/types/group";
 
@@ -11,20 +10,20 @@ const GroupRevealAction: StyleableFC<{
   groupInfo: Group;
   className?: string;
 }> = ({ image, text, groupInfo, className }) => {
+  const handleClick = () => {
+    if (groupInfo?.lineLink) {
+      window.open(groupInfo.lineLink, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
-    <div
-      className={cn(
-        "fixed -bottom-90 left-1/2 z-30 -translate-x-1/2 lg:-bottom-80",
-        className
-      )}
-    >
-      {groupInfo?.lineLink ? (
-        <a href={groupInfo.lineLink} target="_blank" rel="noopener noreferrer">
-          <PageAction image={image} text={text} />
-        </a>
-      ) : (
-        <PageAction image={image} text={text} />
-      )}
+    <div className={className}>
+      <PageAction
+        image={image}
+        text={text}
+        className="-bottom-160 z-10"
+        onClick={handleClick}
+      />
     </div>
   );
 };
