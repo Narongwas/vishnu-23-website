@@ -45,7 +45,7 @@ export default async function ExplorePage() {
         background="bg-blue"
       />
 
-      <div className="relative z-15 mt-4 flex w-full flex-col items-center gap-4 px-4 pb-10">
+      <div className="relative z-15 mt-4 flex w-full flex-col items-center px-4 pb-10">
         {cards.map(
           (card, index) =>
             !(card.title === "Presentation" && !presentationFlag) && (
