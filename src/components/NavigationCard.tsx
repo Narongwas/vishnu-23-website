@@ -8,7 +8,7 @@ const NavigationCard: StyleableFC<{
   title: string;
   label: string;
   image: StaticImageData;
-  link: string;
+  href: string;
   ovalBg?: string;
   titleColor?: string;
   labelColor?: string;
@@ -16,7 +16,7 @@ const NavigationCard: StyleableFC<{
   title,
   label,
   image,
-  link,
+  href,
   ovalBg,
   titleColor,
   labelColor,
@@ -25,7 +25,7 @@ const NavigationCard: StyleableFC<{
 }) => {
   return (
     <Link
-      href={link}
+      href={href}
       className={cn("relative flex w-full flex-col items-center", className)}
       style={style}
     >
