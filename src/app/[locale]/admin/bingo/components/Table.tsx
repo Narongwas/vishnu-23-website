@@ -30,9 +30,7 @@ const Table = ({ groupData }: TableProps) => {
               <td className="w-1/5 px-4 py-2 text-left">{row.scoreRank}</td>
               <td className="w-1/5 px-4 py-2 text-left">{row.id}</td>
               <td className="w-3/10 px-4 py-2 text-left">{row.groupName}</td>
-              <td className="w-3/10 px-4 py-2 text-left">
-                {row.bingoScore.toLocaleString()}
-              </td>
+              <td className="w-3/10 px-4 py-2 text-left">{row.bingoScore}</td>
             </tr>
           ))}
         </tbody>

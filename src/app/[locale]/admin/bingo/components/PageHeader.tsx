@@ -1,9 +1,8 @@
 "use client";
-import SubPageHeader from "@/components/SubPageHeader";
-import BackButton from "@/app/[locale]/admin/bingo/components/BackButton";
 import DownloadButton from "@/app/[locale]/admin/bingo/components/DownloadButton";
 import SortButton from "@/app/[locale]/admin/bingo/components/SortButton";
-
+import BackButton from "@/components/BackButton";
+import SubPageHeader from "@/components/SubPageHeader";
 type PageHeaderProps = {
   sortType: "id" | "score";
   onToggleSort: () => void;
@@ -11,8 +10,8 @@ type PageHeaderProps = {
 
 const PageHeader = ({ sortType, onToggleSort }: PageHeaderProps) => (
   <>
-    <div className="z-20 flex w-full items-center justify-between px-4 pt-7">
-      <BackButton />
+    <div className="relative z-20 flex w-full items-center justify-between px-4 pt-7">
+      <BackButton variants="tertiary" />
       <div className="flex gap-2">
         <DownloadButton />
         <SortButton sortType={sortType} onToggle={onToggleSort} />

@@ -33,12 +33,68 @@ const ScannerPageClient = () => {
     setLoading(false);
   };
 
-  const handleDecodeCode = async (code: string) => {
+  /*const handleDecodeCode = async (code: string) => {
     if (!code || !selectedClubId) {
       alert("กรุณาเลือกชมรมก่อนทำการสแกนหรือกรอกรหัส");
       return;
     }
+    console.log("Decoding code:", code);
+    setLoading(true);
+    setIsCodeModalOpen(false);
 
+    try {
+      const res = await fetch(
+        `/api/v1/friends/qr/decodeFriendCode?code=${encodeURIComponent(code)}`
+      );
+
+      if (!res.ok) {
+        throw new Error("Failed to decode code.");
+      }
+
+      const data = await res.json();
+      setSuccessData({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        uid: data.uid,
+        code: code,
+      });
+    } catch (e) {
+      console.error(e);
+      handleCloseAll();
+      alert("ไม่สามารถถอดรหัสได้ หรือรหัสไม่ถูกต้อง");
+    } finally {
+      setLoading(false);
+    }
+  };*/
+
+  const handleDecodeCodeFromQR = async (barcode: string) => {
+    // ดึง id หรือ code จาก URL ถ้า barcode เป็น URL
+    let code = barcode;
+    try {
+      if (barcode.startsWith("http")) {
+        const parsedUrl = new URL(barcode);
+        code =
+          parsedUrl.searchParams.get("code") ||
+          parsedUrl.searchParams.get("id") ||
+          barcode;
+      }
+    } catch {
+      // ถ้า parse ไม่ได้ ให้ใช้ barcode เดิม
+    }
+    console.log("Decoded code from QR:", code);
+    await handleDecodeCodeCommon(code);
+  };
+
+  const handleDecodeCodeFromInput = async (code: string) => {
+    await handleDecodeCodeCommon(code);
+  };
+
+  const handleDecodeCodeCommon = async (code: string) => {
+    if (!code || !selectedClubId) {
+      alert("กรุณาเลือกชมรมก่อนทำการสแกนหรือกรอกรหัส");
+      return;
+    }
+    console.log("Decoding code:", code);
     setLoading(true);
     setIsCodeModalOpen(false);
 
@@ -106,7 +162,7 @@ const ScannerPageClient = () => {
     <div>
       <PageHeader onClubSelect={setSelectedClubId} />
 
-      <ScannerSection onCapture={handleDecodeCode} />
+      <ScannerSection onCapture={handleDecodeCodeFromQR} />
 
       <div className="mt-8 flex items-center justify-center">
         <CodeStampButton onClick={() => setIsCodeModalOpen(true)} />
@@ -116,7 +172,7 @@ const ScannerPageClient = () => {
       <CodeStampModal
         isOpen={isCodeModalOpen}
         onClose={handleCloseAll}
-        onConfirm={handleDecodeCode}
+        onConfirm={handleDecodeCodeFromInput}
       />
 
       <StampConfirmationModal

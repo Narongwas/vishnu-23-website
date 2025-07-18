@@ -17,11 +17,9 @@ const handleDownloadCSV = async () => {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = "bingo-scores.csv"; // ชื่อไฟล์
+    a.download = "bingo-scores.csv";
     document.body.appendChild(a);
-    a.click(); // สั่งให้ดาวน์โหลด
-
-    // เคลียร์ลิงก์ชั่วคราวออกไป
+    a.click();
     a.remove();
     window.URL.revokeObjectURL(url);
   } catch (error) {
@@ -33,8 +31,8 @@ const handleDownloadCSV = async () => {
 const DownloadButton = () => {
   return (
     <Button
-      Size="Small"
-      Appearance="Tertiary"
+      Size="small"
+      Appearance="tertiary"
       className="relative z-10"
       onClick={handleDownloadCSV}
     >
