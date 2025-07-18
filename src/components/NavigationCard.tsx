@@ -15,7 +15,7 @@ const NavigationCard: StyleableFC<{
     <Link
       href={href}
       className={cn(
-        "relative flex w-full flex-col items-center",
+        "relative flex w-full flex-col items-center text-balance",
         variant === "yellow" ? "text-red" : "text-yellow",
         className
       )}
