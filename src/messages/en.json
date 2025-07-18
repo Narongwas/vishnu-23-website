@@ -49,6 +49,85 @@
     },
     "Sponsors": {
       "title": "Our supporters"
+    },
+    "Faq": {
+      "title": "Frequently Asked Questions",
+      "questions": [
+        {
+          "id": "1",
+          "title": "",
+          "questions": [
+            {
+              "id": "1.1",
+              "question": "What are Intania First Date and Vishnu Camp? Do we have to go? What can we get from attending?",
+              "answer": "These two events are organized by Chula Engineering students for Intania 109. The goal is to help you meet new friends, get to know seniors and become familiar with the faculty before the semester begins. Although it isn't compulsory, we're sure that everyone who joins will get a memorable experience--so come join us!"
+            }
+          ]
+        },
+        {
+          "id": "2.",
+          "title": "First Date",
+          "questions": [
+            {
+              "id": "2.1",
+              "question": "What are the differences between Intania First Date and CU First Date?",
+              "answer": "CU First Date is the first event for all freshmen from every faculty and is held in the morning. However, Intania First Date is an event only for Intania freshmen and is held in the afternoon of the same day."
+            },
+            {
+              "id": "2.2",
+              "question": "What are the schedules for Intania First Date?",
+              "answer": "Registration starts from 12:00 p.m. to 1:00 p.m. and activities run from 1:00 p.m. to 7:00 p.m."
+            },
+            {
+              "id": "2.3",
+              "question": "How to dress for First Date?",
+              "answer": "There will be a dress code announcement soon. Stay tuned for the details on instagram account."
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "title": "Vishnu Camp",
+          "questions": [
+            {
+              "id": "3.1",
+              "question": "What are the schedules and activities for Vishnu Camp?",
+              "answer": "Vishnu Camp is a 4-day camp, running from morning to evening. However, you can choose to stay overnight by completing a form. On the event day, registration starts at 8:00 a.m. and activities end between 5:00 p.m. and 8:30 p.m. A detailed schedule will be announced soon."
+            },
+            {
+              "id": "3.2",
+              "question": "Is attending certain parts or days allowed?",
+              "answer": "It is recommended to join every day (better not miss it!), but if you're unavailable, that's totally fine--just fill out the form the days you can join."
+            },
+            {
+              "id": "3.3",
+              "question": "How do we get to the camp?",
+              "answer": "You can get to the camp by BTS or MRT. A video guide on how to get to the faculty will be posted soon--stay tuned on instagram account!"
+            },
+            {
+              "id": "3.4",
+              "question": "Where is the camp held? If we stay overnight, where will we sleep?",
+              "answer": "The camp is held at Faculty of Engineering, Chulalongkorn University. If you stay overnight, you will sleep in the classroom. Each room accommodates around 30-40 people, with seperates building for males and females."
+            },
+            {
+              "id": "3.5",
+              "question": "What are the activities for each day?",
+              "answer": "The activity schedules will be posted soon--stay tuned!"
+            }
+          ]
+        },
+        {
+          "id": "4",
+          "title": "Others",
+          "questions": [
+            {
+              "id": "4.1",
+              "question": "If we don't know anyone yet, will we feel lonely?",
+              "answer": "Definitely not! There are a lot of activities designed to help you get to know each other. The staff will be there to take care of you and make you feel like a part of family."
+            }
+          ]
+        }
+      ]
     }
   },
   "GroupAnnouncement": {
@@ -65,6 +144,67 @@
     },
     "action": {
       "home": "Return to home"
+    }
+  },
+  "Map": {
+    "Faculty": {
+      "header": {
+        "parent": "Explore",
+        "title": "Map"
+      },
+      "alt": "Engineering Map",
+      "instruction": "Tap a building to view club map",
+      "building": {
+        "larngear": "Larngear",
+        "eng3": "ENG3",
+        "eng4": "ENG4",
+        "en100": "EN100"
+      }
+    },
+    "Building": {
+      "instruction": "Tap a booth to view club details",
+      "active": "Selected club",
+      "list": "Club numbers"
+    }
+  },
+  "Clubs": {
+    "header": {
+      "parent": "Explore",
+      "title": "Clubs"
+    },
+    "Filter": {
+      "search": "Search",
+      "booth": {
+        "all": "All",
+        "true": "Booth",
+        "false": "No booth"
+      },
+      "filter": {
+        "alt": "Filters",
+        "tech": "Tech",
+        "education": "Edu",
+        "sports": "Sports",
+        "arts": "Arts",
+        "volunteer": "Volunteer",
+        "other": "Other"
+      }
+    },
+    "List": {
+      "title": {
+        "tech": "Technology",
+        "education": "Education",
+        "sports": "Sports",
+        "arts": "Arts and culture",
+        "volunteer": "Social development and community service",
+        "other": "Other"
+      }
+    },
+    "Card": {
+      "action": {
+        "more": "See more",
+        "less": "See less",
+        "instagram": "Instagram • @{username}"
+      }
     }
   },
   "Games": {
@@ -318,81 +458,5 @@
       "title": "Remove from friends",
       "desc": "You will no longer see “{friend}” in your friend list. We won’t notify {friend}."
     }
-  },
-  "Faq": [
-    {
-      "id": "1",
-      "title": "",
-      "questions": [
-        {
-          "id": "1.1",
-          "question": "Intania First Date / ค่ายวิษณุฯ คืออะไร? ต้องไปทุกคนไหม? ไปแล้วได้อะไร?",
-          "answer": "สองกิจกรรมนี้เป็นงานที่พี่ ๆ วิศวจุฬาฯ ตั้งใจจัดให้ชาว Intania 109 โดยเฉพาะ เพื่อให้น้องได้รู้จักเพื่อนใหม่ รู้จักรุ่นพี่ และทำความคุ้นเคยกับคณะก่อนเปิดเทอม แม้จะไม่บังคับเข้าร่วม แต่รับรองว่าใครมาจะได้ความทรงจำดี ๆ กลับไปแน่นอน ! มากันเยอะ ๆ นะครับบ"
-        }
-      ]
-    },
-    {
-      "id": "2.",
-      "title": "First Date",
-      "questions": [
-        {
-          "id": "2.1",
-          "question": "Intania First Date ต่างจาก CU First Date ยังไง?",
-          "answer": "CU First Date เป็นงานแรกพบนิสิตสำหรับนิสิตทั้งมหาลัย ซึ่งจัดขึ้นตั้งแต่ช่วงเช้า ส่วน Intania First Date คือกิจกรรมเฉพาะสำหรับนิสิตใหม่คณะวิศวกรรมศาสตร์จัดขึ้นในช่วงบ่ายของวันเดียวกัน โดยให้น้อง ๆ คณะ วิศวกรรมศาสตร์มาเข้าร่วมกิจกรรมของคณะในช่วงบ่าย"
-        },
-        {
-          "id": "2.2",
-          "question": "Intania First Date มีกำหนดการยังไง?",
-          "answer": "เริ่มลงทะเบียน 12:00 ถึง 13:00 และจัดกิจกรรมตอน 13:00 ถึง 19:00"
-        },
-        {
-          "id": "2.3",
-          "question": "แต่งตัวยังไงไป First Date?",
-          "answer": "เดี๋ยวจะมีโพสต์ dress code ตามมา น้อง ๆ รอติดตามในไอจีได้เลย"
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "title": "ค่ายวิษณุฯ",
-      "questions": [
-        {
-          "id": "3.1",
-          "question": "ค่ายวิษณุฯ มีกำหนดการและรูปแบบกิจกรรมอย่างไร",
-          "answer": "ค่ายวิษณุฯ ในครั้งนี้ เป็นค่ายไปเช้า - เย็นกลับ 4 วัน แต่น้อง ๆ สามารถเลือกนอนค้างได้ผ่านฟอร์มลงทะเบียน โดยวันค่ายจะเริ่มลงทะเบียนประมาณ 8:00 น. และสิ้นสุดกิจกรรมภายใน 17:00 ถึง 20:30 น. ซึ่งน้อง ๆ สามารถติดตามตารางกิจกรรมได้เร็ว ๆ นี้"
-        },
-        {
-          "id": "3.2",
-          "question": "ไปแค่บางวันหรือบางช่วงได้มั้ย?",
-          "answer": "แนะนำให้มาทุกวัน (ไม่มาระวังพลาด!) แต่ถ้าไม่สะดวกจริงก็ไม่เป็นไร สามารถกรอกในฟอร์มได้เลยว่าจะมาวันไหนบ้าง"
-        },
-        {
-          "id": "3.3",
-          "question": "จะเดินทางไปค่ายได้ยังไงบ้าง",
-          "answer": "สามารถมาได้ทั้ง BTS และ MRT โดยจะมีคลิปแนะนำการเดินทางตามมาอีกที รอติดตามในไอจีได้เลย"
-        },
-        {
-          "id": "3.4",
-          "question": "สถานที่จัดค่ายคือที่ไหน? และถ้าค้างคืนจะพักที่ไหน",
-          "answer": "จัดที่คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย โดยหากค้างคืนจะพักกันที่ห้องเรียนภายในคณะ นอนรวมกันประมาณ 30 - 40 คน โดยจะมีการแยกตึกชายหญิงอย่างชัดเจน"
-        },
-        {
-          "id": "3.5",
-          "question": "กิจกรรมในแต่ละวันมีอะไรบ้าง",
-          "answer": "จะมีการโพสต์ตารางกิจกรรมให้เห็นกันอย่างแน่นอน รอติดตามเร็ว ๆ นี้"
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "title": "อื่น ๆ",
-      "questions": [
-        {
-          "id": "4.1",
-          "question": "ยังไม่มีเพื่อนไป จะเหงาไหม?",
-          "answer": "ไม่เหงาแน่นอน! เพราะมีกิจกรรมที่ออกแบบมาให้ได้รู้จักกัน และพี่ ๆ สตาฟก็พร้อมดูแลทุกคนเต็มที่ บรรยากาศอบอุ่นเหมือนครอบครัวแน่นอน"
-        }
-      ]
-    }
-  ]
+  }
 }

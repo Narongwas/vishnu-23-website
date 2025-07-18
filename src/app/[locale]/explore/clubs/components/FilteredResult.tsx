@@ -1,9 +1,9 @@
+"use client";
+
 import cn from "@/lib/helpers/cn";
 import type { ClubItem } from "@/lib/types/club";
 import { StyleableFC } from "@/lib/types/misc";
-import CLUB_GENRES from "@/jsondata/clubGenre";
-
-type Genre = (typeof CLUB_GENRES)[number];
+import { useTranslations } from "next-intl";
 
 const FilteredResult: StyleableFC<{
   selectedGenre: string | null;
@@ -11,23 +11,16 @@ const FilteredResult: StyleableFC<{
     | ClubItem[]
     | { key: string; genre: string; items: ClubItem[] }[];
   renderItem: (item: ClubItem) => React.ReactNode;
-  genres: Genre[];
-}> = ({
-  selectedGenre,
-  filteredItems,
-  renderItem,
-  genres,
-  className,
-  style,
-}) => {
+}> = ({ selectedGenre, filteredItems, renderItem, className, style }) => {
+  const t = useTranslations("Clubs");
   if (selectedGenre) {
     const items = filteredItems as ClubItem[];
     return (
       <>
         <p className="type-title-large text-red mb-4 text-center font-bold">
-          {genres.find((g) => g.key === selectedGenre)?.genre}
+          {selectedGenre ? t(`List.title.${selectedGenre}`) : ""}
         </p>
-        {items.length &&
+        {items.length > 0 &&
           items.map((item, i) => <div key={i}>{renderItem(item)}</div>)}
       </>
     );
@@ -41,7 +34,7 @@ const FilteredResult: StyleableFC<{
           g.items.length > 0 && (
             <div key={g.key} className={cn("mb-6", className)} style={style}>
               <p className="type-title-large text-red mb-4 text-center font-bold">
-                {g.genre}
+                {t(`List.title.${g.key}`)}
               </p>
               {g.items.map((item, i) => (
                 <div key={i}>{renderItem(item)}</div>

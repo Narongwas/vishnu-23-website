@@ -6,18 +6,29 @@ import GenreFilter from "@/app/[locale]/explore/clubs/components/GenreFilter";
 import SelectDropdown from "@/components//SelectDropdown";
 import SearchBar from "@/components/Searchbar";
 import rawClubs from "@/jsondata/club.json";
-import CLUB_GENRES from "@/jsondata/clubGenre";
 import cn from "@/lib/helpers/cn";
-import { ClubItem } from "@/lib/types/club";
+import type { ClubItem } from "@/lib/types/club";
 import { StyleableFC } from "@/lib/types/misc";
 import { LayoutGroup } from "motion/react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
-const dropDownOption = ["ทั้งหมด", "จัดบูธ", "ไม่จัดบูธ"];
+const CLUB_GENRES = [
+  { key: "tech", genre: "เทคโนฯ", icon: "build" },
+  { key: "education", genre: "วิชาการ", icon: "book" },
+  { key: "sports", genre: "กีฬา", icon: "sports_football" },
+  { key: "arts", genre: "ศิลปะ", icon: "stylus_fountain_pen" },
+  { key: "volunteer", genre: "อาสา", icon: "volunteer_activism" },
+  { key: "other", genre: "อื่น ๆ", icon: "widgets" },
+];
 
 const ClubPanel: StyleableFC = ({ className, style }) => {
+  const t = useTranslations("Clubs.Filter.booth");
+
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
+
+  const dropDownOption = [t("all"), t("true"), t("false")];
   const [booth, setBooth] = useState<string>(dropDownOption[0]);
 
   const keysToSearch = ["name", "description"];
@@ -64,7 +75,6 @@ const ClubPanel: StyleableFC = ({ className, style }) => {
             value={booth}
             onChange={setBooth}
             items={dropDownOption}
-            placeholder=""
           />
         </div>
         <GenreFilter
@@ -79,7 +89,6 @@ const ClubPanel: StyleableFC = ({ className, style }) => {
           <FilteredResult
             selectedGenre={selectedGenre}
             filteredItems={filteredItems}
-            genres={CLUB_GENRES}
             renderItem={(item) => <ClubCard club={item} className="my-3" />}
           />
         </LayoutGroup>

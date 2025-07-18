@@ -11,3 +11,9 @@ export type ClubItem = {
   ig?: string;
   boothPosition?: BoothPosition;
 };
+
+export type ClubGenre = {
+  key: string;
+  genre: string;
+  icon: string;
+};

@@ -1,5 +1,5 @@
 {
-  "sport": [
+  "sports": [
     {
       "id": 9,
       "name": "Intania Baseball & Softball Club",
@@ -7,7 +7,7 @@
       "logo": "pad_09_Intania-baseball-&-softball-club.png",
       "ig": "https://www.instagram.com/intaniasoftballclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "ลานเกียร์",
+        "building": "larngear",
         "position": 5
       }
     },
@@ -25,7 +25,7 @@
       "logo": "pad_14_Intania-Rugby-Club.png",
       "ig": "https://www.instagram.com/intaniarugbyclub?igsh=dmhqdWZkdXp4azZt",
       "boothPosition": {
-        "building": "ลานเกียร์",
+        "building": "larngear",
         "position": 7
       }
     },
@@ -36,7 +36,7 @@
       "logo": "pad_15_Intania-Running-Club.png",
       "ig": "https://www.instagram.com/intania_runningclub?utm_source=ig_web_button_share_sheet&igsh=NW5jMzJ4ejdqeXA=",
       "boothPosition": {
-        "building": "ลานเกียร์",
+        "building": "larngear",
         "position": 6
       }
     },
@@ -47,7 +47,7 @@
       "logo": "pad_17_Intania-Swimming-Club.png",
       "ig": "https://www.instagram.com/intania.swimmingclub?igsh=MzEzaXhrb2k1ZGZu",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 19
       }
     },
@@ -58,7 +58,7 @@
       "logo": "pad_19_mma-intania-club.png",
       "ig": "https://www.instagram.com/mma.intania.club?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 21
       }
     },
@@ -69,7 +69,7 @@
       "logo": "pad_26_ชมรมเทนนิส.png",
       "ig": "https://www.instagram.com/intaniatennisclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 22
       }
     },
@@ -80,7 +80,7 @@
       "logo": "pad_29_ชมรมบาสเกตบอล.png",
       "ig": "https://www.instagram.com/intaniabasketballclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 14
       }
     },
@@ -91,7 +91,7 @@
       "logo": "pad_30_ชมรมแบดมินตัน.png",
       "ig": "https://www.instagram.com/intaniabadminton?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 25
       }
     },
@@ -102,7 +102,7 @@
       "logo": "pad_31_ชมรมฟุตบอลคณะวิศวกรรมศาสตร์.png",
       "ig": "https://www.instagram.com/intaniafootballclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "ลานเกียร์",
+        "building": "larngear",
         "position": 1
       }
     },
@@ -120,7 +120,7 @@
       "logo": "pad_33_ชมรมวอลเลย์บอล.png",
       "ig": "https://www.instagram.com/vclubintania?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "ตึก 3",
+        "building": "eng3",
         "position": 10
       }
     },
@@ -131,7 +131,7 @@
       "logo": "pad_36_ชมรมหมากกระดาน.png",
       "ig": "https://www.instagram.com/intania.boardgameclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "ลานเกียร์",
+        "building": "larngear",
         "position": 9
       }
     },
@@ -142,7 +142,7 @@
       "logo": "pad_38_ชมรมเทเบิลเทนนิส.png",
       "ig": "https://www.instagram.com/intaniatabletennis?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "ลานเกียร์",
+        "building": "larngear",
         "position": 4
       }
     },
@@ -153,12 +153,12 @@
       "logo": "pad_39_ชมรมมวยสากล.png",
       "ig": "https://www.instagram.com/intania_boxing?igsh=MTg3ZTN2OTUycXg1MQ==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 18
       }
     }
   ],
-  "art": [
+  "arts": [
     {
       "id": 5,
       "name": "Engineering Expats Club",
@@ -166,7 +166,7 @@
       "logo": "pad_05_Engineering-Expats-Club.png",
       "ig": "https://www.instagram.com/engexpats.chula?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "ตึก 3",
+        "building": "eng3",
         "position": 13
       }
     },
@@ -177,7 +177,7 @@
       "logo": "pad_21_StepOut.png",
       "ig": "https://www.instagram.com/stepout_intania?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "ตึก 3",
+        "building": "eng3",
         "position": 11
       }
     },
@@ -189,7 +189,7 @@
       "ig": "https://www.instagram.com/intaniamusicclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
     }
   ],
-  "technology": [
+  "tech": [
     {
       "id": 23,
       "name": "Thailand Incubator Club (Thinc.)",
@@ -197,7 +197,7 @@
       "logo": "pad_23_Thinc.png",
       "ig": "https://www.instagram.com/thinc.in.th?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 24
       }
     },
@@ -208,7 +208,7 @@
       "logo": "pad_01_Awarehouse.png",
       "ig": "https://www.instagram.com/awarehouse.official",
       "boothPosition": {
-        "building": "ลานเกียร์",
+        "building": "larngear",
         "position": 8
       }
     },
@@ -219,7 +219,7 @@
       "logo": "pad_27_ชมรมนักประดิษฐ์วิศวกรรม.png",
       "ig": "https://www.instagram.com/eic_chula?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 17
       }
     },
@@ -258,12 +258,12 @@
       "logo": "pad_41_ชมรมฟอมูล่า.png",
       "ig": "https://www.instagram.com/curapidamente?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "ลานเกียร์",
+        "building": "larngear",
         "position": 3
       }
     }
   ],
-  "academic": [
+  "education": [
     {
       "id": 6,
       "name": "FECamp",
@@ -271,7 +271,7 @@
       "logo": "pad_06_FECamp.png",
       "ig": "https://www.instagram.com/fecampcu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 23
       }
     },
@@ -282,7 +282,7 @@
       "logo": "pad_34_Intania-Academic-Club.png",
       "ig": "https://www.instagram.com/intaniaacademicclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 28
       }
     },
@@ -293,7 +293,7 @@
       "logo": "pad_11_Intania-innovation-contest.png",
       "ig": "https://www.instagram.com/intaniainnovationcontest?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "ลานเกียร์",
+        "building": "larngear",
         "position": 2
       }
     },
@@ -304,7 +304,7 @@
       "logo": "pad_37_ชมรมโต้วาที.png",
       "ig": "https://www.instagram.com/intaniadebateclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 27
       }
     },
@@ -324,7 +324,7 @@
       "logo": "pad_28_ชมรมนิสิตทุน.png",
       "ig": "https://www.instagram.com/vidvapathcamp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 26
       }
     },
@@ -335,7 +335,7 @@
       "logo": "pad_24_ค่ายยุววิศวกรบพิธ.png",
       "ig": "https://www.instagram.com/vesc.53?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 15
       }
     }
@@ -348,7 +348,7 @@
       "logo": "pad_13_Intania-Production-House.png",
       "ig": "https://www.instagram.com/intania_production_house?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "ตึก 3",
+        "building": "eng3",
         "position": 12
       }
     },
@@ -359,7 +359,7 @@
       "logo": "pad_18_Intaniaverse_Black.png",
       "ig": "https://www.instagram.com/intaniaverse?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 16
       }
     },
@@ -370,7 +370,7 @@
       "logo": "pad_16_Intania-Stage-Play.png",
       "ig": "https://www.instagram.com/lakornvidva?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "อาคารวิศวฯ 100 ปี",
+        "building": "en100",
         "position": 20
       }
     },
