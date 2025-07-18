@@ -28,7 +28,7 @@ const TopLevelPageHeader: StyleableFC<Props> = ({
   return (
     <header
       className={cn(
-        "relative h-76 w-full shrink-0 text-center text-balance",
+        "relative h-60 w-full shrink-0 text-center text-balance",
         className
       )}
     >
