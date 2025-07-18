@@ -35,8 +35,8 @@ export default async function ExplorePage() {
   return (
     <>
       <TopLevelPageHeader
-        title="Explore"
-        chineseText="探图"
+        title={t("tabName")}
+        chineseText={t("header.chinese")}
         subtitle={t("header.subtitle")}
       />
 

@@ -6,7 +6,7 @@ export default async function Map() {
   const t = await getTranslations("Explore");
   return (
     <>
-      <SubPageHeader curvedText={t("tabName")} title={t("header.chinese")} />
+      <SubPageHeader curvedText={t("tabName")} title={t("map.title")} />
       <div className="absolute top-0 z-10 flex w-full items-center justify-between py-4">
         <BackButton variants="tertiary" />
       </div>
