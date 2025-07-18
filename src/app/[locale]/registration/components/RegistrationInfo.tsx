@@ -2,27 +2,15 @@
 
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
-import FacultyMapEN from "@/public/map/Faculty-en.png";
-import FacultyMapTH from "@/public/map/Faculty-th.png";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
-import Icon from "@/components/Icon";
 
 interface RegistrationData {
   firstdate: string;
   packageNumber: number;
   vishnu: string;
 }
-
-const position: Record<string, string> = {
-  EN100: "top-18 right-10",
-  ENG3: "top-7 left-40",
-  Ruamjai: "top-5 left-14",
-  Larngear: "top-7 right-20",
-  ENG4: "bottom-15 right-10.5",
-};
 
 const RegistrationInfo: StyleableFC = ({ className, style }) => {
   const locale = useLocale();
@@ -44,10 +32,11 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
     fetchData();
   }, []);
 
-  const facultyMap = locale === "th" ? FacultyMapTH : FacultyMapEN;
-
   const realImg = registrationData
-    ? `/registration/Img-${registrationData.firstdate}.jpg`
+    ? `/registration/picture/Img-${registrationData.firstdate}.jpg`
+    : "";
+  const locationImg = registrationData
+    ? `/registration/point-${locale}/Point-${registrationData.firstdate}.png`
     : "";
 
   if (!registrationData) return null;
@@ -57,26 +46,18 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
       <div className="mb-10 flex w-full flex-col items-center gap-3">
         <div className="relative w-full">
           <Image
-            src={facultyMap}
+            src={locationImg}
             alt={t(`point.${registrationData.firstdate}`)}
-            width={200}
-            height={200}
+            width={491}
+            height={336}
             priority
             className="relative mb-3 h-full w-full"
           />
-          <div
-            className={cn(
-              "bg-yellow-white absolute flex h-10 w-10 items-center justify-center rounded-full",
-              position[registrationData.firstdate]
-            )}
-          >
-            <Icon name="location_on" size={24} className="text-red" />
-          </div>
           <Image
             src={realImg}
             alt={t(`point.${registrationData.firstdate}`)}
-            width={200}
-            height={200}
+            width={491}
+            height={336}
             priority
             className="h-full w-full"
           />
