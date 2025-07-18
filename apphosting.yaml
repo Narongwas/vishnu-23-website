@@ -39,4 +39,4 @@ env:
   - variable: FB_PRIVATE_KEY
     secret: FB_PRIVATE_KEY
   - variable: NEXT_PUBLIC_BASE_URL
-    secret: NEXT_PUBLIC_BASE_URL
+    secret: NEXT_PUBLIC_BASE_URL_DEV
