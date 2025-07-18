@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import BoothMap from "@/app/[locale]/explore/map/components/BoothMap";
 import type { ClubItem } from "@/lib/types/club";
 import type { StyleableFC } from "@/lib/types/misc";
@@ -22,11 +22,12 @@ const booths = [
 const LarngearMap: StyleableFC<{ clubList: ClubItem[] }> = (props) => {
   const locale = useLocale();
   const image = locale === "th" ? larngearMapTH : larngearMapEN;
+  const t = useTranslations("Map");
 
   return (
     <BoothMap
       image={image}
-      altText="Map of คณะวิศวฯ ลานเกียร์"
+      altText={t("Faculty.alt")}
       booths={booths}
       {...props}
     />
