@@ -150,10 +150,10 @@
   },
   "RegistrationAnnouncement": {
     "title": "Registration point",
-    "footer": [
-      "You can register at <location></location> at <time></time>",
-      "Registration location may differ from person to person."
-    ],
+    "footer": {
+      "0": "You can register at <location></location> at <time></time>",
+      "1": "Registration location may differ from person to person."
+    },
     "action": {
       "home": "Return to home"
     }
@@ -233,11 +233,19 @@
     },
     "Card": {
       "action": {
-        "qr": "Your QR code",
-        "code": "Add with code",
-        "help": "Help",
-        "add": "Add"
+        "more": "See more",
+        "less": "See less",
+        "instagram": "Instagram • @{username}"
       }
+    }
+  },
+  "Presentation": {
+    "header": {
+      "parent": "Explore",
+      "title": "Presentation"
+    },
+    "action": {
+      "download": "Download"
     }
   },
   "Games": {
@@ -259,7 +267,7 @@
   "Predictions": {
     "overline": "{time, select, morning {Morning} afternoon {Afternoon}} prediction",
     "footer": {
-      "revealTime": "Answer revealed at {time}",
+      "revealTime": "Answer reveal at {time}",
       "scoring": "Scores depend on how many people in your kingdom answered correctly."
     },
     "action": {

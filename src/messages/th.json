@@ -280,6 +280,16 @@
     }
   },
   "Predictions": {
+    "overline": "ทำนายชะตาช่วง{time, select, morning {เช้า} afternoon {บ่าย}}",
+    "footer": {
+      "revealTime": "เฉลยเวลา {time}",
+      "scoring": "นับคะแนนที่ได้จากอันดับของจำนวนน้องที่ทายถูกในก๊ก"
+    },
+    "action": {
+      "history": "ประวัติ",
+      "help": "ช่วยเหลือ",
+      "predict": "ทำนาย"
+    },
     "CrystalBall": {
       "form": {
         "placeholder": "คำตอบ"

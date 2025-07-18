@@ -100,8 +100,8 @@ export default function GoogleLoginBtn({
       ) : (
         <Button
           onClick={handleGoogleLogin}
-          Size="Small"
-          Appearance="Primary"
+          Size="small"
+          Appearance="primary"
           aria-label={t("action.logIn")}
           title={t("action.logIn")}
         >
