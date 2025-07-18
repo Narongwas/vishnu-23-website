@@ -146,6 +146,67 @@
       "home": "Return to home"
     }
   },
+  "Map": {
+    "Faculty": {
+      "header": {
+        "parent": "Explore",
+        "title": "Map"
+      },
+      "alt": "Engineering Map",
+      "instruction": "Tap a building to view club map",
+      "building": {
+        "larngear": "Larngear",
+        "eng3": "ENG3",
+        "eng4": "ENG4",
+        "en100": "EN100"
+      }
+    },
+    "Building": {
+      "instruction": "Tap a booth to view club details",
+      "active": "Selected club",
+      "list": "Club numbers"
+    }
+  },
+  "Clubs": {
+    "header": {
+      "parent": "Explore",
+      "title": "Clubs"
+    },
+    "Filter": {
+      "search": "Search",
+      "booth": {
+        "all": "All",
+        "true": "Booth",
+        "false": "No booth"
+      },
+      "filter": {
+        "alt": "Filters",
+        "tech": "Tech",
+        "education": "Edu",
+        "sports": "Sports",
+        "arts": "Arts",
+        "volunteer": "Volunteer",
+        "other": "Other"
+      }
+    },
+    "List": {
+      "title": {
+        "tech": "Technology",
+        "education": "Education",
+        "sports": "Sports",
+        "arts": "Arts and culture",
+        "volunteer": "Social development and community service",
+        "other": "Other"
+      }
+    },
+    "Card": {
+      "action": {
+        "more": "See more",
+        "less": "See less",
+        "instagram": "Instagram • @{username}"
+      }
+    }
+  },
   "Games": {
     "tabName": "Games",
     "header": {
