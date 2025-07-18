@@ -22,7 +22,7 @@ export default function Home() {
         </div>
       </div>
 
-      <HomePageSponsorFooter className="relative z-10" />
+      <HomePageSponsorFooter className="z-10" />
 
       <FaqLayoutGroup />
     </HomeWrapper>

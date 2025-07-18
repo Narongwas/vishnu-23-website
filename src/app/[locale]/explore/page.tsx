@@ -61,9 +61,7 @@ export default async function ExplorePage() {
             )
         )}
       </div>
-      <div className="-mt-10 py-8">
-        <AllPageSponsorFooter />
-      </div>
+      <AllPageSponsorFooter className="-mt-10 py-8" />
       <NavBar />
     </>
   );
