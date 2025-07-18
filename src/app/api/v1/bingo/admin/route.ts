@@ -1,16 +1,45 @@
-import emailToId from "@/lib/helpers/emailToId";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
+import clubAdminEmailList from "@/jsondata/club-admin-email.json";
 
-// PATCH : "api/v1/bingo/admin" private
-// get user uid from token or friendCode and update user's bingoCounter
-// only send friendCode or token, not both
+// PATCH : "api/v1/bingo/admin" protected
+// get user uid from camperId or friendCode and update user's bingoCounter
+// only send friendCode or camperId, not both
 // clubNumber is always required
 export async function PATCH(request: NextRequest) {
-  const token =
-    request.headers.get("Authorization")?.split(" ")[1] ||
-    request.cookies.get("token")?.value;
+  // get staff token from the authorization request header or cookie
+  const staffToken =
+    request.headers.get("StaffAuthorization")?.split(" ")[1] ||
+    request.cookies.get("StaffToken")?.value;
 
+  // if staff token is not provided, return error
+  if (!staffToken) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // verify the staff token
+  const decodedStaffToken = await firebaseAdmin
+    .auth()
+    .verifyIdToken(staffToken);
+  const staffEmail = decodedStaffToken.email;
+
+  // check if the staff is a club admin
+  let isClubAdmin = false;
+  for (const email of clubAdminEmailList.emails) {
+    if (email === staffEmail) {
+      isClubAdmin = true;
+      break;
+    }
+  }
+
+  if (!isClubAdmin) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // get camper id from the query string
+  const camperId = request.nextUrl.searchParams.get("camperId");
+
+  // get friend code from the query string
   const friendCode = request.nextUrl.searchParams.get("friendCode");
 
   // get club number from the query string
@@ -31,29 +60,19 @@ export async function PATCH(request: NextRequest) {
     );
   }
 
-  // if token and friendCode is provided return error, only need one of them
-  if (token && friendCode) {
+  // if camperId and friendCode is provided return error, only need one of them
+  if (camperId && friendCode) {
     return NextResponse.json(
-      { error: "Please provide only one of token or friendCode" },
+      { error: "Please provide only one of camperId or friendCode" },
       { status: 400 }
     );
   }
 
   let uid: string | undefined;
 
-  // if token is provided, get the uid from the token
-  if (token) {
-    const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
-    const email = decodedToken.email;
-
-    if (!email) {
-      return NextResponse.json(
-        { error: "this QR code is not correct" },
-        { status: 404 }
-      );
-    }
-
-    uid = emailToId(decodedToken.email || "");
+  // if camperId is provided, get the uid from the camperId
+  if (camperId) {
+    uid = camperId;
   }
 
   // if friendCode is provided, get the uid from the friendCode
