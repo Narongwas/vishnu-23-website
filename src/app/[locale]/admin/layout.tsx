@@ -1,4 +1,3 @@
-import "@/app/[locale]/globals.css";
 import BackgroundWithNoise from "@/components/BackgroundWithNoise";
 import type { Viewport } from "next";
 
@@ -13,7 +12,7 @@ export default function AdminLayout({
 }>) {
   return (
     <BackgroundWithNoise className="from-yellow to-yellow-white bg-gradient-to-b">
-      <div className="relative mx-auto max-w-200">{children}</div>
+      <div className="relative mx-auto max-w-200 px-4">{children}</div>
     </BackgroundWithNoise>
   );
 }
