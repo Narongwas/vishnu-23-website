@@ -1,3 +1,5 @@
+"use client";
+
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
 import { useTranslations } from "next-intl";
@@ -19,9 +21,9 @@ const sponsors = [
   eazycal,
   pocari,
   gulf,
-  toa,
-  kbank,
   asean,
+  kbank,
+  toa,
   casio,
 ];
 
@@ -29,14 +31,33 @@ const HomePageSponsorFooter: StyleableFC = ({ className, style }) => {
   const t = useTranslations("Home.Sponsors");
   return (
     <div
-      className={cn("type-title-large text-red font-bold", className)}
+      className={cn("type-title-large text-red mt-11 font-bold", className)}
       style={style}
     >
-      <p className={cn("py-8")}>{t("title")}</p>
-      <div className="grid grid-cols-3 gap-2">
-        {sponsors.map((sponsor, index) => (
-          <Image key={index} src={sponsor} width={72} height={72} alt="" />
-        ))}
+      <p className={cn("py-5")}>{t("title")}</p>
+      <div className="flex flex-col items-center gap-2">
+        <div className="grid grid-cols-5 gap-2">
+          {sponsors.slice(0, 5).map((sponsor, index) => (
+            <Image
+              key={index}
+              src={sponsor}
+              width={64}
+              height={64}
+              alt={t(`sponsors.${index}`)}
+            />
+          ))}
+        </div>
+        <div className="grid grid-cols-4 gap-2">
+          {sponsors.slice(5).map((sponsor, index) => (
+            <Image
+              key={index}
+              src={sponsor}
+              width={64}
+              height={64}
+              alt={t(`sponsors.${index + 5}`)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
