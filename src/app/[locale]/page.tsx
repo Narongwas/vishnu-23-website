@@ -21,9 +21,7 @@ export default function Home() {
           <p>{t("vishnu.date")}</p>
         </div>
       </div>
-
       <HomePageSponsorFooter className="z-10" />
-
       <FaqLayoutGroup />
     </HomeWrapper>
   );
