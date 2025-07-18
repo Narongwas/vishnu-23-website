@@ -5,7 +5,7 @@ import cn from "@/lib/helpers/cn";
 import cloud1Logo from "@/public/decorating/clouds/cloud1.svg";
 import cloud2Logo from "@/public/decorating/clouds/cloud2.svg";
 import Image from "next/image";
-import AnimatedPageAction from "@/app/[locale]/group-reveal/components/AnimatedPageAction";
+import GroupRevealAction from "@/app/[locale]/group-reveal/components/GroupRevealAction";
 import Link from "next/link";
 import Icon from "@/components/Icon";
 import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
@@ -18,10 +18,6 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
 
   const { token } = await getServerAuth();
 
-  if (!token) {
-    return <div>You must be logged in to view your group.</div>;
-  }
-
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/group`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -30,7 +26,7 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
   });
 
   if (!res.ok) {
-    return <div>Failed to fetch group info</div>;
+    throw new Error("Failed to fetch group info");
   }
 
   const data = await res.json();
@@ -70,12 +66,12 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
           {t(groupInfo.id)}
         </div>
       </div>
-      <div className="relative z-10 mt-4.5 flex w-full justify-center">
-        <div className="relative">
+      <div className="flex w-full justify-center">
+        <div className="relative z-10 mt-4.5">
           <Image
             src={`/group/${groupInfo.id}.webp`}
-            width={256}
-            height={256}
+            width={286}
+            height={516}
             alt="Kingdom Flag"
           />
           <Image
@@ -83,22 +79,22 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
             width={73.5}
             height={39.5}
             alt=""
-            className="absolute -top-4 -left-8 opacity-100"
+            className="absolute -top-4 -left-8"
           />
           <Image
             src={cloud2Logo}
             width={72}
             height={34.5}
             alt=""
-            className="absolute -right-8 -bottom-4 z-50 opacity-100"
+            className="absolute -right-8 -bottom-4 z-50"
           />
         </div>
       </div>
       <div className="item relative z-10 mt-6 flex justify-center pb-8">
         <AllPageSponsorFooter />
       </div>
-      <AnimatedPageAction
-        image="/logo/SocialIcon.svg"
+      <GroupRevealAction
+        image="/social-icon/line.svg"
         text={tGroupAnnouncement("action.line")}
         groupInfo={groupInfo}
       />
