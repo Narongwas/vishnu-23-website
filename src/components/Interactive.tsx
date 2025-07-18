@@ -10,6 +10,7 @@ type Props = {
   disabled?: boolean;
   href?: string;
   type?: "button" | "submit" | "reset";
+  title?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
 };
 
@@ -18,6 +19,7 @@ const Interactive: StyleableFC<Props> = ({
   disabled = false,
   href,
   type = "button",
+  title,
   onClick,
   className,
   style,
@@ -74,6 +76,7 @@ const Interactive: StyleableFC<Props> = ({
     <MotionElement
       href={href}
       type={type}
+      title={title}
       tabIndex={disabled ? -1 : 0}
       onClick={onClick}
       onTapStart={(event: TouchEvent | MouseEvent) => {
