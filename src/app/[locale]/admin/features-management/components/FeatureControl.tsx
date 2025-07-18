@@ -108,7 +108,7 @@ export default function FeatureControl() {
         <PageAction
           text="บันทึก"
           icon="check"
-          className="absolute top-60"
+          className="-bottom-150"
           onClick={handleSave}
         />
       )}

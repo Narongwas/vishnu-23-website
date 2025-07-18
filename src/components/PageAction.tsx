@@ -20,17 +20,16 @@ const PageAction: StyleableFC<PageActionProps> = ({
   return (
     <div
       className={cn(
-        "inline-flex h-135 w-full flex-col items-center justify-start px-44 pt-12 pb-8",
+        "bg-yellow fixed left-1/2 h-200 w-250 -translate-x-1/2 overflow-hidden [clip-path:ellipse()]",
         className
       )}
       style={style}
       onClick={onClick}
     >
-      <div className="text-blue z-10 flex flex-col items-center justify-center gap-3 pt-4">
+      <div className="text-blue z-10 flex w-full flex-col items-center justify-center gap-3 pt-8">
         <Icon name={icon} size={40} />
         <p className="type-title-medium">{text}</p>
       </div>
-      <div className="bg-yellow absolute h-full w-183 [clip-path:ellipse()]" />
     </div>
   );
 };
