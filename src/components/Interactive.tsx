@@ -2,7 +2,7 @@
 
 import cn from "@/lib/helpers/cn";
 import type { StyleableFC } from "@/lib/types/misc";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { ComponentProps, MouseEvent, ReactNode } from "react";
 import { useRef, useState } from "react";
 

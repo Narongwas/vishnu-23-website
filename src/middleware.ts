@@ -9,6 +9,22 @@ export const config = {
 
 const intlMiddleware = createIntlMiddleware(routing);
 
+// Add this helper function to remove locale prefixes
+function removeLocaleFromPath(pathname: string): string {
+  // Check if the path starts with a locale
+  for (const locale of routing.locales) {
+    if (pathname.startsWith(`/${locale}/`)) {
+      // Remove the locale prefix and return the rest of the path
+      return pathname.substring(locale.length + 1);
+    } else if (pathname === `/${locale}`) {
+      // If the path is just the locale, return root path
+      return "/";
+    }
+  }
+  // No locale prefix found, return as is
+  return pathname;
+}
+
 export async function middleware(req: NextRequest) {
   const authHeader = req.headers.get("authorization");
   const cookieToken = req.cookies.get("authToken")?.value;
@@ -39,8 +55,11 @@ export async function middleware(req: NextRequest) {
 
   // redirect to login if no token
   if (!token && !isPublicRoute && !isPublicApiRoute && !isStaticFile) {
+    // Remove locale from pathname for the redirect parameter
+    const pathWithoutLocale = removeLocaleFromPath(req.nextUrl.pathname);
+
     return NextResponse.redirect(
-      new URL(`/?redirect=${encodeURIComponent(req.nextUrl.pathname)}`, req.url)
+      new URL(`/?redirect=${encodeURIComponent(pathWithoutLocale)}`, req.url)
     );
   }
 
