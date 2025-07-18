@@ -27,8 +27,8 @@ const LogoutButton: StyleableFC = ({ className }) => {
 
   return (
     <Button
-      Size="Small"
-      Appearance="Primary"
+      Size="small"
+      Appearance="primary"
       className={cn(className)}
       onClick={handleLogout}
     >

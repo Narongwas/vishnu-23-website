@@ -11,8 +11,8 @@ const EditButton: StyleableFC = ({ className }) => {
 
   return (
     <Button
-      Size="Small"
-      Appearance="Secondary"
+      Size="small"
+      Appearance="secondary"
       className={cn(className)}
       disabled={true}
     >
