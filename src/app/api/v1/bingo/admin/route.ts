@@ -79,7 +79,7 @@ export async function PATCH(request: NextRequest) {
   if (friendCode) {
     const userSnapshot = await db
       .collection("users")
-      .where("addFriendCode", "==", Number(friendCode))
+      .where("addFriendCode", "==", friendCode)
       .get();
 
     if (userSnapshot.empty) {

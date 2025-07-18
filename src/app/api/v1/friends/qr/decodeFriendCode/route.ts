@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     const userSnapshot = await db
       .collection("users")
       .where("addFriendCode", "==", code)
-      .select("nickName")
+      .select("firstName", "lastName")
       .get();
 
     // Check if the user exists
@@ -28,7 +28,8 @@ export async function GET(request: NextRequest) {
     // Return the user's name and uid
     return NextResponse.json(
       {
-        name: userSnapshot.docs[0].data().nickName,
+        firstName: userSnapshot.docs[0].data().firstName,
+        lastName: userSnapshot.docs[0].data().lastName,
         uid: userSnapshot.docs[0].id,
       },
       {

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { GroupData } from "@/lib/types/groups";
 
 // List of columns to include in CSV (in desired order)
-const CSV_COLUMNS: (keyof GroupData)[] = ["id", "name", "bingoScore"]; // Customize this order
+const CSV_COLUMNS: (keyof GroupData)[] = ["id", "groupName", "bingoScore"]; // Customize this order
 
 function convertToCSV(data: GroupData[]): string {
   if (data.length === 0) return "";

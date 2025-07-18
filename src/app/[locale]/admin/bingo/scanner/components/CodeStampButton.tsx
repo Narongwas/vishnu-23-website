@@ -20,7 +20,7 @@ const CodeStampButton = () => {
         <Icon name="pin" />
         <p className="type-title-medium">แสตมป์ด้วยรหัส</p>
       </Button>
-      <CodeStampModal isOpen={open} onClose={() => setOpen(false)} />
+      <CodeStampModal ClubId={0} isOpen={open} onClose={() => setOpen(false)} />
     </>
   );
 };

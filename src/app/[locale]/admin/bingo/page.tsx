@@ -17,7 +17,7 @@ export default async function Page() {
   const groupData = await res.json();
 
   return (
-    <div>
+    <div className="pb-20">
       <TableSortWrapper groupData={groupData} />
       <AdminBingoPageAction icon="qr_code_scanner" text="สแกนให้สแตมป์" />
     </div>

@@ -1,6 +1,6 @@
 export interface GroupData {
   id: string;
-  name: string;
+  groupName: string;
   bingoScore: number;
   // Add other specific fields you want here
 }
