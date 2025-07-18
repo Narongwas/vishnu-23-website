@@ -1,10 +1,12 @@
 "use client";
 
 import Icon from "@/components/Icon";
+import Interactive from "@/components/Interactive";
 import cn from "@/lib/helpers/cn";
 import type { FaqQuestion } from "@/lib/types/faq";
 import { StyleableFC } from "@/lib/types/misc";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
@@ -12,29 +14,37 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
   style,
   className,
 }) => {
+  const t = useTranslations("Home.FaqCard");
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <motion.div
       layout
-      className={cn("overflow-hidden bg-white text-left", className)}
+      className={cn("overflow-hidden bg-white *:text-start", className)}
       style={style}
     >
       <motion.div
         layout="position"
         className={cn(
-          "flex w-full cursor-pointer items-center px-4 py-3 transition-colors duration-200",
+          "flex w-full transition-colors duration-200",
           isOpen && "bg-yellow/20"
         )}
-        onClick={() => setIsOpen((isOpen) => !isOpen)}
       >
-        <p className="type-title-medium w-full">{questions.question}</p>
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+        <p className="type-title-medium w-full px-4 py-3 text-balance">
+          {questions.question}
+        </p>
+        <Interactive
+          title={t(isOpen ? "action.less" : "action.more")}
+          onClick={() => setIsOpen((isOpen) => !isOpen)}
+          className="text-red px-4"
         >
-          <Icon name="expand_more" size={24} className="text-red" />
-        </motion.div>
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <Icon name="expand_more" size={24} />
+          </motion.div>
+        </Interactive>
       </motion.div>
 
       <motion.div
@@ -42,13 +52,13 @@ const FaqCard: StyleableFC<{ questions: FaqQuestion }> = ({
         className="overflow-hidden"
         style={{ height: isOpen ? "auto" : 0 }}
       >
-        <motion.div
+        <motion.p
           animate={{ opacity: isOpen ? 1 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="type-body-medium p-4"
+          className="type-body-medium px-4 py-3"
         >
-          <p>{questions.answer}</p>
-        </motion.div>
+          {questions.answer}
+        </motion.p>
       </motion.div>
     </motion.div>
   );

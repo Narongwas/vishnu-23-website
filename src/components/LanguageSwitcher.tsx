@@ -26,8 +26,8 @@ export default function LanguageSwitcher() {
 
   return (
     <Button
-      Size="Small"
-      Appearance="Tertiary"
+      Size="small"
+      Appearance="tertiary"
       aria-label={t("alt")}
       title={t("alt")}
       onClick={handleSwitch}

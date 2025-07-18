@@ -76,3 +76,12 @@
     font-weight: bold;
   }
 }
+
+@utility fabric-texture {
+  @apply relative;
+
+  &::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 bg-[url('/decorating/texture/fabric.png')] opacity-50 mix-blend-soft-light;
+  }
+}
