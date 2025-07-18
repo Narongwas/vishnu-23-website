@@ -32,10 +32,8 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Enable experimental features for better mobile support
-  experimental: {
-    serverComponentsExternalPackages: ["firebase-admin"],
-  },
+
+  serverExternalPackages: ["firebase-admin"],
 };
 
 const withNextIntl = createNextIntlPlugin();
