@@ -15,7 +15,7 @@ import { notFound } from "next/navigation";
 import { checkFeatureFlagByName } from "@/lib/services/featureFlags.service";
 
 const GroupRevealContent: StyleableFC = async ({ className }) => {
-  const tGroupAnnouncement = await getTranslations("GroupAnnouncement");
+  const t = await getTranslations("GroupAnnouncement");
 
   const { token } = await getServerAuth();
 
@@ -33,7 +33,6 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
   }
 
   const data = await res.json();
-  console.log("Group Reveal Data:", data);
   const groupInfoRes = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/group/info/${data.group}`,
     {
@@ -58,8 +57,8 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
             <Button
               Size="small"
               Appearance="primary"
-              aria-label={tGroupAnnouncement("action.home")}
-              title={tGroupAnnouncement("action.home")}
+              aria-label={t("action.home")}
+              title={t("action.home")}
             >
               <Icon name="home" />
             </Button>
@@ -67,7 +66,7 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
         </div>
         {groupLetter && (
           <div className="type-headline-small w-full text-center">
-            Group {data.group}
+            {t("group", { group: groupInfo.id === "D" ? "Dog" : groupInfo.id })}
           </div>
         )}
       </div>
@@ -100,7 +99,7 @@ const GroupRevealContent: StyleableFC = async ({ className }) => {
       </div>
       <GroupRevealAction
         image="/social-icon/line.svg"
-        text={tGroupAnnouncement("action.line")}
+        text={t("action.line")}
         groupInfo={groupInfo}
       />
     </BackgroundWithNoise>
