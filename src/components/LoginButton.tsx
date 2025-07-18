@@ -41,8 +41,6 @@ export default function GoogleLoginBtn({
   const router = useRouter();
   const loginAttempted = useRef(false);
 
-  console.log("photo : " + user?.photoURL);
-
   const handleGoogleLogin = useCallback(async () => {
     try {
       const { user, error } = await signInWithGoogle();
@@ -53,7 +51,6 @@ export default function GoogleLoginBtn({
         onError?.(errorMessage || "Login failed");
       }
       if (user) {
-        console.log("GoogleLoginButton - User signed in:", user.email);
         await loginWithToken(user);
         onSuccess?.();
         router.push(redirectTo);

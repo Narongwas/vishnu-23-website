@@ -31,7 +31,6 @@ export async function middleware(req: NextRequest) {
 
   // redirect to login if no token
   if (!token && !isPublicRoute && !isPublicApiRoute && !isStaticFile) {
-    console.log("Redirecting to login - no token");
     return NextResponse.redirect(
       new URL(`/?redirect=${encodeURIComponent(req.nextUrl.pathname)}`, req.url)
     );
