@@ -1,7 +1,7 @@
+import { Link } from "@/i18n/navigation";
 import { StyleableFC } from "@/lib/types/misc";
 import cn from "@/lib/helpers/cn";
 import Icon from "@/components/Icon";
-import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 
 const NavigationCard: StyleableFC<{
