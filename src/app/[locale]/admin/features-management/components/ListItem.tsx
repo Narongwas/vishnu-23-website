@@ -8,7 +8,7 @@ const ListItem: StyleableFC<{ children: React.ReactNode }> = ({
   return (
     <div
       className={cn(
-        "border-yellow-white grid items-center border-b-2 bg-white px-4 py-3",
+        "border-yellow-white flex items-center border-b-2 bg-white px-4 py-3",
         className
       )}
     >
