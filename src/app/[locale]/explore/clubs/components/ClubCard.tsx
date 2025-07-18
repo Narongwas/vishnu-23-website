@@ -23,30 +23,38 @@ const ClubCard: StyleableFC<{
   return (
     <motion.div
       layout
-      className={cn("overflow-hidden bg-white text-left", className)}
+      className={cn("overflow-hidden bg-white text-start", className)}
       style={style}
     >
       <motion.div
         layout="position"
         className={cn(
-          "type-body-medium flex w-full cursor-pointer items-center justify-between px-4 py-3 transition-colors duration-200",
+          "type-body-medium flex w-full items-center gap-3 p-3.5 transition-colors duration-200",
           isOpen && "bg-yellow/20"
         )}
       >
-        <div className="flex items-center gap-4">
-          <Image src={logoURL} alt="" width={72} height={72} />
-          <div className="flex w-full flex-col gap-2 overflow-hidden">
-            <p className="type-title-medium">{club.name}</p>
-            <p className="line-clamp-2">{club.description}</p>
-          </div>
-        </div>
+        <Image src={logoURL} alt="" width={72} height={72} />
         <motion.div
+          animate={{ y: isOpen && club.description ? 22 : 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="grid grow"
+        >
+          <h3 className="type-title-medium truncate">{club.name}</h3>
+          <motion.p
+            animate={{ opacity: isOpen ? 0 : 1 }}
+            className="line-clamp-2"
+          >
+            {club.description}
+          </motion.p>
+        </motion.div>
+        <motion.button
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
           onClick={() => setIsOpen((isOpen) => !isOpen)}
+          className="cursor-pointer"
         >
           <Icon name="expand_more" className="text-red" />
-        </motion.div>
+        </motion.button>
       </motion.div>
 
       <motion.div
