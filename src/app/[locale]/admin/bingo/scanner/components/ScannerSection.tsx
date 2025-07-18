@@ -1,24 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import ScanFeed from "@/app/scan/components/ScanQR";
+import { StyleableFC } from "@/lib/types/misc";
 
-const ScannerSection = () => {
-  const [result, setResult] = useState<string | null>(null);
+type ScannerSectionProps = {
+  onCapture: (barcode: string) => void;
+};
 
+const ScannerSection: StyleableFC<ScannerSectionProps> = ({ onCapture }) => {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center">
       <div className="max-h-sm w-full max-w-md rounded-xl bg-white/80 p-4 shadow-lg">
         <ScanFeed
-          onCapture={(barcode) => setResult(barcode)}
+          onCapture={(barcode) => onCapture(barcode)}
           className="!h-96 !w-full overflow-hidden rounded-lg bg-black"
         />
       </div>
-      {result && (
-        <div className="mt-4 text-center text-lg text-green-700">
-          สแกนได้: {result}
-        </div>
-      )}
+      {/* The result is now displayed in the confirmation modal, so this can be removed. */}
     </div>
   );
 };

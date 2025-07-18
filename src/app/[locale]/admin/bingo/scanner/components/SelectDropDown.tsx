@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Icon from "@/components/Icon";
+import { StyleableFC } from "@/lib/types/misc";
 
 const options = [
   { value: "1", label: "ชมรมฟุตบอลคณะวิศวกรรมศาสตร์" },
@@ -37,9 +38,19 @@ const options = [
   { value: "28", label: "ชมรมวิชาการ คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย" },
 ];
 
-const SelectDropDown = () => {
+type SelectDropDownProps = {
+  onClubSelect: (clubId: number) => void;
+};
+
+const SelectDropDown: StyleableFC<SelectDropDownProps> = ({ onClubSelect }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<null | (typeof options)[0]>(null);
+
+  const handleSelectOption = (option: (typeof options)[0]) => {
+    setSelected(option);
+    onClubSelect(parseInt(option.value, 10)); // Pass the numeric ID up
+    setOpen(false);
+  };
 
   return (
     <div className="type-title-medium relative flex items-center justify-center px-10">
@@ -53,17 +64,14 @@ const SelectDropDown = () => {
         <Icon name={open ? "expand_less" : "expand_more"} />
       </div>
       {open && (
-        <div className="absolute top-full z-20 max-h-24 w-80 overflow-y-auto rounded border border-gray-300 bg-white shadow">
+        <div className="absolute top-full z-20 max-h-48 w-80 overflow-y-auto rounded border border-gray-300 bg-white shadow">
           {options.map((option) => (
             <div
               key={option.value}
               className={`cursor-pointer px-4 py-2 hover:bg-gray-100 ${
                 selected?.value === option.value ? "bg-gray-200" : ""
               }`}
-              onClick={() => {
-                setSelected(option);
-                setOpen(false);
-              }}
+              onClick={() => handleSelectOption(option)}
             >
               {option.label}
             </div>

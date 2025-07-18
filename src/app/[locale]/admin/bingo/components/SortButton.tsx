@@ -8,8 +8,8 @@ type SortButtonProps = {
 
 const SortButton = ({ sortType, onToggle }: SortButtonProps) => (
   <Button
-    Size="Small"
-    Appearance="Tertiary"
+    Size="small"
+    Appearance="tertiary"
     className="relative z-10"
     onClick={onToggle}
   >
