@@ -1,3 +1,4 @@
+import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
 import MountainBackground from "@/components/MountainBackground";
 import NavBar from "@/components/NavBar";
 import NavigationCard from "@/components/NavigationCard";
@@ -60,7 +61,7 @@ export default async function ExplorePage() {
             )
         )}
       </div>
-
+      <AllPageSponsorFooter className="-mt-10 py-8" />
       <NavBar />
     </>
   );

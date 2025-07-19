@@ -1,4 +1,5 @@
 import RegistrationInfo from "@/app/[locale]/registration/components/RegistrationInfo";
+import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
 import BackgroundWithNoise from "@/components/BackgroundWithNoise";
 import HomeButton from "@/components/HomeButton";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -18,6 +19,7 @@ export default function Registration() {
           <HomeButton />
         </div>
         <RegistrationInfo />
+        <AllPageSponsorFooter className="mt-17" />
       </div>
     </BackgroundWithNoise>
   );
