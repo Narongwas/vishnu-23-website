@@ -3,13 +3,13 @@
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import InstagramIcon from "@/components/socialIcon/InstagramIcon";
+import { Link } from "@/i18n/navigation";
 import cn from "@/lib/helpers/cn";
 import type { ClubItem } from "@/lib/types/club";
 import { StyleableFC } from "@/lib/types/misc";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 
 const ClubCard: StyleableFC<{

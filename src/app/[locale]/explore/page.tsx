@@ -1,59 +1,67 @@
+import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
 import MountainBackground from "@/components/MountainBackground";
 import NavBar from "@/components/NavBar";
 import NavigationCard from "@/components/NavigationCard";
 import TopLevelPageHeader from "@/components/TopLevelPageHeader";
-
+import { checkFeatureFlagByName } from "@/lib/services/featureFlags.service";
 import clubs from "@/public/navigation/Clubs.png";
 import map from "@/public/navigation/Map.png";
 import presentation from "@/public/navigation/Presentation.png";
+import { getTranslations } from "next-intl/server";
 
-const cards = [
-  {
-    image: map,
-    title: "Map",
-    label: "เปิดแผนที่ท่องโลกวิศวะ\nตามหาเส้นทางสู่ชมรมในตำนาน",
-    link: "/explore/map",
-  },
-  {
-    image: clubs,
-    title: "Clubs",
-    label: "เยี่ยมชมทุกชมรม และดูกันว่า\nชมรมไหนดีที่สุดสำหรับน้อง",
-    link: "/explore/clubs",
-  },
-  {
-    image: presentation,
-    title: "Presentation",
-    label: "ดาวน์โหลดสไลด์ เพื่อไม่พลาด\nข้อมูลสำคัญของคณะ",
-    link: "/explore/presentation",
-  },
-];
+export default async function ExplorePage() {
+  const t = await getTranslations("Explore");
+  const presentationFlag = await checkFeatureFlagByName("slide");
 
-export default function ExplorePage() {
+  const cards = [
+    {
+      image: map,
+      title: "Map",
+      label: t("map.subtitle"),
+      href: "/explore/map",
+    },
+    {
+      image: clubs,
+      title: "Clubs",
+      label: t("clubs.subtitle"),
+      href: "/explore/clubs",
+    },
+    {
+      image: presentation,
+      title: "Presentation",
+      label: t("presentation.subtitle"),
+      href: "/explore/presentation",
+    },
+  ];
   return (
     <>
       <TopLevelPageHeader
-        title="Explore"
-        chineseText="探图"
-        subtitle="อยากรู้จักชมรม เปิดแม็พ หรือแค่อยากโหลดสไลด์ มาดูกันว่าวิศวะมีอะไรให้น้องบ้าง"
+        title={t("tabName")}
+        chineseText={t("header.chinese")}
+        subtitle={t("header.subtitle")}
       />
 
       <MountainBackground
-        className="absolute -top-72 left-0 h-full w-full"
+        className="absolute top-10 left-0 h-full w-full"
         background="bg-blue"
       />
 
-      <div className="relative z-15 mt-4 flex w-full flex-col items-center gap-4 px-4 pb-10">
-        {cards.map((card, index) => (
-          <NavigationCard
-            key={index}
-            image={card.image}
-            title={card.title}
-            label={card.label}
-            link={card.link}
-          />
-        ))}
+      <div className="relative z-15 mt-4 flex w-full flex-col items-center px-4 pb-10">
+        {cards.map(
+          (card, index) =>
+            !(card.title === "Presentation" && !presentationFlag) && (
+              <NavigationCard
+                key={index}
+                image={card.image}
+                title={card.title}
+                desc={card.label}
+                variant="yellow"
+                href={card.href}
+              />
+            )
+        )}
       </div>
-
+      <AllPageSponsorFooter className="-mt-10 py-8" />
       <NavBar />
     </>
   );
