@@ -114,7 +114,6 @@ export async function PATCH(request: NextRequest) {
 
   const groupDoc = groups.docs[0];
   const group = groupDoc.data();
-  const groupId = groupDoc.id;
 
   // find the index of the club number in the group bingo array
   let idx = -1;
@@ -200,20 +199,11 @@ export async function PATCH(request: NextRequest) {
 
   try {
     // Use Firestore transaction to ensure atomic updates
-    await db.runTransaction(async (transaction) => {
-      const userRef = db.collection("users").doc(uid);
-      const groupRef = db.collection("groups").doc(groupId);
-      // Read current data
-      const userDoc = await transaction.get(userRef);
-      const groupDoc = await transaction.get(groupRef);
-      if (!userDoc.exists || !groupDoc.exists) {
-        throw new Error("User or group document does not exist");
-      }
-      // Update user's bingoCounter and score
-      transaction.update(userRef, {
-        bingoCounter: bingoCounter,
-        bingoScore: newUserScore,
-      });
+    const userRef = db.collection("users").doc(uid);
+
+    await userRef.update({
+      bingoCounter: bingoCounter,
+      bingoScore: newUserScore,
     });
   } catch (error) {
     return NextResponse.json(
