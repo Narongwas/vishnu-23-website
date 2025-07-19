@@ -43,10 +43,7 @@ const BoothMap: StyleableFC<BoothMapProps> = ({
 
   const handleClickBooth = (position: number) => {
     const club = clubList.find((c) => c.boothPosition?.position === position);
-    if (club) {
-      setSelectedClub(club);
-      scrollToCard();
-    }
+    if (club) setSelectedClub(club);
   };
 
   const handleSelectClub = (club: ClubItem) => {
@@ -55,10 +52,7 @@ const BoothMap: StyleableFC<BoothMapProps> = ({
   };
 
   return (
-    <div
-      className={cn("relative flex flex-col items-center gap-3", className)}
-      style={style}
-    >
+    <div className={cn("relative space-y-3", className)} style={style}>
       <figure className="relative">
         <Image src={image} alt={altText} priority />
 
@@ -81,15 +75,13 @@ const BoothMap: StyleableFC<BoothMapProps> = ({
         <p className="type-title-medium">{t("Building.instruction")}</p>
       </div>
 
-      <div ref={scrollTargetRef} className="h-1" />
-
       {selectedClub && (
-        <div className="my-4 w-full">
+        <div ref={scrollTargetRef} className="py-4">
           <ClubCard club={selectedClub} />
         </div>
       )}
 
-      <div className="flex w-full flex-col gap-1">
+      <div>
         <ClubListItem clubList={clubList} onClick={handleSelectClub} />
       </div>
     </div>
