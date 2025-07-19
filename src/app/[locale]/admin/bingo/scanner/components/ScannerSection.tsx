@@ -9,14 +9,8 @@ type ScannerSectionProps = {
 
 const ScannerSection: StyleableFC<ScannerSectionProps> = ({ onCapture }) => {
   return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center">
-      <div className="max-h-sm w-full max-w-md rounded-xl bg-white/80 p-4 shadow-lg">
-        <ScanFeed
-          onCapture={(barcode) => onCapture(barcode)}
-          className="!h-96 !w-full overflow-hidden rounded-lg bg-black"
-        />
-      </div>
-      {/* The result is now displayed in the confirmation modal, so this can be removed. */}
+    <div className="fixed inset-0 z-0 flex items-center justify-center bg-black">
+      <ScanFeed onCapture={onCapture} className="h-full w-full object-cover" />
     </div>
   );
 };

@@ -8,7 +8,7 @@ type PageHeaderProps = {
 
 const PageHeader: StyleableFC<PageHeaderProps> = ({ onClubSelect }) => {
   return (
-    <div className="flex justify-between px-4 pt-4 pb-10">
+    <div className="relative z-10 flex justify-between px-4 pt-4 pb-10">
       <BackButton variants="tertiary" />
       <SelectDropDown onClubSelect={onClubSelect} />
     </div>
