@@ -42,11 +42,11 @@ export default function AdminPage() {
       />
 
       <MountainBackground
-        className="absolute top-0 left-0 h-full w-full"
+        className="absolute top-10 left-0 h-full w-full"
         background="bg-blue"
       />
 
-      <div className="relative z-20 mx-auto grid w-full max-w-screen-md grid-cols-2 gap-4">
+      <div className="relative z-20 mx-auto mt-20 grid w-full grid-cols-2 gap-4">
         {menuList.map((menu, index) => (
           <Link
             href={menu.link}
