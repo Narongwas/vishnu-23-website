@@ -23,13 +23,21 @@ const buildings = [
     href: "/explore/map/eng3",
   },
   {
+    key: "eng4",
+    style: "left-[10%] top-[30%] w-[20%] h-[20%]",
+    href: "/explore/map/eng4",
+    rainOnly: true,
+  },
+  {
     key: "en100",
     style: "right-[8%] top-[45%] w-[22%] h-[22%]",
     href: "/explore/map/en100",
   },
 ];
 
-const FacultyMap: StyleableFC = ({ className, style }) => {
+const FacultyMap: StyleableFC<{
+  isRaining?: boolean;
+}> = ({ isRaining, className, style }) => {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("Map");
@@ -49,6 +57,10 @@ const FacultyMap: StyleableFC = ({ className, style }) => {
   const backgroundOverlay =
     "border-2 border-red bg-yellow mix-blend-overlay z-15";
 
+  const filteredBuildings = !isRaining
+    ? buildings.filter((building) => !building.rainOnly)
+    : buildings;
+
   return (
     <div
       className={cn("relative flex flex-col items-center gap-4", className)}
@@ -58,7 +70,7 @@ const FacultyMap: StyleableFC = ({ className, style }) => {
 
       <figure className="relative">
         <Image src={facultyMap} alt={t("Faculty.alt")} priority />
-        {buildings.map((building) => (
+        {filteredBuildings.map((building) => (
           <button
             key={building.key}
             onClick={() => handleClick(building.key)}
@@ -77,7 +89,7 @@ const FacultyMap: StyleableFC = ({ className, style }) => {
       </div>
 
       <div className="flex items-center justify-center gap-2">
-        {buildings.map((building) => (
+        {filteredBuildings.map((building) => (
           <Button
             key={building.key}
             Appearance="primary"
