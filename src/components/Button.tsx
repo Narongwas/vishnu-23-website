@@ -26,7 +26,7 @@ const SizeClasses: Record<ButtonSize, string> = {
 const iconMarginSelector: Record<ButtonSize, string> = {
   medium: "[&>:is(i,svg)]:-mx-2 [&>svg]:h-6",
   small: "[&>:is(i,svg)]:-mx-1 [&>svg]:h-5 [&>svg]:py-0.5",
-  "x-small": "[&>:is(i,svg)]:-mx-1.5 [&>svg]:h-5 [&>svg]:py-1",
+  "x-small": "[&>:is(i,svg)]:-mx-1 [&>svg]:h-5 [&>svg]:py-1",
 };
 
 const AppearanceClasses: Record<ButtonAppearance, string> = {
