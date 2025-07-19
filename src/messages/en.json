@@ -60,7 +60,8 @@
     "Hero": {
       "action": {
         "logIn": "Log in",
-        "account": "Account"
+        "account": "Account",
+        "registration": "See registration point"
       },
       "ifd": {
         "event": "Intania First Date 2025",
@@ -526,25 +527,5 @@
       "title": "Remove from friends",
       "desc": "You will no longer see “{friend}” in your friend list. We won’t notify {friend}."
     }
-  },
-  "kokname": {
-    "A": "kokkaplooklook",
-    "B": "kokkadai",
-    "C": "kokgalaxy",
-    "D": "kokkarian",
-    "E": "kokkawee",
-    "F": "kokkatak",
-    "G": "kokkrasae",
-    "H": "kokgalorgee",
-    "J": "kokkatukjit",
-    "K": "kokkabazing",
-    "L": "kokgavishcon",
-    "M": "kokkajai",
-    "N": "kokkatiewrue",
-    "P": "kokkaduup",
-    "Q": "kokkabi",
-    "R": "kokkazip",
-    "S": "Kokkalasee",
-    "T": "kokkajuabin"
   }
 }
