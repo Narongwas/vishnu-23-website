@@ -3,12 +3,13 @@
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import InstagramIcon from "@/components/socialIcon/InstagramIcon";
+import { Link } from "@/i18n/navigation";
 import cn from "@/lib/helpers/cn";
 import type { ClubItem } from "@/lib/types/club";
 import { StyleableFC } from "@/lib/types/misc";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 
 const ClubCard: StyleableFC<{
@@ -17,33 +18,43 @@ const ClubCard: StyleableFC<{
   const [isOpen, setIsOpen] = useState(false);
   const logoURL = `/clubs-logo/${club.logo}`;
   const igURL = club.ig;
+  const t = useTranslations("");
+  const username = new URL(club?.ig || "").pathname.split("/")[1];
   return (
     <motion.div
       layout
-      className={cn("overflow-hidden bg-white text-left", className)}
+      className={cn("overflow-hidden bg-white text-start", className)}
       style={style}
     >
       <motion.div
         layout="position"
         className={cn(
-          "type-body-medium flex w-full cursor-pointer items-center justify-between px-4 py-3 transition-colors duration-200",
+          "type-body-medium flex w-full items-center gap-3 p-3.5 transition-colors duration-200",
           isOpen && "bg-yellow/20"
         )}
       >
-        <div className="flex items-center gap-4">
-          <Image src={logoURL} alt="" width={72} height={72} />
-          <div className="flex w-full flex-col gap-2 overflow-hidden">
-            <p className="type-title-medium">{club.name}</p>
-            <p className="line-clamp-2">{club.description}</p>
-          </div>
-        </div>
+        <Image src={logoURL} alt="" width={72} height={72} />
         <motion.div
+          animate={{ y: isOpen && club.description ? 22 : 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="grid grow"
+        >
+          <h3 className="type-title-medium truncate">{club.name}</h3>
+          <motion.p
+            animate={{ opacity: isOpen ? 0 : 1 }}
+            className="line-clamp-2"
+          >
+            {club.description}
+          </motion.p>
+        </motion.div>
+        <motion.button
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
           onClick={() => setIsOpen((isOpen) => !isOpen)}
+          className="cursor-pointer"
         >
           <Icon name="expand_more" className="text-red" />
-        </motion.div>
+        </motion.button>
       </motion.div>
 
       <motion.div
@@ -66,8 +77,8 @@ const ClubCard: StyleableFC<{
             {club.boothPosition && (
               <div className="flex gap-1">
                 <Button
-                  Appearance="Secondary"
-                  Size="XSmall"
+                  Appearance="secondary"
+                  Size="x-small"
                   className="flex gap-2"
                 >
                   <Icon name="storefront" />
@@ -75,16 +86,20 @@ const ClubCard: StyleableFC<{
                     {club.boothPosition?.position}
                   </span>
                 </Button>
-                <Button Appearance="Secondary" Size="XSmall">
+                <Button Appearance="secondary" Size="x-small">
                   <span className="type-title-medium">
-                    {club.boothPosition?.building}
+                    {t(`Map.Faculty.building.${club.boothPosition?.building}`)}
                   </span>{" "}
                 </Button>
               </div>
             )}
             {igURL && (
               <Link href={igURL}>
-                <Button Appearance="Secondary" Size="Small">
+                <Button
+                  Appearance="secondary"
+                  Size="small"
+                  title={t("Clubs.Card.action.instagram", { username })}
+                >
                   <InstagramIcon />
                 </Button>
               </Link>

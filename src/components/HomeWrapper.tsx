@@ -19,10 +19,13 @@ export default function HomeWrapper({
   return (
     // Reuse component for home page and login page
     <BackgroundWithNoise
-      className={cn("from-yellow to-yellow-white bg-gradient-to-b", classname)}
+      className={cn(
+        "from-yellow to-yellow-white focus-ring-red bg-gradient-to-b",
+        classname
+      )}
     >
-      <div className="relative z-10 mx-auto flex h-full max-w-200 flex-col items-center text-center">
-        <div className="flex w-full items-center justify-between p-4">
+      <div className="relative mx-auto flex h-full max-w-200 flex-col items-center text-center">
+        <div className="absolute z-10 flex w-full items-center justify-between p-4">
           <LanguageSwitcher />
           <LoginButton />
         </div>
@@ -48,7 +51,7 @@ export default function HomeWrapper({
           className="absolute top-111 -right-18 -scale-x-100 transform"
         />
         <NavBar />
-        <div className="relative mt-11 flex flex-col items-center">
+        <div className="relative mt-20 flex flex-col items-center">
           <Image
             src={firstDateLogo}
             priority

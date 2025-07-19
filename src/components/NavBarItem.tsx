@@ -2,7 +2,8 @@
 
 import Icon from "@/components/Icon";
 import Interactive from "@/components/Interactive";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
+import cn from "@/lib/helpers/cn";
 
 export default function NavBarItem({
   icon,
@@ -14,32 +15,26 @@ export default function NavBarItem({
   href: string;
 }) {
   const pathname = usePathname();
-  const segments = pathname.split("/");
-  const pathWithoutLocale = "/" + segments.slice(2).join("/");
-  const isActive =
-    pathWithoutLocale === href || pathWithoutLocale.startsWith(href + "/");
+  const isActive = pathname === href || pathname.startsWith(href + "/");
   return (
-    <Interactive>
-      <a
-        href={href}
-        className="flex flex-col items-center gap-1 py-1.5"
-        aria-label={label}
-      >
-        <div className="relative flex h-8 w-14 items-center justify-center">
-          {isActive && (
-            <span
-              className="bg-yellow absolute inset-0 rounded-2xl"
-              aria-hidden="true"
-            />
-          )}
-          <Icon
-            name={icon}
-            size={24}
-            className={isActive ? "text-red z-10" : "text-yellow-white z-10"}
+    <Interactive
+      href={href}
+      className="text-yellow-white flex flex-col items-center gap-1 py-1.5"
+    >
+      <div className="relative flex h-8 w-14 items-center justify-center">
+        {isActive && (
+          <span
+            aria-hidden
+            className="bg-yellow absolute inset-0 rounded-2xl"
           />
-        </div>
-        <span className="type-label-medium text-yellow-white">{label}</span>
-      </a>
+        )}
+        <Icon
+          name={icon}
+          size={24}
+          className={cn("z-10", isActive && "text-red")}
+        />
+      </div>
+      <span className="type-label-medium">{label}</span>
     </Interactive>
   );
 }

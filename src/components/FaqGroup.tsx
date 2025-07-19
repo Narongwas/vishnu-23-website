@@ -12,14 +12,14 @@ const FaqGroup: StyleableFC<{
 }> = ({ section, className }) => {
   return (
     <div className={cn("w-full", className)}>
-      {section.title.length > 0 && (
+      {section.title && (
         <motion.div layout>
           <SectionHeader title={section.title} className="mb-4" />
         </motion.div>
       )}
       <div className="space-y-3 px-4">
-        {section.questions.map((questions) => (
-          <FaqCard key={questions.id} questions={questions} />
+        {section.questions.map((question, index) => (
+          <FaqCard key={index} questions={question} />
         ))}
       </div>
     </div>
