@@ -60,7 +60,8 @@
     "Hero": {
       "action": {
         "logIn": "Log in",
-        "account": "Account"
+        "account": "Account",
+        "registration": "See registration point"
       },
       "ifd": {
         "event": "Intania First Date 2025",
@@ -89,8 +90,8 @@
         "2": "Eazy Cal",
         "3": "Pocari",
         "4": "Gulf Development",
-        "5": "Kasikornbank",
-        "6": "C asean Samyan CO-OP",
+        "5": "C asean Samyan CO-OP",
+        "6": "Kasikornbank",
         "7": "TOA",
         "8": "Casio"
       }
@@ -171,6 +172,14 @@
   },
   "RegistrationAnnouncement": {
     "title": "Registration point",
+    "point": {
+      "EN100": "EN100",
+      "ENG3": "ENG3",
+      "ENG4": "ENG4",
+      "Plateau": "Plateau",
+      "Ruamjai": "Suan Ruamjai"
+    },
+    "time": "12:00 PM - 1:00 PM",
     "footer": {
       "0": "You can register at <location></location> at <time></time>",
       "1": "Registration location may differ from person to person."
