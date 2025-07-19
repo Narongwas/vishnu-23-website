@@ -2,8 +2,8 @@
 
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname, useRouter } from "next/navigation";
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
@@ -12,22 +12,12 @@ export default function LanguageSwitcher() {
   const t = useTranslations("Common.LanguageSwitcher");
   const nextLocale = locale === "th" ? "en" : "th";
   function handleSwitch() {
-    const segments = pathname.split("/");
-
-    if (!["th", "en"].includes(segments[1])) {
-      console.warn("Not a valid locale segment:", segments[1]); // check valid locale
-      return;
-    }
-
-    segments[1] = nextLocale;
-
-    router.push(segments.join("/"));
+    router.replace(pathname, { locale: nextLocale });
   }
-
   return (
     <Button
-      Size="Small"
-      Appearance="Tertiary"
+      Size="small"
+      Appearance="tertiary"
       aria-label={t("alt")}
       title={t("alt")}
       onClick={handleSwitch}
