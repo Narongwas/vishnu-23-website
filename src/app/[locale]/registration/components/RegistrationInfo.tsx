@@ -68,7 +68,8 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
           {t.rich("footer.0", {
             location: () => (
               <span className="font-bold">
-                {t(`point.${registrationData.firstdate}`)}
+                {t(`point.${registrationData.firstdate}`)} (#
+                {registrationData.packageNumber})
               </span>
             ),
             time: () => <span className="font-bold">{t("time")}</span>,
