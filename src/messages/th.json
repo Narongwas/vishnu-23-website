@@ -61,7 +61,8 @@
       "action": {
         "logIn": "เข้าสู่ระบบ",
         "account": "บัญชี",
-        "registration": "ดูจุดลงทะเบียน"
+        "registration": "ดูจุดลงทะเบียน",
+        "KingdomReveal": "ดูก๊ก"
       },
       "ifd": {
         "event": "Intania First Date 2025",
