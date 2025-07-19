@@ -23,10 +23,10 @@ const SizeClasses: Record<ButtonSize, string> = {
   "x-small": "px-3 py-1.5 gap-2",
 };
 
-const iconMarginSelector: Record<ButtonSize, string[]> = {
-  medium: ["[&>svg]:-mx-2", "[&>svg]:h-6", "[&>i]:-mx-2"],
-  small: ["[&>svg]:-mx-1", "[&>svg]:h-4", "[&>i]:-mx-1"],
-  "x-small": ["[&>svg]:-mx-1.5", "[&>svg]:h-4", "[&>i]:-mx-1.5"],
+const iconMarginSelector: Record<ButtonSize, string> = {
+  medium: "[&>:is(i,svg)]:-mx-2",
+  small: "[&>:is(i,svg)]:-mx-1",
+  "x-small": "[&>:is(i,svg)]:-mx-1.5",
 };
 
 const AppearanceClasses: Record<ButtonAppearance, string> = {
@@ -50,6 +50,7 @@ const Button: StyleableFC<ButtonProps> = ({
       className={cn(
         "relative flex items-center justify-center",
         "bg-[url('/decorating/texture/fabric.png')] bg-cover bg-blend-soft-light",
+        "[&>:is(i,svg)]:!h-6 [&>i]:leading-[1.5rem]",
         SizeClasses[Size],
         AppearanceClasses[Appearance],
         iconMarginSelector[Size],
