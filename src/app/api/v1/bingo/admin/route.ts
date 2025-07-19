@@ -14,7 +14,7 @@ export async function PATCH(request: NextRequest) {
 
   // if staff token is not provided, return error
   if (!staffToken) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "sda" }, { status: 401 });
   }
 
   // verify the staff token
@@ -33,7 +33,7 @@ export async function PATCH(request: NextRequest) {
   }
 
   if (!isClubAdmin) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "adwww1" }, { status: 401 });
   }
 
   // get camper id from the query string
@@ -141,7 +141,7 @@ export async function PATCH(request: NextRequest) {
   if (bingoCounter[idx]) {
     return NextResponse.json(
       { error: "Club number already marked" },
-      { status: 400 }
+      { status: 409 }
     );
   }
 

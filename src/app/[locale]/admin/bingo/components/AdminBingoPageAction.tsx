@@ -14,7 +14,7 @@ const AdminBingoPageAction: StyleableFC<{
   };
 
   return (
-    <div className="-bottom-180">
+    <div className="fixed bottom-30 left-1/2 z-30 -translate-x-1/2">
       <PageAction icon={icon} text={text} onClick={handleClick} />
     </div>
   );

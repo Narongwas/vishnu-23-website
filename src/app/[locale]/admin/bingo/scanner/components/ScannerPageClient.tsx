@@ -106,7 +106,10 @@ const ScannerPageClient = () => {
       if (res.ok) {
         alert("สแตมป์สำเร็จ!");
         handleCloseAll();
-      } else if (res.status === 409) {
+      } else if (
+        res.status === 409 ||
+        data.error === "Club number already marked"
+      ) {
         setIsAlreadyStampedOpen(true);
         setSuccessData(null);
       } else {
