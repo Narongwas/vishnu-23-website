@@ -1,6 +1,6 @@
 "use client";
 
-import EditButton from "@/app/[locale]/profile/components/EditButton";
+// import EditButton from "@/app/[locale]/profile/components/EditButton";
 import LogoutButton from "@/app/[locale]/profile/components/LogoutButton";
 import BackButton from "@/components/BackButton";
 import cn from "@/lib/helpers/cn";
@@ -45,8 +45,8 @@ const UserProfileInfo: StyleableFC = ({ className }) => {
         <p>{user?.lastName ?? ""}</p>
       </div>
       <div className="mt-4 flex gap-2">
-        <EditButton />
-        <LogoutButton />
+        {/* <EditButton className="z-10" /> */}
+        <LogoutButton className="z-10" />
       </div>
     </div>
   );

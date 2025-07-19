@@ -31,7 +31,7 @@ export default async function Home() {
               Size="medium"
               Appearance="tertiary"
               className="mx-auto"
-              href="/registration"
+              href="/group-reveal"
             >
               <Icon name="Groups" />
               <div className="align-center type-title-medium flex">
@@ -41,9 +41,7 @@ export default async function Home() {
           </div>
         )}
       </div>
-
       <HomePageSponsorFooter className="z-10" />
-
       <FaqLayoutGroup />
     </HomeWrapper>
   );
