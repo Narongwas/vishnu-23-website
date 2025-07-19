@@ -22,17 +22,20 @@ export async function PATCH(request: NextRequest) {
 
     const { profile, contact } = await request.json();
 
-    const profileAndContact: { profileURL?: string; contact?: string } = {};
+    const updatedData: {
+      profileURL?: string;
+      contact?: Record<string, string>;
+    } = {};
 
     //merge contact field
     if (profile) {
-      profileAndContact.profileURL = profile;
+      updatedData.profileURL = profile;
     }
     if (contact) {
-      profileAndContact.contact = contact;
+      updatedData.contact = contact;
     }
 
-    await userSnap.set(profileAndContact, { merge: true });
+    await userSnap.set(updatedData, { merge: true });
 
     return new NextResponse(null, { status: 204 });
   } catch (err) {
