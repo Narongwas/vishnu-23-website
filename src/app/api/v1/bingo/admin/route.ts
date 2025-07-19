@@ -198,9 +198,6 @@ export async function PATCH(request: NextRequest) {
     }
   }
 
-  const addedScore = newUserScore - oldUserScore;
-  const newGroupScore = group.bingoScore + addedScore;
-
   try {
     // Use Firestore transaction to ensure atomic updates
     await db.runTransaction(async (transaction) => {
@@ -216,10 +213,6 @@ export async function PATCH(request: NextRequest) {
       transaction.update(userRef, {
         bingoCounter: bingoCounter,
         bingoScore: newUserScore,
-      });
-      // Update group's score
-      transaction.update(groupRef, {
-        bingoScore: newGroupScore,
       });
     });
   } catch (error) {
