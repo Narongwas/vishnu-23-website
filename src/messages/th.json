@@ -60,7 +60,8 @@
     "Hero": {
       "action": {
         "logIn": "เข้าสู่ระบบ",
-        "account": "บัญชี"
+        "account": "บัญชี",
+        "registration": "ดูจุดลงทะเบียน"
       },
       "ifd": {
         "event": "Intania First Date 2025",

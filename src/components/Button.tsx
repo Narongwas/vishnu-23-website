@@ -14,6 +14,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   Size: ButtonSize;
   Appearance: ButtonAppearance;
   children: React.ReactNode;
+  href?: string;
   onClick?: (event: MouseEvent) => void;
 }
 
