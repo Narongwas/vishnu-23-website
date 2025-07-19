@@ -3,7 +3,6 @@
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import InstagramIcon from "@/components/socialIcon/InstagramIcon";
-import { Link } from "@/i18n/navigation";
 import cn from "@/lib/helpers/cn";
 import type { ClubItem } from "@/lib/types/club";
 import { StyleableFC } from "@/lib/types/misc";
@@ -94,15 +93,14 @@ const ClubCard: StyleableFC<{
               </div>
             )}
             {igURL && (
-              <Link href={igURL}>
-                <Button
-                  Appearance="secondary"
-                  Size="small"
-                  title={t("Clubs.Card.action.instagram", { username })}
-                >
-                  <InstagramIcon />
-                </Button>
-              </Link>
+              <Button
+                Appearance="secondary"
+                Size="small"
+                title={t("Clubs.Card.action.instagram", { username })}
+                href={igURL}
+              >
+                <InstagramIcon />
+              </Button>
             )}
           </div>
         </motion.div>
