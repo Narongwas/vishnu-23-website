@@ -1,9 +1,16 @@
 import { db } from "@/lib/services/firebase.admin";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 // PATCH : "api/v1/bingo/scores/refresh"
 // refresh all groups' bingoScore
-export async function PATCH() {
+export async function PATCH(request: NextRequest) {
+  const token = request.headers.get("Authorization")?.split(" ")[1];
+
+  // check if the token is valid
+  if (token !== process.env.CRON_SECRET_TOKEN) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   // get all groups
   const groupsSnapshot = await db.collection("groups").get();
 
