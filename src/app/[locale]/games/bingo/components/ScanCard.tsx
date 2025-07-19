@@ -17,18 +17,22 @@ const ScanCard: StyleableFC<{
   const [qr, setQr] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [fullName, setFullName] = useState<string>("");
+  const [friendCode, setFriendCode] = useState<string>("");
 
   useEffect(() => {
     if (!isOpen) return;
     setLoading(true);
+    console.log("ScanCard opened");
     Promise.all([getQrCode(), getMe()])
       .then(([qrData, user]) => {
+        console.log("user", user); // ตรงนี้จะปริ้นถ้า getMe() สำเร็จ
         setQr(qrData.qrcode);
         const name =
           user?.firstName && user?.lastName
             ? `${user.firstName} ${user.lastName}`
             : "";
         setFullName(name);
+        setFriendCode(user?.addFriendCode || "");
       })
       .catch(() => {
         setQr(null);
@@ -57,11 +61,12 @@ const ScanCard: StyleableFC<{
           </div>
           <div className="mt-2 flex items-center justify-center">
             {loading ? (
-              <div className="type-body-medium text-gray-400">
-                กำลังโหลด QR...
-              </div>
+              <div className="type-body-medium text-gray">กำลังโหลด QR...</div>
             ) : qr ? (
-              <Image src={qr} alt="QR Code" width={256} height={256} />
+              <div className="flex flex-col items-center bg-white">
+                <Image src={qr} alt="QR Code" width={256} height={256} />
+                <div className="type-title-large pb-2">{friendCode}</div>
+              </div>
             ) : (
               <div className="type-body-medium text-red-500">
                 ไม่สามารถโหลด QR ได้
