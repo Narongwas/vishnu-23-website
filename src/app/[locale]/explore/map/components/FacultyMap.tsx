@@ -76,7 +76,7 @@ const FacultyMap: StyleableFC = ({ className, style }) => {
         <p className="type-title-medium">{t("instruction")}</p>
       </div>
 
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex flex-wrap items-center justify-center gap-2">
         {buildings.map((building) => (
           <Button
             key={building.key}
