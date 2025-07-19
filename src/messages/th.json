@@ -89,8 +89,8 @@
         "2": "Eazy Cal",
         "3": "Pocari",
         "4": "Gulf Development",
-        "5": "ธนาคารกสิกรไทย",
-        "6": "C asean Samyan CO-OP",
+        "5": "C asean Samyan CO-OP",
+        "6": "ธนาคารกสิกรไทย",
         "7": "TOA",
         "8": "Casio"
       }
@@ -176,6 +176,14 @@
   },
   "RegistrationAnnouncement": {
     "title": "จุดลงทะเบียน",
+    "point": {
+      "EN100": "อาคารวิศวฯ 100 ปี",
+      "ENG3": "ตึก 3",
+      "ENG4": "ตึก 4",
+      "Plateau": "ที่ราบสูง",
+      "Ruamjai": "สวนรวมใจ"
+    },
+    "time": "12:00 น. - 13:00 น.",
     "footer": {
       "0": "สามารถลงทะเบียนได้ที่ <location></location> เวลา <time></time>",
       "1": "ตำแหน่งการลงทะเบียนของน้องแต่ละคนอาจไม่เหมือนกัน"

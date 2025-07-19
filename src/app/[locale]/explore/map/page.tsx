@@ -1,4 +1,5 @@
 import FacultyMap from "@/app/[locale]/explore/map/components/FacultyMap";
+import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
 import BackButton from "@/components/BackButton";
 import SubPageHeader from "@/components/SubPageHeader";
 import { getTranslations } from "next-intl/server";
@@ -13,6 +14,7 @@ export default async function Map() {
       <div className="relative z-10 -mt-16 flex flex-col items-center gap-4">
         <FacultyMap />
       </div>
+      <AllPageSponsorFooter className="mt-20" />
     </>
   );
 }

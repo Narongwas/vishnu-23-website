@@ -23,7 +23,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (user) {
       const idToken = await getIdToken();
       setToken(idToken);
-      console.log("AuthContext - Token refreshed:", !!idToken);
     }
   }, [user]);
 
@@ -39,7 +38,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       });
 
       if (response.ok) {
-        console.log("AuthContext - Login API success");
         setToken(idToken);
       } else {
         console.error("AuthContext - Login API failed");
@@ -50,29 +48,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("AuthContext - Setting up auth listener");
-
     const unsubscribe = onAuthStateChange(async (firebaseUser) => {
-      console.log(
-        "AuthContext - Auth state changed:",
-        firebaseUser?.email || "null"
-      );
       setUser(firebaseUser);
       setLoading(false);
 
       if (firebaseUser) {
         const idToken = await getIdToken();
         setToken(idToken);
-        console.log("AuthContext - Token set:", !!idToken);
       } else {
         setToken(null);
-        console.log("AuthContext - Token cleared");
       }
     });
 
     const currentUser = getCurrentUser();
     if (currentUser) {
-      console.log("AuthContext - Current user found:", currentUser.email);
       setUser(currentUser);
       refreshToken();
     } else {

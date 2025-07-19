@@ -2,13 +2,13 @@
 
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
+import { useRouter } from "@/i18n/navigation";
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
 import facultyMapEN from "@/public/map/Faculty-en.png";
 import facultyMapTH from "@/public/map/Faculty-th.png";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const buildings = [

@@ -1,6 +1,7 @@
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
 import Interactive from "@/components/Interactive";
+import type { MouseEvent } from "react";
 
 type ButtonSize = "medium" | "small" | "x-small";
 type ButtonAppearance =
@@ -13,6 +14,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   Size: ButtonSize;
   Appearance: ButtonAppearance;
   children: React.ReactNode;
+  onClick?: (event: MouseEvent) => void;
 }
 
 const SizeClasses: Record<ButtonSize, string> = {
