@@ -40,9 +40,7 @@ export default async function GamePage() {
         subtitleColor="text-white"
         background="bg-white/10 saturate-0 opacity-30"
       />
-
-      <MountainBackground className="absolute top-15 left-0 h-full w-full opacity-50" />
-
+      <MountainBackground className="absolute top-10 left-0 h-full w-full opacity-50" />
       <div className="relative z-15 mt-4 flex w-full flex-col items-center gap-4 px-4">
         {cards.map(
           (card, index) =>
