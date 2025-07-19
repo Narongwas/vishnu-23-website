@@ -60,7 +60,8 @@
     "Hero": {
       "action": {
         "logIn": "Log in",
-        "account": "Account"
+        "account": "Account",
+        "registration": "See registration point"
       },
       "ifd": {
         "event": "Intania First Date 2025",
