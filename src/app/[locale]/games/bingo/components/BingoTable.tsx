@@ -13,7 +13,7 @@ export default function BingoTable({ bingoData, className }: BingoTableProps) {
     return (
       <div className="bg-blue grid h-92 w-92 grid-cols-5 grid-rows-5 gap-2 p-2">
         {[...Array(25)].map((_, i) => (
-          <BingoSquare key={i} revealed={false} clubNumber={i} />
+          <BingoSquare key={bingo[i]} revealed={false} clubNumber={bingo[i]} />
         ))}
       </div>
     );
@@ -21,16 +21,13 @@ export default function BingoTable({ bingoData, className }: BingoTableProps) {
 
   const { bingo, bingoCounter } = bingoData;
 
+  console.log("Bingo Data:", bingoData);
   return (
     <div
       className={`bg-blue grid h-92 w-92 grid-cols-5 grid-rows-5 gap-2 p-2 ${className ?? ""}`}
     >
       {bingo.slice(0, 25).map((clubIndex, i) => (
-        <BingoSquare
-          key={i}
-          revealed={bingoCounter[clubIndex - 1]}
-          clubNumber={clubIndex}
-        />
+        <BingoSquare key={i} revealed={bingoCounter[i]} clubNumber={bingo[i]} />
       ))}
     </div>
   );

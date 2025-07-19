@@ -1,7 +1,4 @@
-export default function countBingoTable(
-  bingo: number[],
-  bingoCounter: boolean[]
-) {
+export default function countBingoTable(bingoCounter: boolean[]) {
   let onePointSquareCount = 0;
   let fivePointSquareCount = 0;
   let fiftyPointSquareCount = 0;
@@ -11,20 +8,19 @@ export default function countBingoTable(
   const ROW = 5;
   const COLUMN = 5;
 
-  // one point squares (ช่อง 0-24)
-  for (let i = 1; i <= 25; i++) {
-    const clubIdx = bingo[i] - 1;
-    if (bingoCounter[clubIdx]) {
+  // one point squares
+  for (let i = 0; i < 25; i++) {
+    if (bingoCounter[i]) {
       onePointSquareCount += 1;
     }
   }
 
-  // five point squares (row)
+  // five point squares
+  // check all row
   for (let i = 0; i < ROW; i++) {
     let isRowCompleted = true;
     for (let j = 0; j < COLUMN; j++) {
-      const clubIdx = bingo[i * COLUMN + j] - 1;
-      if (!bingoCounter[clubIdx]) {
+      if (!bingoCounter[i * COLUMN + j]) {
         isRowCompleted = false;
         break;
       }
@@ -34,12 +30,11 @@ export default function countBingoTable(
     }
   }
 
-  // five point squares (column)
+  // check all column
   for (let i = 0; i < COLUMN; i++) {
     let isColumnCompleted = true;
     for (let j = 0; j < ROW; j++) {
-      const clubIdx = bingo[j * COLUMN + i] - 1;
-      if (!bingoCounter[clubIdx]) {
+      if (!bingoCounter[j * COLUMN + i]) {
         isColumnCompleted = false;
         break;
       }
@@ -49,23 +44,42 @@ export default function countBingoTable(
     }
   }
 
-  // fifty point squares (ถ้าทุกช่องในตารางหลักเปิดหมด)
-  let isAllRevealed = true;
+  // fifty point squares
   for (let i = 0; i < 25; i++) {
-    const clubIdx = bingo[i] - 1;
-    if (!bingoCounter[clubIdx]) {
-      isAllRevealed = false;
+    if (!bingoCounter[i]) {
+      break;
+    } else if (i == 24) {
+      fiftyPointSquareCount += 50;
+    }
+  }
+
+  // check diagonal
+  let isDiagonalCompleted = true;
+  for (let i = 0; i < ROW; i++) {
+    if (!bingoCounter[i * COLUMN + i]) {
+      isDiagonalCompleted = false;
       break;
     }
   }
-  if (isAllRevealed) {
-    fiftyPointSquareCount += 50;
+  if (isDiagonalCompleted) {
+    fivePointSquareCount += 5;
   }
 
-  // special squares (ช่อง 25-27)
+  // check anti diagonal
+  let isAntiDiagonalCompleted = true;
+  for (let i = 0; i < ROW; i++) {
+    if (!bingoCounter[i * COLUMN + COLUMN - 1 - i]) {
+      isAntiDiagonalCompleted = false;
+      break;
+    }
+  }
+  if (isAntiDiagonalCompleted) {
+    fivePointSquareCount += 5;
+  }
+
+  // special squares
   for (let i = 25; i < 28; i++) {
-    const clubIdx = bingo[i] - 1;
-    if (bingoCounter[clubIdx]) {
+    if (bingoCounter[i]) {
       specialSquareCount += 1;
     }
   }

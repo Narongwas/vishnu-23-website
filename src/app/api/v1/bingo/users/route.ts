@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
     fiftyPointSquareCount,
     specialSquareCount,
     totalScore,
-  } = countBingoTable(group.bingo, user.bingoCounter);
+  } = countBingoTable(user.bingoCounter);
 
   return NextResponse.json(
     {
