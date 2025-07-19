@@ -73,7 +73,7 @@ const FacultyMap: StyleableFC = ({ className, style }) => {
 
       <div className="justify-left text-red flex w-full items-center gap-2.5 pb-3">
         <Icon name="touch_app" size={24} />
-        <p className="type-title-medium">{t("instruction")}</p>
+        <p className="type-title-medium text-balance">{t("instruction")}</p>
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-2">
