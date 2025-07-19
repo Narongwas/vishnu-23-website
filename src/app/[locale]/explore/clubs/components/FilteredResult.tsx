@@ -34,12 +34,12 @@ const FilteredResult: StyleableFC<{
         (g) =>
           g.items.length > 0 && (
             <div key={g.key} className={cn("mb-6", className)} style={style}>
-              <motion.p
+              <motion.h3
                 layout="position"
                 className="type-title-large text-red mb-4 text-center font-bold"
               >
                 {t(`List.title.${g.key}`)}
-              </motion.p>
+              </motion.h3>
               {g.items.map((item, i) => (
                 <div key={i}>{renderItem(item)}</div>
               ))}
