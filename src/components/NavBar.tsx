@@ -9,7 +9,7 @@ export default function NavBar() {
       <div className="flex w-full flex-row *:grow">
         <NavBarItem icon="home" label={t("home")} href="/" />
         <NavBarItem icon="explore" label={t("explore")} href="/explore" />
-        <NavBarItem icon="sports_esports" label={t("games")} href="/games" />
+        {/* <NavBarItem icon="sports_esports" label={t("games")} href="/games" /> */}
       </div>
     </nav>
   );
