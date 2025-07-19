@@ -88,7 +88,7 @@ const ClubCard: StyleableFC<{
                 <Button Appearance="secondary" Size="x-small">
                   <span className="type-title-medium">
                     {t(`Map.Faculty.building.${club.boothPosition?.building}`)}
-                  </span>{" "}
+                  </span>
                 </Button>
               </div>
             )}
