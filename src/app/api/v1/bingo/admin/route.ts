@@ -198,7 +198,6 @@ export async function PATCH(request: NextRequest) {
   }
 
   try {
-    // Use Firestore transaction to ensure atomic updates
     const userRef = db.collection("users").doc(uid);
 
     await userRef.update({
