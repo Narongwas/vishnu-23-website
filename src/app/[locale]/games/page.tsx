@@ -42,19 +42,16 @@ export default async function GamePage() {
       />
       <MountainBackground className="absolute top-10 left-0 h-full w-full opacity-50" />
       <div className="relative z-15 mt-4 flex w-full flex-col items-center gap-4 px-4">
-        {cards.map(
-          (card, index) =>
-            card.flag && (
-              <NavigationCard
-                key={index}
-                image={card.image}
-                title={card.title}
-                desc={card.label}
-                href={card.link}
-                variant="blue"
-              />
-            )
-        )}
+        {cards.map((card, index) => (
+          <NavigationCard
+            key={index}
+            image={card.image}
+            title={card.title}
+            desc={card.label}
+            href={card.link}
+            variant="blue"
+          />
+        ))}
       </div>
       <AllPageSponsorFooter className="py-8 text-white" />
       <NavBar />

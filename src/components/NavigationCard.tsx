@@ -22,10 +22,10 @@ const NavigationCard: StyleableFC<{
       <Interactive
         href={href}
         className={cn(
-          "from-yellow to-yellow-white -mb-72 flex h-135 w-250 flex-col items-center bg-gradient-to-b pt-33 [clip-path:ellipse()]",
+          "from-yellow to-yellow-white -mb-72 flex h-135 w-250 flex-col items-center bg-linear-to-b pt-33 [clip-path:ellipse()]",
           variant === "yellow"
             ? "text-red"
-            : "text-yellow from-blue to-gray-500",
+            : "text-yellow bg-blue from-blue to-white/20",
           className
         )}
         style={style}
