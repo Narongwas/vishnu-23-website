@@ -1,5 +1,7 @@
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
+import stain from "@/public/decorating/texture/stain.png";
+import Image from "next/image";
 
 type Props = {
   title: string;
@@ -25,14 +27,19 @@ const TopLevelPageHeader: StyleableFC<Props> = ({
 
   return (
     <header
-      className={cn("relative h-76 w-full shrink-0 text-center", className)}
+      className={cn(
+        "relative h-60 w-full shrink-0 text-center text-balance",
+        className
+      )}
     >
       <div className="relative mx-auto h-full max-w-100">
         {/* Circle Background */}
-        <div
+        <Image
+          src={stain}
+          alt=""
           className={cn(
+            "top-3 h-70 w-70 rounded-full mix-blend-hard-light",
             centerBase,
-            "top-3 h-70 w-70 rounded-full bg-[url('/decorating/texture/stain.png')] bg-cover bg-no-repeat opacity-30 saturate-0",
             background
           )}
         />
@@ -42,7 +49,7 @@ const TopLevelPageHeader: StyleableFC<Props> = ({
           <div
             className={cn(
               centerBase,
-              "type-chinese-cursive text-red top-3",
+              "type-chinese-cursive text-red top-3 whitespace-nowrap",
               "[mask-image:linear-gradient(to_bottom,black,transparent)]",
               chineseColor
             )}
@@ -55,7 +62,7 @@ const TopLevelPageHeader: StyleableFC<Props> = ({
         <h1
           className={cn(
             centerBase,
-            "type-chinese-large text-blue top-19",
+            "type-chinese-large text-blue top-19 whitespace-nowrap",
             titleColor
           )}
         >
@@ -67,7 +74,7 @@ const TopLevelPageHeader: StyleableFC<Props> = ({
           <h2
             className={cn(
               centerBase,
-              "type-title-large top-41 w-70",
+              "type-title-large top-41 z-10 w-70",
               subtitleColor
             )}
           >

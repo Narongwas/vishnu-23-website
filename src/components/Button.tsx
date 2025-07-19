@@ -1,6 +1,7 @@
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
 import Interactive from "@/components/Interactive";
+import type { MouseEvent } from "react";
 
 type ButtonSize = "medium" | "small" | "x-small";
 type ButtonAppearance =
@@ -13,6 +14,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   Size: ButtonSize;
   Appearance: ButtonAppearance;
   children: React.ReactNode;
+  href?: string;
+  onClick?: (event: MouseEvent) => void;
 }
 
 const SizeClasses: Record<ButtonSize, string> = {
@@ -21,10 +24,10 @@ const SizeClasses: Record<ButtonSize, string> = {
   "x-small": "px-3 py-1.5 gap-2",
 };
 
-const iconMarginSelector: Record<ButtonSize, string[]> = {
-  medium: ["[&>svg]:-mx-2", "[&>svg]:h-6", "[&>i]:-mx-2"],
-  small: ["[&>svg]:-mx-1", "[&>svg]:h-4", "[&>i]:-mx-1"],
-  "x-small": ["[&>svg]:-mx-1.5", "[&>svg]:h-4", "[&>i]:-mx-1.5"],
+const iconMarginSelector: Record<ButtonSize, string> = {
+  medium: "[&>:is(i,svg)]:-mx-2 [&>svg]:h-6",
+  small: "[&>:is(i,svg)]:-mx-1 [&>svg]:h-5 [&>svg]:py-0.5",
+  "x-small": "[&>:is(i,svg)]:-mx-1 [&>svg]:h-5 [&>svg]:py-1",
 };
 
 const AppearanceClasses: Record<ButtonAppearance, string> = {
@@ -48,6 +51,7 @@ const Button: StyleableFC<ButtonProps> = ({
       className={cn(
         "relative flex items-center justify-center",
         "bg-[url('/decorating/texture/fabric.png')] bg-cover bg-blend-soft-light",
+        "[&>i]:!h-auto [&>i]:leading-[1.5rem]",
         SizeClasses[Size],
         AppearanceClasses[Appearance],
         iconMarginSelector[Size],

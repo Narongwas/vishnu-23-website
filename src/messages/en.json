@@ -23,13 +23,46 @@
     "LanguageSwitcher": {
       "label": "EN",
       "alt": "เปลี่ยนเป็นภาษาไทย"
+    },
+    "SponsorsFooter": {
+      "title": "Our supporters",
+      "sponsor": {
+        "0": "Bright Hair Studio",
+        "1": "be-engineer",
+        "2": "Eazy Cal",
+        "3": "Pocari",
+        "4": "Gulf Development"
+      }
+    },
+    "Kingdom": {
+      "kingdom": "{kingdom}",
+      "a": "Kaplooklook",
+      "b": "Kadai",
+      "c": "Galaxy",
+      "dog": "Karian",
+      "e": "Kawee",
+      "f": "Katak",
+      "g": "Krasae",
+      "h": "Galorgee",
+      "j": "Katukjit",
+      "k": "Kabazing",
+      "l": "Gavishcon",
+      "m": "Kajai",
+      "n": "Katiewrue",
+      "p": "Kaduup",
+      "q": "Kabi",
+      "r": "Kazip",
+      "s": "Kalasee",
+      "t": "Kajuabin"
     }
   },
   "Home": {
     "Hero": {
       "action": {
         "logIn": "Log in",
-        "account": "Account"
+        "account": "Account",
+        "registration": "See registration point",
+        "KingdomReveal": "See your kingdom"
       },
       "ifd": {
         "event": "Intania First Date 2025",
@@ -37,8 +70,11 @@
       },
       "vishnu": {
         "event": "Vishnu Camp 23rd",
-        "date": "22-25 July 2025"
+        "date": "22–25 July 2025"
       }
+    },
+    "Leaderboard": {
+      "header": "<title>Eighteen kingdoms</title><subtitle>The fight for glory roars on</subtitle>"
     },
     "KingdomCard": {
       "rank": {
@@ -48,89 +84,88 @@
       "score": "{score, number} rai"
     },
     "Sponsors": {
-      "title": "Our supporters"
+      "title": "Our supporters",
+      "sponsors": {
+        "0": "Bright Hair Studio",
+        "1": "be-engineer",
+        "2": "Eazy Cal",
+        "3": "Pocari",
+        "4": "Gulf Development",
+        "5": "C asean Samyan CO-OP",
+        "6": "Kasikornbank",
+        "7": "TOA",
+        "8": "Casio"
+      }
     },
     "Faq": {
-      "title": "Frequently Asked Questions",
-      "questions": [
+      "title": "Frequently asked questions",
+      "sections": [
         {
-          "id": "1",
-          "title": "",
+          "title": null,
           "questions": [
             {
-              "id": "1.1",
-              "question": "What are Intania First Date and Vishnu Camp? Do we have to go? What can we get from attending?",
-              "answer": "These two events are organized by Chula Engineering students for Intania 109. The goal is to help you meet new friends, get to know seniors and become familiar with the faculty before the semester begins. Although it isn't compulsory, we're sure that everyone who joins will get a memorable experience--so come join us!"
+              "question": "What are Intania First Date and Vishnu Camp? Do I have to go, and what will I gain from attending?",
+              "answer": "These two events are organized by Chula Engineering students for Intania 109. The goal is to help you meet new friends, get to know seniors, and become familiar with the faculty before the semester begins. Although attendance isn’t compulsory, we’re sure everyone who joins will have a memorable experience—so come join us!"
             }
           ]
         },
         {
-          "id": "2.",
           "title": "First Date",
           "questions": [
             {
-              "id": "2.1",
               "question": "What are the differences between Intania First Date and CU First Date?",
-              "answer": "CU First Date is the first event for all freshmen from every faculty and is held in the morning. However, Intania First Date is an event only for Intania freshmen and is held in the afternoon of the same day."
+              "answer": "CU First Date is the first event for all freshmen from every faculty and is held in the morning. Intania First Date, on the other hand, is an event only for Intania freshmen and is held in the afternoon of the same day."
             },
             {
-              "id": "2.2",
               "question": "What are the schedules for Intania First Date?",
               "answer": "Registration starts from 12:00 p.m. to 1:00 p.m. and activities run from 1:00 p.m. to 7:00 p.m."
             },
             {
-              "id": "2.3",
-              "question": "How to dress for First Date?",
-              "answer": "There will be a dress code announcement soon. Stay tuned for the details on instagram account."
+              "question": "Is there a dress code for First Date?",
+              "answer": "The dress code will be announced soon. Follow our Instagram for updates!"
             }
           ]
         },
         {
-          "id": "3",
           "title": "Vishnu Camp",
           "questions": [
             {
-              "id": "3.1",
-              "question": "What are the schedules and activities for Vishnu Camp?",
-              "answer": "Vishnu Camp is a 4-day camp, running from morning to evening. However, you can choose to stay overnight by completing a form. On the event day, registration starts at 8:00 a.m. and activities end between 5:00 p.m. and 8:30 p.m. A detailed schedule will be announced soon."
+              "question": "What are the schedule and activities for Vishnu Camp?",
+              "answer": "Vishnu Camp is a 4-day camp with an optional overnight stay. If you’d like to stay overnight, just let us know in the registration form. Registration begins at 8:00 a.m., and activities end between 5:00 p.m. and 8:30 p.m., depending on the day. We’ll share the detailed schedule soon!"
             },
             {
-              "id": "3.2",
-              "question": "Is attending certain parts or days allowed?",
-              "answer": "It is recommended to join every day (better not miss it!), but if you're unavailable, that's totally fine--just fill out the form the days you can join."
+              "question": "Can I attend only certain activities or days?",
+              "answer": "We encourage you to join every day for the full experience (don’t miss out!), but if you’re unavailable, that’s totally fine—just let us know which days you can attend on the registration form."
             },
             {
-              "id": "3.3",
-              "question": "How do we get to the camp?",
-              "answer": "You can get to the camp by BTS or MRT. A video guide on how to get to the faculty will be posted soon--stay tuned on instagram account!"
+              "question": "How can I get to the camp?",
+              "answer": "You can get to the camp by BTS or MRT. A video guide on how to get to the faculty will be posted soon—stay tuned on our Instagram account!"
             },
             {
-              "id": "3.4",
-              "question": "Where is the camp held? If we stay overnight, where will we sleep?",
-              "answer": "The camp is held at Faculty of Engineering, Chulalongkorn University. If you stay overnight, you will sleep in the classroom. Each room accommodates around 30-40 people, with seperates building for males and females."
+              "question": "Where is the camp held? If I stay overnight, where will I sleep?",
+              "answer": "The camp takes place at the Faculty of Engineering, Chulalongkorn University. Overnight participants will sleep in classrooms, with each room accommodating about 30–40 people. There are separate buildings for men and women."
             },
             {
-              "id": "3.5",
               "question": "What are the activities for each day?",
-              "answer": "The activity schedules will be posted soon--stay tuned!"
-            }
-          ]
-        },
-        {
-          "id": "4",
-          "title": "Others",
-          "questions": [
+              "answer": "We’ll post the daily activity schedule soon—stay tuned!"
+            },
             {
-              "id": "4.1",
-              "question": "If we don't know anyone yet, will we feel lonely?",
-              "answer": "Definitely not! There are a lot of activities designed to help you get to know each other. The staff will be there to take care of you and make you feel like a part of family."
+              "question": "I don’t have any friends yet, will I feel lonely?",
+              "answer": "Not at all! We’ve planned lots of activities to help you make new friends and feel included. Our staff will be there to support you and make sure you feel like part of the family."
             }
           ]
         }
       ]
+    },
+    "FaqCard": {
+      "action": {
+        "more": "Show answer",
+        "less": "Hide answer"
+      }
     }
   },
   "GroupAnnouncement": {
+    "group": "Group {group}",
     "action": {
       "home": "Return to home",
       "line": "Join LINE Group"
@@ -138,12 +173,40 @@
   },
   "RegistrationAnnouncement": {
     "title": "Registration point",
+    "point": {
+      "EN100": "EN100",
+      "ENG3": "ENG3",
+      "ENG4": "ENG4",
+      "Plateau": "Plateau",
+      "Ruamjai": "Suan Ruamjai"
+    },
+    "time": "12:00 PM - 1:00 PM",
     "footer": {
-      "0": "You can register at {location} at {time}",
+      "0": "You can register at <location></location> at <time></time>",
       "1": "Registration location may differ from person to person."
     },
     "action": {
       "home": "Return to home"
+    }
+  },
+  "Explore": {
+    "tabName": "Explore",
+    "header": {
+      "chinese": "探图",
+      "title": "Explore",
+      "subtitle": "Discover what Chula Engineering has to offer."
+    },
+    "map": {
+      "title": "Map",
+      "subtitle": "Your guide to Intania First Date. Get to know your new home."
+    },
+    "clubs": {
+      "title": "Clubs",
+      "subtitle": "From sports to robots, what club will be your calling?"
+    },
+    "presentation": {
+      "title": "Presentation",
+      "subtitle": "Slides with information you’ll need to succeed in this faculty."
     }
   },
   "Map": {
@@ -152,7 +215,7 @@
         "parent": "Explore",
         "title": "Map"
       },
-      "alt": "Engineering Map",
+      "alt": "Map of the Faculty of Engineering, Chulalongkorn University.",
       "instruction": "Tap a building to view club map",
       "building": {
         "larngear": "Larngear",
@@ -185,7 +248,7 @@
         "education": "Edu",
         "sports": "Sports",
         "arts": "Arts",
-        "volunteer": "Volunteer",
+        "volunteer": "Voluntr",
         "other": "Other"
       }
     },
@@ -207,12 +270,21 @@
       }
     }
   },
+  "Presentation": {
+    "header": {
+      "parent": "Explore",
+      "title": "Presentation"
+    },
+    "action": {
+      "download": "Download"
+    }
+  },
   "Games": {
     "tabName": "Games",
     "header": {
       "chinese": "游戏",
       "title": "Games",
-      "subtitle": "The glory rests in your hands. Can you bring victory to your kingdom?"
+      "subtitle": "Can you bring glory to your kingdom?"
     },
     "bingo": {
       "title": "Bingo",
@@ -226,7 +298,7 @@
   "Predictions": {
     "overline": "{time, select, morning {Morning} afternoon {Afternoon}} prediction",
     "footer": {
-      "revealTime": "Answer revealed at {time}",
+      "revealTime": "Answer reveal at {time}",
       "scoring": "Scores depend on how many people in your kingdom answered correctly."
     },
     "action": {
@@ -277,7 +349,7 @@
       "solution": "Solution: {solution}"
     },
     "History": {
-      "title": "Prediction History"
+      "title": "Prediction history"
     },
     "PredictionCard": {
       "round": "Day {day} • {time, select, morning {Morning} afternoon {Afternoon}}",
@@ -317,7 +389,7 @@
         "title": "How scores are awarded",
         "body": {
           "0": "Each square awards 1 point",
-          "1": "Each square awards 1 point",
+          "1": "Each row or diagonal awards 5 additional points",
           "2": "Completing the entire table awards 50 additional points",
           "3": "Get bonus points if the scan didn’t reveal any squares on the table"
         }
@@ -338,6 +410,7 @@
   },
   "Profile": {
     "Profile": {
+      "group": "Group {group}",
       "action": {
         "edit": "Edit",
         "logout": "Log out",
@@ -349,12 +422,9 @@
       "search": "Search"
     },
     "EditProfile": {
-      "form": {
-        "nickname": "Nickname",
-        "social": {
-          "title": "Stay connected with your friends",
-          "subtitle": "Tap a platform and enter your username!"
-        }
+      "social": {
+        "title": "Stay connected with your friends",
+        "subtitle": "Tap a platform and enter your username!"
       },
       "action": {
         "editPfp": "Edit profile picture"
@@ -458,25 +528,5 @@
       "title": "Remove from friends",
       "desc": "You will no longer see “{friend}” in your friend list. We won’t notify {friend}."
     }
-  },
-  "kokname": {
-    "A": "ก๊กกะปุ๊กลุก",
-    "B": "ก๊กกะดาย",
-    "C": "ก๊กกะแล็กซี่",
-    "D": "ก๊กกะเรียน",
-    "E": "ก๊กกะวี",
-    "F": "ก๊กกะต๊าก",
-    "G": "ก๊กกะแซะ",
-    "H": "ก๊กกะลอจี๊",
-    "J": "ก๊กกะตุกจิต",
-    "K": "ก๊กกะบะซิ่ง",
-    "L": "ก๊กกะวิสค่อน",
-    "M": "ก๊กกะใจ",
-    "N": "ก๊กกะเตี๋ยวเรือ",
-    "P": "ก๊กกะดึ๊บ",
-    "Q": "ก๊กกะบี่",
-    "R": "ก๊กกะซิบ",
-    "S": "ก๊กกะลาสี",
-    "T": "ก๊กกะจั๊วบิน"
   }
 }

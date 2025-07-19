@@ -1,9 +1,8 @@
 "use client";
 
-import { StyleableFC } from "@/lib/types/misc";
-import cn from "@/lib/helpers/cn";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
+import { StyleableFC } from "@/lib/types/misc";
 import { useTranslations } from "next-intl";
 
 const EditButton: StyleableFC = ({ className }) => {
@@ -13,7 +12,7 @@ const EditButton: StyleableFC = ({ className }) => {
     <Button
       Size="small"
       Appearance="secondary"
-      className={cn(className)}
+      className={className}
       disabled={true}
     >
       <Icon name="edit" />

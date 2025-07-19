@@ -2,12 +2,12 @@
 
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
+import { Link, useRouter } from "@/i18n/navigation";
 import { signInWithGoogle } from "@/lib/firebase/auth";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
 interface GoogleLoginBtnProps {
@@ -41,8 +41,6 @@ export default function GoogleLoginBtn({
   const router = useRouter();
   const loginAttempted = useRef(false);
 
-  console.log("photo : " + user?.photoURL);
-
   const handleGoogleLogin = useCallback(async () => {
     try {
       const { user, error } = await signInWithGoogle();
@@ -53,7 +51,6 @@ export default function GoogleLoginBtn({
         onError?.(errorMessage || "Login failed");
       }
       if (user) {
-        console.log("GoogleLoginButton - User signed in:", user.email);
         await loginWithToken(user);
         onSuccess?.();
         router.push(redirectTo);
@@ -86,7 +83,7 @@ export default function GoogleLoginBtn({
           className="inline-block"
         >
           <Image
-            src={user?.photoURL ?? "/decorating/profile/ProfileImage.svg"}
+            src="/decorating/profile/defaultProfile.png"
             alt={
               user?.displayName
                 ? `${user.displayName}'s profile picture`
