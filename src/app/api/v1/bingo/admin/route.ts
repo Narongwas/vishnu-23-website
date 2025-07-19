@@ -1,6 +1,6 @@
+import clubAdminEmailList from "@/jsondata/club-admin-email.json";
 import { db, firebaseAdmin } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
-import clubAdminEmailList from "@/jsondata/club-admin-email.json";
 
 // PATCH : "api/v1/bingo/admin" protected
 // get user uid from camperId or friendCode and update user's bingoCounter
@@ -24,11 +24,23 @@ export async function PATCH(request: NextRequest) {
   const staffEmail = decodedStaffToken.email;
 
   // check if the staff is a club admin
+  const staff = await db
+    .collection("users")
+    .where("email", "==", staffEmail)
+    .get();
+
+  // check if the staff is a club admin
   let isClubAdmin = false;
-  for (const email of clubAdminEmailList.emails) {
-    if (email === staffEmail) {
-      isClubAdmin = true;
-      break;
+  if (staff.docs[0].data().role == "admin") {
+    isClubAdmin = true;
+  }
+
+  if (!isClubAdmin) {
+    for (const email of clubAdminEmailList.emails) {
+      if (email === staffEmail) {
+        isClubAdmin = true;
+        break;
+      }
     }
   }
 
