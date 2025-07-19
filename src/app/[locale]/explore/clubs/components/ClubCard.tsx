@@ -2,6 +2,7 @@
 
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
+import Interactive from "@/components/Interactive";
 import InstagramIcon from "@/components/socialIcon/InstagramIcon";
 import cn from "@/lib/helpers/cn";
 import type { ClubItem } from "@/lib/types/club";
@@ -28,32 +29,44 @@ const ClubCard: StyleableFC<{
       <motion.div
         layout="position"
         className={cn(
-          "type-body-medium flex w-full items-center gap-3 p-3.5 transition-colors duration-200",
+          "type-body-medium flex w-full gap-3 transition-colors duration-200",
           isOpen && "bg-yellow/20"
         )}
       >
-        <Image src={logoURL} alt="" width={72} height={72} />
+        <Image
+          src={logoURL}
+          alt=""
+          width={72}
+          height={72}
+          className="m-3.5 mr-0"
+        />
         <motion.div
           animate={{ y: isOpen && club.description ? 22 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="grid grow"
+          className="grid grow self-center"
         >
           <h3 className="type-title-medium truncate">{club.name}</h3>
           <motion.p
+            aria-hidden
             animate={{ opacity: isOpen ? 0 : 1 }}
             className="line-clamp-2"
           >
             {club.description}
           </motion.p>
         </motion.div>
-        <motion.button
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+        <Interactive
+          title={t(`Clubs.Card.action.${isOpen ? "less" : "more"}`)}
           onClick={() => setIsOpen((isOpen) => !isOpen)}
-          className="cursor-pointer"
+          className="text-red shrink-0 px-4"
         >
-          <Icon name="expand_more" className="text-red" />
-        </motion.button>
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="w-fit"
+          >
+            <Icon name="expand_more" size={24} />
+          </motion.div>
+        </Interactive>
       </motion.div>
 
       <motion.div
