@@ -9,6 +9,7 @@ import type { StyleableFC } from "@/lib/types/misc";
 import Image, { StaticImageData } from "next/image";
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 
 export interface BoothPosition {
   position: number;
@@ -70,20 +71,35 @@ const BoothMap: StyleableFC<BoothMapProps> = ({
         ))}
       </figure>
 
-      <div className="text-red mt-2 flex w-full items-center justify-start gap-2.5">
+      <div
+        className={cn(
+          "text-red mt-2 flex w-full items-center justify-start gap-2.5",
+          !selectedClub && "mb-8"
+        )}
+      >
         <Icon name="touch_app" size={24} />
         <p className="type-title-medium">{t("Building.instruction")}</p>
       </div>
 
-      {selectedClub && (
-        <div ref={scrollTargetRef} className="py-4">
-          <ClubCard club={selectedClub} />
-        </div>
-      )}
+      <LayoutGroup>
+        <AnimatePresence>
+          {selectedClub && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { delay: 0.2 } }}
+              exit={{ opacity: 0 }}
+              ref={scrollTargetRef}
+              className="py-4"
+            >
+              <ClubCard club={selectedClub} />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      <div>
-        <ClubListItem clubList={clubList} onClick={handleSelectClub} />
-      </div>
+        <motion.div layout="position">
+          <ClubListItem clubList={clubList} onClick={handleSelectClub} />
+        </motion.div>
+      </LayoutGroup>
     </div>
   );
 };
