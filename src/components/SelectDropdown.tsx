@@ -21,8 +21,8 @@ const SelectDropdown: StyleableFC<{
         onClick={() => setOpen(!open)}
         className="relative z-10 mb-2 h-11 w-full bg-white px-3 text-left outline-none"
       >
-        <div className="type-title-medium flex w-full items-center justify-between">
-          <div>{value || placeholder}</div>
+        <div className="flex w-full items-center justify-between">
+          <div className="type-title-medium">{value || placeholder}</div>
           <motion.div
             animate={{ rotate: open ? 180 : 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
