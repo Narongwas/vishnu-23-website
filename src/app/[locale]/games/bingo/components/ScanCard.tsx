@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
-import { StyleableFC } from "@/lib/types/misc";
-import cn from "@/lib/helpers/cn";
 import Modal from "@/components/Modal";
-import defaultProfile from "@/public/decorating/profile/defaultProfile.png";
-import Image from "next/image";
-import getQrCode from "@/lib/helpers/getQrCode";
+import cn from "@/lib/helpers/cn";
 import getMe from "@/lib/helpers/getMe";
+import getQrCode from "@/lib/helpers/getQrCode";
+import { StyleableFC } from "@/lib/types/misc";
+import defaultProfile from "@/public/decorating/profile/defaultProfile.png";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const ScanCard: StyleableFC<{
   isOpen: boolean;
   onClose?: () => void;
   className?: string;
 }> = ({ isOpen, onClose, className }) => {
+  const t = useTranslations("Bingo.QRCodeDialog");
   const [qr, setQr] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [fullName, setFullName] = useState<string>("");
@@ -51,9 +53,7 @@ const ScanCard: StyleableFC<{
           </div>
           <div className="type-title-large">{fullName}</div>
           <div className="type-body-medium text-center text-black">
-            ยื่น QR code นี้ให้กับพี่ประจำชมรม
-            <br />
-            เพื่อรับคะแนนจากช่องบิงโก
+            {t("desc")}
           </div>
           <div className="mt-2 flex items-center justify-center">
             {loading ? (

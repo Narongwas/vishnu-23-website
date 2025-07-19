@@ -5,6 +5,7 @@ import { StyleableFC } from "@/lib/types/misc";
 import bingoFivePoint from "@/public/decorating/bingo/bingoFivePoint.svg";
 import bingoOnePoint from "@/public/decorating/bingo/bingoOnePoint.svg";
 import bingoSpecial from "@/public/decorating/bingo/bingoSpecial.svg";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 const ScoreCard: StyleableFC<{
@@ -21,6 +22,8 @@ const ScoreCard: StyleableFC<{
     totalScore: number;
   } | null;
 }> = ({ isOpen, onClose, className, bingoData }) => {
+  const t = useTranslations("Bingo.BreakdownDialog");
+
   if (!isOpen) return null;
 
   let bonusIndexes: number[] = [];
@@ -35,9 +38,9 @@ const ScoreCard: StyleableFC<{
       <Modal onClose={onClose} className={className}>
         <div className="flex flex-col items-center justify-center">
           <Icon name="dataset" size={24} className="text-red" />
-          <div className="type-headline-small">กระดานของน้อง</div>
+          <div className="type-headline-small">{t("title")}</div>
           <div className="flex flex-col items-center gap-2">
-            <div className="type-title-medium">ช่องโบนัส</div>
+            <div className="type-title-medium">{t("bonus.title")}</div>
             <div className="bg-blue z-10 p-2">
               <div className="grid grid-cols-3 gap-2">
                 {bonusIndexes.map((clubNumber, i) => (
@@ -50,8 +53,8 @@ const ScoreCard: StyleableFC<{
               </div>
             </div>
           </div>
-          <div className="align-center flex flex-col justify-center gap-2">
-            <div className="type-title-medium">คะแนนของน้อง</div>
+          <div className="align-center flex flex-col justify-center gap-2 pt-4">
+            <div className="type-title-medium">{t("breakdown.title")}</div>
             <div className="flex items-center justify-center">
               <p className="type-body-medium">
                 {bingoData?.onePointSquareCount ?? 0}

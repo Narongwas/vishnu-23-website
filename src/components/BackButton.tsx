@@ -11,10 +11,16 @@ type BackButtonProps = {
 
 const BackButton: StyleableFC<Pick<BackButtonProps, "variants">> = ({
   variants,
+  className,
 }) => {
   const router = useRouter();
   return (
-    <Button Appearance={variants} Size="small" onClick={() => router.back()}>
+    <Button
+      Appearance={variants}
+      Size="small"
+      onClick={() => router.back()}
+      className={className}
+    >
       <Icon name="arrow_back" />
     </Button>
   );

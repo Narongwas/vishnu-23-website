@@ -12,9 +12,9 @@ export default function GamesLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <BackgroundWithNoise className="flex flex-col justify-center">
-      <div className="bg-blue absolute inset-0 bg-gradient-to-b to-white/30">
-        <div className="relative mx-auto max-w-200">{children}</div>
+    <BackgroundWithNoise className="from-blue bg-gradient-to-b to-white">
+      <div className="relative mx-auto min-h-250 max-w-200 overflow-hidden px-4">
+        {children}
       </div>
     </BackgroundWithNoise>
   );
