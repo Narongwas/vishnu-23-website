@@ -53,6 +53,30 @@ export default function countBingoTable(bingoCounter: boolean[]) {
     }
   }
 
+  // check diagonal
+  let isDiagonalCompleted = true;
+  for (let i = 0; i < ROW; i++) {
+    if (!bingoCounter[i * COLUMN + i]) {
+      isDiagonalCompleted = false;
+      break;
+    }
+  }
+  if (isDiagonalCompleted) {
+    fivePointSquareCount += 5;
+  }
+
+  // check anti diagonal
+  let isAntiDiagonalCompleted = true;
+  for (let i = 0; i < ROW; i++) {
+    if (!bingoCounter[i * COLUMN + COLUMN - 1 - i]) {
+      isAntiDiagonalCompleted = false;
+      break;
+    }
+  }
+  if (isAntiDiagonalCompleted) {
+    fivePointSquareCount += 5;
+  }
+
   // special squares
   for (let i = 25; i < 28; i++) {
     if (bingoCounter[i]) {
