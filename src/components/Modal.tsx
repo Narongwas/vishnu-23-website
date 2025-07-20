@@ -2,13 +2,14 @@
 
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
+import { useTranslations } from "next-intl";
 
 const Modal: StyleableFC<{
   children: React.ReactNode;
   onClose: () => void;
 }> = ({ children, onClose, className, style }) => {
-  const texture =
-    "bg-[url('/decorating/texture/fabric.png')] opacity-50 mix-blend-soft-light";
+  const t = useTranslations("Common.Action");
+
   return (
     <div
       className={cn(
@@ -17,7 +18,7 @@ const Modal: StyleableFC<{
       )}
       style={style}
     >
-      <div className={cn("absolute inset-0", texture)} />
+      <div className="fabric-texture absolute inset-0" />
       <div className="flex flex-col items-center justify-center gap-4 px-6 pt-6 pb-9">
         {children}
       </div>
@@ -25,8 +26,8 @@ const Modal: StyleableFC<{
         className="bg-red type-title-medium relative h-14 w-full text-white"
         onClick={onClose}
       >
-        <div className={cn("absolute inset-0", texture)} />
-        <span className="relative">ปิด</span>
+        <div className="fabric-texture absolute inset-0" />
+        <span className="relative">{t("Close")}</span>
       </button>
     </div>
   );

@@ -3,12 +3,15 @@
 import Button from "@/components/Button";
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
+import { useTranslations } from "next-intl";
 
 const Dialog: StyleableFC<{
   children: React.ReactNode;
   onClose?: () => void;
   onConfirm?: () => void;
 }> = ({ children, onClose, onConfirm, className, style }) => {
+  const t = useTranslations("Common.Action");
+
   return (
     <div
       className={cn(
@@ -27,7 +30,7 @@ const Dialog: StyleableFC<{
           onClick={onClose}
           className="w-full"
         >
-          <span className="type-title-medium">ยกเลิก</span>
+          <span className="type-title-medium">{t("Cancel")}</span>
         </Button>
         <Button
           Size="medium"
@@ -35,7 +38,7 @@ const Dialog: StyleableFC<{
           onClick={onConfirm}
           className="w-full"
         >
-          <span className="type-title-medium">ยืนยัน</span>
+          <span className="type-title-medium">{t("Confirm")}</span>
         </Button>
       </div>
     </div>
