@@ -4,14 +4,15 @@ import HomeWrapper from "@/components/HomeWrapper";
 import separator from "@/public/decorating/shapes/separator.svg";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import Button from "@/components/Button";
-import Icon from "@/components/Icon";
-import { checkFeatureFlagByName } from "@/lib/services/featureFlags.service";
+//import Button from "@/components/Button";
+//import Icon from "@/components/Icon";
+//import { checkFeatureFlagByName } from "@/lib/services/featureFlags.service";
+import ScoreSection from "@/app/[locale]/components/ScoreSection";
 
 export default async function Home() {
   const t = await getTranslations("Home.Hero");
 
-  const groupFeatureFlag = await checkFeatureFlagByName("group-reveal");
+  //const groupFeatureFlag = await checkFeatureFlagByName("group-reveal");
 
   return (
     <HomeWrapper>
@@ -25,7 +26,7 @@ export default async function Home() {
           <p>{t("vishnu.event")}</p>
           <p>{t("vishnu.date")}</p>
         </div>
-        {groupFeatureFlag && (
+        {/* {groupFeatureFlag && (
           <div className="relative z-10 flex w-full items-center justify-center pt-10">
             <Button
               Size="medium"
@@ -39,9 +40,9 @@ export default async function Home() {
               </div>
             </Button>
           </div>
-        )}
+        )} */}
       </div>
-
+      <ScoreSection />
       <HomePageSponsorFooter className="z-10" />
 
       <FaqLayoutGroup />
