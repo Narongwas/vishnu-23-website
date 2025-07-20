@@ -1,14 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
+import { NextRequest, NextResponse } from "next/server";
 
 //method to get prediction by ID
 export async function GET(
-  _request: NextRequest,
-  {
-    params,
-  }: {
-    params: Promise<{ predictionId: string }>;
-  }
+  request: NextRequest,
+  { params }: { params: Promise<{ predictionId: string }> }
 ) {
   try {
     const { predictionId } = await params;
@@ -27,7 +23,7 @@ export async function GET(
 
     if (!predictionData.exists) {
       return NextResponse.json(
-        { error: "Prediction ID is not correct" },
+        { error: "Prediction not found" },
         { status: 404 }
       );
     }
@@ -43,9 +39,6 @@ export async function GET(
       },
       {
         status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
       }
     );
   } catch (err) {
@@ -84,8 +77,8 @@ export async function PATCH(
     }
 
     await prediction.ref.update({
-      question: question ? question : prediction.data()?.question,
-      solution: solution ? solution : prediction.data()?.solution,
+      question: question ?? prediction.data()?.question,
+      solution: solution ?? prediction.data()?.solution,
       enable: enable,
       showAnswer: showAnswer,
     });
@@ -106,7 +99,7 @@ export async function PATCH(
 
 //method to delete prediction by ID
 export async function DELETE(
-  _request: NextRequest,
+  request: NextRequest,
   {
     params,
   }: {
