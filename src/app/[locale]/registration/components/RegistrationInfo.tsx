@@ -18,7 +18,7 @@ interface RegistrationData {
 
 const RegistrationInfo: StyleableFC = ({ className, style }) => {
   const locale = useLocale();
-  const t = useTranslations("");
+  const t = useTranslations("Registration");
 
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
@@ -67,7 +67,9 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
         <BackButton variants="tertiary" />
         <div className="flex w-full flex-col items-center justify-center">
           <p className="type-headline-small">
-            {t("Registration.Result.title")} {registrationData.packageNumber}
+            {t("Result.title", {
+              package: `${registrationData.packageNumber}`,
+            })}
           </p>
           <p className="type-title-medium text-red">
             <Kingdom letter={group.toLowerCase()} prefixed />
@@ -80,9 +82,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
           <div className="relative w-full">
             <Image
               src={locationImg}
-              alt={t(
-                `RegistrationAnnouncement.point.${registrationData.firstdate}`
-              )}
+              alt={registrationData.firstdate}
               width={491}
               height={336}
               priority
@@ -90,9 +90,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
             />
             <Image
               src={realImg}
-              alt={t(
-                `RegistrationAnnouncement.point.${registrationData.firstdate}`
-              )}
+              alt={registrationData.firstdate}
               width={491}
               height={336}
               priority
@@ -102,26 +100,14 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
         </div>
         <div className="flex flex-col items-center gap-5">
           <p className="type-body-large">
-            {t.rich("Registration.Result.footer.0", {
-              location: () => (
-                <span className="font-bold">
-                  {t(
-                    `RegistrationAnnouncement.point.${registrationData.firstdate}`
-                  )}{" "}
-                  (#
-                  {registrationData.packageNumber})
-                </span>
-              ),
-              time: () => (
-                <span className="font-bold">
-                  {t("RegistrationAnnouncement.time")}
-                </span>
-              ),
+            {t.rich("Result.footer.0", {
+              point: registrationData.firstdate,
+              package: registrationData.packageNumber,
+              location: (chunks) => <span className="font-bold">{chunks}</span>,
+              time: (chunks) => <span className="font-bold">{chunks}</span>,
             })}
           </p>
-          <p className="type-body-medium w-50">
-            {t("Registration.Result.footer.1")}
-          </p>
+          <p className="type-body-medium w-50">{t("Result.footer.1")}</p>
         </div>
       </div>
     </>

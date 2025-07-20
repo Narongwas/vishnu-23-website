@@ -26,14 +26,14 @@ const ButtonGroup: StyleableFC = ({}) => {
   };
   return (
     <div className="flex gap-2">
-      <GoogleLoginBtn varients="tertiary" />
+      <GoogleLoginBtn variants="tertiary" />
       <Button
         Size="small"
         Appearance="tertiary"
         onClick={() => setIsDialogOpen(!isDialogOpen)}
       >
         <Icon name="search" />
-        <p className="type-title-medium">{t("LogInPrompt.action.search")}</p>
+        <p className="type-title-medium">{t("Landing.action.search")}</p>
       </Button>
       {isDialogOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">

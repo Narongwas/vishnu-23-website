@@ -20,8 +20,8 @@ export default async function Registration() {
         <div className="h-11 w-full"></div>
         <div className="relative flex w-full flex-col items-center justify-center gap-5 py-4">
           <Icon name="place" size={40} className="text-red" />
-          <p className="type-title-large w-60">{t("LogInPrompt.title")}</p>
-          <p className="type-body-medium">{t("LogInPrompt.desc")}</p>
+          <p className="type-title-large w-60">{t("Landing.title")}</p>
+          <p className="type-body-medium">{t("Landing.desc")}</p>
           <ButtonGroup />
         </div>
         <AllPageSponsorFooter />
