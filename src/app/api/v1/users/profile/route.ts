@@ -136,7 +136,7 @@ export async function GET(request: NextRequest) {
   if (!token) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  //decoding the token to get the user email and role
+  // Decoding the token to get the user email
   const decodeToken = await firebaseAdmin.auth().verifyIdToken(token);
   const email = decodeToken.email;
 
@@ -154,7 +154,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  // If no profile URL exists, return null
+  // If no profile URL exists, return error
   if (!userData.profileUrl) {
     return NextResponse.json({
       error: "no profile url found",
