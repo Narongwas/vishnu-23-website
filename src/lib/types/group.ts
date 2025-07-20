@@ -1,4 +1,5 @@
 export interface Group {
+  id: string;
   bingo: [];
   bingoScore: number;
   groupName: string;

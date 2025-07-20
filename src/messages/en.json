@@ -5,7 +5,7 @@
         "default": "Vishnu 23rd",
         "template": "%s - Vishnu 23rd"
       },
-      "description": ""
+      "description": "The online companion for Intania First Date and Vishnu Camp 23rd — track your kingdom’s territory, predict your fate, explore clubs, and more."
     },
     "Navigation": {
       "home": "Home",
@@ -77,6 +77,7 @@
       "header": "<title>Eighteen kingdoms</title><subtitle>The fight for glory roars on</subtitle>"
     },
     "KingdomCard": {
+      "color": "{kingdom, select, a {Pink} b {Maroon} c {Navy blue} dog {Orange} e {Brown} f {Gray} g {Light blue} h {Red} j {Navy black} k {Cornflower} l {Dark pink} m {Light pink} n {Yellow} p {Dark purple} q {Dark blue} r {Mid purple} s {Blue} t {Lavender}}",
       "rank": {
         "long": "{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} place",
         "short": "{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
@@ -162,6 +163,11 @@
         "more": "Show answer",
         "less": "Hide answer"
       }
+    },
+    "InAppBrowser": {
+      "title": "Open in external browser to continue",
+      "desc": "Tap <dots></dots> <strong>three dots</strong> then tap <strong>Open in browser</strong>. You can then log in there.",
+      "alt": "The three dots are in the bottom-left corner of the screen. The Open in browser button is in a floating menu above the three dots."
     }
   },
   "GroupAnnouncement": {
@@ -171,22 +177,28 @@
       "line": "Join LINE Group"
     }
   },
-  "RegistrationAnnouncement": {
-    "title": "Registration point",
-    "point": {
-      "EN100": "EN100",
-      "ENG3": "ENG3",
-      "ENG4": "ENG4",
-      "Plateau": "Plateau",
-      "Ruamjai": "Suan Ruamjai"
+  "Registration": {
+    "Landing": {
+      "title": "Log in to check your registration point.",
+      "desc": "Registration location may differ from person to person.",
+      "action": {
+        "logIn": "Log in",
+        "search": "Search by student ID"
+      }
     },
-    "time": "12:00 PM - 1:00 PM",
-    "footer": {
-      "0": "You can register at <location></location> at <time></time>",
-      "1": "Registration location may differ from person to person."
+    "StudentIDDialog": {
+      "title": "Search by student ID",
+      "desc": "Enter your 10-digit student ID to check your registration point for Vishnu Camp Day 1.",
+      "form": {
+        "studentID": "68XXXXXX21"
+      }
     },
-    "action": {
-      "home": "Return to home"
+    "Result": {
+      "title": "Registration point {package, number}",
+      "footer": {
+        "0": "You can register at <location>{point, select, EN100 {EN100} ENG3 {ENG3} ENG4 {ENG4} Plateau {Plateau} Ruamjai {Suan Ruamjai} other {Faculty of Engineering}} (#{package, number})</location> at <time>8:00 a.m. to 9:00 a.m.</time>",
+        "1": "Registration location may differ from person to person."
+      }
     }
   },
   "Explore": {
