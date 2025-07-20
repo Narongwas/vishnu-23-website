@@ -27,8 +27,8 @@ export async function GET(request: NextRequest) {
       db.collection("users").get(),
     ]);
 
-    const groups = groupsSnap.docs.map((doc) => {
-      return { group: doc.id, name: doc.data().name };
+    const groups = groupsSnap.docs.map((group) => {
+      return { group: group.id, name: group.data().name };
     });
 
     const userData = usersSnap.docs;
