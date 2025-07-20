@@ -11,10 +11,10 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
 type ButtonProps = {
-  varients: "primary" | "secondary" | "tertiary" | "secondary-variant";
+  variants: "primary" | "secondary" | "tertiary" | "secondary-variant";
 };
 
-interface GoogleLoginBtnProps extends Pick<ButtonProps, "varients"> {
+interface GoogleLoginBtnProps extends Pick<ButtonProps, "variants"> {
   onSuccess?: () => void;
   onError?: (error: string) => void;
   className?: string;
@@ -38,7 +38,7 @@ function SearchParamsHandler({
 export default function GoogleLoginBtn({
   onSuccess,
   onError,
-  varients = "primary",
+  variants = "primary",
 }: GoogleLoginBtnProps) {
   const { loginWithToken, token, user } = useAuth();
   const isLoggedIn = !!token;
@@ -103,7 +103,7 @@ export default function GoogleLoginBtn({
         <Button
           onClick={handleGoogleLogin}
           Size="small"
-          Appearance={varients}
+          Appearance={variants}
           aria-label={t("action.logIn")}
           title={t("action.logIn")}
         >
