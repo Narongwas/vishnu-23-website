@@ -6,7 +6,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useTranslations } from "next-intl";
 
 export default function Registration() {
-  const t = useTranslations("RegistrationAnnouncement");
+  const t = useTranslations("Registration.Result");
 
   return (
     <BackgroundWithNoise className="from-yellow to-yellow-white bg-gradient-to-b">
@@ -14,7 +14,7 @@ export default function Registration() {
         <div className="relative flex w-full items-center justify-between py-4">
           <LanguageSwitcher />
           <p className="type-headline-small absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform">
-            {t("title")}
+            {t("title", { package: 0 })} {/* TODO: Get package number */}
           </p>
           <HomeButton />
         </div>
