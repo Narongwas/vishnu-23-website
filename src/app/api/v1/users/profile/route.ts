@@ -28,10 +28,6 @@ export async function POST(request: NextRequest) {
     const userDocRef = userDoc.docs[0].ref;
     const userData = userDoc.docs[0].data();
 
-    if (userData.role == "camper") {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
-
     const formData = await request.formData();
     const file = formData.get("file");
 
@@ -150,12 +146,9 @@ export async function GET(request: NextRequest) {
   }
 
   const userData = userDoc.docs[0].data();
-  if (userData.role == "camper") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
 
   // If no profile URL exists, return error
-  if (!userData.profileUrl) {
+  if (userData.profileUrl == "") {
     return NextResponse.json({
       error: "no profile url found",
     });
