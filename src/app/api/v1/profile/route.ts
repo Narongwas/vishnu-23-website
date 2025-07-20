@@ -20,17 +20,13 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: "User not correct" }, { status: 404 });
     }
 
-    const { profile, contact } = await request.json();
+    const { contact } = await request.json();
 
     const updatedData: {
-      profileURL?: string;
       contact?: Record<string, string>;
     } = {};
 
     //merge contact field
-    if (profile) {
-      updatedData.profileURL = profile;
-    }
     if (contact) {
       updatedData.contact = contact;
     }
