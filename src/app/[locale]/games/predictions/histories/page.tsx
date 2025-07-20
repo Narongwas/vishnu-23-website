@@ -24,7 +24,7 @@ export default function PredictionHistory() {
   return (
     <div>
       <div className="relative z-10 flex w-full items-center justify-between p-4">
-        <BackButton variants="Games" />
+        <BackButton variants="secondary-variant" />
         <p className="type-headline-small py-5 text-center text-white">
           ประวัติการทำนาย
         </p>
