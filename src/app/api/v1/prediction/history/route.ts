@@ -5,7 +5,7 @@ import { db } from "@/lib/services/firebase.admin";
 import emailToId from "@/lib/helpers/emailToId";
 
 //This is a function to get history by userId (use in get method)
-async function getUserHistory(uid: string) {
+async function getUserPredictionHistory(uid: string) {
   const userData = await db.collection("users").doc(uid).get();
 
   if (!userData.exists) {
@@ -56,7 +56,7 @@ async function getUserHistory(uid: string) {
 }
 
 //this is a function to add user history by userId and predictionId
-async function addUserHistory(uid: string, predictionId: string) {
+async function addUserPredictionHistory(uid: string, predictionId: string) {
   const userData = await db.collection("users").doc(uid).get();
 
   const userPredictions = userData.data()?.predictions || [];
@@ -84,7 +84,8 @@ export async function GET(request: NextRequest) {
 
     const uid = emailToId(decodedToken.email || "");
 
-    const { userHistory, getHistoryError } = await getUserHistory(uid);
+    const { userHistory, getHistoryError } =
+      await getUserPredictionHistory(uid);
 
     //get history error ,user not found
     if (getHistoryError) {
@@ -137,7 +138,10 @@ export async function POST(request: NextRequest) {
     }
 
     //use addUserHistory function
-    const addUserHistoryResult = await addUserHistory(uid, prediction);
+    const addUserHistoryResult = await addUserPredictionHistory(
+      uid,
+      prediction
+    );
     const addingError = addUserHistoryResult?.addingError;
 
     if (addingError) {
