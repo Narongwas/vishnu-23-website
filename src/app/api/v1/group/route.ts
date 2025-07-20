@@ -28,13 +28,7 @@ export async function GET(request: NextRequest) {
 
   const studentId = emailToId(email);
 
-  const doc = await db
-    .collection("users")
-    .where("studentId", "==", studentId)
-    .get();
+  const doc = await db.collection("users").doc(studentId).get();
 
-  return NextResponse.json(
-    { group: doc.docs[0].data().group },
-    { status: 200 }
-  );
+  return NextResponse.json({ group: doc.data()?.group }, { status: 200 });
 }

@@ -1,11 +1,17 @@
 import FaqLayoutGroup from "@/components/FaqLayoutGroup";
+import HomePageSponsorFooter from "@/components/HomePageSponsorFooter";
 import HomeWrapper from "@/components/HomeWrapper";
 import separator from "@/public/decorating/shapes/separator.svg";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import Button from "@/components/Button";
+import Icon from "@/components/Icon";
+import { checkFeatureFlagByName } from "@/lib/services/featureFlags.service";
 
-export default function Home() {
-  const t = useTranslations("HomeHero");
+export default async function Home() {
+  const t = await getTranslations("Home.Hero");
+
+  const groupFeatureFlag = await checkFeatureFlagByName("group-reveal");
 
   return (
     <HomeWrapper>
@@ -19,14 +25,26 @@ export default function Home() {
           <p>{t("vishnu.event")}</p>
           <p>{t("vishnu.date")}</p>
         </div>
+        {groupFeatureFlag && (
+          <div className="relative z-10 flex w-full items-center justify-center pt-10">
+            <Button
+              Size="medium"
+              Appearance="tertiary"
+              className="mx-auto"
+              href="/registration"
+            >
+              <Icon name="Groups" />
+              <div className="align-center type-title-medium flex">
+                {t("action.KingdomReveal")}
+              </div>
+            </Button>
+          </div>
+        )}
       </div>
 
-      <div className="z-30 w-full pb-30">
-        <div className="type-title-large text-red mt-17 mb-5 text-center font-bold">
-          <p>คำถามที่พบบ่อย</p>
-        </div>
-        <FaqLayoutGroup />
-      </div>
+      <HomePageSponsorFooter className="z-10" />
+
+      <FaqLayoutGroup />
     </HomeWrapper>
   );
 }

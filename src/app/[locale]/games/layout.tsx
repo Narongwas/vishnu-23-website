@@ -1,7 +1,5 @@
-import "@/app/[locale]/globals.css";
-import cn from "@/lib/helpers/cn";
-import type { Viewport } from "next";
 import BackgroundWithNoise from "@/components/BackgroundWithNoise";
+import type { Viewport } from "next";
 
 export const viewport: Viewport = {
   themeColor: "#41415f",
@@ -13,14 +11,10 @@ export default function GamesLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn("antialiased")}>
-        <BackgroundWithNoise className="flex flex-col justify-center">
-          <div className="bg-blue absolute inset-0 bg-gradient-to-b to-white/30">
-            <div className="relative mx-auto max-w-200">{children}</div>
-          </div>
-        </BackgroundWithNoise>
-      </body>
-    </html>
+    <BackgroundWithNoise className="from-blue to-blue/80 bg-gradient-to-b">
+      <div className="relative mx-auto min-h-screen max-w-200 overflow-hidden px-4">
+        {children}
+      </div>
+    </BackgroundWithNoise>
   );
 }
