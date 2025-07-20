@@ -27,7 +27,7 @@ const Modal: StyleableFC<{
         onClick={onClose}
       >
         <div className="fabric-texture absolute inset-0" />
-        <span className="relative">{t("Close")}</span>
+        <span className="relative">{t("close")}</span>
       </button>
     </div>
   );
