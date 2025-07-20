@@ -2,6 +2,7 @@
 
 import PredictionHelpCard from "@/app/[locale]/games/predictions/components/PredictonHelpCard";
 import Button from "@/components/Button";
+import Icon from "@/components/Icon";
 import { useState } from "react";
 
 export default function HelpButton() {
@@ -9,15 +10,15 @@ export default function HelpButton() {
   return (
     <>
       <Button
-        icon="help"
-        Size="Small"
-        Appearance="Primary"
-        className="text-blue bg-yellow"
+        Size="small"
+        Appearance="secondary-variant"
         onClick={() => setShowHelper(true)}
-      />
+      >
+        <Icon name="help" />
+      </Button>
 
       {showHelper && (
-        <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/50">
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/50">
           <PredictionHelpCard onClose={() => setShowHelper(!setShowHelper)} />
         </div>
       )}
