@@ -162,6 +162,11 @@
         "more": "Show answer",
         "less": "Hide answer"
       }
+    },
+    "InAppBrowser": {
+      "title": "Open in external browser to continue",
+      "desc": "Tap <dots></dots> <strong>three dots</strong> then tap <strong>Open in browser</strong>. You can then log in there.",
+      "alt": "The three dots are in the bottom-left corner of the screen. The Open in browser button is in a floating menu above the three dots."
     }
   },
   "GroupAnnouncement": {
