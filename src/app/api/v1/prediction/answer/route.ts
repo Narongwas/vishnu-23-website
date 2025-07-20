@@ -156,13 +156,11 @@ export async function PUT(request: NextRequest) {
         predictionId: predictionId,
         userId: uid,
         answer: answer,
-        isCorrect: answer.trim() === prediction.data()?.solution.trim(),
       });
     } else {
       //if user answered before , it update the answer
       await answerData.docs[0].ref.update({
         answer: answer,
-        isCorrect: answer.trim() === prediction.data()?.solution.trim(),
       });
     }
 
