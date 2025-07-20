@@ -1,13 +1,4 @@
-export type Prediction = {
-  predictionId: string;
-  question: string;
-  solution: string;
-  day: number;
-  time: string;
-  enable: boolean;
-  showAnswer: boolean;
-};
-
+import { Prediction } from "@/lib/types/prediction";
 //get prediction that enable
 export async function getEnablePrediction(): Promise<Prediction | undefined> {
   const predictions = await fetch("/api/v1/prediction", {
