@@ -102,14 +102,15 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    const [signedUrl] = await fileRef.getSignedUrl({
-      action: "read",
-      expires: Date.now() + 1000 * 60 * 60 * 24 * 10, // 10 days
-    });
+    // Make the file public
+    await fileRef.makePublic();
+
+    // Generate public URL
+    const publicUrl = `https://storage.googleapis.com/${bucket.name}/${fileName}`;
 
     // Update user document with the profile image URL
     await userDocRef.update({
-      profileUrl: signedUrl,
+      profileUrl: publicUrl,
     });
 
     return NextResponse.json({
