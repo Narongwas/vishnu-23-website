@@ -13,6 +13,7 @@ async function addPrediction(prediction: {
     solution: prediction.solution,
     day: prediction.day,
     time: prediction.time,
+    showQuestion: false,
     enable: false,
     showAnswer: false,
   });

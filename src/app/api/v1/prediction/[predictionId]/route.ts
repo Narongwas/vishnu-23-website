@@ -30,12 +30,8 @@ export async function GET(
 
     return NextResponse.json(
       {
-        question: predictionData.data()?.question,
-        solution: predictionData.data()?.solution,
-        day: predictionData.data()?.day,
-        time: predictionData.data()?.time,
-        enable: predictionData.data()?.enable,
-        showAnswer: predictionData.data()?.showAnswer,
+        predictionId: predictionData.id,
+        ...predictionData.data(),
       },
       {
         status: 200,
@@ -62,7 +58,7 @@ export async function PATCH(
   try {
     const body = await request.json();
     const { predictionId } = await params;
-    const { question, solution, enable, showAnswer } = body;
+    const { question, solution, showQuestion, enable, showAnswer } = body;
 
     const prediction = await db
       .collection("predictions")
@@ -79,6 +75,7 @@ export async function PATCH(
     await prediction.ref.update({
       question: question ?? prediction.data()?.question,
       solution: solution ?? prediction.data()?.solution,
+      showQuestion: showQuestion,
       enable: enable,
       showAnswer: showAnswer,
     });
