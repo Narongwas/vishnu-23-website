@@ -1,11 +1,7 @@
 import { Prediction } from "@/lib/types/prediction";
 //get prediction that enable
 export async function getEnablePrediction(): Promise<Prediction | undefined> {
-  const response = await fetch("/api/v1/prediction", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch("/api/v1/prediction", {});
 
   const { predictionsData } = await response.json();
 
