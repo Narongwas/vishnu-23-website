@@ -61,7 +61,7 @@ const InAppBrowserDetector = () => {
         จากนั้นจะสามารถเข้าสู่ระบบได้ตามปกติ
       </h2>
       <Image
-        src="/modals/In-app Browser.png"
+        src="/modals/In-app-Browser.png"
         width={168}
         height={307}
         alt="open in browser instruction"
