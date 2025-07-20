@@ -16,7 +16,7 @@ async function getPredictionAnswer(uid: string, predictionId: string) {
   ]);
 
   if (!prediction.exists) {
-    return { fetchingError: "Prediction not found" };
+    return { fetchingError: true };
   }
 
   //If the user never answered, returns the answer as an empty string.
