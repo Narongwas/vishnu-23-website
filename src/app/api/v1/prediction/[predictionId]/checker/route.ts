@@ -1,5 +1,14 @@
 import { db } from "@/lib/services/firebase.admin";
+import { bilingualString } from "@/lib/types/bilingual";
 import { NextRequest, NextResponse } from "next/server";
+
+function checkAnswer(answer: string, solution: bilingualString): boolean {
+  // Normalize both answer and solution to lowercase for case-insensitive comparison
+  return (
+    answer.trim().toLowerCase() === solution.en.trim().toLowerCase() ||
+    answer.trim().toLowerCase() === solution.th.trim().toLowerCase()
+  );
+}
 
 //This is a function to check users' answers against the prediction solution
 export async function POST(
@@ -41,7 +50,7 @@ export async function POST(
       }
 
       batch.update(answers[i].ref, {
-        isCorrect: answers[i].data().answer === solution,
+        isCorrect: checkAnswer(answers[i].data().answer, solution),
       });
     }
 

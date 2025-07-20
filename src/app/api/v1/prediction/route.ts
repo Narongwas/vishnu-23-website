@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
+import { bilingualString } from "@/lib/types/bilingual";
 
 //this is a function to add new prediction
 async function addPrediction(prediction: {
-  question: string;
-  solution: string;
+  question: bilingualString;
+  solution: bilingualString;
   day: number;
   time: string;
 }) {
