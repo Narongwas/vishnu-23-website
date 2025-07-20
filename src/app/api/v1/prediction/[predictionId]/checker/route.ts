@@ -28,15 +28,22 @@ export async function POST(
       );
     }
 
-    const solution = predictionSnap.data()?.solution;
+    const solution = predictionSnap.data()?.solution.trim();
+    const answers = answersSnap.docs;
 
-    const batch = db.batch();
+    const BATCH_SIZE = 500;
+    let batch = db.batch();
 
-    answersSnap.forEach((answer) => {
-      batch.update(answer.ref, {
-        isCorrect: answer.data().answer.trim() === solution.trim(),
+    for (let i = 0; i < answers.length; i++) {
+      if (i % BATCH_SIZE === 0 && i > 0) {
+        await batch.commit();
+        batch = db.batch();
+      }
+
+      batch.update(answers[i].ref, {
+        isCorrect: answers[i].data().answer === solution,
       });
-    });
+    }
 
     await batch.commit();
 
