@@ -61,7 +61,8 @@
       "action": {
         "logIn": "Log in",
         "account": "Account",
-        "registration": "See registration point"
+        "registration": "See registration point",
+        "KingdomReveal": "See your kingdom"
       },
       "ifd": {
         "event": "Intania First Date 2025",

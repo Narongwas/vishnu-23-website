@@ -23,13 +23,21 @@ const buildings = [
     href: "/explore/map/eng3",
   },
   {
+    key: "eng4",
+    style: "left-[10%] top-[30%] w-[20%] h-[20%]",
+    href: "/explore/map/eng4",
+    rainOnly: true,
+  },
+  {
     key: "en100",
     style: "right-[8%] top-[45%] w-[22%] h-[22%]",
     href: "/explore/map/en100",
   },
 ];
 
-const FacultyMap: StyleableFC = ({ className, style }) => {
+const FacultyMap: StyleableFC<{
+  isRaining?: boolean;
+}> = ({ isRaining, className, style }) => {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("Map.Faculty");
@@ -48,6 +56,10 @@ const FacultyMap: StyleableFC = ({ className, style }) => {
   const facultyMap = locale === "th" ? facultyMapTH : facultyMapEN;
   const backgroundOverlay =
     "border-2 border-red bg-yellow mix-blend-overlay z-15";
+
+  const filteredBuildings = !isRaining
+    ? buildings.filter((building) => !building.rainOnly)
+    : buildings;
 
   return (
     <div

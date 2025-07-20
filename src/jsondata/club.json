@@ -7,7 +7,7 @@
       "logo": "pad_09_Intania-baseball-&-softball-club.png",
       "ig": "https://www.instagram.com/intaniasoftballclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       "boothPosition": {
-        "building": "larngear",
+        "building": "eng4",
         "position": 5
       }
     },
@@ -25,7 +25,7 @@
       "logo": "pad_14_Intania-Rugby-Club.png",
       "ig": "https://www.instagram.com/intaniarugbyclub?igsh=dmhqdWZkdXp4azZt",
       "boothPosition": {
-        "building": "larngear",
+        "building": "eng4",
         "position": 7
       }
     },
@@ -36,7 +36,7 @@
       "logo": "pad_15_Intania-Running-Club.png",
       "ig": "https://www.instagram.com/intania_runningclub?utm_source=ig_web_button_share_sheet&igsh=NW5jMzJ4ejdqeXA=",
       "boothPosition": {
-        "building": "larngear",
+        "building": "eng4",
         "position": 6
       }
     },
@@ -208,7 +208,7 @@
       "logo": "pad_01_Awarehouse.png",
       "ig": "https://www.instagram.com/awarehouse.official",
       "boothPosition": {
-        "building": "larngear",
+        "building": "eng4",
         "position": 8
       }
     },
