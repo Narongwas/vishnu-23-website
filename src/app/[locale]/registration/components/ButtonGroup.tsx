@@ -7,11 +7,14 @@ import GoogleLoginBtn from "@/components/LoginButton";
 import { StyleableFC } from "@/lib/types/misc";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const ButtonGroup: StyleableFC = ({}) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const router = useRouter();
+
+  const t = useTranslations("Registration");
 
   const handleConfirm = () => {
     if (inputValue.length === 10) {
@@ -30,7 +33,7 @@ const ButtonGroup: StyleableFC = ({}) => {
         onClick={() => setIsDialogOpen(!isDialogOpen)}
       >
         <Icon name="search" />
-        <p className="type-title-medium">ค้นหาด้วยเลขนิสิต</p>
+        <p className="type-title-medium">{t("LogInPrompt.action.search")}</p>
       </Button>
       {isDialogOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
