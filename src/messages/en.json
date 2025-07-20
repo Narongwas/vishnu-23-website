@@ -178,7 +178,7 @@
     }
   },
   "Registration": {
-    "LogInPoint": {
+    "Landing": {
       "title": "Log in to check your registration point.",
       "desc": "Registration location may differ from person to person.",
       "action": {
