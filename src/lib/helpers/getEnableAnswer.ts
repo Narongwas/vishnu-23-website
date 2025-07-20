@@ -1,5 +1,5 @@
 import { getUserAnswer } from "@/lib/helpers/getAnswer";
-import { Prediction } from "@/lib/helpers/getEnablePrediction";
+import { Prediction } from "@/lib/types/prediction";
 
 export async function getEnableAnswer() {
   try {
