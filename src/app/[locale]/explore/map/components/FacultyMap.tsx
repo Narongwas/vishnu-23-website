@@ -24,7 +24,7 @@ const buildings = [
   },
   {
     key: "eng4",
-    style: "left-[10%] top-[30%] w-[20%] h-[20%]",
+    style: "left-[71%] top-[69%] w-[20%] h-[20%]",
     href: "/explore/map/eng4",
     rainOnly: true,
   },
@@ -70,7 +70,7 @@ const FacultyMap: StyleableFC<{
 
       <figure className="relative">
         <Image src={facultyMap} alt={t("alt")} priority />
-        {buildings.map((building) => (
+        {filteredBuildings.map((building) => (
           <button
             key={building.key}
             onClick={() => handleClick(building.key)}
@@ -89,7 +89,7 @@ const FacultyMap: StyleableFC<{
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-2">
-        {buildings.map((building) => (
+        {filteredBuildings.map((building) => (
           <Button
             key={building.key}
             Appearance="primary"
