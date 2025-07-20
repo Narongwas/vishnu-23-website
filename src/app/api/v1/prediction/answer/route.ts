@@ -44,16 +44,19 @@ export async function GET(request: NextRequest) {
     const { decodedToken, error } = await firebaseAuthMiddleware(request);
 
     if (error || !decodedToken?.uid) {
-      return new NextResponse(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-      });
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        {
+          status: 401,
+        }
+      );
     }
 
     const prediction = request.nextUrl.searchParams.get("prediction");
 
     if (!prediction) {
-      return new NextResponse(
-        JSON.stringify({ error: "Prediction ID is required" }),
+      return NextResponse.json(
+        { error: "Prediction ID is required" },
         { status: 400 }
       );
     }
