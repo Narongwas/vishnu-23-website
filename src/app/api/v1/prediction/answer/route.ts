@@ -87,9 +87,12 @@ export async function GET(request: NextRequest) {
     );
   } catch (e) {
     console.error("Error in GET request:", e);
-    return new NextResponse(JSON.stringify({ error: "error get answer" }), {
-      status: 500,
-    });
+    return NextResponse.json(
+      { error: "error get answer" },
+      {
+        status: 500,
+      }
+    );
   }
 }
 
