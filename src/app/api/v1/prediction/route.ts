@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
     if (!question || !solution || !day || !time) {
       return NextResponse.json(
         {
-          error: "question,solution,day and time are required",
+          error: "question, solution, day and time are required",
         },
         { status: 400 }
       );
