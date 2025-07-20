@@ -5,8 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 function checkAnswer(answer: string, solution: bilingualString): boolean {
   // Normalize both answer and solution to lowercase for case-insensitive comparison
   return (
-    answer.trim().toLowerCase() === solution.en.trim().toLowerCase() ||
-    answer.trim().toLowerCase() === solution.th.trim().toLowerCase()
+    answer.trim().toLowerCase() === solution.en ||
+    answer.trim().toLowerCase() === solution.th
   );
 }
 
@@ -37,7 +37,11 @@ export async function POST(
       );
     }
 
-    const solution = predictionSnap.data()?.solution.trim();
+    const solution = {
+      en: predictionSnap.data()?.solution.en.trim().toLowerCase,
+      th: predictionSnap.data()?.solution.th.trim().toLowerCase,
+    };
+
     const answers = answersSnap.docs;
 
     const BATCH_SIZE = 500;
