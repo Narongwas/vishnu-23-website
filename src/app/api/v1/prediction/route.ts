@@ -34,9 +34,6 @@ export async function GET() {
       },
       {
         status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
       }
     );
   } catch (err) {
@@ -68,9 +65,6 @@ export async function POST(request: NextRequest) {
       },
       {
         status: 201,
-        headers: {
-          "Content-Type": "application/json",
-        },
       }
     );
   } catch (err) {
