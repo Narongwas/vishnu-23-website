@@ -15,7 +15,7 @@ const Dialog: StyleableFC<{
   return (
     <div
       className={cn(
-        "bg-yellow-white fabric-texture relative w-[310px] overflow-hidden",
+        "bg-yellow-white fabric-texture relative w-77.5 overflow-hidden",
         className
       )}
       style={style}
