@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import emailToId from "@/lib/helpers/emailToId";
 import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware";
 import { db } from "@/lib/services/firebase.admin";
-import emailToId from "@/lib/helpers/emailToId";
+import { NextRequest, NextResponse } from "next/server";
 
 //get prediction answer by uid and prediction ID
 async function getPredictionAnswer(uid: string, predictionId: string) {
@@ -16,10 +16,10 @@ async function getPredictionAnswer(uid: string, predictionId: string) {
   ]);
 
   if (!prediction.exists) {
-    return { fetchingError: "this prediction not found" };
+    return { fetchingError: "Prediction not found" };
   }
 
-  //if user is not answer , answer will be an empty string
+  //If the user never answered, returns the answer as an empty string.
   if (answerData.empty) {
     return {
       predictionId,
