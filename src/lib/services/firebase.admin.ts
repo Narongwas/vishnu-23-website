@@ -10,6 +10,7 @@ export function getFirebaseAdmin() {
   if (!admin.apps.length) {
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
+      storageBucket: process.env.FB_STORAGE_BUCKET,
     });
   }
 
@@ -29,5 +30,6 @@ export const verifyIdToken = async (token: string) => {
 const firebaseAdmin = getFirebaseAdmin();
 const remoteConfig = firebaseAdmin.remoteConfig();
 const db = firebaseAdmin.firestore();
+const storage = firebaseAdmin.storage();
 
-export { db, firebaseAdmin, remoteConfig };
+export { db, firebaseAdmin, remoteConfig, storage };
