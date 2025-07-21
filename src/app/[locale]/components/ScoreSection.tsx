@@ -1,7 +1,7 @@
 import { StyleableFC } from "@/lib/types/misc";
 import TopOneBadge from "@/app/[locale]/components/TopOneBadge";
 import TopTwoBadge from "@/app/[locale]/components/TopTwoBadge";
-import Cell from "@/app/[locale]/components/Cell";
+//import Cell from "@/app/[locale]/components/Cell";
 import { getServerAuth } from "@/lib/firebase/getServerAuth";
 import type { Group } from "@/lib/types/group";
 import TopThreeBadge from "@/app/[locale]/components/TopThreeBadge";
@@ -10,6 +10,7 @@ import TopFourBadge from "@/app/[locale]/components/TopFourBadge";
 import TopFiveBadge from "@/app/[locale]/components/TopFiveBadge";
 import { getTranslations } from "next-intl/server";
 import MyKingdomBadge from "@/app/[locale]/components/MyKingdomBadge";
+import DuckGraphic from "@/app/[locale]/components/DuckGraphic";
 
 type GroupWithCellCount = Group & { cellCount: number };
 
@@ -116,7 +117,7 @@ const ScoreSection: StyleableFC = async () => {
   const ADMIN_CELL_COUNT =
     (mappedGroups.find((g: Group) => g.id === "Admin")?.totalScore *
       totalCells) /
-    totalScore; // Admin group occupies 1 cell
+    totalScore;
   // Calculate the number of cells each group should occupy based on their score
   let groupCellCounts: GroupWithCellCount[] = filteredGroups.map(
     (g: Group) => ({
@@ -290,34 +291,13 @@ const ScoreSection: StyleableFC = async () => {
             filter: "drop-shadow(0 0 10px rgba(255, 0, 0, 0.4))",
           }}
         >
-          <div className="[webkit-mask-position:center 10px] grid h-81 w-63 grid-cols-[repeat(21,12px)] grid-rows-[repeat(27,12px)] bg-[url('/decorating/texture/stain.png')] [mask-image:url('/decorating/shapes/Duck.svg')] bg-contain [mask-size:247px_308px] [mask-position:center] [mask-repeat:no-repeat] [webkit-mask-image:url('/decorating/shapes/Duck.Duck.svg')] [webkit-mask-repeat:no-repeat] [webkit-mask-size:247px_308px]">
-            {/* Render cells based on maskDuck and the calculated colorsGrid */}
-            {maskDuck.map((row, rowIdx) =>
-              row.map((cell, colIdx) => {
-                if (!cell) {
-                  // If cell is 0 in maskDuck, render an empty div to maintain grid structure
-                  return (
-                    <div key={`${rowIdx}-${colIdx}`} className="h-3 w-3" />
-                  );
-                }
-                // Get color from the generated colorsGrid
-                const cellColor = groupColorsGrid[rowIdx][colIdx];
-                // Determine if the cell's color should be darker based on groupIsDarker ma
-                return (
-                  <div
-                    key={`${rowIdx}-${colIdx}`}
-                    className={`relative h-3 w-3 overflow-visible`}
-                    style={{
-                      zIndex: colIdx * 10 + rowIdx * 100, // Z-index for layering, if needed
-                      transform: "translate(-3px, -3px)", // Adjust position for visual alignment
-                    }}
-                  >
-                    {/* Pass the calculated color and isDarker prop to the Cell component */}
-                    <Cell color={cellColor} />
-                  </div>
-                );
-              })
-            )}
+          {/* Container นี้ยังคงทำหน้าที่เหมือนเดิม คือสร้างพื้นหลัง stain.png และ mask รูปเป็ด
+      แต่เราได้ลบ grid-related classes ออกไป และจะนำ DuckGraphic มาวางข้างในแทน
+    */}
+          <div className="relative h-81 w-63 overflow-hidden bg-[url('/decorating/texture/stain.png')] [mask-image:url('/decorating/shapes/Duck.svg')] bg-contain [mask-size:247px_308px] [mask-position:center] [mask-repeat:no-repeat] [webkit-mask-image:url('/decorating/shapes/Duck.svg')] [webkit-mask-repeat:no-repeat] [webkit-mask-size:247px_308px]">
+            <div className="absolute inset-0">
+              <DuckGraphic colorsGrid={groupColorsGrid} mask={maskDuck} />
+            </div>
           </div>
         </div>
       </DuckBackground>
