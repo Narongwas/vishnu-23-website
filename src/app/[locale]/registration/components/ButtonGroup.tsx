@@ -43,11 +43,10 @@ const ButtonGroup: StyleableFC = ({}) => {
           >
             <div className="flex flex-col items-center gap-4">
               <Icon name="search" size={24} className="text-red" />
-              <p className="type-headline-small">ค้นหาด้วยเลขนิสิต</p>
-              <p className="type-body-medium">
-                กรอกเลขประจำตัวนิสิต 10 หลัก เพื่อดู จุดลงทะเบียนสำหรับค่ายวิษณุ
-                Day 1
+              <p className="type-headline-small">
+                {t("StudentIDDialog.title")}
               </p>
+              <p className="type-body-medium">{t("StudentIDDialog.desc")}</p>
               <input
                 type="text"
                 placeholder="68XXXXXX21"
