@@ -7,7 +7,7 @@ export default function Predictions() {
   return (
     <>
       <div className="relative z-10 flex w-full items-center justify-between py-4">
-        <BackButton variants="secondary-variant" />
+        <BackButton variant="secondary-variant" />
         <div className="flex gap-2">
           <HistoryButton />
           <HelpButton />
