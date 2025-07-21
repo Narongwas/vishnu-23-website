@@ -82,7 +82,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
           <div className="relative w-full">
             <Image
               src={locationImg}
-              alt={registrationData.vishnu}
+              alt=""
               width={491}
               height={336}
               priority
@@ -90,7 +90,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
             />
             <Image
               src={realImg}
-              alt={registrationData.vishnu}
+              alt=""
               width={491}
               height={336}
               priority
