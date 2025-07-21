@@ -25,7 +25,7 @@ const TopOneBadge: StyleableFC<TopOneBadgeProps> = ({
       className={cn(
         "relative flex h-full w-full flex-col items-center",
         `bg-${color}`,
-        "border border-black/20 bg-[url('/decorating/texture/fabric.png')] bg-repeat px-4 pt-4 pb-12 bg-blend-soft-light [clip-path:polygon(0%_0%,_100%_0%,_100%_100%,_50%_85%,_0%_100%)]",
+        "border border-black/20 bg-[url('/decorating/texture/fabric.png')] bg-repeat pt-4 pb-12 bg-blend-soft-light [clip-path:polygon(0%_0%,_100%_0%,_100%_100%,_50%_85%,_0%_100%)]",
         className
       )}
       style={style}

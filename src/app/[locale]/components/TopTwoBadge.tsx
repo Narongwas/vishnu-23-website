@@ -25,7 +25,7 @@ const TopTwoBadge: StyleableFC<TopTwoBadgeProps> = ({
       className={cn(
         "flex h-[90%] w-full flex-col items-center",
         `bg-${color}`,
-        "border border-black/20 bg-[url('/decorating/texture/fabric.png')] bg-repeat px-2 py-4 bg-blend-soft-light",
+        "border border-black/20 bg-[url('/decorating/texture/fabric.png')] bg-repeat py-4 bg-blend-soft-light",
         isDarker ? "text-white" : "text-black",
         className
       )}

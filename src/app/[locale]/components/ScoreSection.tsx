@@ -152,7 +152,7 @@ const ScoreSection: StyleableFC = async () => {
       if (g.id === "J") {
         return { ...g, cellCount: g.cellCount + halfShortfallForJ };
       }
-      if (g.id === "T") {
+      if (g.id === "K") {
         return { ...g, cellCount: g.cellCount + halfShortfallForT };
       }
       return g;
