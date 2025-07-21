@@ -1,101 +1,176 @@
 "use client";
 
-import PredictionBall from "@/app/[locale]/games/predictions/components/PredictionBall";
-import MountainBackground from "@/components/MountainBackground";
-import PageAction from "@/components/PageAction";
-import cn from "@/lib/helpers/cn";
-import { StyleableFC } from "@/lib/types/misc";
-import type { Prediction } from "@/lib/types/prediction";
-import { motion } from "motion/react";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
-const PredictionControl: StyleableFC = ({ className, style }) => {
-  const [question, setQuestion] = useState("");
-  const [showAnswer, setShowAnswer] = useState("");
-  // const [userAnswer, setUserAnswer] = useState("");
-  const [predictionItems, setPredictionItems] = useState<Prediction>();
-  console.log(question);
-  console.log(showAnswer);
-  console.log(predictionItems);
+import cn from "@/lib/helpers/cn";
+import type { bilingualString } from "@/lib/types/bilingual";
+import type { StyleableFC } from "@/lib/types/misc";
+import type { Prediction, PredictionHistoryItem } from "@/lib/types/prediction";
 
-  // const lang = useLocale();
+import AnswerCard from "@/app/[locale]/games/predictions/components/AnswerCard";
+import PredictionBall from "@/app/[locale]/games/predictions/components/PredictionBall";
+import MountainBackground from "@/components/MountainBackground";
+
+const PredictionControl: StyleableFC = ({ className, style }) => {
+  const locale = useLocale() as "th" | "en";
+  const t = useTranslations("Predictions");
+
+  const [question, setQuestion] = useState<bilingualString | null>(null);
+  const [showAnswerText, setShowAnswerText] = useState<bilingualString | null>(
+    null
+  );
+  const [predictionItem, setPredictionItem] = useState<Prediction | null>(null);
+  const [userAnswer, setUserAnswer] = useState("");
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [showAnswerCard, setShowAnswerCard] = useState(true);
+  const [history, setHistory] = useState<PredictionHistoryItem>();
+
+  const time = predictionItem?.time === "เช้า" ? "morning" : "afternoon";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/v1/prediction", {
-          method: "GET",
-        });
-        if (!res.ok) {
-          throw new Error("Failed to fetch prediction data");
-        }
-        const data: { predictions: Prediction[] } = await res.json();
-        const enabledPrediction = data.predictions.find(
-          (p) => p.enable === true
-        );
+        const res = await fetch("/api/v1/prediction");
+        if (!res.ok) throw new Error("Failed to fetch prediction data");
+
+        const { predictions }: { predictions: Prediction[] } = await res.json();
+
+        const enabledPrediction = predictions.find((p) => p.showQuestion);
+        const enabledAnswer = predictions.find((p) => p.showAnswer);
 
         if (enabledPrediction) {
-          setQuestion(enabledPrediction.question); // or setQuestion(enabledPrediction)
-        } else {
-          console.warn("No enabled prediction found");
+          setQuestion(enabledPrediction.question);
+          setPredictionItem(enabledPrediction);
+
+          try {
+            const response = await fetch(
+              `/api/v1/prediction/answer?prediction=${enabledPrediction.predictionId}`
+            );
+            const historyData = await response.json();
+
+            if (historyData) {
+              setUserAnswer(historyData.answer);
+              setHistory(historyData);
+              setIsAnswered(true);
+            }
+          } catch (error) {
+            console.error("Error fetching answer history:", error);
+          }
         }
 
-        setPredictionItems(enabledPrediction);
-
-        const enabledAnswer = data.predictions.find(
-          (p) => p.showAnswer === true
-        );
         if (enabledAnswer) {
-          setShowAnswer(enabledAnswer.solution); // or setShowAnswer(enabledAnswer)
-        } else {
-          console.warn("No enabled answer found");
+          setShowAnswerText(enabledAnswer.solution);
         }
       } catch (error) {
         console.error("Error fetching prediction data:", error);
       }
     };
+
     fetchData();
   }, []);
 
-  return (
-    <div
-      className={cn(
-        "flex h-dvh w-full flex-col items-center justify-between pb-50 text-center",
-        className
-      )}
-      style={style}
-    >
-      <div className="flex w-full flex-col">
-        <p className="type-title-medium text-yellow">
-          ทำนายชะตาช่วง{predictionItems?.time}
-        </p>
-        <p className="type-headline-medium text-white">{question}</p>
-      </div>
-      <PredictionBall />
+  const handleSubmit = async () => {
+    if (!predictionItem) return;
 
-      <div className="flex flex-col gap-2 pb-4 text-white">
-        <p className="type-label-large">ปิดรับคำตอบ 13:00 น.</p>
-        <p className="type-body-medium">
-          นับคะแนนที่ได้จากอันดับของจำนวนน้องที่ทายถูกในก๊ก
-        </p>
-      </div>
-      <MountainBackground className="absolute top-25 left-0 h-full w-full mask-b-from-30% mask-b-to-55% opacity-50" />
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.8,
-          ease: "easeIn",
-        }}
-        className="fixed -bottom-95 left-1/2 z-5 -translate-x-1/2"
+    const url = isAnswered
+      ? "/api/v1/prediction/answer"
+      : "/api/v1/prediction/history";
+    const method = isAnswered ? "PUT" : "POST";
+
+    try {
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prediction: predictionItem.predictionId,
+          answer: userAnswer.trim(),
+        }),
+      });
+
+      if (res.ok) {
+        const message = isAnswered
+          ? "Answer updated successfully."
+          : "Prediction submitted successfully.";
+        if (res.status !== 204) {
+          await res.json(); // just to consume the body
+        }
+        alert(message);
+        setUserAnswer("");
+        setIsAnswered(true);
+      } else {
+        let errorMsg = isAnswered
+          ? "Failed to update answer"
+          : "Failed to submit prediction";
+        try {
+          const errData = await res.json();
+          errorMsg = errData.error || errorMsg;
+        } catch {}
+        console.error(errorMsg);
+      }
+    } catch (err) {
+      console.error("Error submitting answer:", err);
+    }
+  };
+
+  useEffect(() => {
+    if (!predictionItem?.predictionId || !showAnswerText) return;
+
+    const key = `show answer of ${predictionItem.predictionId}`;
+    const hasShown = sessionStorage.getItem(key);
+
+    if (!hasShown) {
+      setShowAnswerCard(true);
+      sessionStorage.setItem(key, "true");
+    } else {
+      setShowAnswerCard(false);
+    }
+  }, [showAnswerText, predictionItem?.predictionId]);
+
+  return (
+    <>
+      <div
+        className={cn(
+          "flex h-dvh w-full flex-col items-center justify-between pb-50 text-center",
+          className
+        )}
+        style={style}
       >
-        <PageAction
-          icon="check"
-          text="ทำนาย"
-          onClick={() => console.log("clicked")}
+        <div className="flex w-full flex-col">
+          <p className="type-title-medium text-yellow">
+            {t("overline", { time })}
+          </p>
+          <p className="type-headline-medium text-white">
+            {question?.[locale] ?? ""}
+          </p>
+        </div>
+
+        <PredictionBall
+          enable={predictionItem?.enable ?? false}
+          value={userAnswer}
+          onChange={setUserAnswer}
+          onSubmit={handleSubmit}
         />
-      </motion.div>
-    </div>
+
+        <div className="flex flex-col gap-2 pb-4 text-white">
+          <p className="type-label-large">
+            {t("footer.closedTime", { time: predictionItem?.closeTime ?? "" })}
+          </p>
+          <p className="type-body-medium">{t("footer.scoring")}</p>
+        </div>
+
+        <MountainBackground className="absolute top-25 left-0 h-full w-full mask-b-from-30% mask-b-to-55% opacity-50" />
+      </div>
+
+      {showAnswerText && showAnswerCard && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/50">
+          <AnswerCard
+            onClose={() => setShowAnswerCard(false)}
+            answer={history}
+          />
+        </div>
+      )}
+    </>
   );
 };
 

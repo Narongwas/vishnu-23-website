@@ -4,39 +4,35 @@ import Modal from "@/app/[locale]/games/predictions/components/Modal";
 import Icon from "@/components/Icon";
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
+import { useTranslations } from "next-intl";
 
 const PredictionHelpCard: StyleableFC<{
   onClose: () => void;
 }> = ({ onClose, className, style }) => {
+  const t = useTranslations("Predictions.HelpDialog");
   return (
     <Modal onClose={onClose} className={cn("z-10", className)} style={style}>
       <Icon name="temple_buddhist" className="text-red" />
-      <p className="type-headline-small">หอทำนายชะตาสวรรค์</p>
+      <p className="type-headline-small">{t("title")}</p>
 
       <div className="type-body-medium flex flex-col gap-2">
-        <p className="type-title-medium">เล่นยังไง</p>
-        <p>
-          ในแต่ละวัน จะมีคำถามช่วงเช้าและช่วงบ่าย
-          หน้าที่ของน้องคือการเขียนคำตอบสั้น ๆ เป็นคำทำนาย ก่อนเวลาที่กำหนด
-        </p>
+        <p className="type-title-medium">{t("playing.title")}</p>
+        <p className="text-balance">{t("playing.body.0")}</p>
         <div className="flex items-center">
           <Icon name="check" className="text-red" />
-          <p>20</p>
+          <p>{t("playing.body.1.0.answer")}</p>
         </div>
         <div className="flex items-center">
           <Icon name="close" className="text-red" />
-          <p>ผมขอตอบว่า 20 ครั้งครับ!!!</p>
+          <p>{t("playing.body.1.1.answer")}</p>
         </div>
-        <p>
-          น้อง ๆ แต่ละคนสามารถทายตามที่ตัวเองชอบได้เลย
-          โดยไม่ต้องตอบเหมือนกันทั้งก๊ก
-        </p>
+        <p className="text-balance">{t("playing.body.2")}</p>
       </div>
 
       <div className="type-body-medium flex flex-col gap-2">
-        <p className="type-title-medium">ให้คะแนนยังไง</p>
-        <p>จะนับคะแนนจากอันดับของจำนวนน้องที่ทายถูกในก๊ก</p>
-        <p>ก๊กที่มีคนตอบถูกมากที่สุด ก็จะได้คะแนนสูงสุด</p>
+        <p className="type-title-medium">{t("scoring.title")}</p>
+        <p>{t("scoring.body.0")}</p>
+        <p>{t("scoring.body.1")}</p>
       </div>
     </Modal>
   );
