@@ -30,7 +30,7 @@ const Dialog: StyleableFC<{
           onClick={onClose}
           className="w-full"
         >
-          <span className="type-title-medium">{t("Cancel")}</span>
+          <span className="type-title-medium">{t("cancel")}</span>
         </Button>
         <Button
           Size="medium"
@@ -38,7 +38,7 @@ const Dialog: StyleableFC<{
           onClick={onConfirm}
           className="w-full"
         >
-          <span className="type-title-medium">{t("Confirm")}</span>
+          <span className="type-title-medium">{t("confirm")}</span>
         </Button>
       </div>
     </div>

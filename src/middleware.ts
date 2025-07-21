@@ -33,7 +33,14 @@ export async function middleware(req: NextRequest) {
   // public page routes (now with locale)
   const publicRoutes = {
     exact: ["/", "/en", "/th"],
-    startsWith: ["/explore", "/en/explore", "/th/explore"],
+    startsWith: [
+      "/explore",
+      "/en/explore",
+      "/th/explore",
+      "/registration",
+      "/en/registration",
+      "/th/registration",
+    ],
   };
 
   const isPublicRoute =

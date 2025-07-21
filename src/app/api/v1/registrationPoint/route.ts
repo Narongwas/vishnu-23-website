@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         registrationsPoint: group.data()?.registrationsPoint || {},
+        groupName: group.id || "",
       },
       {
         status: 200,

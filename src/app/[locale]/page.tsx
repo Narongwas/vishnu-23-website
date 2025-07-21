@@ -26,14 +26,15 @@ export default async function Home() {
           <p>{t("vishnu.date")}</p>
         </div>
         {groupFeatureFlag && (
-          <div className="relative z-10 flex w-full items-center justify-center pt-10">
-            <Button
-              Size="medium"
-              Appearance="tertiary"
-              className="mx-auto"
-              href="/registration"
-            >
-              <Icon name="Groups" />
+          <div className="relative z-10 flex w-full flex-wrap items-center justify-center gap-2 pt-10">
+            <Button Size="medium" Appearance="tertiary" href="/registration">
+              <Icon name="location_on" />
+              <div className="align-center type-title-medium flex">
+                {t("action.registration")}
+              </div>
+            </Button>
+            <Button Size="medium" Appearance="tertiary" href="/group-reveal">
+              <Icon name="person_celebrate" />
               <div className="align-center type-title-medium flex">
                 {t("action.KingdomReveal")}
               </div>
