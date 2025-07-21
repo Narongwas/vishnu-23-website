@@ -11,6 +11,8 @@ import TopFiveBadge from "@/app/[locale]/components/TopFiveBadge";
 import { getTranslations } from "next-intl/server";
 import MyKingdomBadge from "@/app/[locale]/components/MyKingdomBadge";
 
+type GroupWithCellCount = Group & { cellCount: number };
+
 const ScoreSection: StyleableFC = async () => {
   const t = await getTranslations("");
   // Get authentication token from server
@@ -99,7 +101,6 @@ const ScoreSection: StyleableFC = async () => {
   );
 
   const me = await resMe.json();
-  console.log("me", me);
 
   // Calculate the total number of visible cells in the mask
   const totalCells = maskDuck.flat().filter((cell) => cell === 1).length;
@@ -111,13 +112,53 @@ const ScoreSection: StyleableFC = async () => {
 
   // Filter out the "Admin" group as it should not be displayed on the map or rankings
   const filteredGroups = mappedGroups.filter((g: Group) => g.id !== "Admin");
+
+  const ADMIN_CELL_COUNT =
+    (mappedGroups.find((g: Group) => g.id === "Admin")?.totalScore *
+      totalCells) /
+    totalScore; // Admin group occupies 1 cell
   // Calculate the number of cells each group should occupy based on their score
-  const groupCellCounts = filteredGroups.map((g: Group) => ({
-    ...g,
-    cellCount:
-      totalScore > 0 ? Math.floor((g.totalScore * totalCells) / totalScore) : 0,
-  }));
-  console.log("groupCellCounts", groupCellCounts);
+  let groupCellCounts: GroupWithCellCount[] = filteredGroups.map(
+    (g: Group) => ({
+      ...g,
+      cellCount:
+        totalScore > 0
+          ? Math.floor((g.totalScore * totalCells) / totalScore)
+          : 0,
+    })
+  );
+
+  const allocatedCellsByGroups = groupCellCounts.reduce(
+    (sum: number, g: GroupWithCellCount) => sum + g.cellCount,
+    0
+  );
+  const totalAllocatedCells =
+    allocatedCellsByGroups + Math.floor(ADMIN_CELL_COUNT);
+  console.log("totalAllocatedCells", totalAllocatedCells);
+  // 4. calculate space box (shortfall)
+  const shortfall = totalCells - totalAllocatedCells;
+  console.log("shortfall", shortfall);
+  // 5. split space box to J and T
+  if (shortfall > 0) {
+    console.log(`มีช่องเหลือ ${shortfall} ช่อง จะทำการแบ่งให้ J และ T`);
+
+    const halfShortfallForJ = Math.ceil(shortfall / 2);
+    const halfShortfallForT = Math.floor(shortfall / 2);
+
+    // update T and J
+    groupCellCounts = groupCellCounts.map((g: GroupWithCellCount) => {
+      if (g.id === "J") {
+        return { ...g, cellCount: g.cellCount + halfShortfallForJ };
+      }
+      if (g.id === "T") {
+        return { ...g, cellCount: g.cellCount + halfShortfallForT };
+      }
+      return g;
+    });
+  }
+
+  console.log("groupCellCounts (after adjustment)", groupCellCounts);
+
   const myGroupId = me?.user?.group;
   const myGroup = groupCellCounts.find((g: Group) => g.id === myGroupId);
   /**
@@ -132,20 +173,36 @@ const ScoreSection: StyleableFC = async () => {
     );
 
     // Collect all coordinates of visible cells (where maskDuck has a 1)
-    const visibleCellCoords: { row: number; col: number }[] = [];
+    const cellsByRow: Record<string, { row: number; col: number }[]> = {};
     for (let rowIdx = 0; rowIdx < maskDuck.length; rowIdx++) {
       for (let colIdx = 0; colIdx < maskDuck[rowIdx].length; colIdx++) {
         if (maskDuck[rowIdx][colIdx] === 1) {
-          visibleCellCoords.push({ row: rowIdx, col: colIdx });
+          if (!cellsByRow[rowIdx]) {
+            cellsByRow[rowIdx] = [];
+          }
+          cellsByRow[rowIdx].push({ row: rowIdx, col: colIdx });
         }
       }
     }
 
-    // Sort visible cells once from top-left to bottom-right (row-major order)
-    visibleCellCoords.sort((a, b) => {
-      if (a.row !== b.row) return a.row - b.row;
-      return a.col - b.col;
-    });
+    // Create the final sorted list with a snake-like (boustrophedon) order
+    const visibleCellCoords: { row: number; col: number }[] = [];
+    // Get row numbers and sort them to process from top to bottom
+    const sortedRowKeys = Object.keys(cellsByRow)
+      .map(Number)
+      .sort((a, b) => a - b);
+
+    for (const rowIdx of sortedRowKeys) {
+      const rowCells = cellsByRow[rowIdx];
+      // For even rows, sort left-to-right. For odd rows, sort right-to-left.
+      if (rowIdx % 2 === 0) {
+        rowCells.sort((a, b) => a.col - b.col); // LTR
+      } else {
+        rowCells.sort((a, b) => b.col - a.col); // RTL
+      }
+      // Add the sorted row to the final list
+      visibleCellCoords.push(...rowCells);
+    }
 
     // Pointers for filling cells from the top and from the bottom
     let ascPointer = 0; // For A-J groups (filling from top-to-bottom)
@@ -218,10 +275,13 @@ const ScoreSection: StyleableFC = async () => {
 
   return (
     <div className="relative z-10 mt-20 flex flex-col items-center justify-center gap-4">
-      <div className="mb-2 text-center">
-        {/* <div className="type-title-large text-red">{t("Leaderboard.header",{
-          title: (chunks) => "<title>"
-        })}</div> */}
+      <div className="mb-2 flex flex-col gap-1 text-center">
+        <div className="type-headline-medium text-red font-bold">
+          {t("Home.Leaderboard.title")}
+        </div>
+        <div className="type-title-large text-red">
+          {t("Home.Leaderboard.subtitle")}
+        </div>
       </div>
       <DuckBackground>
         <div
@@ -248,7 +308,7 @@ const ScoreSection: StyleableFC = async () => {
                     key={`${rowIdx}-${colIdx}`}
                     className={`relative h-3 w-3 overflow-visible`}
                     style={{
-                      zIndex: colIdx + rowIdx * 100, // Z-index for layering, if needed
+                      zIndex: colIdx * 10 + rowIdx * 100, // Z-index for layering, if needed
                       transform: "translate(-3px, -3px)", // Adjust position for visual alignment
                     }}
                   >
@@ -262,13 +322,11 @@ const ScoreSection: StyleableFC = async () => {
         </div>
       </DuckBackground>
       <MyKingdomBadge
-        color={myGroupId?.toLowerCase() ?? ""}
+        color={myGroupId ?? ""}
         colorText={t("Home.KingdomCard.color", {
           kingdom: "q",
         })}
-        groupName={t("Common.Kingdom.kingdom", {
-          kingdom: t(`Common.Kingdom.${myGroupId?.toLowerCase()}`),
-        })}
+        groupName={t(`Common.Kingdom.${myGroupId.toLowerCase()}`)}
         point={t("Home.KingdomCard.score", { score: myGroup?.totalScore ?? 0 })}
         isDarker={groupIsDarker[myGroupId] ?? false}
         className="relative z-10 -mt-10"
@@ -281,11 +339,9 @@ const ScoreSection: StyleableFC = async () => {
             {top5Groups[1] && (
               <TopTwoBadge
                 color={top5Groups[1].id}
-                groupName={t("Common.Kingdom.kingdom", {
-                  kingdom: t(
-                    `Common.Kingdom.${top5Groups[1].id.toLowerCase()}`
-                  ),
-                })}
+                groupName={t(
+                  `Common.Kingdom.${top5Groups[1].id.toLowerCase()}`
+                )}
                 point={t("Home.KingdomCard.score", {
                   score: top5Groups[1].totalScore,
                 })}
@@ -301,11 +357,9 @@ const ScoreSection: StyleableFC = async () => {
             {top5Groups[0] && (
               <TopOneBadge
                 color={top5Groups[0].id}
-                groupName={t("Common.Kingdom.kingdom", {
-                  kingdom: t(
-                    `Common.Kingdom.${top5Groups[0].id.toLowerCase()}`
-                  ),
-                })}
+                groupName={t(
+                  `Common.Kingdom.${top5Groups[0].id.toLowerCase()}`
+                )}
                 point={t("Home.KingdomCard.score", {
                   score: top5Groups[0].totalScore,
                 })}
@@ -321,11 +375,9 @@ const ScoreSection: StyleableFC = async () => {
             {top5Groups[2] && (
               <TopThreeBadge
                 color={top5Groups[2].id}
-                groupName={t("Common.Kingdom.kingdom", {
-                  kingdom: t(
-                    `Common.Kingdom.${top5Groups[2].id.toLowerCase()}`
-                  ),
-                })}
+                groupName={t(
+                  `Common.Kingdom.${top5Groups[2].id.toLowerCase()}`
+                )}
                 point={t("Home.KingdomCard.score", {
                   score: top5Groups[2].totalScore,
                 })}
@@ -341,9 +393,7 @@ const ScoreSection: StyleableFC = async () => {
         {top5Groups[3] && (
           <TopFourBadge
             color={top5Groups[3].id}
-            groupName={t("Common.Kingdom.kingdom", {
-              kingdom: t(`Common.Kingdom.${top5Groups[3].id.toLowerCase()}`),
-            })}
+            groupName={t(`Common.Kingdom.${top5Groups[3].id.toLowerCase()}`)}
             point={t("Home.KingdomCard.score", {
               score: top5Groups[3].totalScore,
             })}
@@ -357,9 +407,7 @@ const ScoreSection: StyleableFC = async () => {
         {top5Groups[4] && (
           <TopFiveBadge
             color={top5Groups[4].id}
-            groupName={t("Common.Kingdom.kingdom", {
-              kingdom: t(`Common.Kingdom.${top5Groups[4].id.toLowerCase()}`),
-            })}
+            groupName={t(`Common.Kingdom.${top5Groups[4].id.toLowerCase()}`)}
             point={t("Home.KingdomCard.score", {
               score: top5Groups[4].totalScore,
             })}

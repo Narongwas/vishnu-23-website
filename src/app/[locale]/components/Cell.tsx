@@ -37,7 +37,7 @@ const Cell: StyleableFC<CellProps> = ({ color }) => {
             type="fractalNoise"
             baseFrequency="0.1666666716337204 0.1666666716337204"
             numOctaves="3"
-            seed="819"
+            seed="617"
           />
           <feDisplacementMap
             in="shape"

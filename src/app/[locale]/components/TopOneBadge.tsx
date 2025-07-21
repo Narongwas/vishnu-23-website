@@ -41,7 +41,8 @@ const TopOneBadge: StyleableFC<TopOneBadgeProps> = ({
       </div>
       <div
         className={cn(
-          "type-title-medium",
+          "type-title-medium opacity-40",
+          isDarker ? "mix-blend-plus-lighter" : "mix-blend-plus-darker",
           isDarker ? "text-white" : "text-black"
         )}
       >

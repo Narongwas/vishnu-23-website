@@ -74,12 +74,13 @@
       }
     },
     "Leaderboard": {
-      "header": "<title>แผนที่แห่งยุทธภพ</title><subtitle>ศึก 18 ก๊ก ยุทธภพสยบดินแดน</subtitle>"
+      "title": "แผนที่แห่งยุทธภพ",
+      "subtitle": "ศึก 18 ก๊ก ยุทธภพสยบดินแดน"
     },
     "KingdomCard": {
       "color": "สี{kingdom, select, a {ชมพูกลาง} b {แดงเลือดหมู} c {น้ำเงินกรมท่า} dog {ส้ม} e {น้ำตาล} f {เทา} g {ฟ้าอ่อน} h {แดง} j {น้ำเงินดำ} k {ฟ้าอมม่วง} l {ชมพูเข้ม} m {ชมพูอ่อน} n {เหลือง} p {ม่วงเข้ม} q {น้ำเงินเข้ม} r {ม่วงกลาง} s {น้ำเงิน} t {ม่วงอ่อน} other {Unknown color}}",
       "rank": {
-        "long": "อันดับ {rank, number} place",
+        "long": "อันดับ {rank, number}",
         "short": "{rank, number}"
       },
       "score": "{score, number} ไร่"

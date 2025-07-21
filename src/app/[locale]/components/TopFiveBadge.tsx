@@ -22,13 +22,13 @@ const TopFiveBadge: StyleableFC<TopFiveBadgeProps> = ({
     <div
       className={cn(
         `bg-${color}`,
-        `flex w-60 items-center justify-between border border-black/20 bg-[url('/decorating/texture/fabric.png')] bg-repeat px-2 py-2 bg-blend-soft-light`,
+        `flex w-60 items-center justify-between border border-black/20 bg-[url('/decorating/texture/fabric.png')] bg-repeat px-2.5 py-1.5 bg-blend-soft-light`,
         className
       )}
     >
       <div className="flex items-center gap-4">
         <span
-          className={`type-title-medium ${isDarker ? "text-white" : "text-black"}`}
+          className={`type-title-medium opacity-40 ${isDarker ? "text-white" : "text-black"}`}
         >
           {ranking}
         </span>
