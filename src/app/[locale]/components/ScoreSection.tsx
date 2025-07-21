@@ -1,16 +1,15 @@
-import { StyleableFC } from "@/lib/types/misc";
+import DuckBackground from "@/app/[locale]/components/DuckBackground";
+import DuckGraphic from "@/app/[locale]/components/DuckGraphic";
+import MyKingdomBadge from "@/app/[locale]/components/MyKingdomBadge";
+import TopFiveBadge from "@/app/[locale]/components/TopFiveBadge";
+import TopFourBadge from "@/app/[locale]/components/TopFourBadge";
 import TopOneBadge from "@/app/[locale]/components/TopOneBadge";
+import TopThreeBadge from "@/app/[locale]/components/TopThreeBadge";
 import TopTwoBadge from "@/app/[locale]/components/TopTwoBadge";
-//import Cell from "@/app/[locale]/components/Cell";
 import { getServerAuth } from "@/lib/firebase/getServerAuth";
 import type { Group } from "@/lib/types/group";
-import TopThreeBadge from "@/app/[locale]/components/TopThreeBadge";
-import DuckBackground from "@/app/[locale]/components/DuckBackground";
-import TopFourBadge from "@/app/[locale]/components/TopFourBadge";
-import TopFiveBadge from "@/app/[locale]/components/TopFiveBadge";
+import { StyleableFC } from "@/lib/types/misc";
 import { getTranslations } from "next-intl/server";
-import MyKingdomBadge from "@/app/[locale]/components/MyKingdomBadge";
-import DuckGraphic from "@/app/[locale]/components/DuckGraphic";
 
 type GroupWithCellCount = Group & { cellCount: number };
 
@@ -135,14 +134,10 @@ const ScoreSection: StyleableFC = async () => {
   );
   const totalAllocatedCells =
     allocatedCellsByGroups + Math.floor(ADMIN_CELL_COUNT);
-  console.log("totalAllocatedCells", totalAllocatedCells);
   // 4. calculate space box (shortfall)
   const shortfall = totalCells - totalAllocatedCells;
-  console.log("shortfall", shortfall);
   // 5. split space box to J and T
   if (shortfall > 0) {
-    console.log(`มีช่องเหลือ ${shortfall} ช่อง จะทำการแบ่งให้ J และ T`);
-
     const halfShortfallForJ = Math.ceil(shortfall / 2);
     const halfShortfallForT = Math.floor(shortfall / 2);
 
@@ -157,8 +152,6 @@ const ScoreSection: StyleableFC = async () => {
       return g;
     });
   }
-
-  console.log("groupCellCounts (after adjustment)", groupCellCounts);
 
   const myGroupId = me?.user?.group;
   const myGroup = groupCellCounts.find((g: Group) => g.id === myGroupId);
@@ -291,9 +284,6 @@ const ScoreSection: StyleableFC = async () => {
             filter: "drop-shadow(0 0 10px rgba(255, 0, 0, 0.4))",
           }}
         >
-          {/* Container นี้ยังคงทำหน้าที่เหมือนเดิม คือสร้างพื้นหลัง stain.png และ mask รูปเป็ด
-      แต่เราได้ลบ grid-related classes ออกไป และจะนำ DuckGraphic มาวางข้างในแทน
-    */}
           <div className="relative h-81 w-63 overflow-hidden bg-[url('/decorating/texture/stain.png')] [mask-image:url('/decorating/shapes/Duck.svg')] bg-contain [mask-size:247px_308px] [mask-position:center] [mask-repeat:no-repeat] [webkit-mask-image:url('/decorating/shapes/Duck.svg')] [webkit-mask-repeat:no-repeat] [webkit-mask-size:247px_308px]">
             <div className="absolute inset-0">
               <DuckGraphic colorsGrid={groupColorsGrid} mask={maskDuck} />

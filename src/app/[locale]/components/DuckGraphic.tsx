@@ -5,7 +5,7 @@ interface DuckGraphicProps {
   mask: number[][];
 }
 
-const CELL_SIZE = 12;
+const CELL_SIZE = 12; // Size of each cell in the grid (in SVG units, e.g., 0.25 for 1/4 of a unit)
 
 const DuckGraphic: StyleableFC<DuckGraphicProps> = ({ colorsGrid, mask }) => {
   // Return null if mask is empty or invalid
@@ -40,7 +40,6 @@ const DuckGraphic: StyleableFC<DuckGraphicProps> = ({ colorsGrid, mask }) => {
       viewBox={`0 0 ${width} ${height}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ transform: "translate(-3px, -3px)" }}
     >
       <defs>
         {/* SVG filter for noise effect */}
@@ -83,8 +82,8 @@ const DuckGraphic: StyleableFC<DuckGraphicProps> = ({ colorsGrid, mask }) => {
             key={cell.key}
             x={cell.x}
             y={cell.y}
-            width={CELL_SIZE}
-            height={CELL_SIZE}
+            width={CELL_SIZE + 2}
+            height={CELL_SIZE + 2}
             className={`fill-${cell.color}`}
           />
         ))}
