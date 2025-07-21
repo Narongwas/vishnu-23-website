@@ -33,12 +33,12 @@ export default async function Home() {
                 {t("action.registration")}
               </div>
             </Button>
-            <Button Size="medium" Appearance="tertiary" href="/group-reveal">
+            {/* <Button Size="medium" Appearance="tertiary" href="/group-reveal">
               <Icon name="person_celebrate" />
               <div className="align-center type-title-medium flex">
                 {t("action.KingdomReveal")}
               </div>
-            </Button>
+            </Button> */}
           </div>
         )}
       </div>
