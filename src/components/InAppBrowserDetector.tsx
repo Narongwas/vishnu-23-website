@@ -6,37 +6,41 @@ import InAppSpy from "inapp-spy";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import DeviceDetector from "device-detector-js";
 
 const InAppBrowserDetector = () => {
   const [isInApp, setIsInApp] = useState(false);
-  const [showPrompt, setShowPrompt] = useState(true);
+  const [showPrompt, setShowPrompt] = useState(false);
   const t = useTranslations("Home.InAppBrowser");
 
   useEffect(() => {
-    // Dynamic import to avoid SSR issues
+    const iOSDevice = ["iPhone", "iPad"];
+
     const detectInApp = async () => {
       try {
-        const { isInApp: detected, appKey, ua } = InAppSpy();
+        const { isInApp: detected, ua } = InAppSpy();
+        const deviceDetector = new DeviceDetector();
+        const device = deviceDetector.parse(ua);
 
         setIsInApp(detected);
-        alert(ua);
+        // alert(device.os?.name);
 
         if (detected) {
-          // Show prompt after a short delay to avoid jarring experience
-          setTimeout(() => setShowPrompt(true), 1000);
-          alert(appKey);
+          if (iOSDevice.includes(device.os?.name ?? "")) {
+            setTimeout(() => setShowPrompt(true), 1000);
+          } else {
+            // Auto-redirect attempt for Android
+            const url = window.location.href;
+            const intentLink = `intent:${url}#Intent;end`;
 
-          // Auto-redirect attempt for Android
-          const url = window.location.href;
-          const intentLink = `intent:${url}#Intent;end`;
-
-          // Try automatic redirect first
-          try {
-            window.location.replace(intentLink);
-          } catch (error) {
-            console.log(
-              `Auto-redirect failed, showing manual prompt: ${error}`
-            );
+            // Try automatic redirect first
+            try {
+              window.location.replace(intentLink);
+            } catch (error) {
+              console.log(
+                `Auto-redirect failed, showing manual prompt: ${error}`
+              );
+            }
           }
         }
       } catch (error) {
@@ -47,8 +51,7 @@ const InAppBrowserDetector = () => {
     detectInApp();
   }, []);
 
-  if (!showPrompt) {
-    console.log(isInApp);
+  if (!isInApp && !showPrompt) {
     return null;
   }
 
