@@ -152,7 +152,7 @@ const ScoreSection: StyleableFC = async () => {
       if (g.id === "J") {
         return { ...g, cellCount: g.cellCount + halfShortfallForJ };
       }
-      if (g.id === "K") {
+      if (g.id === "T") {
         return { ...g, cellCount: g.cellCount + halfShortfallForT };
       }
       return g;
@@ -221,6 +221,7 @@ const ScoreSection: StyleableFC = async () => {
     );
 
     // Fill cells for A-J groups (from top-to-bottom)
+    groupsAJ.sort((a, b) => a.id.localeCompare(b.id));
     for (const group of groupsAJ) {
       let cellsToFill = group.cellCount;
       while (cellsToFill > 0 && ascPointer <= descPointer) {
@@ -233,6 +234,7 @@ const ScoreSection: StyleableFC = async () => {
 
     // Fill cells for K-T groups (from bottom-to-top)
     // Ensure that K-T groups do not overwrite cells already filled by A-J groups
+    groupsKT.sort((a, b) => b.id.localeCompare(a.id));
     for (const group of groupsKT) {
       let cellsToFill = group.cellCount;
       while (cellsToFill > 0 && descPointer >= ascPointer) {
