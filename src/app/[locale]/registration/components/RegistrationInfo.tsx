@@ -98,7 +98,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
             />
           </div>
         </div>
-        <div className="flex flex-col items-center gap-5">
+        <div className="flex flex-col items-center gap-5 text-balance">
           <p className="type-body-large">
             {t.rich("Result.footer.0", {
               point: registrationData.vishnu,
