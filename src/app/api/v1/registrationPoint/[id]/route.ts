@@ -12,6 +12,7 @@ export async function GET(
   }
   const userGroup = user.data()?.group;
   const group = await db.collection("groups").doc(userGroup).get();
+  const groupName = group.id || "";
   const registrationsPoint = group.data()?.registrationsPoint;
-  return NextResponse.json({ registrationsPoint }, { status: 200 });
+  return NextResponse.json({ registrationsPoint, groupName }, { status: 200 });
 }

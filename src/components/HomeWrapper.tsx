@@ -27,7 +27,7 @@ export default function HomeWrapper({
       <div className="relative mx-auto flex h-full max-w-200 flex-col items-center text-center">
         <div className="absolute z-10 flex w-full items-center justify-between p-4">
           <LanguageSwitcher />
-          <LoginButton />
+          <LoginButton variant="primary" />
         </div>
         <Image
           src={cloud1Logo}
