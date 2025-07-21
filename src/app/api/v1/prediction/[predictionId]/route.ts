@@ -58,7 +58,15 @@ export async function PATCH(
   try {
     const body = await request.json();
     const { predictionId } = await params;
-    const { question, solution, showQuestion, enable, showAnswer } = body;
+    const {
+      question,
+      solution,
+      showQuestion,
+      enable,
+      showAnswer,
+      typeOfAnswer,
+      closeTime,
+    } = body;
 
     const prediction = await db
       .collection("predictions")
@@ -75,6 +83,8 @@ export async function PATCH(
     await prediction.ref.update({
       question: question ?? prediction.data()?.question,
       solution: solution ?? prediction.data()?.solution,
+      typeOfAnswer: typeOfAnswer ?? prediction.data()?.typeOfAnswer,
+      closeTime: closeTime ?? prediction.data()?.closeTime,
       showQuestion: showQuestion,
       enable: enable,
       showAnswer: showAnswer,

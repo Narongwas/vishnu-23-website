@@ -11,12 +11,20 @@ async function addPrediction(prediction: {
   solution: bilingualString;
   day: number;
   time: string;
+  closeTime: string;
+  typeOfAnswer?: "number" | "groupName" | "any";
 }) {
+  if (prediction.typeOfAnswer === undefined) {
+    prediction.typeOfAnswer = "any"; // default value if not provided
+  }
+
   await db.collection("predictions").add({
     question: prediction.question,
     solution: prediction.solution,
     day: prediction.day,
     time: prediction.time,
+    closeTime: prediction.closeTime,
+    typeOfAnswer: prediction.typeOfAnswer,
     showQuestion: false,
     enable: false,
     showAnswer: false,
@@ -91,9 +99,9 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { question, solution, day, time } = body;
+    const { question, solution, typeOfAnswer, day, time, closeTime } = body;
 
-    if (!question || !solution || !day || !time) {
+    if (!question || !solution || !day || !time || !closeTime) {
       return NextResponse.json(
         {
           error: "question, solution, day and time are required",
@@ -102,7 +110,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    await addPrediction({ question, solution, day, time });
+    await addPrediction({
+      question,
+      solution,
+      day,
+      time,
+      closeTime,
+      typeOfAnswer,
+    });
 
     return NextResponse.json(
       {

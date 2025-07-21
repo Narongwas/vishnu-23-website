@@ -6,6 +6,8 @@ export type Prediction = {
   solution: bilingualString;
   day: string;
   time: string;
+  closeTime: string;
+  typeOfAnswer: "number" | "groupName" | "any";
   showQuestion: boolean;
   enable: boolean;
   showAnswer: boolean;
