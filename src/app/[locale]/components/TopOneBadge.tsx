@@ -6,7 +6,7 @@ type TopOneBadgeProps = {
   groupName: string;
   point: string;
   isDarker: boolean;
-  ranking: number;
+  ranking: string;
   className?: string;
   style?: React.CSSProperties;
 };
@@ -45,7 +45,7 @@ const TopOneBadge: StyleableFC<TopOneBadgeProps> = ({
           isDarker ? "text-white" : "text-black"
         )}
       >
-        อันดับ {ranking}
+        {ranking}
       </div>
       <div
         className={cn(

@@ -6,7 +6,7 @@ type TopTwoBadgeProps = {
   groupName: string;
   point: string;
   isDarker: boolean;
-  ranking: number;
+  ranking: string;
   className?: string;
   style?: React.CSSProperties;
 };
@@ -46,7 +46,7 @@ const TopTwoBadge: StyleableFC<TopTwoBadgeProps> = ({
           isDarker ? "text-white" : "text-black"
         )}
       >
-        อันดับ {ranking}
+        {ranking}
       </div>
       <div
         className={cn(

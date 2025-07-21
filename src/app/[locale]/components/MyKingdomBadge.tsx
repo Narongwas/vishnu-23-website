@@ -1,23 +1,14 @@
-import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
+import cn from "@/lib/helpers/cn";
 
-type TopFiveBadgeProps = {
+const MyKingdomBadge: StyleableFC<{
   color: string;
+  colorText: string;
   groupName: string;
   point: string;
   isDarker: boolean;
-  ranking: string;
   className?: string;
-};
-
-const TopFiveBadge: StyleableFC<TopFiveBadgeProps> = ({
-  color,
-  groupName,
-  point,
-  isDarker,
-  ranking,
-  className,
-}) => {
+}> = ({ color, colorText, groupName, point, isDarker, className }) => {
   return (
     <div
       className={cn(
@@ -30,16 +21,16 @@ const TopFiveBadge: StyleableFC<TopFiveBadgeProps> = ({
         <span
           className={`type-title-medium ${isDarker ? "text-white" : "text-black"}`}
         >
-          {ranking}
+          {groupName}
         </span>
         <span
-          className={`type-title-medium ${isDarker ? "text-white" : "text-black"}`}
+          className={`type-body-large ${isDarker ? "text-white" : "text-black"}`}
         >
-          {groupName}
+          {colorText}
         </span>
       </div>
       <span
-        className={`type-label-large ${isDarker ? "text-white" : "text-black"}`}
+        className={`type-title-medium ${isDarker ? "text-white" : "text-black"}`}
       >
         {point}
       </span>
@@ -47,4 +38,4 @@ const TopFiveBadge: StyleableFC<TopFiveBadgeProps> = ({
   );
 };
 
-export default TopFiveBadge;
+export default MyKingdomBadge;

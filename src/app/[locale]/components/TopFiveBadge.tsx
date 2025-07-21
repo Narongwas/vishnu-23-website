@@ -6,7 +6,7 @@ type TopFiveBadgeProps = {
   groupName: string;
   point: string;
   isDarker: boolean;
-  ranking: number;
+  ranking: string;
   className?: string;
 };
 
@@ -39,7 +39,7 @@ const TopFiveBadge: StyleableFC<TopFiveBadgeProps> = ({
         </span>
       </div>
       <span
-        className={`type-body-large ${isDarker ? "text-white" : "text-black"}`}
+        className={`type-label-large ${isDarker ? "text-white" : "text-black"}`}
       >
         {point}
       </span>

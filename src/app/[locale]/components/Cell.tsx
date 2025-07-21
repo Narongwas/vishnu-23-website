@@ -2,11 +2,9 @@ import { StyleableFC } from "@/lib/types/misc";
 
 interface CellProps {
   color: string;
-  className?: string;
-  style?: React.CSSProperties;
 }
 
-const Cell: StyleableFC<CellProps> = ({ color, className, style }) => {
+const Cell: StyleableFC<CellProps> = ({ color }) => {
   return (
     <svg
       width="18"
@@ -14,11 +12,9 @@ const Cell: StyleableFC<CellProps> = ({ color, className, style }) => {
       viewBox="0 0 18 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      style={style}
     >
       <g filter="url(#filter0_g_2213_4255)">
-        <rect x="0" y="0" width="14" height="14" className={`fill-${color}`} />
+        <rect x="2" y="2" width="14" height="14" className={`fill-${color}`} />
       </g>
       <defs>
         <filter
@@ -28,7 +24,7 @@ const Cell: StyleableFC<CellProps> = ({ color, className, style }) => {
           width="18"
           height="18"
           filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
+          color-interpolation-filters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
@@ -40,8 +36,8 @@ const Cell: StyleableFC<CellProps> = ({ color, className, style }) => {
           <feTurbulence
             type="fractalNoise"
             baseFrequency="0.1666666716337204 0.1666666716337204"
-            numOctaves="45"
-            seed="797"
+            numOctaves="3"
+            seed="819"
           />
           <feDisplacementMap
             in="shape"
