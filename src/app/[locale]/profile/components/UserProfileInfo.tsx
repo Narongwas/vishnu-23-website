@@ -25,7 +25,7 @@ const UserProfileInfo: StyleableFC = ({ className }) => {
       )}
     >
       <div className="absolute top-4 left-4 z-10">
-        <BackButton variants="secondary" />
+        <BackButton variant="secondary" />
       </div>
       <div className="flex items-center justify-center">
         <Image

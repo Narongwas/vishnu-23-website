@@ -64,7 +64,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
   return (
     <>
       <div className="relative flex w-full items-center justify-between py-4">
-        <BackButton variants="tertiary" />
+        <BackButton variant="tertiary" />
         <div className="flex w-full flex-col items-center justify-center">
           <p className="type-headline-small">
             {t("Result.title", {

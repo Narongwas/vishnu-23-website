@@ -26,7 +26,7 @@ const ButtonGroup: StyleableFC = ({}) => {
   };
   return (
     <div className="flex gap-2">
-      <GoogleLoginBtn variants="tertiary" />
+      <GoogleLoginBtn variant="tertiary" />
       <Button
         Size="small"
         Appearance="tertiary"
