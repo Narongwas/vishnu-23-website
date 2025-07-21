@@ -323,9 +323,9 @@
     }
   },
   "Predictions": {
-    "overline": "ทำนายชะตาช่วง{time, select, morning {เช้า} afternoon {บ่าย}}",
+    "overline": "ทำนายชะตาช่วง{time, select, morning {เช้า} afternoon {บ่าย} other {}}",
     "footer": {
-      "revealTime": "เฉลยเวลา {time}",
+      "closedTime": "ปิดรับคำตอบ {time}",
       "scoring": "นับคะแนนที่ได้จากอันดับของจำนวนน้องที่ทายถูกในก๊ก"
     },
     "action": {
@@ -371,15 +371,15 @@
       "isCorrect": "เป็นคำตอบที่"
     },
     "AnswerBall": {
-      "large": "{correct, select, true {ถั่วต้ม} false {ผิดจ้า}}",
-      "small": "{correct, select, true {ถูกต้อง} false {ผิด}}",
+      "large": "{correct, select, true {ถั่วต้ม} false {ผิดจ้า} other{}}",
+      "small": "{correct, select, true {ถูกต้อง} false {ผิด} other{}}",
       "solution": "คำตอบ: {solution}"
     },
     "History": {
       "title": "ประวัติการทำนาย"
     },
     "PredictionCard": {
-      "round": "Day {day} ช่วง{time, select, morning {เช้า} afternoon {บ่าย}}",
+      "round": "Day {day} ช่วง{time, select, morning {เช้า} afternoon {บ่าย} other{}}",
       "solution": "คำตอบ: {solution}"
     }
   },
