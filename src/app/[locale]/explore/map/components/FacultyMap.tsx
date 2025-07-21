@@ -24,7 +24,7 @@ const buildings = [
   },
   {
     key: "eng4",
-    style: "left-[10%] top-[30%] w-[20%] h-[20%]",
+    style: "left-[71%] top-[69%] w-[20%] h-[20%]",
     href: "/explore/map/eng4",
     rainOnly: true,
   },
@@ -40,7 +40,7 @@ const FacultyMap: StyleableFC<{
 }> = ({ isRaining, className, style }) => {
   const router = useRouter();
   const locale = useLocale();
-  const t = useTranslations("Map");
+  const t = useTranslations("Map.Faculty");
 
   const [selected, setSelected] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -69,7 +69,7 @@ const FacultyMap: StyleableFC<{
       {isTransitioning && <div className="fixed inset-0 z-10 bg-black/30" />}
 
       <figure className="relative">
-        <Image src={facultyMap} alt={t("Faculty.alt")} priority />
+        <Image src={facultyMap} alt={t("alt")} priority />
         {filteredBuildings.map((building) => (
           <button
             key={building.key}
@@ -85,10 +85,10 @@ const FacultyMap: StyleableFC<{
 
       <div className="justify-left text-red flex w-full items-center gap-2.5 pb-3">
         <Icon name="touch_app" size={24} />
-        <p className="type-title-medium">{t("Faculty.instruction")}</p>
+        <p className="type-title-medium text-balance">{t("instruction")}</p>
       </div>
 
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex flex-wrap items-center justify-center gap-2">
         {filteredBuildings.map((building) => (
           <Button
             key={building.key}
@@ -97,7 +97,7 @@ const FacultyMap: StyleableFC<{
             className="type-title-medium"
             onClick={() => handleClick(building.key)}
           >
-            {t(`Faculty.building.${building.key}`)}
+            {t(`building.${building.key}`)}
           </Button>
         ))}
       </div>
