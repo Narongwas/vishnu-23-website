@@ -151,19 +151,24 @@ export async function PUT(request: NextRequest) {
       );
     }
 
+    const solution = {
+      en: prediction.data()?.solution.en.trim().toLowerCase(),
+      th: prediction.data()?.solution.th.trim().toLowerCase(),
+    };
+
     //if user not answer this prediction ,it will create new answer
     if (answerData.empty) {
       await db.collection("answers").add({
         predictionId: predictionId,
         userId: uid,
         answer: answer,
-        isCorrect: checkAnswer(answer, prediction.data()?.solution),
+        isCorrect: checkAnswer(answer, solution),
       });
     } else {
       //if user answered before , it update the answer
       await answerData.docs[0].ref.update({
         answer: answer,
-        isCorrect: checkAnswer(answer, prediction.data()?.solution),
+        isCorrect: checkAnswer(answer, solution),
       });
     }
 
