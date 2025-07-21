@@ -5,9 +5,58 @@ import MountainBackground from "@/components/MountainBackground";
 import PageAction from "@/components/PageAction";
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
+import type { Prediction } from "@/lib/types/prediction";
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 const PredictionControl: StyleableFC = ({ className, style }) => {
+  const [question, setQuestion] = useState("");
+  const [showAnswer, setShowAnswer] = useState("");
+  // const [userAnswer, setUserAnswer] = useState("");
+  const [predictionItems, setPredictionItems] = useState<Prediction>();
+  console.log(question);
+  console.log(showAnswer);
+  console.log(predictionItems);
+
+  // const lang = useLocale();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/v1/prediction", {
+          method: "GET",
+        });
+        if (!res.ok) {
+          throw new Error("Failed to fetch prediction data");
+        }
+        const data: { predictions: Prediction[] } = await res.json();
+        const enabledPrediction = data.predictions.find(
+          (p) => p.enable === true
+        );
+
+        if (enabledPrediction) {
+          setQuestion(enabledPrediction.question); // or setQuestion(enabledPrediction)
+        } else {
+          console.warn("No enabled prediction found");
+        }
+
+        setPredictionItems(enabledPrediction);
+
+        const enabledAnswer = data.predictions.find(
+          (p) => p.showAnswer === true
+        );
+        if (enabledAnswer) {
+          setShowAnswer(enabledAnswer.solution); // or setShowAnswer(enabledAnswer)
+        } else {
+          console.warn("No enabled answer found");
+        }
+      } catch (error) {
+        console.error("Error fetching prediction data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div
       className={cn(
@@ -17,10 +66,10 @@ const PredictionControl: StyleableFC = ({ className, style }) => {
       style={style}
     >
       <div className="flex w-full flex-col">
-        <p className="type-title-medium text-yellow">ทำนายชะตาช่วงบ่าย</p>
-        <p className="type-headline-medium text-white">
-          ในคณะวิศวฯ มีต้นจามจุรีกี่ต้น
+        <p className="type-title-medium text-yellow">
+          ทำนายชะตาช่วง{predictionItems?.time}
         </p>
+        <p className="type-headline-medium text-white">{question}</p>
       </div>
       <PredictionBall />
 
