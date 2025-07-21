@@ -58,8 +58,8 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
 
   if (!registrationData) return null;
 
-  const realImg = `/registration/picture/Img-${registrationData.firstdate}.jpg`;
-  const locationImg = `/registration/point-${locale}/Point-${registrationData.firstdate}.png`;
+  const realImg = `/registration/picture/Img-${registrationData.vishnu}.jpg`;
+  const locationImg = `/registration/point-${locale}/Point-${registrationData.vishnu}.png`;
 
   return (
     <>
@@ -82,7 +82,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
           <div className="relative w-full">
             <Image
               src={locationImg}
-              alt={registrationData.firstdate}
+              alt={registrationData.vishnu}
               width={491}
               height={336}
               priority
@@ -90,7 +90,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
             />
             <Image
               src={realImg}
-              alt={registrationData.firstdate}
+              alt={registrationData.vishnu}
               width={491}
               height={336}
               priority
@@ -101,7 +101,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
         <div className="flex flex-col items-center gap-5">
           <p className="type-body-large">
             {t.rich("Result.footer.0", {
-              point: registrationData.firstdate,
+              point: registrationData.vishnu,
               package: registrationData.packageNumber,
               location: (chunks) => <span className="font-bold">{chunks}</span>,
               time: (chunks) => <span className="font-bold">{chunks}</span>,
