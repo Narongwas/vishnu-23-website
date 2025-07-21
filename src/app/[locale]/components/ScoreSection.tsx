@@ -10,10 +10,16 @@ import { getServerAuth } from "@/lib/firebase/getServerAuth";
 import type { Group } from "@/lib/types/group";
 import { StyleableFC } from "@/lib/types/misc";
 import { getTranslations } from "next-intl/server";
+import { checkFeatureFlagByName } from "@/lib/services/featureFlags.service";
 
 type GroupWithCellCount = Group & { cellCount: number };
 
 const ScoreSection: StyleableFC = async () => {
+  const availableFeatureFlag = await checkFeatureFlagByName("leaderboard");
+  if (!availableFeatureFlag) {
+    return null; // Return null if the feature flag is not enabled
+  }
+
   const t = await getTranslations("");
   // Get authentication token from server
   const { token } = await getServerAuth();
