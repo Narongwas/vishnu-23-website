@@ -14,7 +14,6 @@ export async function POST(request: NextRequest) {
     // decoding the token to get the user email and role
     const decodeToken = await firebaseAdmin.auth().verifyIdToken(token);
     const email = decodeToken.email;
-    const userId = decodeToken.uid; // Get user ID for file naming
 
     const userDoc = await db
       .collection("users")
@@ -25,6 +24,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
+    const userId = userDoc.docs[0].id;
     const userDocRef = userDoc.docs[0].ref;
     const userData = userDoc.docs[0].data();
 
