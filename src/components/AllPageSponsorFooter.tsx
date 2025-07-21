@@ -5,13 +5,11 @@ import { StyleableFC } from "@/lib/types/misc";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-import beEngineer from "@/public/sponsors-logo/be-engineer.png";
 import brighthair from "@/public/sponsors-logo/brighthair.png";
-import eazycal from "@/public/sponsors-logo/eazycal.png";
 import gulf from "@/public/sponsors-logo/gulf.png";
 import pocari from "@/public/sponsors-logo/pocari.png";
 
-const sponsors = [brighthair, beEngineer, eazycal, pocari, gulf];
+const sponsors = [brighthair, pocari, gulf];
 
 const AllPageSponsorFooter: StyleableFC = ({ className, style }) => {
   const t = useTranslations("Common.SponsorsFooter");

@@ -11,7 +11,7 @@ export default async function Map() {
     <>
       <SubPageHeader curvedText={t("tabName")} title={t("map.title")} />
       <div className="absolute top-0 z-10 flex w-full items-center justify-between py-4">
-        <BackButton variants="tertiary" />
+        <BackButton variant="tertiary" />
       </div>
       <div className="relative z-10 -mt-16 flex flex-col items-center gap-4">
         <FacultyMap isRaining={isRaining} />
