@@ -26,7 +26,7 @@ export default async function Home() {
           <p>{t("vishnu.date")}</p>
         </div>
         {groupFeatureFlag && (
-          <div className="relative z-10 flex w-full items-center justify-center gap-2 pt-10">
+          <div className="relative z-10 flex w-full flex-wrap items-center justify-center gap-2 pt-10">
             <Button
               Size="medium"
               Appearance="tertiary"
