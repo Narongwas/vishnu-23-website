@@ -14,7 +14,7 @@ interface RegistrationData {
 
 const RegistrationInfo: StyleableFC = ({ className, style }) => {
   const locale = useLocale();
-  const t = useTranslations("RegistrationAnnouncement");
+  const t = useTranslations("Registration.Result");
   const [registrationData, setRegistrationData] =
     useState<RegistrationData | null>(null);
 
@@ -47,7 +47,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
         <div className="relative w-full">
           <Image
             src={locationImg}
-            alt={t(`point.${registrationData.firstdate}`)}
+            alt=""
             width={491}
             height={336}
             priority
@@ -55,7 +55,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
           />
           <Image
             src={realImg}
-            alt={t(`point.${registrationData.firstdate}`)}
+            alt=""
             width={491}
             height={336}
             priority
@@ -66,13 +66,10 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
       <div className="flex flex-col items-center gap-5">
         <p className="type-body-large">
           {t.rich("footer.0", {
-            location: () => (
-              <span className="font-bold">
-                {t(`point.${registrationData.firstdate}`)} (#
-                {registrationData.packageNumber})
-              </span>
-            ),
-            time: () => <span className="font-bold">{t("time")}</span>,
+            point: registrationData.firstdate,
+            package: registrationData.packageNumber,
+            location: (chunks) => <strong>{chunks}</strong>,
+            time: (chunks) => <time className="font-bold">{chunks}</time>,
           })}
         </p>
         <p className="type-body-medium w-50">{t("footer.1")}</p>
