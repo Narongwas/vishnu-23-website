@@ -270,11 +270,13 @@ const ScoreSection: StyleableFC = async () => {
   return (
     <div className="relative z-10 mt-20 flex flex-col items-center justify-center gap-4">
       <div className="mb-2 flex flex-col gap-1 text-center">
-        <div className="type-headline-medium text-red font-bold">
-          {t("Home.Leaderboard.title")}
-        </div>
-        <div className="type-title-large text-red">
-          {t("Home.Leaderboard.subtitle")}
+        <div className="text-red">
+          {t.rich("Home.Leaderboard.header", {
+            title: (chunks) => (
+              <p className="type-headline-medium font-bold">{chunks}</p>
+            ),
+            subtitle: (chunks) => <p className="type-title-large">{chunks}</p>,
+          })}
         </div>
       </div>
       <DuckBackground>
