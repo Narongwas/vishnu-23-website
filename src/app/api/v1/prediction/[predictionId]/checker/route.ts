@@ -1,14 +1,6 @@
 import { db } from "@/lib/services/firebase.admin";
-import { bilingualString } from "@/lib/types/bilingual";
 import { NextRequest, NextResponse } from "next/server";
-
-function checkAnswer(answer: string, solution: bilingualString): boolean {
-  // Normalize both answer and solution to lowercase for case-insensitive comparison
-  return (
-    answer.trim().toLowerCase() === solution.en ||
-    answer.trim().toLowerCase() === solution.th
-  );
-}
+import { checkAnswer } from "@/lib/helpers/checker";
 
 //This is a function to check users' answers against the prediction solution
 export async function POST(
