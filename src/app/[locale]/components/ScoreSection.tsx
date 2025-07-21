@@ -296,7 +296,7 @@ const ScoreSection: StyleableFC = async () => {
       <MyKingdomBadge
         color={myGroupId ?? ""}
         colorText={t("Home.KingdomCard.color", {
-          kingdom: "q",
+          kingdom: myGroupId?.toLowerCase(),
         })}
         groupName={t(`Common.Kingdom.${myGroupId.toLowerCase()}`)}
         point={t("Home.KingdomCard.score", { score: myGroup?.totalScore ?? 0 })}
