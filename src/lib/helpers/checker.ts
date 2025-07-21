@@ -6,7 +6,7 @@ export function checkAnswer(
 ): boolean {
   // Normalize both answer and solution to lowercase for case-insensitive comparison
   return (
-    answer.trim().toLowerCase() === solution.en ||
-    answer.trim().toLowerCase() === solution.th
+    answer.trim().toLowerCase() === solution.en.trim().toLowerCase() ||
+    answer.trim().toLowerCase() === solution.th.trim().toLowerCase()
   );
 }
