@@ -35,7 +35,7 @@
       }
     },
     "Kingdom": {
-      "kingdom": "Kok{kingdom}",
+      "kingdom": "{kingdom}",
       "a": "Kaplooklook",
       "b": "Kadai",
       "c": "Galaxy",
