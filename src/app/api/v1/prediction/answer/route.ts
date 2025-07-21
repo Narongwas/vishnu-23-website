@@ -2,6 +2,7 @@ import emailToId from "@/lib/helpers/emailToId";
 import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware";
 import { db } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
+import { checkAnswer } from "@/lib/helpers/checker";
 
 //get prediction answer by uid and prediction ID
 async function getPredictionAnswer(uid: string, predictionId: string) {
@@ -150,19 +151,24 @@ export async function PUT(request: NextRequest) {
       );
     }
 
+    const solution = {
+      en: prediction.data()?.solution.en.trim().toLowerCase(),
+      th: prediction.data()?.solution.th.trim().toLowerCase(),
+    };
+
     //if user not answer this prediction ,it will create new answer
     if (answerData.empty) {
       await db.collection("answers").add({
         predictionId: predictionId,
         userId: uid,
         answer: answer,
-        isCorrect: answer.trim() === prediction.data()?.solution.trim(),
+        isCorrect: checkAnswer(answer, solution),
       });
     } else {
       //if user answered before , it update the answer
       await answerData.docs[0].ref.update({
         answer: answer,
-        isCorrect: answer.trim() === prediction.data()?.solution.trim(),
+        isCorrect: checkAnswer(answer, solution),
       });
     }
 

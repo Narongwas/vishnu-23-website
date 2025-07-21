@@ -3,6 +3,7 @@
 import cn from "@/lib/helpers/cn";
 import { StyleableFC } from "@/lib/types/misc";
 import { useTranslations } from "next-intl";
+import Button from "@/components/Button";
 
 const Modal: StyleableFC<{
   children: React.ReactNode;
@@ -22,13 +23,14 @@ const Modal: StyleableFC<{
       <div className="flex flex-col items-center justify-center gap-4 px-6 pt-6 pb-9">
         {children}
       </div>
-      <button
-        className="bg-red type-title-medium relative h-14 w-full text-white"
+      <Button
+        Appearance="primary"
+        Size="medium"
+        className="w-full"
         onClick={onClose}
       >
-        <div className="fabric-texture absolute inset-0" />
-        <span className="relative">{t("Close")}</span>
-      </button>
+        <span className="type-title-medium">{t("close")}</span>
+      </Button>
     </div>
   );
 };

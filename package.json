@@ -13,8 +13,10 @@
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "device-detector-js": "^3.0.3",
     "firebase": "^11.9.1",
     "firebase-admin": "^13.4.0",
+    "inapp-spy": "^5.0.2",
     "motion": "^12.18.1",
     "next": "15.3.3",
     "next-intl": "^4.3.1",

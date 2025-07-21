@@ -1,11 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/services/firebase.admin";
+import { firebaseAuthMiddleware } from "@/lib/middleware/firebaseAuthMiddleware";
+import scoreAdmin from "@/jsondata/score-admin.json";
+import emailToId from "@/lib/helpers/emailToId";
 
 //This is a method to get a list of group and number of member who is correct
 // in predictionId query
 export async function GET(request: NextRequest) {
   try {
     const predictionId = request.nextUrl.searchParams.get("prediction");
+
+    const { decodedToken, error } = await firebaseAuthMiddleware(request);
+    if (error || !decodedToken) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const uid = emailToId(decodedToken.email || "");
+
+    const userRole = (await db.collection("users").doc(uid).get()).data()?.role;
+
+    if (
+      !scoreAdmin.email.includes(decodedToken.email || "") &&
+      userRole !== "admin"
+    ) {
+      return NextResponse.json(
+        { error: "You cannot access this route" },
+        { status: 403 }
+      );
+    }
 
     //If not send predictionId return error
     if (!predictionId) {
