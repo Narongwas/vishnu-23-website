@@ -18,7 +18,7 @@ interface RegistrationData {
 
 const RegistrationInfo: StyleableFC = ({ className, style }) => {
   const locale = useLocale();
-  const t = useTranslations("Registration");
+  const t = useTranslations("Registration.Result");
 
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
@@ -67,7 +67,7 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
         <BackButton variant="tertiary" />
         <div className="flex w-full flex-col items-center justify-center">
           <p className="type-headline-small">
-            {t("Result.title", {
+            {t("title", {
               package: `${registrationData.packageNumber}`,
             })}
           </p>
@@ -100,14 +100,14 @@ const RegistrationInfo: StyleableFC = ({ className, style }) => {
         </div>
         <div className="flex flex-col items-center gap-5 text-balance">
           <p className="type-body-large">
-            {t.rich("Result.footer.0", {
+            {t.rich("footer.0", {
               point: registrationData.vishnu,
               package: registrationData.packageNumber,
               location: (chunks) => <span className="font-bold">{chunks}</span>,
               time: (chunks) => <span className="font-bold">{chunks}</span>,
             })}
           </p>
-          <p className="type-body-medium w-50">{t("Result.footer.1")}</p>
+          <p className="type-body-medium w-50">{t("footer.1")}</p>
         </div>
       </div>
     </>
