@@ -7,6 +7,7 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import { checkFeatureFlagByName } from "@/lib/services/featureFlags.service";
+import ScoreSection from "@/app/[locale]/components/ScoreSection";
 
 export default async function Home() {
   const t = await getTranslations("Home.Hero");
@@ -42,7 +43,7 @@ export default async function Home() {
           </div>
         )}
       </div>
-
+      <ScoreSection />
       <HomePageSponsorFooter className="z-10" />
 
       <FaqLayoutGroup />
