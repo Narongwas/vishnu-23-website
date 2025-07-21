@@ -12,8 +12,12 @@ async function getUserPredictionHistory(uid: string) {
     return { getHistoryError: "User not found" };
   }
 
-  //get user history (array of prediction ID)
-  const userHistory = userData.data()?.predictions || [];
+  const userHistory: string[] = userData.data()?.predictions || [];
+
+  // 🔐 Return early if user has no history
+  if (!userHistory || userHistory.length === 0) {
+    return { userHistory: [], getHistoryError: null };
+  }
 
   const [predictionsData, answersData] = await Promise.all([
     db
@@ -29,7 +33,6 @@ async function getUserPredictionHistory(uid: string) {
       .get(),
   ]);
 
-  //get an array of user history data
   const userHistoryData = userHistory.map((predictionId: string) => {
     const prediction = predictionsData.docs.find(
       (doc) => doc.id === predictionId
@@ -38,8 +41,6 @@ async function getUserPredictionHistory(uid: string) {
       (doc) => doc.data().predictionId === predictionId
     );
 
-    //return prediction history
-    //if user does not answer this prediction answer will be an empty string, and not Correct
     return {
       predictionId,
       question: prediction?.data()?.question,
@@ -51,8 +52,7 @@ async function getUserPredictionHistory(uid: string) {
     };
   });
 
-  //return object of userHistory
-  return { userHistory: userHistoryData };
+  return { userHistory: userHistoryData, getHistoryError: null };
 }
 
 //this is a function to add user history by userId and predictionId
