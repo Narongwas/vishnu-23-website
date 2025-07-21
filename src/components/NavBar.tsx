@@ -18,11 +18,11 @@ export default async function NavBar() {
         ) : (
           <>
             <NavBarItem icon="explore" label={t("explore")} href="/explore" />
-            <NavBarItem
+            {/* <NavBarItem
               icon="sports_esports"
               label={t("games")}
               href="/games"
-            />
+            /> */}
           </>
         )}
       </div>
