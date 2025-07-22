@@ -2,7 +2,7 @@ export interface User {
   id: string;
   firstName: string;
   lastName: string;
-  nickname: string;
+  nickName: string;
   email: string; // unique
   department: string;
   group: string;

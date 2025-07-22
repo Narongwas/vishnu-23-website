@@ -30,7 +30,7 @@ const FriendProfile: StyleableFC<FriendProps> = ({ userid, className }) => {
         className="rounded-full"
       />
       <p className="type-title-medium flex justify-center text-white">
-        {friendData ? (friendData.nickName ?? userid) : userid}
+        {friendData ? (friendData.nickName ?? userid) : "Loading..."}
       </p>
     </div>
   );

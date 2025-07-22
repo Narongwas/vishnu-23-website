@@ -1,0 +1,76 @@
+"use client";
+
+import cn from "@/lib/helpers/cn";
+import getMe from "@/lib/helpers/getMe";
+import getQrCode from "@/lib/helpers/getQrCode";
+import defaultProfile from "@/public/decorating/profile/defaultProfile.png";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import Button from "@/components/Button";
+import Icon from "@/components/Icon";
+import BackButton from "@/components/BackButton";
+
+export default function MyQRPage() {
+  const t = useTranslations("Profile.QRHelpDialog");
+  const [qr, setQr] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [fullName, setFullName] = useState<string>("");
+  const [friendCode, setFriendCode] = useState<string>("");
+
+  useEffect(() => {
+    setLoading(true);
+    Promise.all([getQrCode(), getMe()])
+      .then(([qrData, user]) => {
+        setQr(qrData.qrcode);
+        const name = user?.nickName?.trim()
+          ? user.nickName
+          : user?.firstName && user?.lastName
+            ? `${user.firstName} ${user.lastName}`
+            : "";
+        setFullName(name);
+        setFriendCode(user?.addFriendCode || "");
+      })
+      .catch(() => {
+        setQr(null);
+        setFullName("สแกน QR Card");
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  return (
+    <div className={cn("flex min-h-screen items-center justify-center")}>
+      <div className="absolute top-0 left-0 z-20 p-4">
+        <BackButton variants="secondary" />
+      </div>
+      <div className="z-10 flex flex-col items-center justify-center gap-6 p-8 text-white">
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-18 w-18 overflow-hidden rounded-full">
+            <Image src={defaultProfile} alt="Default Profile" />
+          </div>
+          <div className="type-title-large">{fullName}</div>
+        </div>
+        <div className="mt-2 flex items-center justify-center">
+          {loading ? (
+            <div className="type-body-medium text-gray">กำลังโหลด QR...</div>
+          ) : qr ? (
+            <div className="flex flex-col items-center bg-white">
+              <Image src={qr} alt="QR Code" width={256} height={256} />
+              <div className="type-title-large pb-2 text-black">
+                {friendCode}
+              </div>
+            </div>
+          ) : (
+            <div className="type-body-medium text-white">
+              ไม่สามารถโหลด QR ได้
+            </div>
+          )}
+        </div>
+        <Button Size="small" Appearance="primary">
+          <Icon name="download" />
+          <div className="type-title-medium">{t("action.save")}</div>
+        </Button>
+      </div>
+    </div>
+  );
+}

@@ -1,6 +1,6 @@
 import { StyleableFC } from "@/lib/types/misc";
 import cn from "@/lib/helpers/cn";
-import SearchBar from "@/app/[locale]/profile/components/SearchBar";
+import SearchBar from "@/components/Searchbar";
 
 const Header: StyleableFC<{
   search?: string;
@@ -11,7 +11,9 @@ const Header: StyleableFC<{
       className={cn("flex items-center justify-between text-white", className)}
     >
       <div className="font-bai text-[22px] leading-[28px]">เพื่อนของน้อง</div>
-      <SearchBar value={search ?? ""} onChange={setSearch} />
+      <div className="flex items-center bg-white px-4 py-2.5">
+        <SearchBar value={search ?? ""} onChange={setSearch ?? (() => {})} />
+      </div>
     </header>
   );
 };

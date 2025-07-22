@@ -31,8 +31,8 @@ const UserProfileInfo: StyleableFC = ({ className }) => {
         <Image
           src={"/decorating/profile/defaultProfile.png"}
           alt={
-            user?.nickname
-              ? `${user.nickname}'s profile picture`
+            user?.nickName
+              ? `${user.nickName}'s profile picture`
               : "User's profile picture"
           }
           width={108}
@@ -44,7 +44,7 @@ const UserProfileInfo: StyleableFC = ({ className }) => {
         <p>{user?.firstName ?? ""}</p>
         <p>{user?.lastName ?? ""}</p>
       </div>
-      <div className="mt-4 flex gap-2">
+      <div className="relative z-10 mt-4 flex gap-2">
         <EditButton />
         <LogoutButton />
       </div>
