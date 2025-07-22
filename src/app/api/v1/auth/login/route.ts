@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
       secure: true,
       sameSite: "strict",
       path: "/",
-      maxAge: 86400,
+      maxAge: 345600,
     });
 
     return response;

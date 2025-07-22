@@ -77,7 +77,7 @@
       "header": "<title>Eighteen kingdoms</title><subtitle>The fight for glory roars on</subtitle>"
     },
     "KingdomCard": {
-      "color": "{kingdom, select, a {Pink} b {Maroon} c {Navy blue} dog {Orange} e {Brown} f {Gray} g {Light blue} h {Red} j {Navy black} k {Cornflower} l {Dark pink} m {Light pink} n {Yellow} p {Dark purple} q {Dark blue} r {Mid purple} s {Blue} t {Lavender}}",
+      "color": "{kingdom, select, a {Pink} b {Maroon} c {Navy blue} dog {Orange} e {Brown} f {Gray} g {Light blue} h {Red} j {Navy black} k {Cornflower} l {Dark pink} m {Light pink} n {Yellow} p {Dark purple} q {Dark blue} r {Mid purple} s {Blue} t {Lavender} other {Unknown color}}",
       "rank": {
         "long": "{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} place",
         "short": "{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
@@ -308,9 +308,9 @@
     }
   },
   "Predictions": {
-    "overline": "{time, select, morning {Morning} afternoon {Afternoon}} prediction",
+    "overline": "{time, select, morning {Morning} afternoon {Afternoon} other {}} prediction",
     "footer": {
-      "revealTime": "Answer reveal at {time}",
+      "closedTime": "Answer close at {time}",
       "scoring": "Scores depend on how many people in your kingdom answered correctly."
     },
     "action": {
@@ -352,19 +352,19 @@
     },
     "AnswerDialog": {
       "title": "A heavenly message…",
-      "round": "This {time, select, morning {Morning} afternoon {Afternoon}}",
+      "round": "This {time, select, morning {Morning} afternoon {Afternoon} other{}}",
       "isCorrect": "Is your answer correct?"
     },
     "AnswerBall": {
-      "large": "{correct, select, true {Yup} false {Nope}}",
-      "small": "{correct, select, true {Correct} false {Incorrect}}",
+      "large": "{correct, select, true {Yup} false {Nope} other{}}",
+      "small": "{correct, select, true {Correct} false {Incorrect} other{}}",
       "solution": "Solution: {solution}"
     },
     "History": {
       "title": "Prediction history"
     },
     "PredictionCard": {
-      "round": "Day {day} • {time, select, morning {Morning} afternoon {Afternoon}}",
+      "round": "Day {day} • {time, select, morning {Morning} afternoon {Afternoon} other{}}",
       "solution": "Solution: {solution}"
     }
   },
