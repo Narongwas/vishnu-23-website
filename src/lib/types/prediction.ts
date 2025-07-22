@@ -12,3 +12,13 @@ export type Prediction = {
   enable: boolean;
   showAnswer: boolean;
 };
+
+export type PredictionHistoryItem = {
+  predictionId: string;
+  question: bilingualString;
+  answer: string;
+  solution: bilingualString;
+  day: string;
+  time: string;
+  isCorrect: boolean;
+};

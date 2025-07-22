@@ -11,7 +11,7 @@ export default function GamesLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <BackgroundWithNoise className="from-blue to-blue/80 bg-gradient-to-b">
+    <BackgroundWithNoise className="bg-blue from-blue bg-linear-to-b to-white/30">
       <div className="relative mx-auto min-h-screen max-w-200 overflow-hidden px-4">
         {children}
       </div>
