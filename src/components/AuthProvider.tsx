@@ -9,6 +9,7 @@ import {
 import { auth } from "@/lib/services/firebase.client";
 import { onIdTokenChanged, User } from "firebase/auth";
 import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -18,6 +19,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState<string | null>(null);
+  const router = useRouter();
 
   const refreshToken = useCallback(async () => {
     if (user) {
@@ -57,6 +59,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setToken(idToken);
       } else {
         setToken(null);
+        // Check if we need to redirect to login for protected pages
+        if (typeof window !== "undefined") {
+          const authRequired = document.querySelector(
+            'meta[name="x-auth-required"]'
+          );
+          if (authRequired) {
+            router.push(
+              `/?redirect=${encodeURIComponent(window.location.pathname)}`
+            );
+          }
+        }
       }
     });
 
@@ -69,7 +82,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
 
     return () => unsubscribe();
-  }, [refreshToken]);
+  }, [refreshToken, router]);
 
   useEffect(() => {
     const unsubscribe = onIdTokenChanged(auth, async (firebaseUser) => {
