@@ -58,7 +58,13 @@ export default function GoogleLoginBtn({
       if (user) {
         await loginWithToken(user);
         onSuccess?.();
-        router.push(redirectTo);
+
+        // Force refresh and redirect to handle auth state sync issues
+        if (redirectTo !== "/") {
+          window.location.href = redirectTo;
+        } else {
+          router.push(redirectTo);
+        }
       }
     } catch (error) {
       console.error("Login error:", error);
