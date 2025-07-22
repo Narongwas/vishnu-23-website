@@ -352,7 +352,7 @@
     },
     "AnswerDialog": {
       "title": "A heavenly message…",
-      "round": "This {time, select, morning {Morning} afternoon {Afternoon}}",
+      "round": "This {time, select, morning {Morning} afternoon {Afternoon} other{}}",
       "isCorrect": "Is your answer correct?"
     },
     "AnswerBall": {

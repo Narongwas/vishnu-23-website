@@ -29,8 +29,10 @@ const AnswerCard: StyleableFC<HelperCardProps> = ({
   className,
   style,
 }) => {
+  console.log(answer);
   const locale = useLocale() as "th" | "en";
   const t = useTranslations("Predictions");
+  const time = answer?.time === "เช้า" ? "morning" : "afternoon";
   return (
     <Modal onClose={onClose} className={className} style={style}>
       {/* 1. Icon */}
@@ -63,9 +65,11 @@ const AnswerCard: StyleableFC<HelperCardProps> = ({
         variants={fadeIn}
       >
         <div className="flex flex-col items-center">
-          <p className="type-title-small text-red">ช่วง{answer?.time}</p>
+          <p className="type-title-small text-red">
+            {t("AnswerDialog.round", { time })}
+          </p>
           <p className="type-title-medium text-center text-balance">
-            {answer?.question[locale]}
+            {answer?.question?.[locale] || ""}
           </p>
         </div>
       </motion.div>

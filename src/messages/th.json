@@ -367,7 +367,7 @@
     },
     "AnswerDialog": {
       "title": "สารจากสวรรค์…",
-      "round": "ช่วง{time, select, morning {เช้า} afternoon {บ่าย}}",
+      "round": "ช่วง{time, select, morning {เช้า} afternoon {บ่าย} other{}}",
       "isCorrect": "เป็นคำตอบที่"
     },
     "AnswerBall": {
