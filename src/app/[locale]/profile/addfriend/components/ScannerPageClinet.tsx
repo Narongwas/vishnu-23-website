@@ -35,6 +35,7 @@ const ScannerPageClient = () => {
 
   const handleDecodeCodeFromQR = async (barcode: string) => {
     let code = barcode;
+    console.log("Scanned barcode:", barcode);
     try {
       if (barcode.startsWith("http")) {
         const parsedUrl = new URL(barcode);

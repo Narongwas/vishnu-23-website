@@ -12,11 +12,11 @@ const Header: StyleableFC<{
     <header
       className={cn("flex items-center justify-between text-white", className)}
     >
-      <div className="flex w-full items-center gap-10">
-        <div className="font-bai text-[22px] leading-[28px] font-bold">
+      <div className="flex w-full items-center justify-between gap-3">
+        <div className="font-bai text-[22px] leading-[28px] font-bold whitespace-nowrap">
           เพื่อนของน้อง
         </div>
-        <div className="flex flex-1 items-center bg-white px-4 py-2.5">
+        <div className="flex w-50 items-center bg-white px-4 py-2.5">
           <SearchBar
             value={search ?? ""}
             onChange={setSearch ?? (() => {})}
