@@ -308,9 +308,9 @@
     }
   },
   "Predictions": {
-    "overline": "{time, select, morning {Morning} afternoon {Afternoon}} prediction",
+    "overline": "{time, select, morning {Morning} afternoon {Afternoon} other {}} prediction",
     "footer": {
-      "revealTime": "Answer reveal at {time}",
+      "closedTime": "Answer close at {time}",
       "scoring": "Scores depend on how many people in your kingdom answered correctly."
     },
     "action": {
@@ -352,19 +352,19 @@
     },
     "AnswerDialog": {
       "title": "A heavenly message…",
-      "round": "This {time, select, morning {Morning} afternoon {Afternoon}}",
+      "round": "This {time, select, morning {Morning} afternoon {Afternoon} other{}}",
       "isCorrect": "Is your answer correct?"
     },
     "AnswerBall": {
-      "large": "{correct, select, true {Yup} false {Nope}}",
-      "small": "{correct, select, true {Correct} false {Incorrect}}",
+      "large": "{correct, select, true {Yup} false {Nope} other{}}",
+      "small": "{correct, select, true {Correct} false {Incorrect} other{}}",
       "solution": "Solution: {solution}"
     },
     "History": {
       "title": "Prediction history"
     },
     "PredictionCard": {
-      "round": "Day {day} • {time, select, morning {Morning} afternoon {Afternoon}}",
+      "round": "Day {day} • {time, select, morning {Morning} afternoon {Afternoon} other{}}",
       "solution": "Solution: {solution}"
     }
   },
