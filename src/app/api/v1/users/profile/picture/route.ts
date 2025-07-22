@@ -1,11 +1,14 @@
 import { db, firebaseAdmin, storage } from "@/lib/services/firebase.admin";
 import { NextRequest, NextResponse } from "next/server";
 
+// POST : api/v1/users/profile/picture
+// upload profile picture to firebase storage
+// token is required
 export async function POST(request: NextRequest) {
   try {
     const token =
       request.headers.get("Authorization")?.split(" ")[1] ||
-      request.cookies.get("Token")?.value;
+      request.cookies.get("token")?.value;
 
     if (!token) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -125,10 +128,13 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// GET : api/v1/users/profile/picture
+// get profile picture from firebase storage
+// token is required
 export async function GET(request: NextRequest) {
   const token =
     request.headers.get("Authorization")?.split(" ")[1] ||
-    request.cookies.get("Token")?.value;
+    request.cookies.get("token")?.value;
 
   if (!token) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
