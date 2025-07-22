@@ -38,6 +38,47 @@ export default function MyQRPage() {
       .finally(() => setLoading(false));
   }, []);
 
+  const handleSaveClick = async () => {
+    if (!qr) {
+      alert("ไม่พบ QR Code");
+      return;
+    }
+
+    console.log("Saving QR Code:", qr);
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/friends/qr/saveQR`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ base64: qr }),
+        }
+      );
+
+      if (!res.ok) {
+        alert("ดาวน์โหลด QR ไม่สำเร็จ");
+        return;
+      }
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "qr-code.jpg";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert("เกิดข้อผิดพลาดในการดาวน์โหลด QR");
+    }
+  };
+
   return (
     <div className={cn("flex min-h-screen items-center justify-center")}>
       <div className="absolute top-0 left-0 z-20 p-4">
@@ -66,7 +107,7 @@ export default function MyQRPage() {
             </div>
           )}
         </div>
-        <Button Size="small" Appearance="primary">
+        <Button Size="small" Appearance="primary" onClick={handleSaveClick}>
           <Icon name="download" />
           <div className="type-title-medium">{t("action.save")}</div>
         </Button>

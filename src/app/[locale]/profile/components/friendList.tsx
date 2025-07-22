@@ -8,6 +8,7 @@ import { StyleableFC } from "@/lib/types/misc";
 import { useEffect, useState } from "react";
 import AddFriendArt from "@/public/decorating/profile/addFriendArt.png";
 import Image from "next/image";
+import AddFriendPageAction from "@/app/[locale]/profile/components/AddFriendPageAction";
 
 const FriendList: StyleableFC = ({ className }) => {
   const [friends, setFriends] = useState<string[]>([]);
@@ -16,6 +17,7 @@ const FriendList: StyleableFC = ({ className }) => {
     { id: string; nickName: string }[]
   >([]);
   const [loading, setLoading] = useState(true);
+  const [searchFocused, setSearchFocused] = useState(false);
 
   useEffect(() => {
     getMe().then((me) => {
@@ -46,11 +48,17 @@ const FriendList: StyleableFC = ({ className }) => {
 
   return (
     <div className={cn("relative z-10 flex flex-col gap-4 p-4", className)}>
-      <HeaderFriendList search={search} setSearch={setSearch} />
+      <HeaderFriendList
+        search={search}
+        setSearch={setSearch}
+        onFocus={() => setSearchFocused(true)}
+        onBlur={() => setSearchFocused(false)}
+      />
       <div className="flex flex-wrap gap-2">
         {loading ? (
           <div className="type-body-medium text-white">Loading ...</div>
-        ) : filtered.length === 0 && friends.length > 0 ? (
+        ) : (filtered.length === 0 && friends.length > 0) ||
+          friends.length === 0 ? (
           <div className="type-body-medium text-white">
             <Image src={AddFriendArt} alt="Add Friend" />
           </div>
@@ -60,6 +68,7 @@ const FriendList: StyleableFC = ({ className }) => {
           ))
         )}
       </div>
+      {!searchFocused && <AddFriendPageAction />}
     </div>
   );
 };

@@ -8,7 +8,9 @@ import { useTranslations } from "next-intl";
 const SearchBar: StyleableFC<{
   value: string;
   onChange: (value: string) => void;
-}> = ({ value, onChange, className, style }) => {
+  onFocus?: () => void;
+  onBlur?: () => void;
+}> = ({ value, onChange, onFocus, onBlur, className, style }) => {
   const t = useTranslations("Clubs");
   return (
     <div
@@ -20,6 +22,8 @@ const SearchBar: StyleableFC<{
         value={value}
         placeholder={t("Filter.search")}
         onChange={(e) => onChange(e.target.value)}
+        onFocus={onFocus}
+        onBlur={onBlur}
         className="text-red type-body-large min-h-full w-full bg-white pr-10 pl-4 outline-none"
       />
       <Icon

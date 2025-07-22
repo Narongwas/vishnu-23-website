@@ -5,14 +5,25 @@ import SearchBar from "@/components/Searchbar";
 const Header: StyleableFC<{
   search?: string;
   setSearch?: (s: string) => void;
-}> = ({ className, search, setSearch }) => {
+  onFocus?: () => void;
+  onBlur?: () => void;
+}> = ({ className, search, setSearch, onFocus, onBlur }) => {
   return (
     <header
       className={cn("flex items-center justify-between text-white", className)}
     >
-      <div className="font-bai text-[22px] leading-[28px]">เพื่อนของน้อง</div>
-      <div className="flex items-center bg-white px-4 py-2.5">
-        <SearchBar value={search ?? ""} onChange={setSearch ?? (() => {})} />
+      <div className="flex w-full items-center gap-10">
+        <div className="font-bai text-[22px] leading-[28px] font-bold">
+          เพื่อนของน้อง
+        </div>
+        <div className="flex flex-1 items-center bg-white px-4 py-2.5">
+          <SearchBar
+            value={search ?? ""}
+            onChange={setSearch ?? (() => {})}
+            onFocus={onFocus}
+            onBlur={onBlur}
+          />
+        </div>
       </div>
     </header>
   );
