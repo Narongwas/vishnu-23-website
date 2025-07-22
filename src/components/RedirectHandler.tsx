@@ -1,30 +1,27 @@
 "use client";
 
 import { useAuth } from "@/lib/hooks/useAuth";
-import { useParams, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useRouter } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 export default function RedirectHandler() {
   const { token } = useAuth();
   const isLoggedIn = !!token;
   const searchParams = useSearchParams();
-  const params = useParams();
-  const locale = params.locale as string;
+  const router = useRouter();
+  const hasRedirected = useRef(false);
 
   useEffect(() => {
-    // Check if there's a redirect parameter in the URL
     const redirectTo = searchParams.get("redirect");
 
-    if (redirectTo && isLoggedIn && typeof window !== "undefined") {
-      // Preserve locale in the redirect URL
-      const redirectWithLocale = redirectTo.startsWith("/")
-        ? `/${locale}${redirectTo}`
-        : redirectTo;
+    if (redirectTo && isLoggedIn && !hasRedirected.current) {
+      hasRedirected.current = true;
 
-      // Force refresh and redirect to the intended page
-      window.location.href = redirectWithLocale;
+      // Use i18n router which should preserve locale automatically
+      router.push(redirectTo);
     }
-  }, [isLoggedIn, searchParams, locale]);
+  }, [isLoggedIn, searchParams, router]);
 
   return null; // This component doesn't render anything
 }

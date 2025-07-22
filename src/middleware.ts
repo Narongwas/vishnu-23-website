@@ -72,11 +72,26 @@ export async function middleware(req: NextRequest) {
       return response;
     }
 
+    // Get the current locale from the pathname
+    let currentLocale = routing.defaultLocale;
+    for (const locale of routing.locales) {
+      if (
+        req.nextUrl.pathname.startsWith(`/${locale}/`) ||
+        req.nextUrl.pathname === `/${locale}`
+      ) {
+        currentLocale = locale;
+        break;
+      }
+    }
+
     // Remove locale from pathname for the redirect parameter
     const pathWithoutLocale = removeLocaleFromPath(req.nextUrl.pathname);
 
     return NextResponse.redirect(
-      new URL(`/?redirect=${encodeURIComponent(pathWithoutLocale)}`, req.url)
+      new URL(
+        `/${currentLocale}/?redirect=${encodeURIComponent(pathWithoutLocale)}`,
+        req.url
+      )
     );
   }
 
