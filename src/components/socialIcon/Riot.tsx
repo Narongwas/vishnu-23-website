@@ -1,0 +1,25 @@
+import { StyleableFC } from "@/lib/types/misc";
+
+const Riot: StyleableFC<{ color: string }> = ({ color }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M12 2C6.488 2 2 6.488 2 12C2 17.512 6.488 22 12 22C17.512 22 22 17.512 22 12C22 6.488 17.512 2 12 2ZM12 20C7.57 20 4 16.43 4 12C4 7.57 7.57 4 12 4C16.43 4 20 7.57 20 12C20 16.43 16.43 20 12 20Z"
+        className={`fill-${color}`}
+      />
+      <path d="M12 16H16L15.7 18L12 17V16Z" className={`fill-${color}`} />
+      <path
+        d="M12 7L6 10L7 15H8V12L8.322 12.005L9 15H10V11L10.294 10.996L11.35 15H13V10H13.337L14.35 15H16L17 8L12 7Z"
+        className={`fill-${color}`}
+      />
+    </svg>
+  );
+};
+
+export default Riot;

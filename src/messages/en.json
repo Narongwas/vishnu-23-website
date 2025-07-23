@@ -431,7 +431,8 @@
     },
     "FriendsList": {
       "title": "Your friends",
-      "search": "Search"
+      "search": "Search",
+      "empty": "Tap <strong>add friend</strong> and scan your friend's QR Code"
     },
     "EditProfile": {
       "social": {
