@@ -37,7 +37,7 @@ const UserProfileInfo: StyleableFC = ({ className }) => {
           }
           width={108}
           height={108}
-          className="z-10 h-full w-full rounded-full object-cover object-center"
+          className="z-10 rounded-full object-cover object-center"
         />
       </div>
       <div className="type-display-small flex flex-col items-center justify-center text-white">
