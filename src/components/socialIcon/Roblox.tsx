@@ -1,0 +1,20 @@
+import { StyleableFC } from "@/lib/types/misc";
+
+const Roblox: StyleableFC<{ color: string }> = ({ color }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M7.455 4.425L19.574 7.455L16.544 19.574L4.425 16.544L7.455 4.425ZM14.656 16.426L15.141 14.485L15.94 11.285L16.425 9.345L14.485 8.86L11.285 8.06L9.344 7.574L8.859 9.515L8.06 12.715L7.575 14.655L9.515 15.14L12.715 15.94L14.656 16.426ZM6 2L2 18L18 22L22 6L6 2ZM13.2 14L10 13.2L10.8 10L14 10.8L13.2 14Z"
+        className={`fill-${color}`}
+      />
+    </svg>
+  );
+};
+
+export default Roblox;

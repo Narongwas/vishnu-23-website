@@ -20,9 +20,7 @@ export async function GET(request: NextRequest) {
         "Content-Type": "application/json",
       },
     });
-
     const friendsData = await friendsList.json();
-
     return NextResponse.json(
       {
         friends: friendsData.friendId || [],

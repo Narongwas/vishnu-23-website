@@ -6,15 +6,15 @@ export const viewport: Viewport = {
   themeColor: "#A7271D",
 };
 
-export default function GamesLayout({
+export default function ProfileLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <BackgroundWithNoise className="flex flex-col justify-center">
-      <div className="bg-red via-orange to-orange absolute inset-0 bg-gradient-to-b via-50%">
-        <div className="relative mx-auto max-w-200">{children}</div>
+    <BackgroundWithNoise className="from-red to-orange/50 bg-gradient-to-b">
+      <div className="relative mx-auto min-h-screen max-w-200 overflow-hidden px-4">
+        {children}
       </div>
     </BackgroundWithNoise>
   );
