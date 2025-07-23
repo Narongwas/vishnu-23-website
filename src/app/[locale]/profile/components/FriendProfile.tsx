@@ -5,7 +5,7 @@ import getFriend from "@/lib/helpers/getFriend";
 import { StyleableFC } from "@/lib/types/misc";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Friend } from "@/lib/services/users";
+import { Friend } from "@/lib/types/users";
 import { useRouter } from "@/i18n/navigation";
 interface FriendProps {
   userid: string;

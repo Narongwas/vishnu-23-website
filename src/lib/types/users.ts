@@ -32,3 +32,12 @@ export interface UserContact {
   playstation: string;
   line: string;
 }
+
+export interface Friend {
+  firstName: string;
+  lastName: string;
+  email: string;
+  profileUrl?: string;
+  [key: string]: unknown;
+  nickName?: string;
+}
