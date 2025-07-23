@@ -58,7 +58,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const loginWithToken = async (firebaseUser: User) => {
     try {
-      const idToken = await firebaseUser.getIdToken();
+      const idToken = await firebaseUser.getIdToken(true);
       const response = await fetch("/api/v1/auth/login", {
         method: "POST",
         headers: {
