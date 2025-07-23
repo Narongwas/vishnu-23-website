@@ -1,6 +1,6 @@
 "use client";
 
-// import EditButton from "@/app/[locale]/profile/components/EditButton";
+import EditButton from "@/app/[locale]/profile/components/EditButton";
 import LogoutButton from "@/app/[locale]/profile/components/LogoutButton";
 import cn from "@/lib/helpers/cn";
 import getMe from "@/lib/helpers/getMe";
