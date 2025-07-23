@@ -99,7 +99,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           body: JSON.stringify({ idToken }),
         });
 
-        // Set up interval to refresh token every 20 minutes
+        // Set up interval to refresh token every 50 minutes
         if (refreshInterval.current) clearInterval(refreshInterval.current);
         refreshInterval.current = setInterval(
           async () => {
@@ -111,8 +111,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               body: JSON.stringify({ idToken: refreshedToken }),
             });
           },
-          20 * 60 * 1000
-        ); // 20 minutes
+          50 * 60 * 1000
+        ); // 50 minutes
       } else {
         setToken(null);
         if (refreshInterval.current) clearInterval(refreshInterval.current);
