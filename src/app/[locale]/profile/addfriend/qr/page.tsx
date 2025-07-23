@@ -24,13 +24,13 @@ export default function MyQRPage() {
     Promise.all([getQrCode(), getMe()])
       .then(([qrData, user]) => {
         setQr(qrData.qrcode);
+        setFriendCode(qrData.code);
         const name = user?.nickName?.trim()
           ? user.nickName
           : user?.firstName && user?.lastName
             ? `${user.firstName} ${user.lastName}`
             : "";
         setFullName(name);
-        setFriendCode(user?.addFriendCode || "");
         setUserProfile(user?.profileUrl || null);
       })
       .catch(() => {
