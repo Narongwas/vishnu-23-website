@@ -40,19 +40,19 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const uid = emailToId(decodedToken.email || "");
+    // const uid = emailToId(decodedToken.email || "");
 
-    const userRole = (await db.collection("users").doc(uid).get()).data()?.role;
+    // const userRole = (await db.collection("users").doc(uid).get()).data()?.role;
 
-    if (
-      !scoreAdmin.email.includes(decodedToken.email || "") &&
-      userRole !== "admin"
-    ) {
-      return NextResponse.json(
-        { error: "You cannot access this route" },
-        { status: 403 }
-      );
-    }
+    // if (
+    //   !scoreAdmin.email.includes(decodedToken.email || "") &&
+    //   userRole !== "admin"
+    // ) {
+    //   return NextResponse.json(
+    //     { error: "You cannot access this route" },
+    //     { status: 403 }
+    //   );
+    // }
 
     const predictions = (await db.collection("predictions").get()).docs;
 

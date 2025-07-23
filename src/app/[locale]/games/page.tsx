@@ -1,3 +1,4 @@
+
 import AllPageSponsorFooter from "@/components/AllPageSponsorFooter";
 import MountainBackground from "@/components/MountainBackground";
 import NavBar from "@/components/NavBar";
