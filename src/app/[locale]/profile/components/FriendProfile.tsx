@@ -6,7 +6,7 @@ import { StyleableFC } from "@/lib/types/misc";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Friend } from "@/lib/services/users";
-
+import { useRouter } from "next/navigation";
 interface FriendProps {
   userid: string;
   className?: string;
@@ -15,13 +15,23 @@ interface FriendProps {
 const FriendProfile: StyleableFC<FriendProps> = ({ userid, className }) => {
   const [friendData, setFriendData] = useState<Friend | null>(null);
 
+  const router = useRouter();
+
   useEffect(() => {
     getFriend(userid).then((data) => {
       setFriendData(data.user);
     });
   }, [userid]);
+
+  const handleClick = (friendId: string) => {
+    router.push(`/profile/friend-info/${friendId}`);
+  };
+
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div
+      className={cn("flex flex-col gap-2", className)}
+      onClick={() => handleClick(userid)}
+    >
       <Image
         src="/decorating/profile/defaultProfile.png"
         alt="Profile Picture"

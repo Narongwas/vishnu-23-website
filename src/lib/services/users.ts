@@ -21,7 +21,7 @@ export interface Friend {
   firstName: string;
   lastName: string;
   email: string;
-  photoURL?: string;
+  profileUrl?: string;
   [key: string]: unknown;
   nickName?: string;
 }

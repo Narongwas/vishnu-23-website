@@ -29,7 +29,7 @@ const UserProfileInfo: StyleableFC = ({ className }) => {
       </div>
       <div className="flex items-center justify-center">
         <Image
-          src={"/decorating/profile/defaultProfile.png"}
+          src={user?.profileUrl ?? "/decorating/profile/defaultProfile.png"}
           alt={
             user?.nickName
               ? `${user.nickName}'s profile picture`

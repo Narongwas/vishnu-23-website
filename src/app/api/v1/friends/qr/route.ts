@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
       request.cookies.get("authToken")?.value;
 
     if (!token) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 409 });
     }
 
     // Verify the token and get the user ID

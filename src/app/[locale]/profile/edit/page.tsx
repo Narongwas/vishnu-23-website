@@ -4,6 +4,7 @@ import { User } from "@/lib/types/users";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import SocialSection from "@/app/[locale]/profile/edit/components/SocialSection";
+import EditUserProfileButton from "@/app/[locale]/profile/edit/components/EditUserProfileButton";
 
 export default async function EditProfilePage() {
   const t = await getTranslations("Profile");
@@ -26,19 +27,24 @@ export default async function EditProfilePage() {
     <div className="relative z-10 m-4 flex flex-col gap-6 text-white">
       <div className="flex items-center justify-center">
         <div className="absolute top-0 left-0 z-10">
-          <BackButton variants="secondary" />
+          <BackButton variant="secondary" />
         </div>
-        <Image
-          src={"/decorating/profile/defaultProfile.png"}
-          alt={
-            user?.nickName
-              ? `${user.nickName}'s profile picture`
-              : "User's profile picture"
-          }
-          width={108}
-          height={108}
-          className="z-10 rounded-full"
-        />
+        <div className="relative inline-block">
+          <Image
+            src={user.profileUrl ?? "/decorating/profile/defaultProfile.png"}
+            alt={
+              user?.nickName
+                ? `${user.nickName}'s profile picture`
+                : "User's profile picture"
+            }
+            width={108}
+            height={108}
+            className="z-10 rounded-full"
+          />
+          <div className="absolute right-0 -bottom-2 z-20">
+            <EditUserProfileButton />
+          </div>
+        </div>
       </div>
       <div className="type-display-small flex flex-col items-center justify-center text-white">
         <p>{user?.nickName ?? ""}</p>
