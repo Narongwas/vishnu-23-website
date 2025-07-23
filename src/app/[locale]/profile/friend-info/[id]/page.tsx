@@ -2,11 +2,12 @@ import SocialCard from "@/app/[locale]/profile/friend-info/[id]/components/Socia
 import BackButton from "@/components/BackButton";
 import DeleteFriend from "@/app/[locale]/profile/friend-info/[id]/components/DeleteFriend";
 import Image from "next/image";
-interface FriendInfoPageProps {
-  params: Promise<{ id: string }>;
-}
 
-export default async function FriendInfoPage({ params }: FriendInfoPageProps) {
+export default async function FriendInfoPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const friendId = (await params).id;
 
   const res = await fetch(
