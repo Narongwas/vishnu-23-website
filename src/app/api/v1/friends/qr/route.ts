@@ -30,20 +30,15 @@ const getFriendCode = async (uid: string) => {
 };
 
 //this is a GET method to generate a QR and 5-digit code for adding friends
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ locale: string }> }
-) {
+export async function GET(request: NextRequest) {
   // Check if the request is authenticated
   try {
-    const locale = await params;
-
     const token =
       request.headers.get("Authorization")?.split(" ")[1] ||
       request.cookies.get("authToken")?.value;
 
     if (!token) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 409 });
     }
 
     // Verify the token and get the user ID
@@ -55,15 +50,13 @@ export async function GET(
       .doc(emailToId(decodedToken.email || ""))
       .get();
 
-    const name = user.data()?.nickName;
-
     // Generate a random 5-digit code
     const code = await getFriendCode(user.id);
 
     //note: I'm not sure what the path is, so I decided to use this path instead
-    const path = `${process.env.NEXT_PUBLIC_BASE_URL}${locale}/profile/addFriend`;
+    const path = `${process.env.NEXT_PUBLIC_BASE_URL}/profile/addFriend`;
 
-    const query = new URLSearchParams({ name, id: user.id }).toString();
+    const query = new URLSearchParams({ code, id: user.id }).toString();
 
     const url = `${path}?${query}`;
 

@@ -18,6 +18,9 @@ export function colorGroup(type: "bg" | "fill", group: string) {
     R: "bg-R",
     S: "bg-S",
     T: "bg-T",
+    black: "bg-black",
+    white: "bg-white",
+    red: "bg-red",
   };
 
   const fillMap: Record<string, string> = {
@@ -39,6 +42,9 @@ export function colorGroup(type: "bg" | "fill", group: string) {
     R: "fill-R",
     S: "fill-S",
     T: "fill-T",
+    black: "fill-black",
+    white: "fill-white",
+    red: "fill-red",
   };
   if (type === "bg") {
     return bgMap[group];
