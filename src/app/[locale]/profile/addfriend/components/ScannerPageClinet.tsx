@@ -128,11 +128,11 @@ const ScannerPageClient = () => {
         handleCloseAll();
       } else {
         console.error(data);
-        throw new Error("Failed to add friend.");
+        throw new Error(data.error);
       }
     } catch (e) {
       console.error(e);
-      alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
+      alert(e);
     } finally {
       setLoading(false);
     }
