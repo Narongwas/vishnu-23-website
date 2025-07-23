@@ -59,7 +59,7 @@ export const getIdToken = async () => {
   const user = getCurrentUser();
   if (user) {
     try {
-      return await user.getIdToken();
+      return await user.getIdToken(true);
     } catch (error) {
       console.error("Error getting ID token:", error);
       return null;

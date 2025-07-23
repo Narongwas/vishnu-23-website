@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
     }
 
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(idToken);
+
     const userRecord = await firebaseAdmin.auth().getUser(decodedToken.uid);
 
     if (
@@ -52,6 +53,19 @@ export async function POST(request: NextRequest) {
     return response;
   } catch (error) {
     console.error("Login error:", error);
+
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "code" in error &&
+      (error as { code?: string }).code === "auth/id-token-expired"
+    ) {
+      return NextResponse.json(
+        { error: "ID token has expired" },
+        { status: 401 }
+      );
+    }
+
     return NextResponse.json(
       { error: "Authentication failed" },
       { status: 500 }
