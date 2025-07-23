@@ -3,13 +3,15 @@
 import { StyleableFC } from "@/lib/types/misc";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
-import { redirect } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 type DeleteFriendProps = {
   friendId: string;
 };
 
 const DeleteFriend: StyleableFC<DeleteFriendProps> = ({ friendId }) => {
+  const router = useRouter();
+
   const handleDelete = async () => {
     if (!confirm("คุณต้องการลบเพื่อนคนนี้ใช่หรือไม่?")) return;
     try {
@@ -23,7 +25,7 @@ const DeleteFriend: StyleableFC<DeleteFriendProps> = ({ friendId }) => {
       const data = await res.json();
       if (res.ok) {
         alert("ลบเพื่อนสำเร็จ");
-        redirect("/");
+        router.push("/profile");
       } else {
         alert(data.error || "เกิดข้อผิดพลาดในการลบเพื่อน");
       }
