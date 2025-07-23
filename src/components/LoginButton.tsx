@@ -2,7 +2,7 @@
 
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { signInWithGoogle } from "@/lib/firebase/auth";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useTranslations } from "next-intl";
@@ -43,7 +43,6 @@ export default function GoogleLoginBtn({
   const { loginWithToken, token, user } = useAuth();
   const isLoggedIn = !!token;
   const [redirectTo, setRedirectTo] = useState("/");
-  const router = useRouter();
   const loginAttempted = useRef(false);
 
   const handleGoogleLogin = useCallback(async () => {
@@ -58,19 +57,13 @@ export default function GoogleLoginBtn({
       if (user) {
         await loginWithToken(user);
         onSuccess?.();
-
-        // Force refresh and redirect to handle auth state sync issues
-        if (redirectTo !== "/") {
-          window.location.href = redirectTo;
-        } else {
-          router.push(redirectTo);
-        }
+        // Let RedirectHandler handle the redirect after login
       }
     } catch (error) {
       console.error("Login error:", error);
       onError?.((error as unknown as string) || "Login failed");
     }
-  }, [loginWithToken, onError, onSuccess, redirectTo, router]);
+  }, [loginWithToken, onError, onSuccess]);
 
   useEffect(() => {
     if (!isLoggedIn && redirectTo !== "/" && !loginAttempted.current) {
