@@ -18,7 +18,7 @@ const Header: StyleableFC<{
       className={cn("flex items-center justify-between text-white", className)}
     >
       <div className="flex w-full items-center justify-between gap-3">
-        <div className="font-bai text-[22px] leading-[28px] font-bold whitespace-nowrap">
+        <div className="type-title-large font-bold whitespace-nowrap">
           {t("title")}
         </div>
         <div className="flex w-50 items-center bg-white px-4 py-2.5">
