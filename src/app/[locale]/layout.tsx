@@ -1,6 +1,7 @@
 import "@/app/[locale]/globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 import InAppBrowserDetector from "@/components/InAppBrowserDetector";
+import RedirectHandler from "@/components/RedirectHandler";
 import { routing } from "@/i18n/routing";
 import cn from "@/lib/helpers/cn";
 import type { Metadata, Viewport } from "next";
@@ -9,6 +10,7 @@ import { getMessages } from "next-intl/server";
 import { Bai_Jamjuree, Liu_Jian_Mao_Cao } from "next/font/google";
 import localFont from "next/font/local";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 const baiJamjuree = Bai_Jamjuree({
   subsets: ["latin", "thai"],
@@ -68,6 +70,9 @@ export default async function LocaleLayout({
       >
         <AuthProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
+            <Suspense fallback={null}>
+              <RedirectHandler />
+            </Suspense>
             {children}
             <InAppBrowserDetector />
           </NextIntlClientProvider>
