@@ -60,6 +60,7 @@ export async function GET(request: NextRequest) {
     const groupsList = groups.map(({ group, name }) => {
       const usersInGroup = userData
         .filter((userDoc) => userDoc.data().group === group)
+        .filter((userDoc) => userDoc.data().role === "camper")
         .map((userDoc) => userDoc.id);
 
       const userCorrect = answersData.docs.filter((answerDoc) =>

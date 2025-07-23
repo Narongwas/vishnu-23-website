@@ -30,8 +30,8 @@ export async function POST(
     }
 
     const solution = {
-      en: predictionSnap.data()?.solution.en.trim().toLowerCase,
-      th: predictionSnap.data()?.solution.th.trim().toLowerCase,
+      en: predictionSnap.data()?.solution.en.trim().toLowerCase(),
+      th: predictionSnap.data()?.solution.th.trim().toLowerCase(),
     };
 
     const answers = answersSnap.docs;
