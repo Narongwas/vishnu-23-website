@@ -30,7 +30,7 @@ export default async function FriendInfoPage({ params }: FriendInfoPageProps) {
             <BackButton variant="secondary" />
           </div>
           <div className="absolute top-4 right-4">
-            <DeleteFriend />
+            <DeleteFriend friendId={friendId} />
           </div>
           <div className="flex h-full items-center justify-center">
             <Image

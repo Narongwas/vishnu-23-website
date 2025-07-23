@@ -3,10 +3,34 @@
 import { StyleableFC } from "@/lib/types/misc";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
+import { redirect } from "next/navigation";
 
-const DeleteFriend: StyleableFC = () => {
-  const handleDelete = () => {
-    console.log("Friend deleted");
+type DeleteFriendProps = {
+  friendId: string;
+};
+
+const DeleteFriend: StyleableFC<DeleteFriendProps> = ({ friendId }) => {
+  const handleDelete = async () => {
+    if (!confirm("คุณต้องการลบเพื่อนคนนี้ใช่หรือไม่?")) return;
+    try {
+      const res = await fetch("/api/v1/friends", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ friendId }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        alert("ลบเพื่อนสำเร็จ");
+        redirect("/");
+      } else {
+        alert(data.error || "เกิดข้อผิดพลาดในการลบเพื่อน");
+      }
+    } catch (e) {
+      console.error("Error deleting friend:", e);
+      alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
+    }
   };
 
   return (

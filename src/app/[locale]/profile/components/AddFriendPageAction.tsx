@@ -1,7 +1,7 @@
 "use client";
 
 import PageAction from "@/components/PageAction";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 const AddFriendPageAction = () => {

@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import { StyleableFC } from "@/lib/types/misc";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 const EditButton: StyleableFC = ({ className }) => {
   const t = useTranslations("Profile.Profile.action");
