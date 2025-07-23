@@ -28,8 +28,8 @@ export const verifyIdToken = async (token: string) => {
 };
 
 const firebaseAdmin = getFirebaseAdmin();
-//const remoteConfig = firebaseAdmin.remoteConfig();
+const remoteConfig = firebaseAdmin.remoteConfig();
 const db = firebaseAdmin.firestore();
 const storage = firebaseAdmin.storage();
 
-export { db, firebaseAdmin, /*remoteConfig,*/ storage };
+export { db, firebaseAdmin, remoteConfig, storage };
