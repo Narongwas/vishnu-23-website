@@ -217,7 +217,9 @@ const SocialActionButton = ({ platform, value }: SocialActionButtonProps) => {
       >
         <span className="flex flex-col items-center justify-center gap-1.5">
           {icon}
-          <span>{display}</span>
+          <span className="type-title-medium inline-block max-w-[120px] truncate align-middle">
+            {display}
+          </span>
         </span>
       </button>
     );
@@ -229,7 +231,12 @@ const SocialActionButton = ({ platform, value }: SocialActionButtonProps) => {
         className="rounded bg-gray-400 px-3 py-1 text-white"
         onClick={handleClick}
       >
-        คัดลอก {display}
+        <span className="flex flex-col items-center justify-center gap-1.5">
+          {icon}
+          <span className="type-title-medium inline-block max-w-[120px] truncate align-middle">
+            {display}
+          </span>
+        </span>
       </button>
     );
   }

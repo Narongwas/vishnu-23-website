@@ -17,6 +17,7 @@ export default function MyQRPage() {
   const [loading, setLoading] = useState(true);
   const [fullName, setFullName] = useState<string>("");
   const [friendCode, setFriendCode] = useState<string>("");
+  const [userProfile, setUserProfile] = useState<string | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -30,6 +31,7 @@ export default function MyQRPage() {
             : "";
         setFullName(name);
         setFriendCode(user?.addFriendCode || "");
+        setUserProfile(user?.profileUrl || null);
       })
       .catch(() => {
         setQr(null);
@@ -82,12 +84,18 @@ export default function MyQRPage() {
   return (
     <div className={cn("flex min-h-screen items-center justify-center")}>
       <div className="absolute top-0 left-0 z-20 p-4">
-        <BackButton variants="secondary" />
+        <BackButton variant="secondary" />
       </div>
       <div className="z-10 flex flex-col items-center justify-center gap-6 p-8 text-white">
         <div className="flex flex-col items-center gap-3">
           <div className="h-18 w-18 overflow-hidden rounded-full">
-            <Image src={defaultProfile} alt="Default Profile" />
+            <Image
+              src={userProfile || defaultProfile}
+              alt="Default Profile"
+              width={72}
+              height={72}
+              className="h-full w-full object-cover object-center"
+            />
           </div>
           <div className="type-title-large">{fullName}</div>
         </div>

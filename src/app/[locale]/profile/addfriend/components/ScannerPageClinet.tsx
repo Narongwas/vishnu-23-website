@@ -145,7 +145,7 @@ const ScannerPageClient = () => {
   return (
     <div>
       <div className="relative z-10 flex items-center justify-between p-4">
-        <BackButton variants="secondary" />
+        <BackButton variant="secondary" />
         <div className="flex gap-x-3">
           <AddFriendWithCodeButton onClick={() => setIsCodeModalOpen(true)} />
           <HelpButton

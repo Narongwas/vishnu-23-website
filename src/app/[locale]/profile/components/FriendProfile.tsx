@@ -33,7 +33,7 @@ const FriendProfile: StyleableFC<FriendProps> = ({ userid, className }) => {
       onClick={() => handleClick(userid)}
     >
       <Image
-        src="/decorating/profile/defaultProfile.png"
+        src={friendData?.profileUrl || "/decorating/profile/defaultProfile.png"}
         alt="Profile Picture"
         width={60}
         height={60}
