@@ -49,9 +49,15 @@ export default async function FriendInfoPage({ params }: FriendInfoPageProps) {
       </div>
       {/* เพิ่ม mt-8 เพื่อเว้นระยะห่าง 8 จากด้านบน */}
       <div className="mx-auto mt-8 grid grid-cols-2 gap-4 px-4">
-        <SocialCard platform="instagram" value={data.contact.instagram || ""} />
-        <SocialCard platform="line" value={data.contact.line || ""} />
-        <SocialCard platform="facebook" value={data.contact.facebook || ""} />
+        {Object.entries(data.contact)
+          .filter(([, value]) => typeof value === "string" && value !== "")
+          .map(([platform, value]) => (
+            <SocialCard
+              key={platform}
+              platform={platform}
+              value={value as string}
+            />
+          ))}
       </div>
     </div>
   );
