@@ -12,9 +12,9 @@ export default function ProfileLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <BackgroundWithNoise className="flex min-h-250 flex-col justify-center">
-      <div className="bg-red absolute inset-0 bg-gradient-to-b to-white/50">
-        <div className="relative mx-auto max-w-200">{children}</div>
+    <BackgroundWithNoise className="from-red to-orange/50 bg-gradient-to-b">
+      <div className="relative mx-auto min-h-screen max-w-200 overflow-hidden px-4">
+        {children}
       </div>
     </BackgroundWithNoise>
   );

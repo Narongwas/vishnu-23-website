@@ -9,8 +9,10 @@ import { useEffect, useState } from "react";
 import AddFriendArt from "@/public/decorating/profile/addFriendArt.png";
 import Image from "next/image";
 import AddFriendPageAction from "@/app/[locale]/profile/components/AddFriendPageAction";
+import { useTranslations } from "next-intl";
 
 const FriendList: StyleableFC = ({ className }) => {
+  const t = useTranslations("Profile.FriendsList");
   const [friends, setFriends] = useState<string[]>([]);
   const [search, setSearch] = useState("");
   const [friendProfiles, setFriendProfiles] = useState<
@@ -59,8 +61,15 @@ const FriendList: StyleableFC = ({ className }) => {
           <div className="type-body-medium text-white">Loading ...</div>
         ) : (filtered.length === 0 && friends.length > 0) ||
           friends.length === 0 ? (
-          <div className="type-body-medium text-white">
+          <div className="type-body-medium pga px-18.5 text-white">
             <Image src={AddFriendArt} alt="Add Friend" />
+            <p className="mt-3 justify-center text-center">
+              {t.rich("empty", {
+                strong: (chunks) => (
+                  <strong className="font-bold">{chunks}</strong>
+                ),
+              })}
+            </p>
           </div>
         ) : (
           filtered.map((friend) => (

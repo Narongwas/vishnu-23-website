@@ -37,7 +37,7 @@ const FriendProfile: StyleableFC<FriendProps> = ({ userid, className }) => {
         alt="Profile Picture"
         width={60}
         height={60}
-        className="rounded-full"
+        className="h-full w-full rounded-full object-cover object-center"
       />
       <p className="type-title-medium flex justify-center text-white">
         {friendData ? (friendData.nickName ?? userid) : "Loading..."}

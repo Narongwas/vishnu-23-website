@@ -3,11 +3,11 @@ import BackButton from "@/components/BackButton";
 import DeleteFriend from "@/app/[locale]/profile/friend-info/[id]/components/DeleteFriend";
 import Image from "next/image";
 interface FriendInfoPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function FriendInfoPage({ params }: FriendInfoPageProps) {
-  const friendId = params.id;
+  const friendId = (await params).id;
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/${friendId}`,
@@ -47,7 +47,6 @@ export default async function FriendInfoPage({ params }: FriendInfoPageProps) {
           <p className="type-title-large textwhite">{groupData.groupName}</p>
         </div>
       </div>
-      {/* เพิ่ม mt-8 เพื่อเว้นระยะห่าง 8 จากด้านบน */}
       <div className="mx-auto mt-8 grid grid-cols-2 gap-4 px-4">
         {Object.entries(data.contact)
           .filter(([, value]) => typeof value === "string" && value !== "")

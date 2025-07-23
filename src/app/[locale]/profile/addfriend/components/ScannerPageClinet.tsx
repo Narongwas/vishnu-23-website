@@ -35,7 +35,6 @@ const ScannerPageClient = () => {
 
   const handleDecodeCodeFromQR = async (barcode: string) => {
     let code = barcode;
-    console.log("Scanned barcode:", barcode);
     try {
       if (barcode.startsWith("http")) {
         const parsedUrl = new URL(barcode);
@@ -95,7 +94,6 @@ const ScannerPageClient = () => {
       }
 
       const data = await res.json();
-      console.log("Decoded data:", data);
       setSuccessData({
         firstName: data.firstName,
         lastName: data.lastName,
@@ -103,7 +101,6 @@ const ScannerPageClient = () => {
         code: code,
       });
     } catch (e) {
-      // ถ้าอยาก log error
       console.error(e);
       handleCloseAll();
       alert("ไม่สามารถถอดรหัสได้ หรือรหัสไม่ถูกต้อง");
@@ -112,7 +109,6 @@ const ScannerPageClient = () => {
     }
   };
 
-  // ตัวอย่าง handleStamp สำหรับ AddFriend (ไม่เกี่ยวกับ club id)
   const handleStamp = async () => {
     if (!successData) return;
 
@@ -143,28 +139,29 @@ const ScannerPageClient = () => {
   };
 
   return (
-    <div>
-      <div className="relative z-10 flex items-center justify-between p-4">
-        <BackButton variant="secondary" />
-        <div className="flex gap-x-3">
-          <AddFriendWithCodeButton onClick={() => setIsCodeModalOpen(true)} />
-          <HelpButton
-            onClick={() => setIsHelpOpen(true)}
-            className="text-red"
-          />
-        </div>
-      </div>
+    <div className="relative min-h-screen overflow-hidden">
       <ScannerSection onCapture={handleDecodeCodeFromQR} />
-      <MyQRPageAction onClick={() => router.push("/profile/addfriend/qr")} />
 
-      {/* Modal กรอกรหัส */}
+      <div className="ไ relative z-10">
+        <div className="fixed top-0 left-0 z-20 flex w-full items-center justify-between p-4">
+          <BackButton variant="secondary" />
+          <div className="flex gap-x-3">
+            <AddFriendWithCodeButton onClick={() => setIsCodeModalOpen(true)} />
+            <HelpButton
+              onClick={() => setIsHelpOpen(true)}
+              className="text-red"
+            />
+          </div>
+        </div>
+        <MyQRPageAction onClick={() => router.push("/profile/addfriend/qr")} />
+      </div>
+
       <CodeStampModal
         isOpen={isCodeModalOpen}
         onClose={handleCloseAll}
         onConfirm={handleDecodeCodeFromInput}
       />
 
-      {/* Modal ยืนยันเพิ่มเพื่อน */}
       <StampConfirmationModal
         isOpen={!!successData}
         onClose={handleCloseAll}

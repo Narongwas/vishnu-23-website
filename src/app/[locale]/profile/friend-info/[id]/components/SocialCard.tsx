@@ -228,7 +228,7 @@ const SocialActionButton = ({ platform, value }: SocialActionButtonProps) => {
     return (
       <button
         type="button"
-        className="rounded bg-gray-400 px-3 py-1 text-white"
+        className="bg-yellow text-red no-repeat relative z-10 bg-[url('/decorating/texture/fabric.png')] bg-cover px-5 py-4 bg-blend-soft-light"
         onClick={handleClick}
       >
         <span className="flex flex-col items-center justify-center gap-1.5">
