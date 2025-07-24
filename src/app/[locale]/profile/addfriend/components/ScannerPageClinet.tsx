@@ -1,16 +1,16 @@
 "use client";
 
-import ScannerSection from "@/app/[locale]/profile/addfriend/components/ScannerSection";
-import { useState } from "react";
-import CodeStampModal from "@/app/[locale]/profile/addfriend/components/AddFriendWithCodeModal";
-import StampConfirmationModal from "@/app/[locale]/profile/addfriend/components/StampConfirmationModal";
 import AddFriendWithCodeButton from "@/app/[locale]/profile/addfriend/components/AddFriendWithCodeButton";
-import BackButton from "@/components/BackButton";
+import CodeStampModal from "@/app/[locale]/profile/addfriend/components/AddFriendWithCodeModal";
+import BackButtonAddFriend from "@/app/[locale]/profile/addfriend/components/BackButtonAddFriend";
 import HelpButton from "@/app/[locale]/profile/addfriend/components/HelpButton";
 import HelpCard from "@/app/[locale]/profile/addfriend/components/HelpCard";
 import MyQRPageAction from "@/app/[locale]/profile/addfriend/components/MyQRPageAction";
 import ScanCard from "@/app/[locale]/profile/addfriend/components/ScanCard";
+import ScannerSection from "@/app/[locale]/profile/addfriend/components/ScannerSection";
+import StampConfirmationModal from "@/app/[locale]/profile/addfriend/components/StampConfirmationModal";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type SuccessData = {
   firstName: string;
@@ -144,7 +144,7 @@ const ScannerPageClient = () => {
 
       <div className="ไ relative z-10">
         <div className="fixed top-0 left-0 z-20 flex w-full items-center justify-between p-4">
-          <BackButton variant="secondary" />
+          <BackButtonAddFriend variant="secondary" />
           <div className="flex gap-x-3">
             <AddFriendWithCodeButton onClick={() => setIsCodeModalOpen(true)} />
             <HelpButton
