@@ -60,17 +60,11 @@ export async function middleware(req: NextRequest) {
     req.nextUrl.pathname.startsWith("/_next") ||
     req.nextUrl.pathname.includes(".");
 
-  const hasRedirectParam = req.nextUrl.searchParams.has("redirect");
-  const isInitialLoad = req.headers.get("sec-fetch-mode") === "navigate";
-
   // redirect to login if no token
   if (!token && !isPublicRoute && !isPublicApiRoute && !isStaticFile) {
     // fix : wait for page load and firebase auth state init
-    if (isInitialLoad && !hasRedirectParam) {
-      const response = NextResponse.next();
-      response.headers.set("x-auth-required", "true");
-      return response;
-    }
+
+    setTimeout(() => {}, 100);
 
     // Get the current locale from the pathname
     let currentLocale = routing.defaultLocale;
