@@ -3,11 +3,11 @@
 import Ball from "@/app/[locale]/games/predictions/components/Ball";
 import Icon from "@/components/Icon";
 import Modal from "@/components/Modal";
-import { StyleableFC } from "@/lib/types/misc";
-import { motion } from "framer-motion";
-import type { PredictionHistoryItem } from "@/lib/types/prediction";
-import { useLocale, useTranslations } from "next-intl";
 import cn from "@/lib/helpers/cn";
+import { StyleableFC } from "@/lib/types/misc";
+import type { Prediction, PredictionHistoryItem } from "@/lib/types/prediction";
+import { motion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 10 },
@@ -21,18 +21,20 @@ const fadeIn = {
 type HelperCardProps = {
   onClose: () => void;
   answer?: PredictionHistoryItem;
+  question?: Prediction;
 };
 
 const AnswerCard: StyleableFC<HelperCardProps> = ({
   onClose,
   answer,
+  question,
   className,
   style,
 }) => {
   console.log(answer);
   const locale = useLocale() as "th" | "en";
   const t = useTranslations("Predictions");
-  const time = answer?.time === "เช้า" ? "morning" : "afternoon";
+  const time = question?.time === "เช้า" ? "morning" : "afternoon";
   return (
     <Modal onClose={onClose} className={className} style={style}>
       {/* 1. Icon */}
@@ -69,7 +71,7 @@ const AnswerCard: StyleableFC<HelperCardProps> = ({
             {t("AnswerDialog.round", { time })}
           </p>
           <p className="type-title-medium text-center text-balance">
-            {answer?.question?.[locale] || ""}
+            {question?.question[locale]}
           </p>
         </div>
       </motion.div>
@@ -127,7 +129,7 @@ const AnswerCard: StyleableFC<HelperCardProps> = ({
           variants={fadeIn}
         >
           {t("AnswerBall.solution", {
-            solution: answer?.solution[locale] || "",
+            solution: question?.solution[locale] || "",
           })}
         </motion.p>
       )}
