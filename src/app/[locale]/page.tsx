@@ -45,7 +45,6 @@ export default async function Home() {
       </div>
       <ScoreSection />
       <HomePageSponsorFooter className="z-10" />
-
       <FaqLayoutGroup />
     </HomeWrapper>
   );

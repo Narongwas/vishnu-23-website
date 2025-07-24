@@ -40,7 +40,7 @@ export async function GET(
             id: doc.id,
             name: doc.data().nickName || "",
             email: doc.data().email || "Unknown",
-            profile: doc.data().profileURL,
+            profile: doc.data().profileUrl,
           }));
         })
       )
