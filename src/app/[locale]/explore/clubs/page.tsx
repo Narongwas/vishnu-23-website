@@ -10,7 +10,7 @@ export default async function ClubPage() {
     <>
       <SubPageHeader curvedText={t("header.title")} title={t("clubs.title")} />
       <div className="absolute top-0 z-10 flex w-full items-center justify-between py-4">
-        <BackButton variant="tertiary" />
+        <BackButton variant="tertiary" href="/explore" />
       </div>
       <ClubPanel className="pt-8 pb-10" />
       <AllPageSponsorFooter />

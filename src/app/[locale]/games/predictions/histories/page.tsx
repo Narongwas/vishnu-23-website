@@ -7,7 +7,7 @@ export default async function PredictionHistory() {
   return (
     <div>
       <div className="relative z-10 flex w-full items-center justify-between p-4">
-        <BackButton variant="secondary-variant" />
+        <BackButton variant="secondary-variant" href="/games/predictions" />
         <p className="type-headline-small py-5 text-center text-white">
           {t("title")}
         </p>

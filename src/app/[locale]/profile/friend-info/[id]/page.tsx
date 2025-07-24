@@ -28,7 +28,7 @@ export default async function FriendInfoPage({
       <div>
         <div className="relative z-10 gap-6 px-4 pt-4">
           <div className="absolute top-4 left-4">
-            <BackButton variant="secondary" />
+            <BackButton variant="secondary" href="/profile" />
           </div>
           <div className="absolute top-4 right-4">
             <DeleteFriend friendId={friendId} />

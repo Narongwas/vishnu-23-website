@@ -2,7 +2,7 @@
 
 import AddFriendWithCodeButton from "@/app/[locale]/profile/addfriend/components/AddFriendWithCodeButton";
 import CodeStampModal from "@/app/[locale]/profile/addfriend/components/AddFriendWithCodeModal";
-import BackButtonAddFriend from "@/app/[locale]/profile/addfriend/components/BackButtonAddFriend";
+import BackButton from "@/components/BackButton";
 import HelpButton from "@/app/[locale]/profile/addfriend/components/HelpButton";
 import HelpCard from "@/app/[locale]/profile/addfriend/components/HelpCard";
 import MyQRPageAction from "@/app/[locale]/profile/addfriend/components/MyQRPageAction";
@@ -142,9 +142,9 @@ const ScannerPageClient = () => {
     <div className="relative min-h-screen overflow-hidden">
       <ScannerSection onCapture={handleDecodeCodeFromQR} />
 
-      <div className="ไ relative z-10">
+      <div className="relative z-10">
         <div className="fixed top-0 left-0 z-20 flex w-full items-center justify-between p-4">
-          <BackButtonAddFriend variant="secondary" />
+          <BackButton variant="secondary" href="/profile" />
           <div className="flex gap-x-3">
             <AddFriendWithCodeButton onClick={() => setIsCodeModalOpen(true)} />
             <HelpButton
