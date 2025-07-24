@@ -27,7 +27,7 @@ export default async function EditProfilePage() {
     <div className="relative z-10 m-4 flex flex-col gap-6 pb-50 text-white">
       <div className="flex items-center justify-center">
         <div className="absolute top-0 left-0 z-10">
-          <BackButton variant="secondary" />
+          <BackButton variant="secondary" href="/profile" />
         </div>
         <div className="relative inline-block">
           <Image

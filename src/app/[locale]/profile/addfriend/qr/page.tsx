@@ -84,7 +84,7 @@ export default function MyQRPage() {
   return (
     <div className={cn("flex min-h-screen items-center justify-center")}>
       <div className="absolute top-0 left-0 z-20 p-4">
-        <BackButton variant="secondary" />
+        <BackButton variant="secondary" href="/profile/addfriend" />
       </div>
       <div className="z-10 flex flex-col items-center justify-center gap-6 p-8 text-white">
         <div className="flex flex-col items-center gap-3">

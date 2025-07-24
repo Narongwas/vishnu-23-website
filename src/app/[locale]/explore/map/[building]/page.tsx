@@ -46,7 +46,7 @@ export default async function BuildingMapPage({
   return (
     <>
       <div className="relative z-10 flex w-full items-center justify-between py-4">
-        <BackButton variant="tertiary" />
+        <BackButton variant="tertiary" href="/explore/map" />
         <p className="type-headline-small text-center">
           {t(`building.${building}`)}
         </p>

@@ -58,7 +58,7 @@ const SlideControl: StyleableFC = ({ className, style }) => {
   return (
     <div className={cn(className)} style={style}>
       <div className="absolute top-0 z-10 flex w-full items-center justify-between py-4">
-        <BackButton variant="tertiary" />
+        <BackButton variant="tertiary" href="/explore" />
         <SlideLanguageSwitch
           lang={language}
           onSwitch={() => setLanguage(language === "en" ? "th" : "en")}
