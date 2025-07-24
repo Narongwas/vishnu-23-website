@@ -20,6 +20,8 @@ const PredictionControl: StyleableFC = ({ className, style }) => {
   const [showAnswerText, setShowAnswerText] = useState<bilingualString | null>(
     null
   );
+  const [answerQuestion, setAnswerQuestion] = useState<Prediction | null>(null);
+
   const [predictionItem, setPredictionItem] = useState<Prediction | null>(null);
   const [userAnswer, setUserAnswer] = useState("");
   const [isAnswered, setIsAnswered] = useState(false);
@@ -47,11 +49,11 @@ const PredictionControl: StyleableFC = ({ className, style }) => {
             const response = await fetch(
               `/api/v1/prediction/answer?prediction=${enabledPrediction.predictionId}`
             );
-            const historyData = await response.json();
+            const answerData = await response.json();
 
-            if (historyData) {
-              setUserAnswer(historyData.answer);
-              setHistory(historyData);
+            if (answerData) {
+              setUserAnswer(answerData.answer);
+              setHistory(answerData);
               setIsAnswered(true);
             }
           } catch (error) {
@@ -61,6 +63,7 @@ const PredictionControl: StyleableFC = ({ className, style }) => {
 
         if (enabledAnswer) {
           setShowAnswerText(enabledAnswer.solution);
+          setAnswerQuestion(enabledAnswer);
         }
       } catch (error) {
         console.error("Error fetching prediction data:", error);
@@ -167,6 +170,7 @@ const PredictionControl: StyleableFC = ({ className, style }) => {
           <AnswerCard
             onClose={() => setShowAnswerCard(false)}
             answer={history}
+            question={answerQuestion ?? undefined}
           />
         </div>
       )}
