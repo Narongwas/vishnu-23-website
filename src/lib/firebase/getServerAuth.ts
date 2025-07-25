@@ -2,11 +2,16 @@ import { cookies } from "next/headers";
 import { verifyIdToken } from "@/lib/services/firebase.admin";
 
 export async function getServerAuth() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("authToken")?.value;
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("authToken")?.value;
 
-  if (!token) return { user: null, token: null };
+    if (!token) return { user: null, token: null };
 
-  const user = await verifyIdToken(token);
-  return { user, token };
+    const user = await verifyIdToken(token);
+    return { user, token };
+  } catch (error) {
+    console.error("Error in getServerAuth:", error);
+    return { user: null, token: null };
+  }
 }
