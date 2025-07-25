@@ -23,7 +23,7 @@ export const verifyIdToken = async (token: string) => {
     return decodedToken;
   } catch (error) {
     console.error("Failed to verify token", error);
-    return null;
+    throw new Error("Invalid token");
   }
 };
 
